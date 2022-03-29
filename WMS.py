@@ -70,8 +70,8 @@ try:
         #well_tank is the value in %age that is sent to database
         well_tank = (pi*radiusSquare1*((height1-initial_height1)/100))*1000 # pi*r^2*(b/100) * 1000m^3 to get litres,
                                                                             # b = height(cm) - ultrasonic sensed height(cm)
-        if well_tank > 2601.55:
-            well_tank = 2601.55
+        if well_tank > 4500:
+            well_tank = 4500
         print('well tank-volume:', well_tank, 'L')
         
         
@@ -80,8 +80,8 @@ try:
         
         #wb_tank is the value in %age that is sent to database
         wb_tank = (pi*radiusSquare2*((height2-initial_height2)/100))*1000
-        if wb_tank > 2601.55:
-            wb_tank = 2601.55
+        if wb_tank > 2601:
+            wb_tank = 2601
         
         print('Waterboard tank-volume:', wb_tank, 'L')
 
