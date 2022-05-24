@@ -14,9 +14,9 @@ $valve1 = $data["valve1"];
 $valve2 = $data["valve2"];
 $override = $data["override"];
 
-$user = "esp32";
+$user = "admin";
 $password = "password";
-$database = "Water_Management_System";
+$database = "WMS";
 $table = "sensorValues";
 
 try {

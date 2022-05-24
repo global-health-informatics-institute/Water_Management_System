@@ -1,8 +1,8 @@
 <?php
 
-$user = "esp32";
+$user = "admin";
 $password = "password";
-$database = "Water_Management_System";
+$database = "WMS";
 $table1 = "sensorValues";
 $table2 ="commands";
 
@@ -37,3 +37,4 @@ try{
    echo $errormsg;
    die();
 }
+$db = null;

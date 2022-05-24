@@ -250,12 +250,13 @@ function getReadings() {
    if(mode == 1){
     document.getElementById('mode').style.backgroundColor="#10B981";
     document.getElementById('mode').innerHTML = document.getElementById('mode').innerHTML.replace("Auto-mode","Manual-mode");
+    document.getElementById('control').style.display="flex";
 
   }
   else{
     document.getElementById('mode').style.backgroundColor="#EF4444";
     document.getElementById('mode').innerHTML = document.getElementById('mode').innerHTML.replace("Manual-mode","Auto-mode");
-
+    document.getElementById('control').style.display="none";
   }
   };
 
@@ -403,12 +404,12 @@ function handleClick5(){
   if(mode){
     document.getElementById('mode').style.backgroundColor="#10B981";
     document.getElementById('mode').innerHTML = document.getElementById('mode').innerHTML.replace("Auto-mode","Manual-mode");
-
+    document.getElementById('control').style.display="flex";
   }
   else{
     document.getElementById('mode').style.backgroundColor="#EF4444";
     document.getElementById('mode').innerHTML = document.getElementById('mode').innerHTML.replace("Manual-mode","Auto-mode");
-
+    document.getElementById('control').style.display="none";
   }
 
   let pumpObj = {"override":mode};
