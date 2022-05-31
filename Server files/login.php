@@ -8,7 +8,7 @@ $table = "users";
 
 if (isset($_POST['submit'])){
 	$email = trim($_POST['email']);
-	$dbpassword = trim($_POST['password']);
+	$u_password = trim($_POST['password']);
 	
 	try{
 		$db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
@@ -20,7 +20,7 @@ if (isset($_POST['submit'])){
 			$row = $query->fetch(PDO::FETCH_ASSOC);
 			
 			if($row){
-				if ($dbpassword == $row['password']){
+				if ($u_password == $row['password']){
 					$_SESSION["userid"] = $row['id'];
 					$_SESSION["user"] = $row;
 						 
@@ -50,31 +50,31 @@ if (isset($_POST['submit'])){
 	<head>
 		<title>Login</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel ="stylesheet" href="style.css?v=2">
+		<link rel ="stylesheet" href="style.css?v=3">
 		<link rel ="stylesheet" href="bootstrap.min.css">
 	</head>
-	<body>
+	<body class="bg-light">
 		<div id="main-container" class= "container d-grid h-100">
 			<div id="thecard2" class="card shadow col-md-5">
-				<div class="card-title mt-3">Login</div>
-					<?php  echo $error; ?>
-					<form class="h-100" action ="" method="post">
-						<div class="form-group text-start ms-2 me-2">
-							<label>Email Address</label>
-							<input type = "email" name = "email" placeholder="example@email.com" class="form-control" required/>
-						</div>
-						<div class="form-group text-start ms-2 me-2">
-							<label>Password</label>
-							<input type = "password" name = "password" placeholder="password" class="form-control" required/>
-						</div>
-						<div class="form-group mb-2">
-							<input type = "submit" name = "submit" class="btn btn-secondary" value="Login"/>
-						</div>
-					</form>
-					<div> &copy 2022</div>
+				<div class="card-title mt-3">Sign In</div>
+				<div class="img-pos" ><img class="user-img" src="person-circle.svg"/></div>
+				<?php  echo $error; ?>
+				<form class="h-100" action ="" method="post">
+					<div class="form-group text-center ms-2 me-2">
+						<input class="login" type = "email" name = "email" placeholder="example@email.com" class="form-control" required/>
+					</div>
+					<div class="form-group text-center ms-2 me-2">
+						<input class="login" type = "password" name = "password" placeholder="password" class="form-control" required/>
+					</div>
+					<div class="form-group mb-2">
+						<input type = "submit" id ="login" name = "submit" class="btn btn-secondary" value="Login"/>
+					</div>
+				</form>
+				<div> &copy 2022</div>
 				</div>
 			</div>
 		</div>
 		<script src="bootstrap.min.js"></script>
+		<script src="login.js"></script>
 	</body>
 </html>

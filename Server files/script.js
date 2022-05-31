@@ -8,99 +8,32 @@ var valve1 = 0;
 var valve2 = 0;
 var theAlert = 1;
 var mode = 0;
-// Create Well Water Volume Gauge
-var gaugeWell = new RadialGauge({
-  renderTo: "gauge-well",
-  width: 300,
-  height: 300,
-  units: "Litres",
-  minValue: 0,
-  maxValue: 4500,
-  colorValueBoxRect: "#049faa",
-  colorValueBoxRectEnd: "#049faa",
-  colorValueBoxBackground: "#f1fbfc",
-  valueInt: 2,
-  majorTicks:["0", "500", "1000", "1500", "2000", "2500", "3000", "3500", "4000", "4500"],
-  minorTicks: 4,
-  strokeTicks: true,
-  highlights:[
-    {
-      from: 0,
-      to: 675,
-      color: "#ff0000",
-    },
-    {
-      from: 675,
-      to: 4050,
-      color: "#03ac13",
-    },
-    {
-      from: 4050,
-      to: 4500,
-      color: "#ff0000",
-    },
-  ],
-  colorPlate: "#fff",
-  borderShadowWidth: 0,
-  borders: false,
-  needleType: "line",
-  colorNeedle: "#007F80",
-  colorNeedleEnd: "#007F80",
-  needleWidth: 2,
-  needleCircleSize: 3,
-  colorNeedleCircleOuter: "#007F80",
-  needleCircleOuter: true,
-  needleCircleInner: false,
-  animationDuration: 1500,
-  animationRule: "linear",
-}).draw();
+  
 
-// Create WaterBoard Water Volume Gauge
-var gaugeWaterboard = new RadialGauge({
-  renderTo: "gauge-waterboard",
-  width: 300,
-  height: 300,
-  units: "Litres",
-  minValue: 0,
-  maxValue: 1350,
-  colorValueBoxRect: "#049faa",
-  colorValueBoxRectEnd: "#049faa",
-  colorValueBoxBackground: "#f1fbfc",
-  valueInt: 2,
-   majorTicks:["0", "150", "300", "450", "600", "750", "900", "1050", "1200", "1350"],
-  minorTicks: 4,
-  strokeTicks: true,
-  highlights:[
-    {
-      from: 0,
-      to: 166.65,
-      color: "#ff0000",
-    },
-    {
-      from: 166.65,
-      to: 1111,
-      color: "#03ac13",
-    },
-    {
-      from: 1111,
-      to: 1350,
-      color: "#ff0000",
-    },
-  ],
-  colorPlate: "#fff",
-  borderShadowWidth: 0,
-  borders: false,
-  needleType: "line",
-  colorNeedle: "#007F80",
-  colorNeedleEnd: "#007F80",
-  needleWidth: 2,
-  needleCircleSize: 3,
-  colorNeedleCircleOuter: "#007F80",
-  needleCircleOuter: true,
-  needleCircleInner: false,
-  animationDuration: 1500,
-  animationRule: "linear",
-}).draw();
+// Create Well Water Volume chart
+var dps = []; //dataPoints. 
+var logs = [];//datalogs array.
+
+var chart = new CanvasJS.Chart("chartContainer",{
+  theme: "light2",
+  title :{
+    text: "Well Tank"
+  },
+  axisX: {						
+    title: "Timestamp"
+  },
+  axisY: {						
+    title: "Volume(L)"
+  },
+  data: [{
+    type: "area",
+    xValueType: "dateTime",
+    dataPoints : dps
+  }]
+});
+
+chart.render();
+var yVal = 15;
 
 // Create Pressure Gauge
 var gaugePressure = new RadialGauge({
@@ -176,6 +109,7 @@ var gaugePressure = new RadialGauge({
   animationDuration: 1500,
   animationRule: "linear",
 }).draw();
+
 // Function to get current readings on the webpage when it loads for the first time
 function getReadings() {
   var xhr = new XMLHttpRequest();
@@ -186,13 +120,23 @@ function getReadings() {
       //Variables created to hold new sensor values
       var press = myObj.pressure;
       var welltank = myObj.wellTank;
-      var waterboardtank = myObj.wbTank;
-
-      //gauge values updated
+      var timestamp = myObj.stamp;
+      let xVal = Date.now();
+      
+      //gauge and chart values updated
       gaugePressure.value = press;
-      gaugeWell.value = welltank;
-      gaugeWaterboard.value = waterboardtank;
+      yVal = Number(welltank);
+      dps.push({x: xVal,y: yVal});
+      logs.push({x:xVal,y: yVal});
+      
+      if (dps.length >  10 )
+      {
+        dps.shift();				
+      }
 
+      chart.render();
+     
+      //command values updated
       warning1 = myObj.warning1;
       warning2 = myObj.warning2;
       pump1 = myObj.pump1;
@@ -214,7 +158,8 @@ function getReadings() {
        }
 	theAlert = 0;
     }else{theAlert = 1}
-
+  
+  //Updates control button states
    if(pump1 == 1){
     document.getElementById('pump1').style.backgroundColor="#10B981";
     document.getElementById('pump1').innerHTML = document.getElementById('pump1').innerHTML.replace("OFF","ON");
@@ -239,14 +184,7 @@ function getReadings() {
     document.getElementById('valve1').style.backgroundColor="#EF4444";
     document.getElementById('valve1').innerHTML = document.getElementById('valve1').innerHTML.replace("ON","OFF");
   }
-  if(valve2 == 1){
-    document.getElementById('valve2').style.backgroundColor="#10B981";
-    document.getElementById('valve2').innerHTML = document.getElementById('valve2').innerHTML.replace("OFF","ON");
-  }
-  else{
-    document.getElementById('valve2').style.backgroundColor="#EF4444";
-    document.getElementById('valve2').innerHTML = document.getElementById('valve2').innerHTML.replace("ON","OFF");
-  }
+  
    if(mode == 1){
     document.getElementById('mode').style.backgroundColor="#10B981";
     document.getElementById('mode').innerHTML = document.getElementById('mode').innerHTML.replace("Auto-mode","Manual-mode");
@@ -264,6 +202,7 @@ function getReadings() {
   xhr.send();
 }
 
+//Handles the pressure pump button
 function handleClick1(){
   if(pump1 == 0){
     pump1 = 1;
@@ -296,7 +235,7 @@ function handleClick1(){
   xhr.send(wellP);
 }
 
-
+//Handles the well pump button
 function handleClick2(){
   if(pump2 == 0){
     pump2 = 1;
@@ -314,8 +253,8 @@ function handleClick2(){
   }
 
   let pumpObj = {"pump2":pump2};
-  var wellP = JSON.stringify(pumpObj);
-  console.log(wellP);
+  var wbP = JSON.stringify(pumpObj);
+  console.log(wbP);
 
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function(){
@@ -325,10 +264,11 @@ function handleClick2(){
 }
   xhr.open("POST", "/sensorValues.php", true);
   xhr.setRequestHeader("Content-type","application/json");
-  xhr.send(wellP);
+  xhr.send(wbP);
 
 }
 
+//Handles the well valve button
 function handleClick3(){
   if(valve1 == 0){
     valve1 = 1;
@@ -346,8 +286,8 @@ function handleClick3(){
   }
 
   let pumpObj = {"valve1":valve1};
-  var wellP = JSON.stringify(pumpObj);
-  console.log(wellP);
+  var wellV = JSON.stringify(pumpObj);
+  console.log(wellV);
 
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function(){
@@ -357,44 +297,12 @@ function handleClick3(){
 }
   xhr.open("POST", "/sensorValues.php", true);
   xhr.setRequestHeader("Content-type","application/json");
-  xhr.send(wellP);
+  xhr.send(wellV);
 
 }
 
+//Handles the Mode Button
 function handleClick4(){
-  if(valve2 == 0){
-    valve2 = 1;
-  }
-  else{
-    valve2 = 0;
-  }
-  if(valve2){
-    document.getElementById('valve2').style.backgroundColor="#10B981";
-    document.getElementById('valve2').innerHTML = document.getElementById('valve2').innerHTML.replace("OFF","ON");
-  }
-  else{
-    document.getElementById('valve2').style.backgroundColor="#EF4444";
-    document.getElementById('valve2').innerHTML = document.getElementById('valve2').innerHTML.replace("ON","OFF");
-  }
-
-  let pumpObj = {"valve2":valve2};
-  var wellP = JSON.stringify(pumpObj);
-  console.log(wellP);
-
-  var xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function(){
-      if(xhr.status === 200){
-       console.log("Post successful!")
-     }
-}
-  xhr.open("POST", "/sensorValues.php", true);
-  xhr.setRequestHeader("Content-type","application/json");
-  xhr.send(wellP);
-
-
-}
-
-function handleClick5(){
   if(mode == 0){
     mode = 1;
   }
@@ -412,9 +320,9 @@ function handleClick5(){
     document.getElementById('control').style.display="none";
   }
 
-  let pumpObj = {"override":mode};
-  var wellP = JSON.stringify(pumpObj);
-  console.log(wellP);
+  let modeObj = {"override":mode};
+  var md = JSON.stringify(modeObj);
+  console.log(md);
 
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function(){
@@ -424,12 +332,8 @@ function handleClick5(){
 }
   xhr.open("POST", "/sensorValues.php", true);
   xhr.setRequestHeader("Content-type","application/json");
-  xhr.send(wellP);
-
-
+  xhr.send(md);
 }
-
-
 
 
 setInterval(getReadings, 2000);

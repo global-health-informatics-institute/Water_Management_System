@@ -9,11 +9,16 @@ $table2 ="commands";
 try{
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
   $myObj = new stdClass();
+  #$data_points = array();
 
   foreach($db->query("SELECT * FROM $table1") as $row) {
+    
+    #$points = array("x" => $row['Timestamp'],"y"=>$row['WellTank']);
+    #array_push($data_points,$points);
+    
+    $myObj->stamp = $row['id'];
     $myObj->pressure = $row['Pressure'] ;
     $myObj->wellTank = $row['WellTank'] ;
-    $myObj->wbTank = $row['WbTank'] ;
     $myObj->warning1 = $row['warning1'] ;
     $myObj->warning2 = $row['warning2'] ;
   }
@@ -22,12 +27,12 @@ try{
     $myObj->pump1 = $row['wellPump'];
     $myObj->pump2 = $row['pressurePump'];
     $myObj->valve1 = $row['wellValve'];
-    $myObj->valve2 = $row['WbValve'];
     $myObj->override = $row['overRide'];
 
   }
 
-
+  #$myObj -> data_points = $data_points;
+  
   $myJSON = json_encode($myObj);
   echo $myJSON;
 

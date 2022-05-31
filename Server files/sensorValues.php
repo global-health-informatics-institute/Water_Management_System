@@ -5,13 +5,10 @@ print_r($data);
 
 $pressure = $data["Pressure"];
 $well = $data["WellTank"];
-$wb = $data["WbTank"];
 $war1 = $data["warning1"];
 $war2 = $data["warning2"];
 $pump1 = $data["pump1"];
-$pump2 = $data["pump2"];
 $valve1 = $data["valve1"];
-$valve2 = $data["valve2"];
 $override = $data["override"];
 
 $user = "admin";
@@ -27,7 +24,7 @@ try {
   //inserts data into the database table
   if(isset($pressure)){ 
    $sql = "INSERT INTO $table (Pressure, WellTank, WbTank, warning1, warning2)
-    VALUES ('".$pressure."','".$well."', '".$wb."', '".$war1."', '".$war2."')";
+    VALUES ('".$pressure."','".$well."', '".$war1."', '".$war2."')";
     $conn->exec($sql);
     echo "New record in ".$table." created successfully";
   }
@@ -50,20 +47,12 @@ try {
    $conn->exec($sql);
    echo "record in ".$table ."updated successfully";
   }
-  //updates the WbValve in commands table
-  if(isset($valve2)){
-   $sql = "UPDATE commands SET WbValve = '".$valve2."'";
-   $conn->exec($sql);
-   echo "record in ".$table ."updated successfully";
-  }
   //updates the overRide in commands table
   if(isset($override)){
    $sql = "UPDATE commands SET overRide = '".$override."'";
    $conn->exec($sql);
    echo "record in ".$table ."updated successfully";
   }
-
-
 
 } catch(PDOException $e) {
   echo $sql . "<br>" . $e->getMessage();

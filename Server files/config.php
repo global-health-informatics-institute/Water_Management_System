@@ -12,3 +12,4 @@ try{
    $errormsg->message = "Could not connect to the database";
    echo $errormsg;
    die();
+}
