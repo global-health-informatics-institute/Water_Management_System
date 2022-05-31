@@ -15,7 +15,7 @@ if(!isset($_SESSION["userid"]) && $_SESSION["userid"] !== true){
   <head>
     <title>Water Management System</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel ="stylesheet" href="styler.css?v=3">
+    <link rel ="stylesheet" href="index.css?v=3">
     <link rel ="stylesheet" href="bootstrap.min.css">
     <script src="gauges.min.js"></script>
     <script src="canvasjs.min.js"></script>
@@ -80,7 +80,7 @@ if(!isset($_SESSION["userid"]) && $_SESSION["userid"] !== true){
       </div>
     </div>
     <script src="bootstrap.min.js"></script>
-    <script src="script.js?v=4"></script>
+    <script src="index.js?v=4"></script>
   </body>
 </html>
 

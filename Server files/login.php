@@ -50,7 +50,7 @@ if (isset($_POST['submit'])){
 	<head>
 		<title>Login</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel ="stylesheet" href="style.css?v=3">
+		<link rel ="stylesheet" href="login.css?v=3">
 		<link rel ="stylesheet" href="bootstrap.min.css">
 	</head>
 	<body class="bg-light">
