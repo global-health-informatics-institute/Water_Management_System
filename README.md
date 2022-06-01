@@ -7,6 +7,7 @@ volume of water and the mode in which the system is operating in.
 Software Deployment Guide
 
 This guide tells you where all the files in the repository need to go if they need to be used.
+
 Note: Make sure that LAMP server is installed on your raspberry pi.
 
 Step 1: 
