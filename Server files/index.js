@@ -8,7 +8,7 @@ var valve1 = 0;
 var valve2 = 0;
 var theAlert = 1;
 var mode = 0;
-  
+var msg = '';
 
 // Create Well Water Volume chart
 var dps = []; //dataPoints. 
@@ -110,6 +110,21 @@ var gaugePressure = new RadialGauge({
   animationRule: "linear",
 }).draw();
 
+//sends notification to mobile phone
+function Notification(msg){
+    fetch('https://api.mynotifier.app', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      apiKey: '0ae931fe-012e-4416-a222-f9d5132fdaba', // Input your own api key here.
+      message: msg, // The message you want to send to yourself/team.
+    }),
+  })
+  
+}
+
 // Function to get current readings on the webpage when it loads for the first time
 function getReadings() {
   var xhr = new XMLHttpRequest();
@@ -144,20 +159,25 @@ function getReadings() {
       valve1 = myObj.valve1;
       valve2 = myObj.valve2;
       mode = myObj.override;
-
-
     }
+    
+    //Checks if there any warnings
     if(warning1==1){
       if(theAlert==1){
-       alert("Water volume in Well Tank is too Low!");
+        msg = 'Water volume in Well Tank is too Low!';
+        Notification(msg);
+        alert(msg);
       }
        theAlert = 0;
     }else if(warning2==1){
        if(theAlert==1){
-      	alert("Well Tank is full!");
+         msg = 'Well Tank is full!';
+         Notification(msg);
+         alert(msg);
        }
 	theAlert = 0;
     }else{theAlert = 1}
+  
   
   //Updates control button states
    if(pump1 == 1){
