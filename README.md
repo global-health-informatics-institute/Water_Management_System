@@ -19,5 +19,5 @@ Setup the database by importing the backup located in the Database directory to 
 
 Step 3:
 Get an esp32 and copy the boot and WMS scripts to its memory. Make sure you change the file name 'WMS' to 'main'.
-once completed, ensure that you create a directory called 'lib' then copy all the files in the lib directory on this repository to the lib 
+once completed, ensure that you create a directory called 'lib' on the esp32 then copy all the files in the lib directory on this repository to the lib 
 directory on the esp32
