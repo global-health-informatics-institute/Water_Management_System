@@ -14,7 +14,7 @@ Ensure that you copy all the files within the 'Server files' directory to 'var/w
 the raspberry pi that will act as the system's server.
 
 Step 2: 
-Setup the database by importing the backup in the Database directory to MariaDB using phpMyAdmin.
+Setup the database by importing the backup located in the Database directory to MariaDB on the raspberry pi using phpMyAdmin.
 
 Step 3:
 Get an esp32 and copy the boot and WMS scripts to its memory. Make sure you change the file name 'WMS' to 'main'.
