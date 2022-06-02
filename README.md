@@ -18,6 +18,4 @@ Step 2:
 Setup the database by importing the backup located in the Database directory to MariaDB on the raspberry pi using phpMyAdmin.
 
 Step 3:
-Get an esp32 and copy the boot and WMS scripts to its memory. Make sure you change the file name 'WMS' to 'main'.
-once completed, ensure that you create a directory called 'lib' on the esp32 then copy all the files in the lib directory on this repository to the lib 
-directory on the esp32
+You will need two microcontrollers. One will be used to service an ultrasonic sensor and mounted on the tank being managed, whilst the other will act as the main microcontroller. Go to the ESP files and copy the corresponding files to the microcontrollers(ESP32/8266). You will then create a lib directory on both microntrollers. Copy the 'ptofaw100_150.py' file to the main microcontroller lib directory and the 'hcsr04.py' file to the mounted microcontroller's lib directory.  
