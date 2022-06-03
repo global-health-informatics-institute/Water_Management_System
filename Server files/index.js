@@ -1,3 +1,31 @@
+
+// Firebase
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+// Your web app's Firebase configuration
+
+// const { default: firebase } = require("@firebase/app-compat");
+// Info on firebase settings: https://firebase.google.com/docs/web/learn-more#web-version-8
+// Info on channel deployment: https://fireship.io/lessons/deploy-multiple-sites-to-firebase-hosting/
+
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyBVYCrx9tpoFmKKmrOlT7v7vXyP6NB1vjY",
+  authDomain: "notifier-e4301.firebaseapp.com",
+  databaseURL: "https://notifier-e4301-default-rtdb.firebaseio.com",
+  projectId: "notifier-e4301",
+  storageBucket: "notifier-e4301.appspot.com",
+  messagingSenderId: "443826028658",
+  appId: "1:443826028658:web:3fd922a118ed54c7a702eb",
+  measurementId: "G-CMLMHGFRSS"
+};
+
+// // Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+
+
+
 // Get current sensor readings when the page loads
 window.addEventListener("load", getReadings);
 var warning1 = 0;
@@ -9,6 +37,9 @@ var valve2 = 0;
 var theAlert = 1;
 var mode = 0;
 var msg = '';
+var yVal = 15;
+
+
 
 // Create Well Water Volume chart
 var dps = []; //dataPoints. 
@@ -33,7 +64,7 @@ var chart = new CanvasJS.Chart("chartContainer",{
 });
 
 chart.render();
-var yVal = 15;
+
 
 // Create Pressure Gauge
 var gaugePressure = new RadialGauge({
@@ -110,8 +141,16 @@ var gaugePressure = new RadialGauge({
   animationRule: "linear",
 }).draw();
 
+
+
 //sends notification to mobile phone
 function Notification(msg){
+  let data = {"timestamp":Date.now(), "msg": msg}
+  database.ref("message").push(data);
+  
+  
+  return;
+  
     fetch('https://api.mynotifier.app', {
     method: 'POST',
     headers: {
@@ -124,6 +163,8 @@ function Notification(msg){
   })
   
 }
+
+
 
 // Function to get current readings on the webpage when it loads for the first time
 function getReadings() {
@@ -179,6 +220,8 @@ function getReadings() {
     }else{theAlert = 1}
   
   
+  
+  
   //Updates control button states
    if(pump1 == 1){
     document.getElementById('pump1').style.backgroundColor="#10B981";
@@ -222,6 +265,9 @@ function getReadings() {
   xhr.send();
 }
 
+
+
+
 //Handles the pressure pump button
 function handleClick1(){
   if(pump1 == 0){
@@ -254,6 +300,9 @@ function handleClick1(){
   xhr.setRequestHeader("Content-type","application/json");
   xhr.send(wellP);
 }
+
+
+
 
 //Handles the well pump button
 function handleClick2(){
@@ -288,6 +337,9 @@ function handleClick2(){
 
 }
 
+
+
+
 //Handles the well valve button
 function handleClick3(){
   if(valve1 == 0){
@@ -320,6 +372,8 @@ function handleClick3(){
   xhr.send(wellV);
 
 }
+
+
 
 //Handles the Mode Button
 function handleClick4(){
@@ -356,5 +410,5 @@ function handleClick4(){
 }
 
 
-setInterval(getReadings, 2000);
+setInterval(getReadings, 1000);
 

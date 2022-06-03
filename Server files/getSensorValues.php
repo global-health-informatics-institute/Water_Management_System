@@ -1,5 +1,7 @@
 <?php
 
+$tank_id = $_GET['q'];
+
 $user = "admin";
 $password = "password";
 $database = "WMS";
@@ -11,7 +13,7 @@ try{
   $myObj = new stdClass();
   #$data_points = array();
 
-  foreach($db->query("SELECT * FROM $table1") as $row) {
+  foreach($db->query("SELECT * FROM $table1 WHERE watertank_id = '".$tank_id."'") as $row) {
     
     #$points = array("x" => $row['Timestamp'],"y"=>$row['WellTank']);
     #array_push($data_points,$points);
@@ -23,7 +25,7 @@ try{
     $myObj->warning2 = $row['warning2'] ;
   }
 
-  foreach($db->query("SELECT * FROM $table2") as $row) {
+  foreach($db->query("SELECT * FROM $table2 WHERE watertank_id = '".$tank_id."'") as $row) {
     $myObj->pump1 = $row['wellPump'];
     $myObj->pump2 = $row['pressurePump'];
     $myObj->valve1 = $row['wellValve'];

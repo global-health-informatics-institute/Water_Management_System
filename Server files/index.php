@@ -34,7 +34,10 @@ if(!isset($_SESSION["userid"]) && $_SESSION["userid"] !== true){
               <button id="mode" class="btn-nav me-2" onclick="handleClick4()">Auto-mode</button>
             </li>
             <li class="nav-item">
-              <a href="logout.php" id="logout" class ="btn btn-secondary me-2 h-auto" role="button">Logout</a>
+              <p>User: <?=$_SESSION['name']?></p>
+            </li>
+            <li class="nav-item">
+              <a href="logout.php" id="logout" class ="me-2 h-auto"><img class="logout-img" src="box-arrow-right.svg"/>Logout</a>
             </li>
           </ul>
         </div>
@@ -79,8 +82,10 @@ if(!isset($_SESSION["userid"]) && $_SESSION["userid"] !== true){
         </div>
       </div>
     </div>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
     <script src="bootstrap.min.js"></script>
-    <script src="index.js?v=4"></script>
+    <script src="index.js?v=5"></script>
   </body>
 </html>
 

@@ -20,9 +20,12 @@ if (isset($_POST['submit'])){
 			$row = $query->fetch(PDO::FETCH_ASSOC);
 			
 			if($row){
-				if ($u_password == $row['password']){
-					$_SESSION["userid"] = $row['id'];
-					$_SESSION["user"] = $row;
+				if (password_verify($row['password'],$u_password)){
+					
+					session_regenerate_id();
+					$_SESSION['loggedin'] = True;
+					$_SESSION['name'] = $row['username'];
+					$_SESSION['id'] = $row['id'];
 						 
 					header("location: index.php");
 					exit;

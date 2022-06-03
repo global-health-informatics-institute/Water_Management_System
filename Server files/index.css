@@ -101,6 +101,10 @@
         font-weight: bold;
         color: hsl(209, 95%, 24%);
       }
+      .logout-img{
+        height:30px;
+        width:30px;
+      }
 
       @media (max-width: 609px){
         .button-grid{
