@@ -6,13 +6,13 @@ from time import sleep
 from hcsr04 import HCSR04
 import network
 from machine import Timer
-
+from waterTank import WaterTank
 
 # **************************************************
-# PIN ASSIGNMENT
+# Initializations
 # **************************************************
 
-ultra_sensor1 = HCSR04(trigger_pin=12, echo_pin=14, echo_timeout_us=10000)
+Tank1 = WaterTank(height=172.974,radius=0.8281,volume=4500,trigger=12,echo=14)
 
 #Timer Initialization
 timer = Timer(-1)
@@ -20,25 +20,6 @@ timer.init(period = 12000,
            mode= Timer.PERIODIC,
            callback = lambda t: checkWifi()) #checkWifi function called to check the wifi status
 
-#Tank variables
-
-#well tank: max capacity = 4500L
-radiusSquare1 = 0.8281  #meters
-height1 = 172.974
-
-#waterboard tank: max capacity = 1350L
-radiusSquare2 = 0.330625  #meters
-height2 = 107
-
-
-#Tank constants
-pi = 3.14159265359
-
-#variables used to filter ultrasonic sensor values
-prev1 = 0
-count1 = 0
-well_counter = 0
-theSum = 0
 
 #Callback function of timer
 def checkWifi():
@@ -82,49 +63,7 @@ try:
         # GETTING READINGS FROM SENSORS
         # **************************************************   
         
-        while well_counter < 10:
-            print("entered loop")
-            #Well Tank Level Sensor
-            initial_height1 = ultra_sensor1.distance_cm()
-            
-            if prev1 == 0:
-                prev1 = initial_height1
-            
-            if initial_height1 <= 0:
-                well_counter += 1
-            
-            if initial_height1 != prev1:
-                print("do this")
-                temp1 = prev1 + 5
-                temp2 = prev1 - 5
-                if initial_height1 > temp1 or initial_height1 < temp2 :
-                    print(initial_height1, "cm The filtered distance")
-                    initial_height1 = temp1-5
-                    count1 += 1
-                    if count1 == 10:
-                        prev1 = initial_height1
-                        count1 = 0
-                else:
-                    print("then this")
-                    prev1 = initial_height1
-                    theSum = theSum + initial_height1
-                    well_counter += 1
-                    print("sum is now: ",theSum)
-        
-
-        well_counter = 0
-        wt_height = theSum/10
-        theSum=0
-        print("well tank average height", wt_height)
-        
-        #well_tank is the value in Litres that is sent to database
-        well_tank = (pi*radiusSquare1*((height1-wt_height)/100))*1000 # pi*r^2*(b/100) * 1000m^3 to get litres,
-                                                                            # b = height(cm) - ultrasonic sensed height(cm)
-        
-        
-        if well_tank > 4500:
-            well_tank = 4500
-        print('well tank-volume:', well_tank, 'L')
+        well_tank = Tank1.getSensorValues() 
         
         #HTTP methods executed only when wifi is available
         if wifi.active():
