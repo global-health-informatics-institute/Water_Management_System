@@ -12,6 +12,7 @@ from waterTank import WaterTank
 # Initializations
 # **************************************************
 
+#height should be in centimeteres, radius in meters and volume in Litres
 Tank1 = WaterTank(height=172.974,radius=0.8281,volume=4500,trigger=12,echo=14)
 
 #Timer Initialization
@@ -70,7 +71,7 @@ try:
             #HTTP PATCH METHOD
                 
             #Send Sensor Readings to API 
-            sensor = {"WellTank":well_tank}
+            sensor = {"Volume":well_tank, "tank_id": 1 }
             print('Printing sensor readings')
             print(sensor)
             

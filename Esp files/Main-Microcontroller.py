@@ -99,7 +99,7 @@ try:
         
         try:
             #HTTP GET METHOD
-            response = urequests.get(BASE+"/getSensorValues.php")
+            response = urequests.get(BASE+"/getSensorValues.php?"+tank_id)
             
             if response.status_code == 200:
                 data = response.json()
