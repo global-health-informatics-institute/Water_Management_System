@@ -19,8 +19,9 @@ class WaterTank:
         self.prev1 = 0
         
     def getSensorValues(self):
-        #Tank constants
+        #Tank constant
         pi = 3.14159265359
+        #Tank variables
         theSum = 0
         count = 0
         current_height = 0
