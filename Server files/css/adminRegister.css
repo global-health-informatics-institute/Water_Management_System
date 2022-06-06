@@ -1,0 +1,60 @@
+html {
+        font-family: Arial, Helvetica, sans-serif;
+        display: inline-block;
+        text-align: center;
+      }
+      body{
+        background-color: #F5F5F5;
+        display: grid;
+        min-height: 100vh;
+      }
+      h1 {
+        font-size: 1.8rem;
+        color: white;
+      }
+      p {
+        font-size: 1.4rem;
+      }
+      #main-container{
+        align-items:center;
+        justify-content:center;
+      }
+      .card-title {
+        font-size: 1.7rem;
+        font-weight: bold;
+        color: hsl(209, 95%, 24%);
+      }
+      #thecard2{
+        max-width: 350px;
+        min-width: 350px;
+        border-radius:0.8rem;
+        
+        
+        }
+      .form-group{
+        margin-top:1.2rem;
+      }
+		.register{
+				border-radius: 20px;
+				height:40px;
+				width:100%;
+				padding: 0 0;
+				text-align:center;
+				border-width:0 0;
+				border-color:#F5F5F5;
+				background-color:#F5F5F5;
+			  }
+	 .user-img{
+        height:80px;
+        width:80px;
+      }
+      .img-pos{
+        text-align: center;
+        margin-bottom: 50px;
+      }
+      #login{
+        border-radius:20px;
+        width:50%;
+        margin-top:20px;
+        background-color:black;
+      }

@@ -1,0 +1,130 @@
+ html {
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+        background-color: rgb(241, 241, 234);
+      }
+      body{
+        background-color: #F5F5F5;
+        min-height: 100vh;
+      }
+      h1 {
+        font-size: 1.8rem;
+        color: white;
+      }
+      p {
+        font-size: 1.4rem;
+      }
+      .labels {
+        font-size: large;
+        text-align: center;
+        font-weight: bold;
+        margin-top: 1.5rem;
+        
+      }
+     .btn-on{
+        justify-content: end;
+        }
+      .nav{
+        justify-content: flex-end;
+        align-items: center;
+        
+      }
+      .topnav {
+        margin: 0 auto;
+        display: grid;
+        grid-gap: 2rem;
+        grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+        background-color: #0a1128;
+      }
+      .title{
+        text-align: left;
+      }
+      .btn-nav{
+        text-align: center;
+        background-color: red;
+        border-color: red;
+        border-radius: 1rem;
+        padding: 1.8rem;
+        width: 150px;
+        height:auto;
+        color:#f9fafb;
+        border-radius:6px;
+        padding:15px;
+        border:0
+
+      }
+      
+      .btn-nav:hover{
+        font-size:medium;
+        color: black;
+      }
+      .canvas{
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+      }
+      .content {
+        padding: 5%;
+      }
+      .btn-ctrl {
+        background-color: red;
+        border-color: red;
+        border-radius: 1rem;
+        padding: 1.8rem;
+        width: 60px; 
+        height: 50px;
+        color:#f9fafb;  
+        border-radius:6px; 
+        padding:15px; 
+        border:0
+        
+      }
+      .btn-ctrl:hover {
+        font-size:medium;
+        width: 65px;
+        color: black;
+      }
+      #thecard{
+        border-radius:0.8rem;
+      }
+      #main-container{
+        align-items:center;
+        justify-content:center;
+      }
+        
+      .navbar-brand{
+        color: white;
+        font-weight:bold;
+        font-size:large;
+      }
+      .card-title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: hsl(209, 95%, 24%);
+      }
+      .logout-img{
+        height:30px;
+        width:30px;
+      }
+      .nav-text{
+        color: white;
+        margin-bottom: 0rem;
+      }
+
+      @media (max-width: 609px){
+        .button-grid{
+          grid-gap: 0rem;
+        }
+        .topnav{
+          grid-template-columns: repeat(autofit, minmax(200px, 1fr));
+
+        }
+      }
+      @media (max-width: 991px){
+        .nav{
+          justify-content: center;
+        }
+        .btn-on{
+          justify-content: center;
+          }
+      }
