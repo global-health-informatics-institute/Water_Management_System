@@ -15,10 +15,10 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
   <head>
     <title>Water Management System</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel ="stylesheet" href="index.css?v=3">
-    <link rel ="stylesheet" href="bootstrap.min.css">
-    <script src="gauges.min.js"></script>
-    <script src="canvasjs.min.js"></script>
+    <link rel ="stylesheet" href="assets/bootstrap.min.css">
+    <link rel ="stylesheet" href="css/index.css?v=5">
+    <script src="assets/gauges.min.js"></script>
+    <script src="assets/canvasjs.min.js"></script>
   </head>
   <body>
     <!--Start of navbar-->
@@ -30,14 +30,11 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
           <ul class="nav w-100">
-            <li class="nav-item">
-              <button id="mode" class="btn-nav me-2" onclick="handleClick4()">Auto-mode</button>
+            <li class="nav-item me-2">
+              <p class = "nav-text me-2"> Hello, <?=$_SESSION['name']?>!</p>
             </li>
             <li class="nav-item">
-              <p>User: <?=$_SESSION['name']?></p>
-            </li>
-            <li class="nav-item">
-              <a href="logout.php" id="logout" class ="me-2 h-auto"><img class="logout-img" src="box-arrow-right.svg"/>Logout</a>
+              <a href="logout.php" id="logout" class ="me-2 h-auto"><img class="logout-img me-1" src="assets/images/box-arrow-right.svg"/>Logout</a>
             </li>
           </ul>
         </div>
@@ -48,19 +45,26 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
 
     <!-- Start of content-->
     <div class="container-fluid">
+      <div class="nav-item">
+        <button id="mode" class="btn-nav me-2" onclick="handleClick5()">Auto-mode</button>
+      </div>
       <div id="control" class= "row" style="display:none;">
         <!--Buttons-->
-        <div class = "col-lg-4 col-md-6">
-          <p class="labels">Pressure Pump</p>
+        <div class = "col-lg-3 col-md-6">
+          <p class="labels">Water Pump</p>
           <button id="pump1" class="btn btn-ctrl" onclick="handleClick1()">OFF</button></div
         >
-        <div class="col-lg-4 col-md-6">
-          <p class="labels">Well Pump</p>
+        <div class="col-lg-3 col-md-6">
+          <p class="labels">Pressure Pump</p>
           <button id="pump2" class="btn btn-ctrl" onclick="handleClick2()">OFF</button></div
         >
-        <div class="col-lg-4 col-md-6">
+        <div class="col-lg-3 col-md-6">
           <p class="labels">Well Tank Valve</p>
           <button id="valve1" class="btn btn-ctrl" onclick="handleClick3()">OFF</button></div
+        >
+        <div class="col-lg-3 col-md-6">
+          <p class="labels">Wb Tank Valve</p>
+          <button id="valve2" class="btn btn-ctrl" onclick="handleClick4()">OFF</button></div
         >
       </div>
 
@@ -84,8 +88,8 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
     </div>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-    <script src="bootstrap.min.js"></script>
-    <script src="index.js?v=5"></script>
+    <script src="assets/bootstrap.min.js"></script>
+    <script src="scripts/index.js?v=7"></script>
   </body>
 </html>
 

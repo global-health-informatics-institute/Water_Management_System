@@ -59,7 +59,7 @@ if (isset($_POST['submit'])){
 				$row = $query->fetch(PDO::FETCH_ASSOC);
 				
 				if($row){
-					if (password_verify($row['password'],$u_password)){
+					if (password_verify($u_password,$row['password'])){
 						
 						session_regenerate_id();
 						$_SESSION['loggedin'] = True;

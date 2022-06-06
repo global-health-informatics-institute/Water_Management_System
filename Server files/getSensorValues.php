@@ -20,7 +20,7 @@ try{
     
     $myObj->stamp = $row['id'];
     $myObj->pressure = $row['Pressure'] ;
-    $myObj->wellTank = $row['WellTank'] ;
+    $myObj->volume = $row['Volume'] ;
     $myObj->warning1 = $row['warning1'] ;
     $myObj->warning2 = $row['warning2'] ;
   }
@@ -29,6 +29,7 @@ try{
     $myObj->pump1 = $row['wellPump'];
     $myObj->pump2 = $row['pressurePump'];
     $myObj->valve1 = $row['wellValve'];
+    $myObj->valve2 = $row['wbValve'];
     $myObj->override = $row['overRide'];
 
   }

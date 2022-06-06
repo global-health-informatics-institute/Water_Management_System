@@ -5,6 +5,7 @@ $password = "password";
 $database = "WMS";
 $table = "users";
 
+
 if (isset($_POST['submit'])){
 	$username = trim($_POST['username']);
 	$email = trim($_POST['email']);
@@ -60,7 +61,7 @@ if (isset($_POST['submit'])){
 				VALUES ('".$username."','".$email."', '".$u_password."') ";
 				$db->exec($query);
 				$error .= "<div  class='alert alert-success ms-5 me-5'> New record in ".$table." created successfully</div>";
-				header("location: login.php");
+				header("location: admin.php");
 				exit;
 			}
 			

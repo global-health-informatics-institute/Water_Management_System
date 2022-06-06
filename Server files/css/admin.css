@@ -14,6 +14,17 @@
       p {
         font-size: 1.4rem;
       }
+      
+      a{
+        padding: 0 20px;
+        text-decoration: none;
+        color: #c1c4c8;
+        font-weight: bold;
+      }
+      a:hover{
+        color: #eaebed;
+      
+      }
       .labels {
         font-size: large;
         text-align: center;
@@ -109,6 +120,7 @@
       .nav-text{
         color: white;
         margin-bottom: 0rem;
+        font-weight: bold;
       }
 
       @media (max-width: 609px){

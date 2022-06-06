@@ -1,4 +1,3 @@
-
 // Firebase
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -32,13 +31,13 @@ var warning1 = 0;
 var warning2 = 0;
 var pump1 = 0;
 var pump2 = 0;
-var valve1 = 0;
 var valve2 = 0;
+var valve1 = 0;
 var theAlert = 1;
 var mode = 0;
 var msg = '';
 var yVal = 15;
-
+var tank_id = "1";
 
 
 // Create Well Water Volume chart
@@ -175,13 +174,12 @@ function getReadings() {
 
       //Variables created to hold new sensor values
       var press = myObj.pressure;
-      var welltank = myObj.wellTank;
-      var timestamp = myObj.stamp;
+      var volume = myObj.volume;
       let xVal = Date.now();
       
       //gauge and chart values updated
       gaugePressure.value = press;
-      yVal = Number(welltank);
+      yVal = Number(volume);
       dps.push({x: xVal,y: yVal});
       logs.push({x:xVal,y: yVal});
       
@@ -201,6 +199,7 @@ function getReadings() {
       valve2 = myObj.valve2;
       mode = myObj.override;
     }
+    
     
     //Checks if there any warnings
     if(warning1==1){
@@ -231,6 +230,7 @@ function getReadings() {
     document.getElementById('pump1').style.backgroundColor="#EF4444";
     document.getElementById('pump1').innerHTML = document.getElementById('pump1').innerHTML.replace("ON","OFF");
    }
+   
    if(pump2 == 1){
     document.getElementById('pump2').style.backgroundColor="#10B981";
     document.getElementById('pump2').innerHTML = document.getElementById('pump2').innerHTML.replace("OFF","ON");
@@ -239,13 +239,24 @@ function getReadings() {
     document.getElementById('pump2').style.backgroundColor="#EF4444";
     document.getElementById('pump2').innerHTML = document.getElementById('pump2').innerHTML.replace("ON","OFF");
   }
+  
    if(valve1==1){
     document.getElementById('valve1').style.backgroundColor="#10B981";
     document.getElementById('valve1').innerHTML = document.getElementById('valve1').innerHTML.replace("OFF","ON");
   }
+  
   else{
     document.getElementById('valve1').style.backgroundColor="#EF4444";
     document.getElementById('valve1').innerHTML = document.getElementById('valve1').innerHTML.replace("ON","OFF");
+  }
+  
+  if(valve2 == 1){
+    document.getElementById('valve2').style.backgroundColor="#10B981";
+    document.getElementById('valve2').innerHTML = document.getElementById('valve2').innerHTML.replace("OFF","ON");
+  }
+  else{
+    document.getElementById('valve2').style.backgroundColor="#EF4444";
+    document.getElementById('valve2').innerHTML = document.getElementById('valve2').innerHTML.replace("ON","OFF");
   }
   
    if(mode == 1){
@@ -261,7 +272,7 @@ function getReadings() {
   }
   };
 
-  xhr.open("GET", "/getSensorValues.php", true);
+  xhr.open("GET", "/getSensorValues.php?q="+tank_id, true);
   xhr.send();
 }
 
@@ -286,14 +297,14 @@ function handleClick1(){
     document.getElementById('pump1').innerHTML = document.getElementById('pump1').innerHTML.replace("ON","OFF");
   }
 
-  let pumpObj = {"pump1":pump1};
+  let pumpObj = {"pump1":pump1,"tank_id":tank_id};
   var wellP = JSON.stringify(pumpObj);
   console.log(wellP);
 
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function(){
       if(xhr.status === 200){
-       console.log("Post successful!")
+       console.log("Post successful!");
      }
 }
   xhr.open("POST", "/editSensorValues.php", true);
@@ -321,27 +332,26 @@ function handleClick2(){
     document.getElementById('pump2').innerHTML = document.getElementById('pump2').innerHTML.replace("ON","OFF");
   }
 
-  let pumpObj = {"pump2":pump2};
-  var wbP = JSON.stringify(pumpObj);
-  console.log(wbP);
+  let pumpObj = {"pump2":pump2,"tank_id":tank_id};
+  var pressP = JSON.stringify(pumpObj);
+  console.log(pressP);
 
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function(){
       if(xhr.status === 200){
-       console.log("Post successful!")
+       console.log("Post successful!");
      }
 }
   xhr.open("POST", "/editSensorValues.php", true);
   xhr.setRequestHeader("Content-type","application/json");
-  xhr.send(wbP);
+  xhr.send(pressP);
 
 }
 
 
-
-
 //Handles the well valve button
 function handleClick3(){
+  console.log("Valve 1 value",valve1);
   if(valve1 == 0){
     valve1 = 1;
   }
@@ -357,9 +367,43 @@ function handleClick3(){
     document.getElementById('valve1').innerHTML = document.getElementById('valve1').innerHTML.replace("ON","OFF");
   }
 
-  let pumpObj = {"valve1":valve1};
+  let pumpObj = {"valve1":valve1,"tank_id":tank_id};
   var wellV = JSON.stringify(pumpObj);
   console.log(wellV);
+
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function(){
+      if(xhr.status === 200){
+       console.log("Post successful!");
+     }
+}
+  xhr.open("POST", "/editSensorValues.php", true);
+  xhr.setRequestHeader("Content-type","application/json");
+  xhr.send(wellV);
+
+}
+
+//Handles the waterboard valve button
+function handleClick4(){
+  console.log("Valve 2 value",valve2);
+  if(valve2 == 0){
+    valve2 = 1;
+  }else{
+    valve2 = 0;
+  }
+  
+  if(valve2){
+    document.getElementById('valve2').style.backgroundColor="#10B981";
+    document.getElementById('valve2').innerHTML = document.getElementById('valve2').innerHTML.replace("OFF","ON");
+  }
+  else{
+    document.getElementById('valve2').style.backgroundColor="#EF4444";
+    document.getElementById('valve2').innerHTML = document.getElementById('valve2').innerHTML.replace("ON","OFF");
+  }
+
+  let pumpObj = {"valve2":valve2,"tank_id":tank_id};
+  var wbV = JSON.stringify(pumpObj);
+  console.log(wbV);
 
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function(){
@@ -369,14 +413,15 @@ function handleClick3(){
 }
   xhr.open("POST", "/editSensorValues.php", true);
   xhr.setRequestHeader("Content-type","application/json");
-  xhr.send(wellV);
+  xhr.send(wbV);
 
 }
 
 
 
+
 //Handles the Mode Button
-function handleClick4(){
+function handleClick5(){
   if(mode == 0){
     mode = 1;
   }
@@ -394,7 +439,7 @@ function handleClick4(){
     document.getElementById('control').style.display="none";
   }
 
-  let modeObj = {"override":mode};
+  let modeObj = {"override":mode,"tank_id":tank_id};
   var md = JSON.stringify(modeObj);
   console.log(md);
 
@@ -411,4 +456,3 @@ function handleClick4(){
 
 
 setInterval(getReadings, 1000);
-
