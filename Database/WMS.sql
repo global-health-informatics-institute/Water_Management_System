@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 03, 2022 at 01:55 PM
+-- Generation Time: Jun 06, 2022 at 09:27 AM
 -- Server version: 10.1.48-MariaDB-0+deb9u2
 -- PHP Version: 7.0.33-0+deb9u12
 
@@ -85,7 +85,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
-(1, 'Chatonda', 'uchizingwira@gmail.com', 'password');
+(3, 'admin', 'uchizingwira@gmail.com', '$2y$10$JlKrk34ZSyeIuckgAAPHve89NFyClrv2XQacIqV.ifRAYOoylU2RW');
 
 -- --------------------------------------------------------
 
@@ -150,7 +150,7 @@ ALTER TABLE `commands`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `water_tanks`
 --
