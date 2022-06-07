@@ -1,4 +1,3 @@
-
 // Firebase
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -39,31 +38,64 @@ var mode = 0;
 var msg = '';
 var yVal = 15;
 var tank_id = "1";
+var ydps = [];
+let xVal = Date.now();
 
 
 // Create Well Water Volume chart
-var dps = []; //dataPoints. 
 var logs = [];//datalogs array.
+var Coptions = {
+  series: [{
+  name: 'Water Level',
+  data: []
+}],
+title: {
+    text: 'Water Volume',
+    align: 'center',
+    margin: 10,
+    offsetX: 0,
+    offsetY: 0,
+    floating: false,
+    style: {
+      fontSize:  '20px',
+      fontWeight:  'bold',
+      fontFamily:  'sans-serif',
+      color:  '#263238'
+    },
+},
+  chart: {
+  height: 320,
+  type: 'area'
+},
+dataLabels: {
+  enabled: false
+},
+stroke: {
+  curve: 'smooth'
+},
+yaxis: {
+  
+    labels:{
+      formatter: function(val,index){
+        return val.toFixed(2);
+        }
+      },
+            min: 0,
+            max: 20,
+            tickAmount: 9,
+            type: 'numeric',
+        },
+        
+tooltip: {
+  x: {
+    format: 'dd/MM/yy HH:mm'
+  },
+},
+};
 
-var chart = new CanvasJS.Chart("chartContainer",{
-  theme: "light2",
-  title :{
-    text: "Well Tank"
-  },
-  axisX: {						
-    title: "Timestamp"
-  },
-  axisY: {						
-    title: "Volume(L)"
-  },
-  data: [{
-    type: "area",
-    xValueType: "dateTime",
-    dataPoints : dps
-  }]
-});
+var charts = new ApexCharts(document.querySelector("#chart"), Coptions);
+charts.render();
 
-chart.render();
 
 
 // Create Pressure Gauge
@@ -177,19 +209,26 @@ function getReadings() {
       var press = myObj.pressure;
       var volume = myObj.volume;
       let xVal = Date.now();
+ 
       
       //gauge and chart values updated
       gaugePressure.value = press;
       yVal = Number(volume);
-      dps.push({x: xVal,y: yVal});
+     
       logs.push({x:xVal,y: yVal});
       
-      if (dps.length >  10 )
+      ydps.push(yVal);
+      if (ydps.length >  15 )
       {
-        dps.shift();				
+        ydps.shift();				
       }
+      
+      charts.updateSeries([{
+                name: 'Water Level',
+                data: ydps
+            }]);
 
-      chart.render();
+      
      
       //command values updated
       warning1 = myObj.warning1;
@@ -455,5 +494,7 @@ function handleClick5(){
   xhr.send(md);
 }
 
+ 
 
-setInterval(getReadings, 1000);
+
+setInterval(getReadings, 2000);

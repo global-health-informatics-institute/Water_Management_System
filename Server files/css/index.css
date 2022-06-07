@@ -95,6 +95,7 @@
       }
       #thecard{
         border-radius:0.8rem;
+        
       }
       #main-container{
         align-items:center;
@@ -116,8 +117,9 @@
         width:30px;
       }
       .nav-text{
-        color: white;
+        color: #c1c4c8;
         margin-bottom: 0rem;
+        font-weight: bold;
       }
 
       @media (max-width: 609px){

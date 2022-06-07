@@ -113,12 +113,17 @@
         font-weight: bold;
         color: hsl(209, 95%, 24%);
       }
-      .logout-img{
+      .adduser-img{
         height:30px;
         width:30px;
       }
+      .logout-img{
+        height:30px;
+        width:30px;
+        color: #c1c4c8;
+      }
       .nav-text{
-        color: white;
+        color: #c1c4c8;
         margin-bottom: 0rem;
         font-weight: bold;
       }

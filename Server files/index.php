@@ -16,9 +16,9 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
     <title>Water Management System</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel ="stylesheet" href="assets/bootstrap.min.css">
-    <link rel ="stylesheet" href="css/index.css?v=5">
+    <link rel ="stylesheet" href="css/index.css?v=<?php echo time() ?>">
     <script src="assets/gauges.min.js"></script>
-    <script src="assets/canvasjs.min.js"></script>
+    <script src="assets/apexcharts.min.js"></script>
   </head>
   <body>
     <!--Start of navbar-->
@@ -34,7 +34,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
               <p class = "nav-text me-2"> Hello, <?=$_SESSION['name']?>!</p>
             </li>
             <li class="nav-item">
-              <a href="logout.php" id="logout" class ="me-2 h-auto"><img class="logout-img me-1" src="assets/images/box-arrow-right.svg"/>Logout</a>
+              <a href="logout.php" id="logout" class ="me-2 h-auto"><img class="logout-img me-1" src="assets/images/logout-svgrepo-com.svg"/>Logout</a>
             </li>
           </ul>
         </div>
@@ -71,17 +71,17 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
       <!--Card Content-->
       <div class="row mt-2 text-center">
         <!--Water Pressure gauge-->
-        <div class="col-lg-12">
-          <div id="thecard" class="card shadow mt-5">
+        <div class="col-lg-6">
+          <div id="thecard" class="card shadow mt-5 p-4">
             <p class="card-title">Water Pressure</p>
             <canvas class="canvas"  id="gauge-pressure"></canvas>
           </div>
         </div>
         
         <!--Water Well Tank gauge-->
-        <div class="col-lg-12">
-          <div id="thecard" class="card shadow mt-5">
-            <div id="chartContainer"></div>
+        <div class="col-lg-6">
+          <div id="thecard" class="card shadow mt-5 p-4">
+            <div id="chart"></div>
           </div>
         </div>
       </div>
@@ -89,7 +89,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
     <script src="assets/bootstrap.min.js"></script>
-    <script src="scripts/index.js?v=7"></script>
+    <script src="scripts/index.js?v=<?php echo time() ?>"></script>
   </body>
 </html>
 

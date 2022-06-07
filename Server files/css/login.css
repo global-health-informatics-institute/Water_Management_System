@@ -4,7 +4,10 @@
         text-align: center;
       }
       body{
-        background-color: #F5F5F5;
+        background-image: url(../assets/images/SL-030720-28740-05.jpg);
+        background-repeat: no-repeat;
+        background-attachment: fixed; 
+        background-size: 100% 100%;
         display: grid;
         min-height: 100vh;
       }
@@ -28,32 +31,51 @@
         max-width: 350px;
         min-width: 350px;
         border-radius:0.8rem;
-        
-        
         }
       .form-group{
         margin-top:1.2rem;
       }
-      .login{
-        border-radius: 20px;
+      .username{
         height:40px;
-        width:100%;
-        padding: 0 0;
+        width:310px;
         text-align:center;
         border-width:0 0;
         border-color:#F5F5F5;
-        background-color:#F5F5F5;
+        background: url(../assets/images/person-fill.svg);
+        background-color: #F5F5F5;
+        background-position:left;
+        background-repeat: no-repeat;
+        background-size: 40px 40px;
+        padding-right: 17px;
+        cursor: pointer;
+      }
+      .password{
+        height:40px;
+        width:310px;
+        text-align:center;
+        border-width:0 0;
+        border-color:#F5F5F5;
+        background:url(../assets/images/key-fill.svg);
+        background-color: #F5F5F5;
+        background-position:left;
+        background-repeat: no-repeat;
+        background-size: 40px 40px;
+        padding-right: 17px;
+        cursor: pointer;
       }
       .user-img{
         height:80px;
         width:80px;
+      }
+      .user2-img{
+        height:40px;
+        width:40px;
       }
       .img-pos{
         text-align: center;
         margin-bottom: 50px;
       }
       #login{
-        border-radius:20px;
         width:50%;
         margin-top:20px;
         background-color:black;

@@ -82,16 +82,16 @@ if (isset($_POST['submit'])){
 	<head>
 		<title>Admin</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel ="stylesheet" href="css/adminRegister.css?v=3">
 		<link rel ="stylesheet" href="assets/bootstrap.min.css">
+		<link rel ="stylesheet" href="css/adminRegister.css?v=<?php echo time() ?>">
 	</head>
 	<body class="bg-light">
 		<div id="main-container" class= "container d-grid h-100">
 			<div id="thecard2" class="card shadow col-md-5">
-				<div class="card-title mt-3">Admin Register</div>
-				<div class="img-pos" ><img class="user-img" src="assets/images/user-regular.svg"/></div>
+				<div class="img-pos mb-0 mt-5"><img class="user-img" src="assets/images/user-regular.svg"/></div>
+				<div class="card-title mt-2">Admin Register</div>
 				<?php  echo $error; ?>
-				<form class="h-100" action ="" method="post">
+				<form class="h-100 mt-3" action ="" method="post">
 					<div class="form-group text-center ms-2 me-2">
 						<input class="register" type = "username" name = "username" placeholder="username" class="form-control" required/>
 					</div>
@@ -110,6 +110,6 @@ if (isset($_POST['submit'])){
 			</div>
 		</div>
 		<script src="assets/bootstrap.min.js"></script>
-		<script src="scripts/adminRegister.js"></script>
+		<script src="scripts/adminRegister.js?v=<?php echo time() ?>"></script>
 	</body>
 </html>

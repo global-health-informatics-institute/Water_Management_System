@@ -92,31 +92,32 @@ if (isset($_POST['submit'])){
 	<head>
 		<title>Login</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel ="stylesheet" href="css/login.css?v=3">
 		<link rel ="stylesheet" href="assets/bootstrap.min.css">
+		<link rel ="stylesheet" href="assets/bootstrap-icons.css">
+		<link rel ="stylesheet" href="css/login.css?v=<?php echo time() ?>">
 	</head>
 	<body class="bg-light">
 		<div id="main-container" class= "container d-grid h-100">
 			<div id="thecard2" class="card shadow col-md-5">
-				<div class="card-title mt-3">Sign In</div>
-				<div class="img-pos" ><img class="user-img" src="assets/images/user-regular.svg"/></div>
+				<div class="img-pos mt-5 mb-0" ><img class="user-img" src="assets/images/water.svg"/></div>
+				<div class="card-title mt-2">Sign In</div>
 				<?php  echo $error; ?>
-				<form class="h-100" action ="" method="post">
+				<form class="h-100 mt-3" action ="" method="post">
 					<div class="form-group text-center ms-2 me-2">
-						<input class="login" type = "text" name = "username" placeholder="username" class="form-control" required/>
+						<input class="username" type = "text" name = "username" placeholder="username" class="form-control" required/>
 					</div>
 					<div class="form-group text-center ms-2 me-2">
-						<input class="login" type = "password" name = "password" placeholder="password" class="form-control" required/>
+						<input class="password" type = "password" name = "password" placeholder="password" class="form-control" required/>
 					</div>
 					<div class="form-group mb-2">
 						<input type = "submit" id ="login" name = "submit" class="btn btn-secondary" value="Login"/>
 					</div>
 				</form>
-				<div> &copy 2022</div>
+				<div class="mb-2"> &copy 2022, GHII</div>
 				</div>
 			</div>
 		</div>
 		<script src="assets/bootstrap.min.js"></script>
-		<script src="scripts/login.js"></script>
+		<script src="scripts/login.js?v=<?php echo time() ?>"></script>
 	</body>
 </html>
