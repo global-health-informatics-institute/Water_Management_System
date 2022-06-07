@@ -19,6 +19,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
     <link rel ="stylesheet" href="css/index.css?v=<?php echo time() ?>">
     <script src="assets/gauges.min.js"></script>
     <script src="assets/apexcharts.min.js"></script>
+    <script src="assets/jquery.min.js"></script>
   </head>
   <body>
     <!--Start of navbar-->

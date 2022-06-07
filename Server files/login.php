@@ -16,14 +16,14 @@ if (isset($_POST['submit'])){
 		//checks if form is complete
 		if (!isset($_POST['username'], $_POST['password'])) {
 			// Could not get the data that should have been sent.
-			$error.= "<div class='alert alert-danger ms-5 me-5'> Please complete the registration form!</div>";
+			$error.= "<div id='e1' class='alert alert-danger ms-5 me-5'> Please complete the registration form!<button type='button' class='btn-close ms-2' aria-label='Close'></button></div>";
 			
         }
         
         // Make sure the submitted registration values are not empty.
         if (empty($username) || empty($u_password)) {
 			// One or more values are empty.
-			$error .= "<div class='alert alert-danger ms-5 me-5'> Please fill in all the fields!</div>";
+			$error .= "<div id='e2' class='alert alert-danger ms-5 me-5'> Please fill in all the fields!<button type='button' class='btn-close ms-2' aria-label='Close'></button></div>";
 			
         }
 		
@@ -47,10 +47,10 @@ if (isset($_POST['submit'])){
 						header("location: admin.php");
 						exit;
 					}else{
-						$error.= "<div class='alert alert-danger ms-5 me-5'> invalid password!</div>";
+						$error.= "<div id='e3' class='alert alert-danger ms-5 me-5'> invalid password!<button type='button' class='btn-close ms-2' aria-label='Close' ></div>";
 						 }
 				}else{
-					$error.= "<div class='alert alert-danger ms-5 me-5''>username does not exist!</div>";}		
+					$error.= "<div id='e4' class='alert alert-danger ms-5 me-5''>username does not exist!<button type='button' class='btn-close ms-2' aria-label='Close' ></div>";}		
 			
 			}else{
 				$query = $db->prepare("SELECT * FROM $table WHERE username= ?");
@@ -69,10 +69,10 @@ if (isset($_POST['submit'])){
 						header("location: index.php");
 						exit;
 					}else{
-						$error.= "<div class='alert alert-danger ms-5 me-5'> invalid password!</div>";
+						$error.= "<div id='e5' class='alert alert-danger ms-5 me-5'> invalid password! <button type='button' class='btn-close ms-2' aria-label='Close'></div>";
 						 }
 				}else{
-					$error.= "<div class='alert alert-danger ms-5 me-5''>username does not exist!</div>";}
+					$error.= "<div id='e6' class='alert alert-danger ms-5 me-5'>username does not exist! <button type='button' class='btn-close ms-2' aria-label='Close' onclick='closer()'></div>";}
 			}
 	     }
 	     
@@ -95,6 +95,7 @@ if (isset($_POST['submit'])){
 		<link rel ="stylesheet" href="assets/bootstrap.min.css">
 		<link rel ="stylesheet" href="assets/bootstrap-icons.css">
 		<link rel ="stylesheet" href="css/login.css?v=<?php echo time() ?>">
+		<script src="assets/jquery.min.js"></script>
 	</head>
 	<body class="bg-light">
 		<div id="main-container" class= "container d-grid h-100">
@@ -102,7 +103,7 @@ if (isset($_POST['submit'])){
 				<div class="img-pos mt-5 mb-0" ><img class="user-img" src="assets/images/water.svg"/></div>
 				<div class="card-title mt-2">Sign In</div>
 				<?php  echo $error; ?>
-				<form class="h-100 mt-3" action ="" method="post">
+				<form id="form" class="h-100 mt-3" action ="" method="post">
 					<div class="form-group text-center ms-2 me-2">
 						<input class="username" type = "text" name = "username" placeholder="username" class="form-control" required/>
 					</div>

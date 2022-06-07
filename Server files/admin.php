@@ -19,6 +19,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
     <link rel ="stylesheet" href="css/admin.css?v=<?php echo time() ?>">
     <script src="assets/gauges.min.js"></script>
     <script src="assets/apexcharts.min.js"></script>
+    <script src="assets/jquery.min.js"></script>
   </head>
   <body>
     <!--Start of navbar-->
@@ -76,7 +77,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
         
         <!--Water Pressure gauge-->
         <div class="col-lg-6">
-          <div id="thecard" class="card shadow mt-5">
+          <div id="thecard" class="card shadow mt-5 p-4">
             <p class="card-title">Water Pressure</p>
             <canvas class="canvas"  id="gauge-pressure"></canvas>
           </div>

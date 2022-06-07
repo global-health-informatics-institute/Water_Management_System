@@ -84,12 +84,14 @@ if (isset($_POST['submit'])){
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel ="stylesheet" href="assets/bootstrap.min.css">
 		<link rel ="stylesheet" href="css/adminRegister.css?v=<?php echo time() ?>">
+		<script src="assets/jquery.min.js"></script>
 	</head>
 	<body class="bg-light">
 		<div id="main-container" class= "container d-grid h-100">
 			<div id="thecard2" class="card shadow col-md-5">
 				<div class="img-pos mb-0 mt-5"><img class="user-img" src="assets/images/user-regular.svg"/></div>
 				<div class="card-title mt-2">Admin Register</div>
+				<button type="button" class="btn-close" aria-label="Close" onclick="close()" ></button>
 				<?php  echo $error; ?>
 				<form class="h-100 mt-3" action ="" method="post">
 					<div class="form-group text-center ms-2 me-2">
