@@ -13,7 +13,7 @@ from waterTank import WaterTank
 # **************************************************
 
 #height should be in centimeteres, radius in meters and volume in Litres
-Tank1 = WaterTank(height=172.974,radius=0.8281,volume=4500,trigger=12,echo=14)
+Tank1 = WaterTank(height=31,radius=0.024025,volume=20,trigger=12,echo=14)
 
 #Timer Initialization
 timer = Timer(-1)

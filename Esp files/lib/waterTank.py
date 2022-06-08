@@ -38,22 +38,22 @@ class WaterTank:
                 self.tank_counter += 1
             
             if self.initial_height != self.prev1:
-                print("do this")
+                print("initial height",self.initial_height)
                 temp1 = self.prev1 + 5
                 temp2 = self.prev1 - 5
                 if self.initial_height > temp1 or self.initial_height < temp2 :
-                    #print(self.initial_height, "cm The filtered distance")
+                    print(self.initial_height, "cm The filtered distance")
                     self.initial_height1 = temp1-5
                     count += 1
                     if count == 10:
                         self.prev1 = self.initial_height
                         count = 0
                 else:
-                    #print("then this")
+                    print("then this")
                     self.prev1 = self.initial_height
                     theSum = theSum + self.initial_height
                     self.tank_counter += 1
-                    #print("sum is now: ",theSum)
+                    print("sum is now: ",theSum)
         
 
         self.tank_counter = 0

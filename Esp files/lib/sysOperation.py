@@ -33,8 +33,8 @@ class Operations:
         self.value4 = 0
         
         #Tank thresholds
-        self.maximum_capacity = (tank_volume - 100)
-        self.minimum_capacity = (tank_volume * (15/100))
+        self.maximum_capacity = (tank_volume * 0.90)
+        self.minimum_capacity = (tank_volume * (30/100))
         self.mid_capacity = (tank_volume * (45/100))
         
         #used to switch operation mode
@@ -64,10 +64,10 @@ class Operations:
             if response.status_code == 200:
                 data = response.json()
                 print("incoming tank value", data)
-                tankVolume = float(data["Tank"])
+                tankVolume = float(data["volume"])
                 
         except Exception as e:
-            print("Error:", e)
+            print("getTankVolume Error:", e)
             tankVolume = 0
             pass
         
@@ -88,7 +88,7 @@ class Operations:
                 #Send Sensor Readings to API 
                 sensors = data
                 print('Printing sensor readings',sensors)
-                
+                sleep(1)
                 if sensors["Pressure"] != 0 or sensors["Volume"] > 1 :
                     request_headers = {'Content-Type': 'application/json'}
                     request = urequests.patch(
@@ -138,7 +138,7 @@ class Operations:
                     self.overRide = int(data["override"])
             
         except Exception as e:
-            print("Error",e)
+            print("getData Error",e)
     
     # **************************************************
     #  Manages the system
@@ -146,8 +146,8 @@ class Operations:
     def operateSys(self):
         
         #gets tank's current volume and pressure of pressure sensor
-        tankVolume = getTankVolume()
-        pressure = getPressureReading()
+        tankVolume = self.getTankVolume()
+        pressure = self.getPressureReading()
         #tank id
         tank_id = int(self.tankId)
         
@@ -172,7 +172,7 @@ class Operations:
                 warning1 = 0
                      
             
-            if (tankVolume > self.mid_capacity and self.tankVolume < self.maximum_capacity ):
+            if (tankVolume > self.mid_capacity and tankVolume < self.maximum_capacity ):
                 sense = self.valveWell.value()
                 #switch on well valve
                 if(self.offsetVariable2 == True):
@@ -222,6 +222,8 @@ class Operations:
         
         #Manual Control Mode
         elif self.overRide:
+            warning1 = 0
+            warning2 = 0
             print("entered manual mode")
                 
             #toggle well pump on/off
@@ -255,10 +257,10 @@ class Operations:
             elif not self.value4 and self.offsetVariable2 == True:
                 self.valveWB .off()
                 self.offsetVariable2 = False
-        
+                
         data = {"Pressure":pressure, "Volume":tankVolume ,"warning1":warning1,"warning2":warning2,"tank_id": tank_id}
         components = {"pump1":self.wellPump.value(),"pump2":self.pressurePump.value(),"valve1":self.valveWell.value(),"valve2":self.valveWB.value(),"tank_id": tank_id}
         
-        patchData(data,components)
-        getData()
+        self.patchData(data,components)
+        self.getData()
                 
