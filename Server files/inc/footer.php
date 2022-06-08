@@ -2,7 +2,6 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel ="stylesheet" href="../assets/bootstrap.min.css">
 		<link rel ="stylesheet" href="../assets/all.min.css">
 	</head>
 	<body>
@@ -41,7 +40,6 @@
 			<!-- Copyright -->
 		  </footer>
 		  <!-- Footer -->
-		<script src="assets/bootstrap.min.js"></script>
 		<script src="assets/all.min.js"></script>
 	</body>
 </html>

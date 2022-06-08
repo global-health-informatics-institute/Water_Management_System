@@ -39,30 +39,20 @@ var msg = '';
 var yVal = 15;
 var tank_id = "1";
 var ydps = [];
+var press = [];
 let xVal = Date.now();
 
 
 // Create Well Water Volume chart
 var logs = [];//datalogs array.
-var Coptions = {
+
+var options1 = {
   series: [{
   name: 'Water Level',
   data: []
 }],
-title: {
-    text: 'Water Volume',
-    align: 'center',
-    margin: 10,
-    offsetX: 0,
-    offsetY: 0,
-    floating: false,
-    style: {
-      fontSize:  '20px',
-      fontWeight:  'bold',
-      fontFamily:  'sans-serif',
-      color:  '#263238'
-    },
-},
+
+
   chart: {
   height: 320,
   type: 'area'
@@ -74,7 +64,10 @@ stroke: {
   curve: 'smooth'
 },
 yaxis: {
-  
+    title:{
+      text: "Litres",
+      
+      },
     labels:{
       formatter: function(val,index){
         return val.toFixed(2);
@@ -84,8 +77,13 @@ yaxis: {
             max: 20,
             tickAmount: 9,
             type: 'numeric',
-        },
-        
+},
+xaxis:{
+  title:{
+      text: "Timestamp",
+      
+      },
+  },
 tooltip: {
   x: {
     format: 'dd/MM/yy HH:mm'
@@ -93,86 +91,65 @@ tooltip: {
 },
 };
 
-var charts = new ApexCharts(document.querySelector("#chart"), Coptions);
-charts.render();
+var chart1 = new ApexCharts(document.querySelector("#chart1"), options1);
+chart1.render();
 
+//pressure gauge
+ var options2 ={
+  chart: {
+    height: 450,
+    type: "radialBar",
+  },
+  series: [],
+  colors: ["#20E647"],
+  plotOptions: {
+    radialBar: {
+      startAngle: -135,
+      endAngle: 135,
+      track: {
+        dropShadow: {
+          enabled: true,
+          top: 2,
+          left: 0,
+          blur: 4,
+          opacity: 0.15
+        }
+      },
+      dataLabels: {
+        name: {
+          show: true,
+        },
+        value: {
+          fontSize: "30px",
+          show: true,
+          formatter: function (val) {
+            return val + ' PSI'
+          },
+        }
+      }
+    }
+  },
+  fill: {
+    colors: [function({ value, seriesIndex, w }) {
+    if(value < 13) {
+        return '#ff0000'
+    } else if (value >= 13 && value < 20) {
+        return '#fb9015'
+    } else if(value >= 20 && value < 65) {
+        return '#04fd00'
+    } else{
+      return '#ff0000'
+    }
+  }]
+  },
+  stroke: {
+    lineCap: "butt"
+  },
+  labels: ["Pressure"]
+};
 
-
-// Create Pressure Gauge
-var gaugePressure = new RadialGauge({
-  renderTo: "gauge-pressure",
-  width: 300,
-  height: 300,
-  units: "PSI",
-  minValue: 0,
-  maxValue: 105,
-  colorValueBoxRect: "#049faa",
-  colorValueBoxRectEnd: "#049faa",
-  colorValueBoxBackground: "#f1fbfc",
-  valueInt: 2,
-  majorTicks:[
-    "0",
-    "5",
-    "10",
-    "15",
-    "20",
-    "25",
-    "30",
-    "35",
-    "40",
-    "45",
-    "50",
-    "55",
-    "60",
-    "65",
-    "70",
-    "75",
-    "80",
-    "85",
-    "90",
-    "95",
-    "100",
-    "105",
-  ],
-  minorTicks: 4,
-  strokeTicks: true,
-  highlights:[
-    {
-      from: 0,
-      to: 10,
-      color: "#ff0000",
-    },
-    {
-      from: 10,
-      to: 60,
-      color: "#03ac13",
-    },
-    {
-      from: 60,
-      to: 65,
-      color: "#fc6a03",
-    },
-    {
-      from: 65,
-      to: 105,
-      color: "#ff0000",
-    },
-  ],
-  colorPlate: "#fff",
-  borderShadowWidth: 0,
-  borders: false,
-  needleType: "line",
-  colorNeedle: "#007F80",
-  colorNeedleEnd: "#007F80",
-  needleWidth: 2,
-  needleCircleSize: 3,
-  colorNeedleCircleOuter: "#007F80",
-  needleCircleOuter: true,
-  needleCircleInner: false,
-  animationDuration: 1500,
-  animationRule: "linear",
-}).draw();
-
+var chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
+chart2.render();
 
 
 //sends notification to mobile phone
@@ -182,18 +159,6 @@ function Notification(msg){
   
   
   return;
-  
-    fetch('https://api.mynotifier.app', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      apiKey: '0ae931fe-012e-4416-a222-f9d5132fdaba', // Input your own api key here.
-      message: msg, // The message you want to send to yourself/team.
-    }),
-  })
-  
 }
 
 
@@ -206,29 +171,27 @@ function getReadings() {
       var myObj = JSON.parse(this.responseText);
 
       //Variables created to hold new sensor values
-      var press = myObj.pressure;
+      var pressureV = myObj.pressure;
       var volume = myObj.volume;
       let xVal = Date.now();
  
       
       //gauge and chart values updated
-      gaugePressure.value = press;
       yVal = Number(volume);
-     
-      logs.push({x:xVal,y: yVal});
-      
       ydps.push(yVal);
       if (ydps.length >  15 )
       {
         ydps.shift();				
       }
       
-      charts.updateSeries([{
+      //update water volume chart
+      chart1.updateSeries([{
                 name: 'Water Level',
                 data: ydps
             }]);
-
       
+      //update pressure gauge
+      chart2.updateSeries([pressureV]);
      
       //command values updated
       warning1 = myObj.warning1;

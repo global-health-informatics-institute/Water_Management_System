@@ -46,7 +46,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
 
     <!-- Start of content-->
     <div class="container-fluid">
-      <div class="nav-item">
+      <div class="nav-item text-start">
         <button id="mode" class="btn-nav me-2" onclick="handleClick5()">Auto-mode</button>
       </div>
       <div id="control" class= "row" style="display:none;">
@@ -71,18 +71,19 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
 
       <!--Card Content-->
       <div class="row mt-2 text-center">
-        <!--Water Pressure gauge-->
+         <!--Water Pressure gauge-->
         <div class="col-lg-6">
           <div id="thecard" class="card shadow mt-5 p-4">
             <p class="card-title">Water Pressure</p>
-            <canvas class="canvas"  id="gauge-pressure"></canvas>
+            <div id="chart2"></div>
           </div>
         </div>
         
         <!--Water Well Tank gauge-->
         <div class="col-lg-6">
           <div id="thecard" class="card shadow mt-5 p-4">
-            <div id="chart"></div>
+            <p class="card-title">Water Volume</p>
+            <div id="chart1"></div>
           </div>
         </div>
       </div>

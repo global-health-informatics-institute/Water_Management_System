@@ -6,6 +6,7 @@ $user = "admin";
 $password = "password";
 $database = "WMS";
 $table = "users";
+
 $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
 
 $username = trim($_POST['username']);
@@ -28,7 +29,7 @@ if($row){
 		$_SESSION['name'] = $row['username'];
 		$_SESSION['id'] = $row['id'];
 		
-			 echo 1;
+		echo 1;
 	}		
 
 }
