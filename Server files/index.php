@@ -87,6 +87,10 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
         </div>
       </div>
     </div>
+    
+    <!--Footer-->
+    <?php include ("inc/footer.php")?>
+    
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
     <script src="assets/bootstrap.min.js"></script>

@@ -18,31 +18,31 @@ if (isset($_POST['submit'])){
 		//checks if form is complete
 		if (!isset($_POST['username'], $_POST['password'], $_POST['email'])) {
 			// Could not get the data that should have been sent.
-			$error .= '<div class= "alert alert-danger ms-5 me-5"> Please complete the registration form</div>';;
+			$error .= '<div id="e1" class= "alert alert-danger ms-5 me-5"> Please complete the registration form<button type="button" class="btn-close ms-2" aria-label="Close" onclick="close1()"></div>';;
 			
         }
         
         // Make sure the submitted registration values are not empty.
         if (empty($username) || empty($email) || empty($u_password)) {
 			// One or more values are empty.
-			$error .= '<div class= "alert alert-danger ms-5 me-5"> Please complete the registration form</div>';
+			$error .= '<div id="e2" class= "alert alert-danger ms-5 me-5"> Please complete the registration form<button type="button" class="btn-close ms-2" aria-label="Close" onclick="close2()"></div>';
 			
         }
         
         //validates email
         if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-			$error .= '<div class= "alert alert-danger ms-5 me-5"> Email is not valid!</div>';
+			$error .= '<div id="e3" class= "alert alert-danger ms-5 me-5"> Email is not valid!<button type="button" class="btn-close ms-2" aria-label="Close" onclick="close3()"></div>';
 		}
 		
 		//validates username characters
 		if (preg_match('/^[a-zA-Z0-9]+$/', $_POST['username']) == 0) {
-			$error .= '<div class= "alert alert-danger ms-5 me-5"> Username is not valid!</div>';
+			$error .= '<div id="e4" class= "alert alert-danger ms-5 me-5"> Username is not valid!<button type="button" class="btn-close ms-2" aria-label="Close" onclick="close4()"></div>';
 			
 		}
 		
 		//Checks length of password
 		if (strlen($_POST['password']) > 20 || strlen($_POST['password']) < 5) {
-			$error .= '<div class= "alert alert-danger ms-5 me-5">Password must be between 5 and 20 characters long!</div>';
+			$error .= '<div id="e5" class= "alert alert-danger ms-5 me-5">Password must be between 5 and 20 characters long!<button type="button" class="btn-close ms-2" aria-label="Close" onclick="close5()"></div>';
 		}
         
         if(empty($error)){
@@ -89,9 +89,9 @@ if (isset($_POST['submit'])){
 	<body class="bg-light">
 		<div id="main-container" class= "container d-grid h-100">
 			<div id="thecard2" class="card shadow col-md-5">
+				<div class="text-end"><button type="button" class="btn-close mt-3 pe-5" aria-label="Close" onclick="close6()" ></button></div>
 				<div class="img-pos mb-0 mt-5"><img class="user-img" src="assets/images/user-regular.svg"/></div>
 				<div class="card-title mt-2">Admin Register</div>
-				<button type="button" class="btn-close" aria-label="Close" onclick="close()" ></button>
 				<?php  echo $error; ?>
 				<form class="h-100 mt-3" action ="" method="post">
 					<div class="form-group text-center ms-2 me-2">
@@ -107,7 +107,7 @@ if (isset($_POST['submit'])){
 						<input type = "submit" id ="register" name = "submit" class="btn btn-secondary" value="Register"/>
 					</div>
 				</form>
-				<div> &copy 2022</div>
+				<div class="mb-3"> &copy 2022</div>
 				</div>
 			</div>
 		</div>
