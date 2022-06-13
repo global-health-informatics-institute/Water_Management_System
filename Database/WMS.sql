@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 06, 2022 at 09:27 AM
+-- Generation Time: Jun 13, 2022 at 02:39 PM
 -- Server version: 10.1.48-MariaDB-0+deb9u2
 -- PHP Version: 7.0.33-0+deb9u12
 
@@ -31,17 +31,19 @@ CREATE TABLE `commands` (
   `pressurePump` int(10) NOT NULL,
   `wellPump` int(10) NOT NULL,
   `wellValve` int(10) NOT NULL,
+  `wbValve` int(10) NOT NULL,
   `overRide` int(10) NOT NULL,
-  `watertank_id` int(11) UNSIGNED NOT NULL
+  `watertank_id` int(11) UNSIGNED NOT NULL,
+  `OpMode` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `commands`
 --
 
-INSERT INTO `commands` (`id`, `pressurePump`, `wellPump`, `wellValve`, `overRide`, `watertank_id`) VALUES
-(2, 0, 0, 0, 0, 1),
-(3, 0, 0, 0, 0, 3);
+INSERT INTO `commands` (`id`, `pressurePump`, `wellPump`, `wellValve`, `wbValve`, `overRide`, `watertank_id`, `OpMode`) VALUES
+(2, 0, 0, 1, 0, 0, 1, 2),
+(3, 0, 0, 1, 0, 0, 3, 0);
 
 -- --------------------------------------------------------
 
@@ -63,9 +65,12 @@ CREATE TABLE `sensorValues` (
 --
 
 INSERT INTO `sensorValues` (`id`, `Pressure`, `Volume`, `warning1`, `warning2`, `watertank_id`) VALUES
-('2022-06-03 09:02:28', '45', '4500', 0, 0, 1),
-('2022-06-03 09:51:16', '34', '4120.99', 0, 0, 1),
-('2022-06-03 09:51:34', '34', '4112.68', 0, 0, 3);
+('2022-06-10 09:52:18', '21.7', '20', 1, 0, 1),
+('2022-06-10 12:24:48', '14.1', '20', 0, 1, 1),
+('2022-06-13 10:04:33', '0', '0', 1, 0, 3),
+('2022-06-13 11:28:53', '0', '20', 0, 1, 1),
+('2022-06-13 11:28:57', '0', '20', 0, 1, 1),
+('2022-06-13 11:29:00', '0', '20', 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -85,7 +90,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
-(3, 'admin', 'uchizingwira@gmail.com', '$2y$10$JlKrk34ZSyeIuckgAAPHve89NFyClrv2XQacIqV.ifRAYOoylU2RW');
+(3, 'admin', 'uchizingwira@gmail.com', '$2y$10$JlKrk34ZSyeIuckgAAPHve89NFyClrv2XQacIqV.ifRAYOoylU2RW'),
+(4, 'Chatonda', 'uchizingwira@gmail.com', '$2y$10$tOiYNR0GMgh9nbSCXADoFOW6eNPtf6xEittjOqApyzgnqL61qMMGC');
 
 -- --------------------------------------------------------
 
@@ -150,7 +156,7 @@ ALTER TABLE `commands`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `water_tanks`
 --
