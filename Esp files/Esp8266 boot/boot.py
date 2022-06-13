@@ -7,9 +7,13 @@ import gc
 #import webrepl
 #webrepl.start()
 gc.collect()
-
 import network
 from machine import Timer, Pin
+
+#get content from config file
+filename = "tankController.config"
+contents = open(filename).read()
+config = eval(contents)
 
 led = Pin(2,Pin.OUT)
 led.value(0) 
@@ -20,8 +24,8 @@ timer.init(period = 10000,
            mode= Timer.ONE_SHOT,
            callback = lambda t: led.value(1))
 
-SSID = "Fadenlauf-3"
-Password = "watchout"
+SSID = config["SSID"]
+Password = config["Password"]
 
 #Connect to Wifi
 Wifi=network.WLAN(network.STA_IF)
@@ -29,7 +33,7 @@ Wifi=network.WLAN(network.STA_IF)
 if not Wifi.isconnected():
     print("Connecting to:", SSID)
     Wifi.active(True)
-    Wifi.ifconfig(('192.168.0.119', '255.255.255.0', '192.168.0.1', '192.168.0.1'))
+    #Wifi.ifconfig(('192.168.0.119', '255.255.255.0', '192.168.0.1', '192.168.0.1'))
     Wifi.connect(SSID, Password)
     while not Wifi.isconnected():
         if led.value() == 1:
