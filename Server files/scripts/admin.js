@@ -41,7 +41,7 @@ var tank_id = "1";
 var datapoints = [];
 var ydps = [];
 var press = [];
-let xVal = Date.now();
+let xVal = new Date();
 var opMode = 0;
 
 
@@ -176,7 +176,8 @@ function getReadings() {
       //Variables created to hold new sensor values
       var pressureV = myObj.pressure;
       var volume = myObj.volume;
-      let xVal = Date.now();
+      let xVal = new Date;
+      xVal.setTime(xVal.getTime() - new Date().getTimezoneOffset()*60*1000);
       
       
       
