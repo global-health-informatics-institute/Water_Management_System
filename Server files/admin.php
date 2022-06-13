@@ -26,11 +26,11 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
     <div class="navbar navbar-expand-lg navbar-dark bg-dark shadow mb-3">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Water Management System</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-          <ul class="nav w-100">
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <ul class="nav">
             <li class="nav-item">
               <p class = "nav-text me-2" >Hello, <?=$_SESSION['name']?>!</p>
             </li>
@@ -77,7 +77,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
         
         <!--Water Pressure gauge-->
         <div class="col-lg-6">
-          <div id="thecard" class="card shadow mt-5 p-4">
+          <div id="thecard" class="card shadow mt-5">
             <p class="card-title">Water Pressure</p>
             <div id="chart2"></div>
           </div>
@@ -85,7 +85,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
         
         <!--Water Well Tank gauge-->
         <div class="col-lg-6">
-          <div id="thecard" class="card shadow mt-5 p-4">
+          <div id="thecard" class="card shadow mt-5">
             <p class="card-title">Water Volume</p>
             <div id="chart1"></div>
           </div>
@@ -95,7 +95,6 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
     </div>
     
     <!--Footer-->
-    <?php include ("inc/footer.php")?>
     
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>

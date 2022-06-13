@@ -32,6 +32,7 @@ try{
     $myObj->valve1 = $row['wellValve'];
     $myObj->valve2 = $row['wbValve'];
     $myObj->override = $row['overRide'];
+    $myObj->opMode = $row['OpMode'];
 
   }
 

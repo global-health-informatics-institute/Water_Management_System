@@ -38,9 +38,11 @@ var mode = 0;
 var msg = '';
 var yVal = 15;
 var tank_id = "1";
+var datapoints = [];
 var ydps = [];
 var press = [];
 let xVal = Date.now();
+var opMode = 0;
 
 
 // Create Well Water Volume chart
@@ -79,9 +81,10 @@ yaxis: {
             type: 'numeric',
 },
 xaxis:{
+  type: "datetime",
+  
   title:{
       text: "Timestamp",
-      
       },
   },        
 tooltip: {
@@ -117,7 +120,7 @@ chart1.render();
       },
       dataLabels: {
         name: {
-          show: true,
+          show: false,
         },
         value: {
           fontSize: "30px",
@@ -174,16 +177,22 @@ function getReadings() {
       var pressureV = myObj.pressure;
       var volume = myObj.volume;
       let xVal = Date.now();
- 
+      
+      
       
       //gauge and chart values updated
       yVal = Number(volume);
-      ydps.push(yVal);
+      
+      datapoints.push(xVal,yVal); //push points to temporal array 
+      ydps.push(datapoints); // push to main array
+      datapoints =[]; // clear temporal array
+      
       if (ydps.length >  15 )
       {
         ydps.shift();				
       }
-      
+      //pressure value limit
+      if(pressureV > 100){pressureV = 100;}
       //update water volume chart
       chart1.updateSeries([{
                 name: 'Water Level',
@@ -201,6 +210,7 @@ function getReadings() {
       valve1 = myObj.valve1;
       valve2 = myObj.valve2;
       mode = myObj.override;
+      opMode = myObj.opMode;
     }
     
     
@@ -300,7 +310,7 @@ function handleClick1(){
     document.getElementById('pump1').innerHTML = document.getElementById('pump1').innerHTML.replace("ON","OFF");
   }
 
-  let pumpObj = {"pump1":pump1,"tank_id":tank_id};
+  let pumpObj = {"pump1":pump1,"tank_id":tank_id,"opMode":opMode};
   var wellP = JSON.stringify(pumpObj);
   console.log(wellP);
 
@@ -335,7 +345,7 @@ function handleClick2(){
     document.getElementById('pump2').innerHTML = document.getElementById('pump2').innerHTML.replace("ON","OFF");
   }
 
-  let pumpObj = {"pump2":pump2,"tank_id":tank_id};
+  let pumpObj = {"pump2":pump2,"tank_id":tank_id,"opMode":opMode};
   var pressP = JSON.stringify(pumpObj);
   console.log(pressP);
 
@@ -370,7 +380,7 @@ function handleClick3(){
     document.getElementById('valve1').innerHTML = document.getElementById('valve1').innerHTML.replace("ON","OFF");
   }
 
-  let pumpObj = {"valve1":valve1,"tank_id":tank_id};
+  let pumpObj = {"valve1":valve1,"tank_id":tank_id,"opMode":opMode};
   var wellV = JSON.stringify(pumpObj);
   console.log(wellV);
 
@@ -404,7 +414,7 @@ function handleClick4(){
     document.getElementById('valve2').innerHTML = document.getElementById('valve2').innerHTML.replace("ON","OFF");
   }
 
-  let pumpObj = {"valve2":valve2,"tank_id":tank_id};
+  let pumpObj = {"valve2":valve2,"tank_id":tank_id,"opMode":opMode};
   var wbV = JSON.stringify(pumpObj);
   console.log(wbV);
 
@@ -442,7 +452,7 @@ function handleClick5(){
     document.getElementById('control').style.display="none";
   }
 
-  let modeObj = {"override":mode,"tank_id":tank_id};
+  let modeObj = {"override":mode,"tank_id":tank_id,"opMode":opMode};
   var md = JSON.stringify(modeObj);
   console.log(md);
 
@@ -461,3 +471,4 @@ function handleClick5(){
 
 
 setInterval(getReadings, 2000);
+
