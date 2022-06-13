@@ -8,12 +8,16 @@ import network
 from machine import Timer
 from waterTank import WaterTank
 
+#get content from config file
+filename = "tankController.config"
+contents = open(filename).read()
+config = eval(contents)
 # **************************************************
 # Initializations
 # **************************************************
 
 #height should be in centimeteres, radius in meters and volume in Litres
-Tank1 = WaterTank(height=31,radius=0.024025,volume=20,trigger=12,echo=14)
+Tank1 = WaterTank(height=config["tank_height"],radius=config["tank_radius"],volume=config["tank_volume"],trigger=12,echo=14)
 
 #Timer Initialization
 timer = Timer(-1)
@@ -26,8 +30,8 @@ timer.init(period = 12000,
 def checkWifi():
     count = 0
     #Timer Initialization
-    SSID = "Fadenlauf-1"
-    Password = "watchout"
+    SSID = config["SSID"]
+    Password = config["Password"]
 
     #Connect to Wifi
     Wifi=network.WLAN(network.STA_IF)
@@ -77,7 +81,7 @@ try:
             
             if well_tank >= 0 :
                 try:
-                    sleep(0.5)
+                    sleep(1)
                     request_headers = {'Content-Type': 'application/json'}
                     request = urequests.patch(
                         BASE+"editSensorValues.php",
