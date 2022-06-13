@@ -6,13 +6,21 @@ from time import sleep
 from ptofaw100_150 import PTOFAW100_150
 import network
 from machine import Timer
-from sysOperation import Operations
+from sysOperation import Operation1, Operation2
+
+filename = "external.config"
+contents = open(filename).read()
+config = eval(contents)
 
 # **************************************************
 # INITIALIZATIONS
 # **************************************************
-Tank1 = Operations(tank_id = 1,pressure_sensor_pin = 32,tank_valve_pin = 23,secondary_valve_pin = 4,water_pump_pin = 2,pressure_pump_pin = 27,tank_volume = 20)
-
+if config["num_of_tanks"] == 1:
+    if (config["operation mode"] == 1):
+        Tank1 = Operation1(tank_id = config["tank_id_1"])
+    elif (config["operation mode"] == 2):
+        Tank1 = Operation2(tank_id = config["tank_id_1"])
+    
 #Timer Initialization
 timer = Timer(-1)
 timer.init(period = 12000,
