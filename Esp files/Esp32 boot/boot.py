@@ -6,6 +6,10 @@
 import network
 from machine import Timer, Pin
 
+filename = "external.config"
+contents = open(filename).read()
+config = eval(contents)
+
 led = Pin(2,Pin.OUT)
 led.value(0) 
  
@@ -15,8 +19,8 @@ timer.init(period = 10000,
            mode= Timer.ONE_SHOT,
            callback = lambda t: led.value(1))
 
-SSID = "Fadenlauf-2"
-Password = "watchout"
+SSID = config["SSID"]
+Password = config["Password"]
 
 #Connect to Wifi
 Wifi=network.WLAN(network.STA_IF)
