@@ -4,6 +4,7 @@
         background-color: rgb(241, 241, 234);
       }
       body{
+        font-family: 'Montserrat', sans-serif;
         background-color: #F5F5F5;
         min-height: 100vh;
       }
@@ -13,6 +14,7 @@
       }
       p {
         font-size: 1.4rem;
+        font-family: 'Montserrat', sans-serif;
       }
       
       a{
@@ -35,11 +37,15 @@
      .btn-on{
         justify-content: end;
         }
-      .nav{
+      .nav-1{
         justify-content: flex-end;
         align-items: center;
         
       }
+      .nav-2{
+        justify-content: flex-start;
+        align-items: center;
+        }
       .topnav {
         margin: 0 auto;
         display: grid;
@@ -131,6 +137,19 @@
       .nav{
         width:100%;
       }
+      .toast-img{
+        height:20px;
+        width: 20px;
+      }
+      .toast-body{
+        font-size:20px;
+        font-family: 'Montserrat', sans-serif;
+      }
+      .toast-label{
+        font-size:18px;
+        color: red;
+        font-family: 'Montserrat', sans-serif;
+      }
 
       @media (max-width: 609px){
         .button-grid{
@@ -142,6 +161,13 @@
         }
         #thecard{
         padding: 0px;
+        }
+        .toast-body{
+        font-size:14px;
+        }
+        .toast-label{
+        font-size:12px;
+        }
         
       }
       @media (max-width: 991px){

@@ -159,11 +159,10 @@ chart2.render();
 function Notification(msg){
   let data = {"timestamp":Date.now(), "msg": msg}
   database.ref("message").push(data);
-  
+  console.log("message sent");
   
   return;
 }
-
 
 
 
@@ -217,80 +216,86 @@ function getReadings() {
     
     
     //Checks if there any warnings
-    if(warning1==1){
+    if(warning1 == 1){
       if(theAlert==1){
-        msg = 'Water volume in Well Tank is too Low!';
+        const toast = new bootstrap.Toast($("#liveToast"));
+        $("#warning").html("Water level is too low!");
+        toast.show();
+        
+        msg = "Water level is too low!";
         Notification(msg);
-        alert(msg);
-      }
-       theAlert = 0;
-    }else if(warning2==1){
-       if(theAlert==1){
-         msg = 'Well Tank is full!';
-         Notification(msg);
-         alert(msg);
-       }
-	theAlert = 0;
+        }
+        theAlert = 0;
+    }
+    else if(warning2 == 1){
+      if(theAlert==1){
+        const toast = new bootstrap.Toast($("#liveToast"))
+        $("#warning").html("Water level is too high!");
+        toast.show();
+        
+        msg = "Water level is too low!";
+        Notification(msg);
+            
+           }
+      theAlert = 0;
     }else{theAlert = 1}
-  
+
   
   
   
   //Updates control button states
    if(pump1 == 1){
-    document.getElementById('pump1').style.backgroundColor="#10B981";
-    document.getElementById('pump1').innerHTML = document.getElementById('pump1').innerHTML.replace("OFF","ON");
-   }
+     $("#pump1").text("ON");
+     $("#pump1").css("background-color","#10B981");
+  }
    else{
-    document.getElementById('pump1').style.backgroundColor="#EF4444";
-    document.getElementById('pump1').innerHTML = document.getElementById('pump1').innerHTML.replace("ON","OFF");
+     $("#pump1").text("OFF");
+     $("#pump1").css("background-color","#EF4444");
    }
    
    if(pump2 == 1){
-    document.getElementById('pump2').style.backgroundColor="#10B981";
-    document.getElementById('pump2').innerHTML = document.getElementById('pump2').innerHTML.replace("OFF","ON");
+     $("#pump2").text("ON");
+     $("#pump2").css("background-color","#10B981");
   }
   else{
-    document.getElementById('pump2').style.backgroundColor="#EF4444";
-    document.getElementById('pump2').innerHTML = document.getElementById('pump2').innerHTML.replace("ON","OFF");
+     $("#pump2").text("OFF");
+     $("#pump2").css("background-color","#EF4444");
   }
   
    if(valve1==1){
-    document.getElementById('valve1').style.backgroundColor="#10B981";
-    document.getElementById('valve1').innerHTML = document.getElementById('valve1').innerHTML.replace("OFF","ON");
+     $("#valve1").text("ON");
+     $("#valve1").css("background-color","#10B981");
   }
   
   else{
-    document.getElementById('valve1').style.backgroundColor="#EF4444";
-    document.getElementById('valve1').innerHTML = document.getElementById('valve1').innerHTML.replace("ON","OFF");
+     $("#valve1").text("OFF");
+     $("#valve1").css("background-color","#EF4444");
   }
   
   if(valve2 == 1){
-    document.getElementById('valve2').style.backgroundColor="#10B981";
-    document.getElementById('valve2').innerHTML = document.getElementById('valve2').innerHTML.replace("OFF","ON");
+     $("#valve2").text("ON");
+     $("#valve2").css("background-color","#10B981");
   }
   else{
-    document.getElementById('valve2').style.backgroundColor="#EF4444";
-    document.getElementById('valve2').innerHTML = document.getElementById('valve2').innerHTML.replace("ON","OFF");
+     $("#valve2").text("OFF");
+     $("#valve2").css("background-color","#EF4444");
   }
   
    if(mode == 1){
-    document.getElementById('mode').style.backgroundColor="#10B981";
-    document.getElementById('mode').innerHTML = document.getElementById('mode').innerHTML.replace("Auto-mode","Manual-mode");
-    document.getElementById('control').style.display="flex";
-
+     $("#mode").text("Manual-mode");
+     $("#mode").css("background-color","#10B981");
+     $("#control").css("display","flex");
   }
   else{
-    document.getElementById('mode').style.backgroundColor="#EF4444";
-    document.getElementById('mode').innerHTML = document.getElementById('mode').innerHTML.replace("Manual-mode","Auto-mode");
-    document.getElementById('control').style.display="none";
+     $("#mode").text("Auto-mode");
+     $("#mode").css("background-color","#EF4444");
+     $("#control").css("display","none");
   }
   };
 
   xhr.open("GET", "/getSensorValues.php?q="+tank_id, true);
   xhr.send();
 }
-
 
 
 
@@ -305,13 +310,13 @@ function handleClick1(){
   }
 
   if(pump1){
-    document.getElementById('pump1').style.backgroundColor="#10B981";
-    document.getElementById('pump1').innerHTML = document.getElementById('pump1').innerHTML.replace("OFF","ON");
+     $("#pump1").text("ON");
+     $("#pump1").css("background-color","#10B981");
   }
-  else{
-    document.getElementById('pump1').style.backgroundColor="#EF4444";
-    document.getElementById('pump1').innerHTML = document.getElementById('pump1').innerHTML.replace("ON","OFF");
-  }
+   else{
+     $("#pump1").text("OFF");
+     $("#pump1").css("background-color","#EF4444");
+   }
 
   let pumpObj = {"pump1":pump1,"tank_id":tank_id,"opMode":opMode};
   var wellP = JSON.stringify(pumpObj);
@@ -339,13 +344,14 @@ function handleClick2(){
   else{
     pump2 = 0;
   }
+  
   if(pump2){
-    document.getElementById('pump2').style.backgroundColor="#10B981";
-    document.getElementById('pump2').innerHTML = document.getElementById('pump2').innerHTML.replace("OFF","ON");
+     $("#pump2").text("ON");
+     $("#pump2").css("background-color","#10B981");
   }
   else{
-    document.getElementById('pump2').style.backgroundColor="#EF4444";
-    document.getElementById('pump2').innerHTML = document.getElementById('pump2').innerHTML.replace("ON","OFF");
+     $("#pump2").text("OFF");
+     $("#pump2").css("background-color","#EF4444");
   }
 
   let pumpObj = {"pump2":pump2,"tank_id":tank_id,"opMode":opMode};
@@ -374,13 +380,15 @@ function handleClick3(){
   else{
     valve1 = 0;
   }
+  
   if(valve1){
-    document.getElementById('valve1').style.backgroundColor="#10B981";
-    document.getElementById('valve1').innerHTML = document.getElementById('valve1').innerHTML.replace("OFF","ON");
+     $("#valve1").text("ON");
+     $("#valve1").css("background-color","#10B981");
   }
+  
   else{
-    document.getElementById('valve1').style.backgroundColor="#EF4444";
-    document.getElementById('valve1').innerHTML = document.getElementById('valve1').innerHTML.replace("ON","OFF");
+     $("#valve1").text("OFF");
+     $("#valve1").css("background-color","#EF4444");
   }
 
   let pumpObj = {"valve1":valve1,"tank_id":tank_id,"opMode":opMode};
@@ -409,12 +417,12 @@ function handleClick4(){
   }
   
   if(valve2){
-    document.getElementById('valve2').style.backgroundColor="#10B981";
-    document.getElementById('valve2').innerHTML = document.getElementById('valve2').innerHTML.replace("OFF","ON");
+     $("#valve2").text("ON");
+     $("#valve2").css("background-color","#10B981");
   }
   else{
-    document.getElementById('valve2').style.backgroundColor="#EF4444";
-    document.getElementById('valve2').innerHTML = document.getElementById('valve2').innerHTML.replace("ON","OFF");
+     $("#valve2").text("OFF");
+     $("#valve2").css("background-color","#EF4444");
   }
 
   let pumpObj = {"valve2":valve2,"tank_id":tank_id,"opMode":opMode};
@@ -444,15 +452,16 @@ function handleClick5(){
   else{
     mode = 0;
   }
-  if(mode){
-    document.getElementById('mode').style.backgroundColor="#10B981";
-    document.getElementById('mode').innerHTML = document.getElementById('mode').innerHTML.replace("Auto-mode","Manual-mode");
-    document.getElementById('control').style.display="flex";
+  
+  if(mode == 1){
+     $("#mode").text("Manual-mode");
+     $("#mode").css("background-color","#10B981");
+     $("#control").css("display","flex");
   }
   else{
-    document.getElementById('mode').style.backgroundColor="#EF4444";
-    document.getElementById('mode').innerHTML = document.getElementById('mode').innerHTML.replace("Manual-mode","Auto-mode");
-    document.getElementById('control').style.display="none";
+     $("#mode").text("Auto-mode");
+     $("#mode").css("background-color","#EF4444");
+     $("#control").css("display","none");
   }
 
   let modeObj = {"override":mode,"tank_id":tank_id,"opMode":opMode};
@@ -470,7 +479,35 @@ function handleClick5(){
   xhr.send(md);
 }
 
- 
+//listens for any changes to the select attribute
+$(function(){
+  $("select").change(onSelect);
+  if (tank_id == "1"){
+    let text = 'GHII Well Tank';
+      $("select option").filter(function() {
+          //may want to use $.trim in here
+          return $(this).text() == text;
+        }).prop('selected', true);
+  }
+  if (tank_id == "3"){
+    let text = 'GHII Water Tank';
+      $("select option").filter(function() {
+          //may want to use $.trim in here
+          return $(this).text() == text;
+        }).prop('selected', true);
+    }
+  });
+
+
+//pick a selection
+function onSelect(){
+  var theOption = $("select#select").val();
+  console.log(theOption);
+  if((theOption == 1) || (theOption == 3)){
+    tank_id = String(theOption);
+  }
+  //this means with the select option, you can render the tank you want  
+}
 
 
 setInterval(getReadings, 2000);

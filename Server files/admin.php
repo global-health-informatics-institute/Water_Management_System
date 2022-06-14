@@ -30,7 +30,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <ul class="nav">
+          <ul class="nav nav-1">
             <li class="nav-item">
               <p class = "nav-text me-2" >Hello, <?=$_SESSION['name']?>!</p>
             </li>
@@ -49,9 +49,19 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
 
     <!-- Start of content-->
     <div class="container-fluid">
-      <div class="nav-item  text-start">
-        <button id="mode" class="btn-nav me-2" onclick="handleClick5()">Auto-mode</button>
-      </div>
+      <ul class="nav nav-2">
+        <li class="nav-item text-start">
+          <button id="mode" class="btn-nav me-2" onclick="handleClick5()">Auto-mode</button>
+        </li>
+        <li class="nav-item">
+          <select class="form-select" id="select">
+            <option>Choose Water Tank</option>
+            <option value="1">GHII Well Tank</option>
+            <option value="3">GHII Water Tank</option>
+            <option value="4">Some other tank</option>
+          </select>
+        </li>
+      </ul>
       <div id="control" class= "row" style="display:none;">
         <!--Buttons-->
         <div class = "col-lg-3 col-md-6">
@@ -93,7 +103,17 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
       
       </div>
     </div>
-    
+    <div class="toast-container position-fixed top-0 end-0 p-5">
+      <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <img src="assets/images/triangle-exclamation-solid.svg" class="toast-img rounded me-2" alt="img">
+          <strong class="me-auto toast-label">Warning!</strong>
+          <small>11 mins ago</small>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div id = "warning" class="toast-body"></div>
+      </div>
+    </div>
     <!--Footer-->
     
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
