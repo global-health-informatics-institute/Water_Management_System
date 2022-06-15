@@ -51,7 +51,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
     <div class="container-fluid">
       <ul class="nav nav-2">
         <li class="nav-item text-start">
-          <button id="mode" class="btn-nav me-2" onclick="handleClick5()">Auto-mode</button>
+          <button id="mode" class="btn-nav button-30 me-2" onclick="handleClick5()">Auto-mode</button>
         </li>
         <li class="nav-item">
           <select class="form-select" id="select">
@@ -66,19 +66,19 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
         <!--Buttons-->
         <div id="b1" class = "col-lg-3 col-md-6">
           <p id="p1" class="labels">Water Pump</p>
-          <button id="pump1" class="btn btn-ctrl" onclick="handleClick1()">OFF</button></div
+          <button id="pump1" class="btn btn-ctrl button-30" onclick="handleClick1()">OFF</button></div
         >
         <div id="b2" class="col-lg-3 col-md-6">
           <p id="p2"class="labels">Pressure Pump</p>
-          <button id="pump2" class="btn btn-ctrl" onclick="handleClick2()">OFF</button></div
+          <button id="pump2" class="btn btn-ctrl button-30" onclick="handleClick2()">OFF</button></div
         >
         <div id="b3" class="col-lg-3 col-md-6">
           <p id="v1" class="labels">Well Tank Valve</p>
-          <button id="valve1" class="btn btn-ctrl" onclick="handleClick3()">OFF</button></div
+          <button id="valve1" class="btn btn-ctrl button-30" onclick="handleClick3()">OFF</button></div
         >
         <div id="b4" class="col-lg-3 col-md-6">
           <p id="v2" class="labels">Wb Tank Valve</p>
-          <button id="valve2" class="btn btn-ctrl" onclick="handleClick4()">OFF</button></div
+          <button id="valve2" class="btn btn-ctrl button-30" onclick="handleClick4()">OFF</button></div
         >
       </div>
 
