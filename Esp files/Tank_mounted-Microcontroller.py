@@ -1,9 +1,7 @@
 #required Libraries
-import machine
 import urequests
 import ujson as json
 from time import sleep
-from hcsr04 import HCSR04
 import network
 from machine import Timer
 from waterTank import WaterTank

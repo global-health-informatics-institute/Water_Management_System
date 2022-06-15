@@ -1,9 +1,5 @@
 #required Libraries
-import machine
-import urequests
-import ujson as json
 from time import sleep
-from ptofaw100_150 import PTOFAW100_150
 import network
 from machine import Timer
 from sysOperation import Operation1, Operation2
@@ -56,16 +52,16 @@ def checkWifi():
         print("Wifi Connected")
         print(Wifi.ifconfig())
     
-#try:
-while True:
-    # **************************************************
-    # OPERATION
-    # **************************************************
-    Tank1.operateSys()
+try:
+    while True:
+        # **************************************************
+        # OPERATION
+        # **************************************************
+        Tank1.operateSys()
 
-#except Exception as e:
- #   print("Error Detected:",e)
-  #  machine.reset()
+except Exception as e:
+    print("Error Detected:",e)
+    machine.reset()
             
 
 
