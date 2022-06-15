@@ -18,4 +18,4 @@ Step 2:
 Setup the database by importing the backup located in the Database directory to MariaDB on the raspberry pi using phpMyAdmin.
 
 Step 3:
-You will need two microcontrollers. One will be used to service an ultrasonic sensor and mounted on the tank being managed, whilst the other will act as the main microcontroller. Go to the ESP files and copy the corresponding files to the microcontrollers(ESP32/8266). You will then create a lib directory on both microntrollers. Copy the 'ptofaw100_150.py' file to the main microcontroller lib directory and the 'hcsr04.py' file to the mounted microcontroller's lib directory.  
+You will need two microcontrollers. One will be used to service an ultrasonic sensor and mounted on the tank being managed, whilst the other will act as the main microcontroller. Go to the ESP files and copy the corresponding files to the microcontrollers(ESP32/8266). You will then create a lib directory on both microntrollers. Copy the 'ptofaw100_150.py' and 'sysOpetation.py' files to the main microcontroller lib directory and the 'hcsr04.py' and 'waterTank.py' files to the mounted microcontroller's lib directory.  
