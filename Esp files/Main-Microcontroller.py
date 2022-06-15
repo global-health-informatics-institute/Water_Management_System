@@ -8,7 +8,7 @@ import network
 from machine import Timer
 from sysOperation import Operation1, Operation2
 
-filename = "external.config"
+filename = "mainController.config"
 contents = open(filename).read()
 config = eval(contents)
 
@@ -31,8 +31,8 @@ timer.init(period = 12000,
 def checkWifi():
     count = 0
     #Timer Initialization
-    SSID = "Fadenlauf-3"
-    Password = "watchout"
+    SSID = config["SSID"]
+    Password = config["Password"]
 
     #Connect to Wifi
     Wifi=network.WLAN(network.STA_IF)

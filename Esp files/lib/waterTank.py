@@ -12,7 +12,7 @@ class WaterTank:
     def __init__(self,height,radius,volume,trigger,echo):
         self.ultra_sensor = HCSR04(trigger_pin=trigger, echo_pin=echo, echo_timeout_us=10000)
         self.h = height 
-        self.r = ((((radius)/2)/100)**2)
+        self.r = radius
         self.v = volume
         self.tank_counter = 0
         self.initial_height = 0
