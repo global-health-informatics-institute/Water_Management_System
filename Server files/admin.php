@@ -57,43 +57,43 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
           <select class="form-select" id="select">
             <option>Choose Water Tank</option>
             <option value="1">GHII Well Tank</option>
-            <option value="3">GHII Water Tank</option>
+            <option value="3">GHII Waterboard Tank</option>
             <option value="4">Some other tank</option>
           </select>
         </li>
       </ul>
       <div id="control" class= "row" style="display:none;">
         <!--Buttons-->
-        <div class = "col-lg-3 col-md-6">
-          <p class="labels">Water Pump</p>
+        <div id="b1" class = "col-lg-3 col-md-6">
+          <p id="p1" class="labels">Water Pump</p>
           <button id="pump1" class="btn btn-ctrl" onclick="handleClick1()">OFF</button></div
         >
-        <div class="col-lg-3 col-md-6">
-          <p class="labels">Pressure Pump</p>
+        <div id="b2" class="col-lg-3 col-md-6">
+          <p id="p2"class="labels">Pressure Pump</p>
           <button id="pump2" class="btn btn-ctrl" onclick="handleClick2()">OFF</button></div
         >
-        <div class="col-lg-3 col-md-6">
-          <p class="labels">Well Tank Valve</p>
+        <div id="b3" class="col-lg-3 col-md-6">
+          <p id="v1" class="labels">Well Tank Valve</p>
           <button id="valve1" class="btn btn-ctrl" onclick="handleClick3()">OFF</button></div
         >
-        <div class="col-lg-3 col-md-6">
-          <p class="labels">Wb Tank Valve</p>
+        <div id="b4" class="col-lg-3 col-md-6">
+          <p id="v2" class="labels">Wb Tank Valve</p>
           <button id="valve2" class="btn btn-ctrl" onclick="handleClick4()">OFF</button></div
         >
       </div>
 
       <!--Card Content-->
-      <div class="row mt-2 text-center">
+      <div id="content" class="row mt-2 text-center">
         
         <!--Water Pressure gauge-->
-        <div class="col-lg-6">
+        <div id ="Gauge" class="col-lg-6">
           <div id="thecard" class="card shadow mt-5">
             <p class="card-title">Water Pressure</p>
             <div id="chart2"></div>
           </div>
         </div>
         
-        <!--Water Well Tank gauge-->
+        <!--Water Tank Chart-->
         <div class="col-lg-6">
           <div id="thecard" class="card shadow mt-5">
             <p class="card-title">Water Volume</p>

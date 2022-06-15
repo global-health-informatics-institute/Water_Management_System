@@ -37,7 +37,14 @@ var theAlert = 1;
 var mode = 0;
 var msg = '';
 var yVal = 15;
-var tank_id = "3";
+
+if(window.localStorage.getItem("admin_tank_id")!==null)
+{
+  var tank_id = window.localStorage.getItem('admin_tank_id');
+}else{var tank_id = "3";}
+
+console.log(tank_id);
+
 var datapoints = [];
 var ydps = [];
 var press = [];
@@ -291,6 +298,14 @@ function getReadings() {
      $("#mode").css("background-color","#EF4444");
      $("#control").css("display","none");
   }
+  if(opMode == "2"){
+    $("#Gauge").addClass("visually-hidden");
+    $("#b1").addClass("visually-hidden");
+    $("#b2").addClass("visually-hidden");
+    $("#v1").text("Outlet Valve");
+    $("#v2").text("Inlet Valve");
+  }
+  
   };
 
   xhr.open("GET", "/getSensorValues.php?q="+tank_id, true);
@@ -485,14 +500,12 @@ $(function(){
   if (tank_id == "1"){
     let text = 'GHII Well Tank';
       $("select option").filter(function() {
-          //may want to use $.trim in here
           return $(this).text() == text;
         }).prop('selected', true);
   }
   if (tank_id == "3"){
-    let text = 'GHII Water Tank';
+    let text = 'GHII Waterboard Tank';
       $("select option").filter(function() {
-          //may want to use $.trim in here
           return $(this).text() == text;
         }).prop('selected', true);
     }
@@ -502,9 +515,12 @@ $(function(){
 //pick a selection
 function onSelect(){
   var theOption = $("select#select").val();
-  console.log(theOption);
   if((theOption == 1) || (theOption == 3)){
     tank_id = String(theOption);
+    //stores tank_id in local storage
+    window.localStorage.setItem("admin_tank_id",tank_id);
+    //reloads window
+    window.location.reload();
   }
   //this means with the select option, you can render the tank you want  
 }
