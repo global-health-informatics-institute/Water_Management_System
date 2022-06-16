@@ -44,7 +44,7 @@ class Operation1:
         self.overRide = False
         
         #API URL
-        self.BASE = "http://192.168.0.123"
+        self.BASE = config["BASE"]
     
     
     # **************************************************
@@ -294,7 +294,7 @@ class Operation2:
         self.overRide = False
         
         #API URL
-        self.BASE = "http://192.168.0.123"
+        self.BASE = config["BASE"]
     
     # **************************************************
     # Gets latest tank volume from database
@@ -402,7 +402,7 @@ class Operation2:
                 #switch off outlet valve
                 if(self.offsetVariable1 == False):
                     self.valveOut.off()
-                    #switch on WB valve
+                    #switch on inlet valve
                     self.valveIn.on()
                     self.offsetVariable1 = True
                     self.offsetVariable2 = True
@@ -420,7 +420,7 @@ class Operation2:
                     self.valveOut.on()
                     self.offsetVariable1 = False
                     
-            #Check if well tank volume is greater than the maximum allowable threshold
+            #Check if tank volume is greater than the maximum allowable threshold
             if (tankVolume >= self.maximum_capacity):
                 sense = self.valveOut.value()
                 print("water level too high")
@@ -441,7 +441,7 @@ class Operation2:
             warning2 = 0
             print("entered manual mode")
                 
-            #toggle well valve on/off
+            #toggle outlet valve on/off
             if self.value1 and self.offsetVariable1 == True:
                 self.valveOut.on()
                 self.offsetVariable1 = False
@@ -449,7 +449,7 @@ class Operation2:
                 self.valveOut.off()
                 self.offsetVariable1 = True
             
-            #toggle waterboard valve on/off
+            #toggle inlet valve on/off
             if self.value2 and self.offsetVariable2 == False:
                 self.valveIn .on()
                 self.offsetVariable2 = True
@@ -490,7 +490,7 @@ class Operation3:
         self.overRide = False
         
         #API URL
-        self.BASE = "http://192.168.0.123"
+        self.BASE = config["BASE"]
     
     
     # **************************************************
@@ -690,7 +690,7 @@ class Operation4:
         self.overRide = False
         
         #API URL
-        self.BASE = "http://192.168.0.123"
+        self.BASE = config["BASE"]
     
     
     # **************************************************
@@ -792,7 +792,7 @@ class Operation4:
     # **************************************************
     def operateSys(self):
         
-        #gets tank's current volume and pressure of pressure sensor
+        #gets tank's current volume and pressure
         tankVolume = self.getTankVolume()
         pressure = self.getPressureReading()
         #tank id
@@ -827,7 +827,7 @@ class Operation4:
                     self.valveOut.on()
                     self.offsetVariable1 = False
                     
-            #Check if well tank volume is greater than the maximum allowable threshold
+            #Check if tank volume is greater than the maximum allowable threshold
             if (tankVolume >= self.maximum_capacity):
                 sense = self.valveOut.value()
                 print("water level too high")
@@ -884,7 +884,7 @@ class Operation4:
                 self.pressurePump.off()
                 self.offsetVariable4 = True
                 
-            #toggle well valve on/off
+            #toggle outlet valve on/off
             if self.value3 and self.offsetVariable1 == True:
                 self.valveOut.on()
                 self.offsetVariable1 = False
