@@ -13,7 +13,7 @@ $valve1 = $data["valve1"];
 $valve2 = $data["valve2"];
 $override = $data["override"];
 $tank_id = $data["tank_id"];
-$opMode = $data["opMode"];
+$opCode = $data["opCode"];
 
 $user = "admin";
 $password = "password";
@@ -27,21 +27,14 @@ try {
   // Check connection
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   //inserts data into the database table
-  if($opMode == 1){
+  if($opCode == 0){
     if(isset($pressure)){ 
      $sql = "INSERT INTO $table (Pressure, Volume, warning1, warning2, watertank_id)
       VALUES ('".$pressure."','".$volume."', '".$war1."', '".$war2."','".$tank_id."')";
       $conn->exec($sql);
-      echo "New record in ".$table." created successfully";
+      echo "New record in ".$table." created successfully for tank id ".$tank_id." ";
     }
     
-    //updates
-    if(!isset($pressure) && isset($volume)){
-      $sql = "UPDATE sensorValues SET Volume = '".$volume."' WHERE watertank_id = '".$tank_id."' ORDER BY id DESC LIMIT 1";
-     $conn->exec($sql);
-     echo "record in ".$table ."updated successfully";
-    } 
-
     //updates the wellPump in commands table
     if(isset($pump1)){
      $sql = "UPDATE commands SET wellPump = '".$pump1."' WHERE watertank_id = '".$tank_id."'" ;
@@ -77,54 +70,49 @@ try {
      echo "record in ".$table ."updated successfully";
     }
     //updates the OpMode in commands table
-    if(isset($opMode)){
-     $sql = "UPDATE commands SET OpMode = '".$opMode."' WHERE watertank_id = '".$tank_id."'";
+    if(isset($opCode)){
+     $sql = "UPDATE commands SET OpCode = '".$opCode."' WHERE watertank_id = '".$tank_id."'";
      $conn->exec($sql);
-     echo "record in ".$table ."updated successfully";
+     echo "record for opCode in ".$table ."updated successfully";
     }
 }
 
-if($opMode == 2){
-    if(isset($volume) && isset($war1) && isset($war2)){ 
+  //Checks incoming opcode and then performs operations
+  if($opCode > 0 && $opCode < 3 ){
+    
+    if(isset($volume)){ 
      $sql = "INSERT INTO $table (Pressure, Volume, warning1, warning2, watertank_id)
       VALUES ('0','".$volume."', '".$war1."', '".$war2."','".$tank_id."')";
       $conn->exec($sql);
-      echo "New record in ".$table." created successfully";
+      echo "New record in ".$table." created successfully for tank id ".$tank_id." ";
     }
-    
-    //updates
-    if(!isset($war1)&& !isset($war2) && isset($volume)){
-      $sql = "UPDATE sensorValues SET Volume = '".$volume."' WHERE watertank_id = '".$tank_id."' ORDER BY id DESC LIMIT 1";
-     $conn->exec($sql);
-     echo "record in ".$table ."updated successfully";
-    } 
 
     //updates the wellPump in commands table
     if(isset($pump1)){
      $sql = "UPDATE commands SET wellPump = '".$pump1."' WHERE watertank_id = '".$tank_id."'" ;
      $conn->exec($sql);
-     echo "record in commands updated successfully";
+     echo "record ".$pump1."  in commands updated successfully";
     }
     
     //updates the pressurePump in commands table
     if(isset($pump2)){
      $sql = "UPDATE commands SET pressurePump = '".$pump2."' WHERE watertank_id = '".$tank_id."'";
      $conn->exec($sql);
-     echo "record in commands updated successfully";
+     echo "record ".$pump2." in commands updated successfully";
     }
     
     //updates the wellValve in commands table
     if(isset($valve1)){
      $sql = "UPDATE commands SET wellValve = '".$valve1."' WHERE watertank_id = '".$tank_id."'";
      $conn->exec($sql);
-     echo "record in ".$table ."updated successfully";
+     echo "record ".$valve1." in ".$table ."updated successfully";
     }
     
     //updates the wellValve in commands table
     if(isset($valve2)){
      $sql = "UPDATE commands SET wbValve = '".$valve2."' WHERE watertank_id = '".$tank_id."'";
      $conn->exec($sql);
-     echo "record in ".$table ."updated successfully";
+     echo "record ".$valve2." in ".$table ."updated successfully";
     }
     
     //updates the overRide in commands table
@@ -134,12 +122,71 @@ if($opMode == 2){
      echo "record in ".$table ."updated successfully";
     }
     //updates the OpMode in commands table
-    if(isset($opMode)){
-     $sql = "UPDATE commands SET OpMode = '".$opMode."' WHERE watertank_id = '".$tank_id."'";
+    if(isset($opCode)){
+     $sql = "UPDATE commands SET OpCode = '".$opCode."' WHERE watertank_id = '".$tank_id."'";
      $conn->exec($sql);
-     echo "record in ".$table ."updated successfully";
+     echo "record opCode in ".$table ."updated successfully";
     }
 }
+
+  if($opCode == 3 ){
+    
+    if(isset($volume) && (isset($war1) || isset($war2))){ 
+     $sql = "INSERT INTO $table (Pressure, Volume, warning1, warning2, watertank_id)
+      VALUES ('".$pressure."','".$volume."', '".$war1."', '".$war2."','".$tank_id."')";
+      $conn->exec($sql);
+      echo "New record in ".$table." created successfully for tank id ".$tank_id." ";
+    }
+
+    //updates the wellPump in commands table
+    if(isset($pump1)){
+     $sql = "UPDATE commands SET wellPump = '".$pump1."' WHERE watertank_id = '".$tank_id."'" ;
+     $conn->exec($sql);
+     echo "record ".$pump1." in commands updated successfully";
+    }
+    
+    //updates the pressurePump in commands table
+    if(isset($pump2)){
+     $sql = "UPDATE commands SET pressurePump = '".$pump2."' WHERE watertank_id = '".$tank_id."'";
+     $conn->exec($sql);
+     echo "record ".$pump2." in commands updated successfully";
+    }
+    
+    //updates the wellValve in commands table
+    if(isset($valve1)){
+     $sql = "UPDATE commands SET wellValve = '".$valve1."' WHERE watertank_id = '".$tank_id."'";
+     $conn->exec($sql);
+     echo "record ".$valve1." in ".$table ."updated successfully";
+    }
+    
+    //updates the wellValve in commands table
+    if(isset($valve2)){
+     $sql = "UPDATE commands SET wbValve = '".$valve2."' WHERE watertank_id = '".$tank_id."'";
+     $conn->exec($sql);
+     echo "record ".$valve2." in ".$table ."updated successfully";
+    }
+    
+    //updates the overRide in commands table
+    if(isset($override)){
+     $sql = "UPDATE commands SET overRide = '".$override."' WHERE watertank_id = '".$tank_id."'";
+     $conn->exec($sql);
+     echo "record ".$override." in ".$table ."updated successfully";
+    }
+    //updates the OpMode in commands table
+    if(isset($opCode)){
+     $sql = "UPDATE commands SET OpCode = '".$opCode."' WHERE watertank_id = '".$tank_id."'";
+     $conn->exec($sql);
+     echo "record opCode in ".$table ."updated successfully";
+    }
+}
+    
+   //updates
+    if(!isset($opCode) && isset($volume)){
+      $sql = "UPDATE sensorValues SET Volume = '".$volume."' WHERE watertank_id = '".$tank_id."' ORDER BY id DESC LIMIT 1";
+      $conn->exec($sql);
+      echo "record volume in ".$table ."updated for ".$tank_id." successfully";
+    } 
+
 
 } catch(PDOException $e) {
   echo $sql . "<br>" . $e->getMessage();

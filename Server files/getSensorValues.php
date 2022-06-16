@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 $tank_id = $_GET['q'];
 
@@ -7,13 +8,14 @@ $password = "password";
 $database = "WMS";
 $table1 = "sensorValues";
 $table2 ="commands";
+$table3 = "users";
 
 try{
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
   $myObj = new stdClass();
   #$data_points = array();
 
-  foreach($db->query("SELECT * FROM $table1 WHERE watertank_id = '".$tank_id."'") as $row) {
+  foreach($db->query("SELECT * FROM $table1 WHERE watertank_id = '".$tank_id."'  order by id DESC limit 1") as $row) {
     
     #$points = array("x" => $row['Timestamp'],"y"=>$row['WellTank']);
     #array_push($data_points,$points);
@@ -25,14 +27,19 @@ try{
     $myObj->warning2 = $row['warning2'] ;
     $myObj->tankid = $row['watertank_id'];
   }
-
-  foreach($db->query("SELECT * FROM $table2 WHERE watertank_id = '".$tank_id."'") as $row) {
+  foreach($db->query("SELECT * FROM $table2 WHERE watertank_id = '".$tank_id."' order by id DESC limit 1") as $row) {
     $myObj->pump1 = $row['wellPump'];
     $myObj->pump2 = $row['pressurePump'];
     $myObj->valve1 = $row['wellValve'];
     $myObj->valve2 = $row['wbValve'];
     $myObj->override = $row['overRide'];
-    $myObj->opMode = $row['OpMode'];
+    $myObj->opCode = $row['OpCode'];
+
+  }
+  
+  foreach($db->query("SELECT username FROM $table3 WHERE username = '".$_SESSION['name']."'") as $row) {
+    $myObj->uname = $row['username'];
+    
 
   }
 

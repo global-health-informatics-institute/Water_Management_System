@@ -25,17 +25,17 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
     <!--Start of navbar-->
     <div class="navbar navbar-expand-lg navbar-dark bg-dark shadow mb-3">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Water Management System</a>
+        <a class="navbar-brand" href="/">Water Management System</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <ul class="nav nav-1">
             <li class="nav-item">
-              <p class = "nav-text me-2" >Hello, <?=$_SESSION['name']?>!</p>
+              <p class = "nav-text me-4" >Hello, <?=$_SESSION['name']?>!</p>
             </li>
             <li class="nav-item">
-              <a href="adminRegister.php" id="logout" class ="ms-2 h-auto"><img class="adduser-img me-1" src="assets/images/add-user-add-svgrepo-com.svg"/>Register user</a>
+              <a href="adminRegister.php" id="logout" class ="h-auto"><img class="adduser-img me-1" src="assets/images/add-user-add-svgrepo-com.svg"/>Register user</a>
             </li>
             <li class="nav-item">
               <a href="logout.php" id="logout" class ="me-2 h-auto"><img class="logout-img me-1 color-white" src="assets/images/logout-svgrepo-com.svg"/>Logout</a>
@@ -48,12 +48,12 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
 
 
     <!-- Start of content-->
-    <div class="container-fluid">
+    <div id="the_container" class="container-fluid">
       <ul class="nav nav-2">
-        <li class="nav-item text-start">
+        <li class="nav-item text-start me-2">
           <button id="mode" class="btn-nav button-30 me-2" onclick="handleClick5()">Auto-mode</button>
         </li>
-        <li class="nav-item">
+        <li class="nav-item l2">
           <select class="form-select" id="select">
             <option>Choose Water Tank</option>
             <option value="1">GHII Well Tank</option>
@@ -66,20 +66,16 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
         <!--Buttons-->
         <div id="b1" class = "col-lg-3 col-md-6">
           <p id="p1" class="labels">Water Pump</p>
-          <button id="pump1" class="btn btn-ctrl button-30" onclick="handleClick1()">OFF</button></div
-        >
+          <button id="pump1" class="btn btn-ctrl button-30" onclick="handleClick1()">OFF</button></div>
         <div id="b2" class="col-lg-3 col-md-6">
           <p id="p2"class="labels">Pressure Pump</p>
-          <button id="pump2" class="btn btn-ctrl button-30" onclick="handleClick2()">OFF</button></div
-        >
+          <button id="pump2" class="btn btn-ctrl button-30" onclick="handleClick2()">OFF</button></div>
         <div id="b3" class="col-lg-3 col-md-6">
           <p id="v1" class="labels">Well Tank Valve</p>
-          <button id="valve1" class="btn btn-ctrl button-30" onclick="handleClick3()">OFF</button></div
-        >
+          <button id="valve1" class="btn btn-ctrl button-30" onclick="handleClick3()">OFF</button></div>
         <div id="b4" class="col-lg-3 col-md-6">
           <p id="v2" class="labels">Wb Tank Valve</p>
-          <button id="valve2" class="btn btn-ctrl button-30" onclick="handleClick4()">OFF</button></div
-        >
+          <button id="valve2" class="btn btn-ctrl button-30" onclick="handleClick4()">OFF</button></div>
       </div>
 
       <!--Card Content-->
@@ -103,12 +99,12 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
       
       </div>
     </div>
-    <div class="toast-container position-fixed top-0 end-0 p-5">
+    <div class="toast-container position-fixed top-0 end-0 pt-5 pe-5">
       <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
           <img src="assets/images/triangle-exclamation-solid.svg" class="toast-img rounded me-2" alt="img">
           <strong class="me-auto toast-label">Warning!</strong>
-          <small>11 mins ago</small>
+          <small>Just now</small>
           <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
         <div id = "warning" class="toast-body"></div>

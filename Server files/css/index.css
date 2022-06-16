@@ -36,9 +36,8 @@
       }
      .btn-on{
         justify-content: end;
-      }
+        }
       .nav-1{
-        width:100%;
         justify-content: flex-end;
         align-items: center;
         
@@ -112,9 +111,10 @@
       }
         
       .navbar-brand{
+        font-family: 'Montserrat', sans-serif;
+        font-size: 30px;
         color: white;
         font-weight:bold;
-        font-size:large;
       }
       .card-title {
         font-size: 1.2rem;
@@ -135,6 +135,9 @@
         margin-bottom: 0rem;
         font-weight: bold;
       }
+      .nav{
+        width:100%;
+      }
       .toast-img{
         height:20px;
         width: 20px;
@@ -143,12 +146,13 @@
         font-size:20px;
         font-family: 'Montserrat', sans-serif;
       }
-       .toast-label{
+      .toast-label{
         font-size:18px;
         color: red;
         font-family: 'Montserrat', sans-serif;
       }
-      /* CSS */
+
+    /* CSS */
     .button-30 {
       align-items: center;
       appearance: none;
@@ -194,6 +198,18 @@
       transform: translateY(2px);
     }
 
+
+       @media (max-width: 390px){
+        .l2{
+          margin-top:20px;
+        }
+        .nav-1{
+        justify-content: flex-start;
+        align-items: flex-start;
+        
+      }
+       
+       }
       @media (max-width: 609px){
         .button-grid{
           grid-gap: 0rem;
@@ -211,6 +227,16 @@
         .toast-label{
         font-size:12px;
         }
+        .navbar-brand{
+        font-family: 'Montserrat', sans-serif;
+        font-size: 20px;
+        color: white;
+        font-weight:bold;
+      }
+      .nav-text{
+        margin-top:6px;
+      }
+        
       }
       @media (max-width: 991px){
         .nav{

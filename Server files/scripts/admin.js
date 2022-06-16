@@ -38,12 +38,11 @@ var mode = 0;
 var msg = '';
 var yVal = 15;
 
+//Check if there is a tank id in local storage
 if(window.localStorage.getItem("admin_tank_id")!==null)
 {
   var tank_id = window.localStorage.getItem('admin_tank_id');
 }else{var tank_id = "3";}
-
-console.log(tank_id);
 
 var datapoints = [];
 var ydps = [];
@@ -166,7 +165,6 @@ chart2.render();
 function Notification(msg){
   let data = {"timestamp":Date.now(), "msg": msg}
   database.ref("message").push(data);
-  console.log("message sent");
   
   return;
 }
@@ -181,7 +179,8 @@ function getReadings() {
       var myObj = JSON.parse(this.responseText);
 
       //Variables created to hold new sensor values
-      var pressureV = myObj.pressure;
+      var pressure = myObj.pressure;
+      let pressureV = Math.round(pressure* 100) / 100;
       var volume = myObj.volume;
       let xVal = new Date;
       xVal.setTime(xVal.getTime() - new Date().getTimezoneOffset()*60*1000);
@@ -218,7 +217,7 @@ function getReadings() {
       valve1 = myObj.valve1;
       valve2 = myObj.valve2;
       mode = myObj.override;
-      opMode = myObj.opMode;
+      opMode = myObj.opCode;
     }
     
     
@@ -252,12 +251,12 @@ function getReadings() {
   
   //Updates control button states
    if(pump1 == 1){
-     $("#pump1").text("ON");
-     $("#pump1").css("background-color","#10B981");
+     $("#the_container").find("#pump1").text("ON");
+     $("#the_container").find("#pump1").css("background-color","#10B981");
   }
    else{
-     $("#pump1").text("OFF");
-     $("#pump1").css("background-color","#EF4444");
+     $("#the_container").find("#pump1").text("OFF");
+     $("#the_container").find("#pump1").css("background-color","#EF4444");
    }
    
    if(pump2 == 1){
@@ -298,12 +297,23 @@ function getReadings() {
      $("#mode").css("background-color","#EF4444");
      $("#control").css("display","none");
   }
-  if(opMode == "2"){
+  if(opMode == "1"){
     $("#Gauge").addClass("visually-hidden");
     $("#b1").addClass("visually-hidden");
     $("#b2").addClass("visually-hidden");
     $("#v1").text("Outlet Valve");
     $("#v2").text("Inlet Valve");
+  }
+  if(opMode == "2"){
+    $("#Gauge").addClass("visually-hidden");
+    $("#b2").addClass("visually-hidden");
+    $("#b4").addClass("visually-hidden");
+    $("#p1").text("Water Pump");
+    $("#v1").text("Outlet Valve");
+  }
+  if(opMode == "3"){
+    $("#b4").addClass("visually-hidden");
+    $("#v1").text("Outlet Valve");
   }
   
   };
@@ -335,12 +345,11 @@ function handleClick1(){
 
   let pumpObj = {"pump1":pump1,"tank_id":tank_id,"opMode":opMode};
   var wellP = JSON.stringify(pumpObj);
-  console.log(wellP);
+  
 
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function(){
       if(xhr.status === 200){
-       console.log("Post successful!");
      }
 }
   xhr.open("POST", "/editSensorValues.php", true);
@@ -371,12 +380,11 @@ function handleClick2(){
 
   let pumpObj = {"pump2":pump2,"tank_id":tank_id,"opMode":opMode};
   var pressP = JSON.stringify(pumpObj);
-  console.log(pressP);
 
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function(){
       if(xhr.status === 200){
-       console.log("Post successful!");
+      
      }
 }
   xhr.open("POST", "/editSensorValues.php", true);
@@ -388,7 +396,6 @@ function handleClick2(){
 
 //Handles the well valve button
 function handleClick3(){
-  console.log("Valve 1 value",valve1);
   if(valve1 == 0){
     valve1 = 1;
   }
@@ -408,12 +415,12 @@ function handleClick3(){
 
   let pumpObj = {"valve1":valve1,"tank_id":tank_id,"opMode":opMode};
   var wellV = JSON.stringify(pumpObj);
-  console.log(wellV);
+  
 
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function(){
       if(xhr.status === 200){
-       console.log("Post successful!");
+       
      }
 }
   xhr.open("POST", "/editSensorValues.php", true);
@@ -424,7 +431,7 @@ function handleClick3(){
 
 //Handles the waterboard valve button
 function handleClick4(){
-  console.log("Valve 2 value",valve2);
+ 
   if(valve2 == 0){
     valve2 = 1;
   }else{
@@ -442,12 +449,12 @@ function handleClick4(){
 
   let pumpObj = {"valve2":valve2,"tank_id":tank_id,"opMode":opMode};
   var wbV = JSON.stringify(pumpObj);
-  console.log(wbV);
+ 
 
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function(){
       if(xhr.status === 200){
-       console.log("Post successful!")
+       
      }
 }
   xhr.open("POST", "/editSensorValues.php", true);
@@ -481,12 +488,12 @@ function handleClick5(){
 
   let modeObj = {"override":mode,"tank_id":tank_id,"opMode":opMode};
   var md = JSON.stringify(modeObj);
-  console.log(md);
+  
 
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function(){
       if(xhr.status === 200){
-       console.log("Post successful!")
+      
      }
 }
   xhr.open("POST", "/editSensorValues.php", true);
