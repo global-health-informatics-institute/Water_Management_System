@@ -27,6 +27,11 @@
         color: #eaebed;
       
       }
+      .theRow{
+        margin-right:auto;
+        margin-left:auto;
+      
+      }
       .labels {
         font-size: large;
         text-align: center;
@@ -102,7 +107,6 @@
         color: black;
       }
       #thecard{
-        border-radius:0.8rem;
         padding: 20px;
       }
       #main-container{
@@ -151,6 +155,7 @@
         color: red;
         font-family: 'Montserrat', sans-serif;
       }
+      
 
     /* CSS */
     .button-30 {

@@ -26,7 +26,14 @@ const database = firebase.database();
 
 
 // Get current sensor readings when the page loads
-window.addEventListener("load", getReadings);
+window.addEventListener("load", function(){
+  
+  if(window.localStorage.getItem("page") == 0){
+    window.location.assign("http://192.168.0.126/adminRegister.php");
+  }
+  getReadings();
+  
+});
 var warning1 = 0;
 var warning2 = 0;
 var pump1 = 0;
@@ -82,7 +89,7 @@ yaxis: {
         }
       },
             min: 0,
-            max: 20,
+            max: 1350,
             tickAmount: 9,
             type: 'numeric',
 },
@@ -516,6 +523,31 @@ $(function(){
           return $(this).text() == text;
         }).prop('selected', true);
     }
+    
+   /*
+   *NAVBAR LOGIC 
+   */
+  $("li#signout").find("a").click(function(){
+   $(this).css("background-color","red");
+  });
+  
+  $("li#home").find("a").click(function(){
+    window.localStorage.setItem("page",1);
+  });
+  
+  $("li#dash").find("a").click(function(){
+    window.localStorage.setItem("page",0);
+  });
+  
+  if(window.localStorage.getItem("page") == 1){
+    $("li#home").find("a").addClass("active").css("background-color","#3D72A4");
+    $("li#dash").find("a").removeClass("active");
+  }
+  
+  if(window.localStorage.getItem("page") == null){
+    $("li#home").find("a").addClass("active").css("background-color","#3D72A4");
+  }
+    
   });
 
 

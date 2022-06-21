@@ -24,13 +24,15 @@ firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
 var num_of_tanks = 1;
-
+var tank_id_0 = "3";
+var tank_id_1 = "1";
 // Get current sensor readings when the page loads
 window.addEventListener("load", function(){
   getReadings();
   getReadings2();
   getReadings3();  
 });
+
 
 var warning1 = 0;
 var warning2 = 0;
@@ -45,9 +47,9 @@ var yVal = 15;
 var datapoints = [];
 var ydps = [];
 var press = [];
-let xVal = new Date();
 var opMode = 0;
-var tank_id = "1"
+var tank1_volume = 0;
+
 
 var warning1_1 = 0;
 var warning2_1 = 0;
@@ -62,9 +64,9 @@ var yVal_1 = 15;
 var datapoints_1 = [];
 var ydps_1 = [];
 var press_1 = [];
-let xVal_1 = new Date();
 var opMode_1 = 0;
-var tank_id_1 = "3";
+var tank2_volume = 0;
+
 
 var warning1_2 = 0;
 var warning2_2 = 0;
@@ -79,9 +81,9 @@ var yVal_2 = 15;
 var datapoints_2 = [];
 var ydps_2 = [];
 var press_2 = [];
-let xVal_2 = new Date();
 var opMode_2 = 0;
 var tank_id_2 = "4";
+var tank3_volume = 0;
 
 if(window.localStorage.getItem("tank_id")!==null)
 {
@@ -121,10 +123,10 @@ yaxis: {
         return val.toFixed(2);
         }
       },
-            min: 0,
-            max: 20,
-            tickAmount: 9,
-            type: 'numeric',
+        min: 0,
+        max: 0,
+        tickAmount: 9,
+        type: 'numeric',
 },
 xaxis:{
   type: "datetime",
@@ -146,7 +148,7 @@ chart1.render();
 //pressure gauge
  var options2 ={
   chart: {
-    height: 450,
+    height: 350,
     type: "radialBar",
   },
   series: [],
@@ -169,7 +171,7 @@ chart1.render();
           show: false,
         },
         value: {
-          fontSize: "30px",
+          fontSize: "18px",
           show: true,
           formatter: function (val) {
             return val + ' PSI'
@@ -231,7 +233,7 @@ yaxis: {
         }
       },
             min: 0,
-            max: 20,
+            max: 0,
             tickAmount: 9,
             type: 'numeric',
 },
@@ -255,7 +257,7 @@ chart3.render();
 //pressure gauge
  var options4 ={
   chart: {
-    height: 450,
+    height: 350,
     type: "radialBar",
   },
   series: [],
@@ -278,7 +280,7 @@ chart3.render();
           show: false,
         },
         value: {
-          fontSize: "30px",
+          fontSize: "18px",
           show: true,
           formatter: function (val) {
             return val + ' PSI'
@@ -340,7 +342,7 @@ yaxis: {
         }
       },
             min: 0,
-            max: 20,
+            max: 0,
             tickAmount: 9,
             type: 'numeric',
 },
@@ -364,7 +366,7 @@ chart5.render();
 //pressure gauge
  var options6 ={
   chart: {
-    height: 450,
+    height: 350,
     type: "radialBar",
   },
   series: [],
@@ -387,7 +389,7 @@ chart5.render();
           show: false,
         },
         value: {
-          fontSize: "30px",
+          fontSize: "18px",
           show: true,
           formatter: function (val) {
             return val + ' PSI'
@@ -441,7 +443,7 @@ function getReadings() {
       let xVal = new Date;
       xVal.setTime(xVal.getTime() - new Date().getTimezoneOffset()*60*1000);
       
-      
+
       
       //gauge and chart values updated
       yVal = Number(volume);
@@ -460,10 +462,10 @@ function getReadings() {
       chart1.updateSeries([{
                 name: 'Water Level',
                 data: ydps
-            }]);
+            }],true);
       
       //update pressure gauge
-      chart2.updateSeries([pressureV]);
+      chart2.updateSeries([pressureV],true);
      
       //command values updated
       warning1 = myObj.warning1;
@@ -474,6 +476,18 @@ function getReadings() {
       valve2 = myObj.valve2;
       mode = myObj.override;
       opMode = myObj.opCode;
+      if(tank1_volume == 0){
+        var tname = myObj.tname;
+        $("#the_container1").find("#volume").text(tname+" Volume");
+        $("#the_container1").find("#pressure").text(tname+" Pressure");
+        var one = myObj.capacity;
+        tank1_volume = Number(one);
+        chart1.updateOptions({
+          yaxis: {
+            max: tank1_volume
+          }
+          });
+      }
     }
     
     
@@ -507,74 +521,74 @@ function getReadings() {
   
   //Updates control button states
    if(pump1 == 1){
-     $("#pump1").text("ON");
-     $("#pump1").css("background-color","#10B981");
+     $("#the_container1").find("#pump1").text("ON");
+     $("#the_container1").find("#pump1").css("background-color","#10B981");
   }
    else{
-     $("#pump1").text("OFF");
-     $("#pump1").css("background-color","#EF4444");
+     $("#the_container1").find("#pump1").text("OFF");
+     $("#the_container1").find("#pump1").css("background-color","#EF4444");
    }
    
    if(pump2 == 1){
-     $("#pump2").text("ON");
-     $("#pump2").css("background-color","#10B981");
+     $("#the_container1").find("#pump2").text("ON");
+     $("#the_container1").find("#pump2").css("background-color","#10B981");
   }
   else{
-     $("#pump2").text("OFF");
-     $("#pump2").css("background-color","#EF4444");
+     $("#the_container1").find("#pump2").text("OFF");
+     $("#the_container1").find("#pump2").css("background-color","#EF4444");
   }
   
    if(valve1==1){
-     $("#valve1").text("ON");
-     $("#valve1").css("background-color","#10B981");
+     $("#the_container1").find("#valve1").text("ON");
+     $("#the_container1").find("#valve1").css("background-color","#10B981");
   }
   
   else{
-     $("#valve1").text("OFF");
-     $("#valve1").css("background-color","#EF4444");
+     $("#the_container1").find("#valve1").text("OFF");
+     $("#the_container1").find("#valve1").css("background-color","#EF4444");
   }
   
   if(valve2 == 1){
-     $("#valve2").text("ON");
-     $("#valve2").css("background-color","#10B981");
+     $("#the_container1").find("#valve2").text("ON");
+     $("#the_container1").find("#valve2").css("background-color","#10B981");
   }
   else{
-     $("#valve2").text("OFF");
-     $("#valve2").css("background-color","#EF4444");
+     $("#the_container1").find("#valve2").text("OFF");
+     $("#the_container1").find("#valve2").css("background-color","#EF4444");
   }
   
    if(mode == 1){
-     $("#mode").text("Manual-mode");
-     $("#mode").css("background-color","#10B981");
-     $("#control").css("display","flex");
+     $("#the_container1").find("#mode").text("Manual-mode");
+     $("#the_container1").find("#mode").css("background-color","#10B981");
+     $("#the_container1").find("#control_1").css("display","flex");
   }
   else{
-     $("#mode").text("Auto-mode");
-     $("#mode").css("background-color","#EF4444");
-     $("#control").css("display","none");
+     $("#the_container1").find("#mode").text("Auto-mode");
+     $("#the_container1").find("#mode").css("background-color","#EF4444");
+     $("#the_container1").find("#control_1").css("display","none");
   }
   if(opMode == "1"){
-    $("#Gauge").addClass("visually-hidden");
-    $("#b1").addClass("visually-hidden");
-    $("#b2").addClass("visually-hidden");
-    $("#v1").text("Outlet Valve");
-    $("#v2").text("Inlet Valve");
+    $("#the_container1").find("#Gauge").addClass("visually-hidden");
+    $("#the_container1").find("#b1").addClass("visually-hidden");
+    $("#the_container1").find("#b2").addClass("visually-hidden");
+    $("#the_container1").find("#v1").text("Outlet Valve");
+    $("#the_container1").find("#v2").text("Inlet Valve");
   }
   if(opMode == "2"){
-    $("#Gauge").addClass("visually-hidden");
-    $("#b2").addClass("visually-hidden");
-    $("#b4").addClass("visually-hidden");
-    $("#p1").text("Water Pump");
-    $("#v1").text("Outlet Valve");
+    $("#the_container1").find("#Gauge").addClass("visually-hidden");
+    $("#the_container1").find("#b2").addClass("visually-hidden");
+    $("#the_container1").find("#b4").addClass("visually-hidden");
+    $("#the_container1").find("#p1").text("Water Pump");
+    $("#the_container1").find("#v1").text("Outlet Valve");
   }
   if(opMode == "3"){
-    $("#b4").addClass("visually-hidden");
-    $("#v1").text("Outlet Valve");
+    $("#the_container1").find("#b4").addClass("visually-hidden");
+    $("#the_container1").find("#v1").text("Outlet Valve");
   }
   
   };
 
-  xhr.open("GET", "/getSensorValues.php?q="+tank_id, true);
+  xhr.open("GET", "/getSensorValues.php?q="+tank_id_0, true);
   xhr.send();
 }
 
@@ -585,27 +599,31 @@ function getReadings2() {
   xhr.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       var myObj = JSON.parse(this.responseText);
+      if(Object.keys(myObj).length < 3){
+        return;
+        }
 
       //Variables created to hold new sensor values
       var pressure = myObj.pressure;
       let pressureV = Math.round(pressure* 100) / 100;
       var volume = myObj.volume;
-      let xVal = new Date;
-      xVal.setTime(xVal.getTime() - new Date().getTimezoneOffset()*60*1000);
-      
-      
-      
+      let xVal2 = new Date;
+      xVal2.setTime(xVal2.getTime() - new Date().getTimezoneOffset()*60*1000);
+    
       //gauge and chart values updated
       yVal_1 = Number(volume);
       
-      datapoints_1.push(xVal,yVal); //push points to temporal array 
-      ydps_1.push(datapoints); // push to main array
+      datapoints_1.push(xVal2,yVal_1); //push points to temporal array 
+      
+      ydps_1.push(datapoints_1); // push to main array
+     
       datapoints_1 =[]; // clear temporal array
       
       if (ydps_1.length >  15 )
       {
         ydps_1.shift();				
       }
+      
       //pressure value limit
       if(pressureV > 100){pressureV = 100;}
       //update water volume chart
@@ -616,7 +634,9 @@ function getReadings2() {
       
       //update pressure gauge
       chart4.updateSeries([pressureV]);
-     
+      
+      
+      
       //command values updated
       warning1_1 = myObj.warning1;
       warning2_1 = myObj.warning2;
@@ -626,6 +646,19 @@ function getReadings2() {
       valve2_1 = myObj.valve2;
       mode_1 = myObj.override;
       opMode_1 = myObj.opCode;
+      if(tank2_volume == 0){
+        var tname = myObj.tname;
+        $("#the_container2").find("#volume").text(tname+" Volume");
+        $("#the_container2").find("#pressure").text(tname+" Pressure");
+        var two = myObj.capacity;
+        tank2_volume = Number(two);
+        chart3.updateOptions({
+          yaxis: {
+            max: tank2_volume
+          }
+        });
+      }
+      
     }
     
     
@@ -639,7 +672,7 @@ function getReadings2() {
         msg_1 = "Water level is too low!";
         Notification(msg_1);
         }
-        theAlert = 0;
+        theAlert_1 = 0;
     }
     else if(warning2_1 == 1){
       if(theAlert_1==1){
@@ -694,31 +727,31 @@ function getReadings2() {
   }
   
    if(mode_1 == 1){
-     $("#the_container2").find("#mode").text("Manual-mode");
-     $("#the_container2").find("#mode").css("background-color","#10B981");
-     $("#the_container2").find("#control").css("display","flex");
+     $("#the_container2").find("#mode_2").text("Manual-mode");
+     $("#the_container2").find("#mode_2").css("background-color","#10B981");
+     $("#the_container2").find("#control_2").css("display","flex");
   }
   else{
-     $("#the_container2").find("#mode").text("Auto-mode");
-     $("#the_container2").find("#mode").css("background-color","#EF4444");
-     $("#the_container2").find("#control").css("display","none");
+     $("#the_container2").find("#mode_2").text("Auto-mode");
+     $("#the_container2").find("#mode_2").css("background-color","#EF4444");
+     $("#the_container2").find("#control_2").css("display","none");
   }
   if(opMode_1 == "1"){
     $("#the_container2").find("#Gauge").addClass("visually-hidden");
-    $("#the_container2").find("#b1").addClass("visually-hidden");
-    $("#the_container2").find("#b2").addClass("visually-hidden");
+    $("#the_container2").find("#b1_1").addClass("visually-hidden");
+    $("#the_container2").find("#b2_1").addClass("visually-hidden");
     $("#the_container2").find("#v1").text("Outlet Valve");
     $("#the_container2").find("#v2").text("Inlet Valve");
   }
   if(opMode_1 == "2"){
     $("#the_container2").find("#Gauge").addClass("visually-hidden");
-    $("#the_container2").find("#b2").addClass("visually-hidden");
-    $("#the_container2").find("#b4").addClass("visually-hidden");
+    $("#the_container2").find("#b2_1").addClass("visually-hidden");
+    $("#the_container2").find("#b4_1").addClass("visually-hidden");
     $("#the_container2").find("#p1").text("Water Pump");
     $("#the_container2").find("#v1").text("Outlet Valve");
   }
   if(opMode_1 == "3"){
-    $("#the_container2").find("#b4").addClass("visually-hidden");
+    $("#the_container2").find("#b4_1").addClass("visually-hidden");
     $("#the_container2").find("#v1").text("Outlet Valve");
   }
   
@@ -734,6 +767,10 @@ function getReadings3() {
   xhr.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       var myObj = JSON.parse(this.responseText);
+      
+      if(Object.keys(myObj).length < 3){
+        return ;
+        }
 
       //Variables created to hold new sensor values
       var pressure = myObj.pressure;
@@ -742,13 +779,11 @@ function getReadings3() {
       let xVal = new Date;
       xVal.setTime(xVal.getTime() - new Date().getTimezoneOffset()*60*1000);
       
-      
-      
       //gauge and chart values updated
       yVal_2 = Number(volume);
       
-      datapoints_2.push(xVal,yVal); //push points to temporal array 
-      ydps_2.push(datapoints); // push to main array
+      datapoints_2.push(xVal,yVal_2); //push points to temporal array 
+      ydps_2.push(datapoints_2); // push to main array
       datapoints_2 =[]; // clear temporal array
       
       if (ydps_2.length >  15 )
@@ -758,13 +793,13 @@ function getReadings3() {
       //pressure value limit
       if(pressureV > 100){pressureV = 100;}
       //update water volume chart
-      chart3.updateSeries([{
+      chart5.updateSeries([{
                 name: 'Water Level',
                 data: ydps_2
             }]);
       
       //update pressure gauge
-      chart4.updateSeries([pressureV]);
+      chart6.updateSeries([pressureV]);
      
       //command values updated
       warning1_2 = myObj.warning1;
@@ -775,6 +810,18 @@ function getReadings3() {
       valve2_2 = myObj.valve2;
       mode_2 = myObj.override;
       opMode_2 = myObj.opCode;
+      if(tank3_volume == 0){
+        var tname = myObj.tname;
+        $("#the_container3").find("#volume").text(tname+" Volume");
+        $("#the_container3").find("#pressure").text(tname+" Pressure");
+        var three = myObj.capacity;
+        tank3_volume = Number(three);
+        chart5.updateOptions({
+          yaxis: {
+            max: tank3_volume
+          }
+          })
+      }
     }
     
     
@@ -843,31 +890,31 @@ function getReadings3() {
   }
   
    if(mode_2 == 1){
-     $("#the_container3").find("#mode").text("Manual-mode");
-     $("#the_container3").find("#mode").css("background-color","#10B981");
-     $("#the_container3").find("#control").css("display","flex");
+     $("#the_container3").find("#mode_3").text("Manual-mode");
+     $("#the_container3").find("#mode_3").css("background-color","#10B981");
+     $("#the_container3").find("#control_3").css("display","flex");
   }
   else{
-     $("#the_container3").find("#mode").text("Auto-mode");
-     $("#the_container3").find("#mode").css("background-color","#EF4444");
-     $("#the_container3").find("#control").css("display","none");
+     $("#the_container3").find("#mode_3").text("Auto-mode");
+     $("#the_container3").find("#mode_3").css("background-color","#EF4444");
+     $("#the_container3").find("#control_3").css("display","none");
   }
   if(opMode_2 == "1"){
     $("#the_container3").find("#Gauge").addClass("visually-hidden");
-    $("#the_container3").find("#b1").addClass("visually-hidden");
-    $("#the_container3").find("#b2").addClass("visually-hidden");
+    $("#the_container3").find("#b1_2").addClass("visually-hidden");
+    $("#the_container3").find("#b2_2").addClass("visually-hidden");
     $("#the_container3").find("#v1").text("Outlet Valve");
     $("#the_container3").find("#v2").text("Inlet Valve");
   }
   if(opMode_2 == "2"){
     $("#the_container3").find("#Gauge").addClass("visually-hidden");
-    $("#the_container3").find("#b2").addClass("visually-hidden");
-    $("#the_container3").find("#b4").addClass("visually-hidden");
+    $("#the_container3").find("#b2_2").addClass("visually-hidden");
+    $("#the_container3").find("#b4_2").addClass("visually-hidden");
     $("#the_container3").find("#p1").text("Water Pump");
     $("#the_container3").find("#v1").text("Outlet Valve");
   }
   if(opMode_2 == "3"){
-    $("#the_container3").find("#b4").addClass("visually-hidden");
+    $("#the_container3").find("#b4_2").addClass("visually-hidden");
     $("#the_container3").find("#v1").text("Outlet Valve");
   }
   
@@ -878,179 +925,522 @@ function getReadings3() {
 }
 
 
-//Handles the pressure pump button
-function handleClick1(){
-  if(pump1 == 0){
-    pump1 = 1;
-  }
-  else{
-    pump1 = 0;
-  }
 
-  if(pump1){
-     $("#pump1").text("ON");
-     $("#pump1").css("background-color","#10B981");
-  }
-   else{
-     $("#pump1").text("OFF");
-     $("#pump1").css("background-color","#EF4444");
-   }
-
-  let pumpObj = {"pump1":pump1,"tank_id":tank_id,"opMode":opMode};
-  var wellP = JSON.stringify(pumpObj);
-  
-
-  var xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function(){
-      if(xhr.status === 200){
-     }
-}
-  xhr.open("POST", "/editSensorValues.php", true);
-  xhr.setRequestHeader("Content-type","application/json");
-  xhr.send(wellP);
-}
-
-
-//Handles the well pump button
-function handleClick2(){
-  if(pump2 == 0){
-    pump2 = 1;
-  }
-  else{
-    pump2 = 0;
-  }
-  
-  if(pump2){
-     $("#pump2").text("ON");
-     $("#pump2").css("background-color","#10B981");
-  }
-  else{
-     $("#pump2").text("OFF");
-     $("#pump2").css("background-color","#EF4444");
-  }
-
-  let pumpObj = {"pump2":pump2,"tank_id":tank_id,"opMode":opMode};
-  var pressP = JSON.stringify(pumpObj);
-
-  var xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function(){
-      if(xhr.status === 200){
-      
-     }
-}
-  xhr.open("POST", "/editSensorValues.php", true);
-  xhr.setRequestHeader("Content-type","application/json");
-  xhr.send(pressP);
-
-}
-
-
-//Handles the well valve button
-function handleClick3(){
-  if(valve1 == 0){
-    valve1 = 1;
-  }
-  else{
-    valve1 = 0;
-  }
-  
-  if(valve1){
-     $("#valve1").text("ON");
-     $("#valve1").css("background-color","#10B981");
-  }
-  
-  else{
-     $("#valve1").text("OFF");
-     $("#valve1").css("background-color","#EF4444");
-  }
-
-  let pumpObj = {"valve1":valve1,"tank_id":tank_id,"opMode":opMode};
-  var wellV = JSON.stringify(pumpObj);
-  
-
-  var xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function(){
-      if(xhr.status === 200){
-       
-     }
-}
-  xhr.open("POST", "/editSensorValues.php", true);
-  xhr.setRequestHeader("Content-type","application/json");
-  xhr.send(wellV);
-
-}
-
-
-//Handles the waterboard valve button
-function handleClick4(){
- 
-  if(valve2 == 0){
-    valve2 = 1;
-  }else{
-    valve2 = 0;
-  }
-  
-  if(valve2){
-     $("#valve2").text("ON");
-     $("#valve2").css("background-color","#10B981");
-  }
-  else{
-     $("#valve2").text("OFF");
-     $("#valve2").css("background-color","#EF4444");
-  }
-
-  let pumpObj = {"valve2":valve2,"tank_id":tank_id,"opMode":opMode};
-  var wbV = JSON.stringify(pumpObj);
- 
-
-  var xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function(){
-      if(xhr.status === 200){
-       
-     }
-}
-  xhr.open("POST", "/editSensorValues.php", true);
-  xhr.setRequestHeader("Content-type","application/json");
-  xhr.send(wbV);
-
-}
 
 
 //Handles the Mode Button
-function handleClick5(){
-  if(mode == 0){
-    mode = 1;
-  }
-  else{
-    mode = 0;
-  }
+$(function(){
   
-  if(mode == 1){
-     $("#mode").text("Manual-mode");
-     $("#mode").css("background-color","#10B981");
-     $("#control").css("display","flex");
-  }
-  else{
-     $("#mode").text("Auto-mode");
-     $("#mode").css("background-color","#EF4444");
-     $("#control").css("display","none");
-  }
-
-  let modeObj = {"override":mode,"tank_id":tank_id,"opMode":opMode};
-  var md = JSON.stringify(modeObj);
+   /*
+   *CONTROLS FOR TANK 1
+   */
   
+  $("#the_container1").find("#pump1").click(function(){
+      if(pump1 == 0){
+        pump1 = 1;
+      }
+      else{
+        pump1 = 0;
+      }
 
-  var xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function(){
-      if(xhr.status === 200){
+      if(pump1){
+         $(this).text("ON");
+         $(this).css("background-color","#10B981");
+      }
+       else{
+         $(this).text("OFF");
+         $(this).css("background-color","#EF4444");
+       }
+
+      let pumpObj = {"pump1":pump1,"tank_id":tank_id_0,"opMode":opMode};
+      var wellP = JSON.stringify(pumpObj);
       
-     }
-}
-  xhr.open("POST", "/editSensorValues.php", true);
-  xhr.setRequestHeader("Content-type","application/json");
-  xhr.send(md);
-}
 
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function(){
+          if(xhr.status === 200){
+         }
+    }
+      xhr.open("POST", "/editSensorValues.php", true);
+      xhr.setRequestHeader("Content-type","application/json");
+      xhr.send(wellP);
+  });
+  
+  //Handles the pressure pump button
+   $("#the_container1").find("#pump2").click(function(){
+     if(pump2 == 0){
+        pump2 = 1;
+      }
+      else{
+        pump2 = 0;
+      }
+      
+      if(pump2){
+         $(this).text("ON");
+         $(this).css("background-color","#10B981");
+      }
+      else{
+         $(this).text("OFF");
+         $(this).css("background-color","#EF4444");
+      }
+
+      let pumpObj = {"pump2":pump2,"tank_id":tank_id_0,"opMode":opMode};
+      var pressP = JSON.stringify(pumpObj);
+
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function(){
+          if(xhr.status === 200){
+          
+         }
+    }
+      xhr.open("POST", "/editSensorValues.php", true);
+      xhr.setRequestHeader("Content-type","application/json");
+      xhr.send(pressP);
+   });
+   
+   //Handles the well valve button
+  $("#the_container1").find("#valve1").click(function(){
+    if(valve1 == 0){
+      valve1 = 1;
+    }
+    else{
+      valve1 = 0;
+    }
+    
+    if(valve1){
+       $(this).text("ON");
+       $(this).css("background-color","#10B981");
+    }
+    
+    else{
+       $(this).text("OFF");
+       $(this).css("background-color","#EF4444");
+    }
+
+    let pumpObj = {"valve1":valve1,"tank_id":tank_id_0,"opMode":opMode};
+    var wellV = JSON.stringify(pumpObj);
+    
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if(xhr.status === 200){
+         
+       }
+  }
+    xhr.open("POST", "/editSensorValues.php", true);
+    xhr.setRequestHeader("Content-type","application/json");
+    xhr.send(wellV);
+  });
+  
+  //Handles the waterboard valve button
+  $("#the_container1").find("#valve2").click(function(){
+    if(valve2 == 0){
+      valve2 = 1;
+    }else{
+      valve2 = 0;
+    }
+    
+    if(valve2){
+       $(this).text("ON");
+       $(this).css("background-color","#10B981");
+    }
+    else{
+       $(this).text("OFF");
+       $(this).css("background-color","#EF4444");
+    }
+
+    let pumpObj = {"valve2":valve2,"tank_id":tank_id_0,"opMode":opMode};
+    var wbV = JSON.stringify(pumpObj);
+   
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if(xhr.status === 200){
+         
+       }
+  }
+    xhr.open("POST", "/editSensorValues.php", true);
+    xhr.setRequestHeader("Content-type","application/json");
+    xhr.send(wbV);
+  });
+  
+  
+  $("#mode").click(function(){
+    if(mode == 0){
+    mode = 1;
+    }
+    else{
+      mode = 0;
+    }
+    
+    if(mode == 1){
+       $(this).text("Manual-mode");
+       $(this).css("background-color","#10B981");
+       $("#control_1").css("display","flex");
+    }
+    else{
+       $(this).text("Auto-mode");
+       $(this).css("background-color","#EF4444");
+       $("#control_1").css("display","none");
+    }
+
+    let modeObj = {"override":mode,"tank_id":tank_id_0,"opMode":opMode};
+    var md = JSON.stringify(modeObj);
+    
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if(xhr.status === 200){
+        
+       }
+  }
+    xhr.open("POST", "/editSensorValues.php", true);
+    xhr.setRequestHeader("Content-type","application/json");
+    xhr.send(md);
+    
+  });
+  
+   /*
+   *CONTROLS FOR TANK 2
+   */
+  
+  $("#the_container2").find("#pump1").click(function(){
+      if(pump1_1 == 0){
+        pump1_1 = 1;
+      }
+      else{
+        pump1_1 = 0;
+      }
+
+      if(pump1_1){
+         $(this).text("ON");
+         $(this).css("background-color","#10B981");
+      }
+       else{
+         $(this).text("OFF");
+         $(this).css("background-color","#EF4444");
+       }
+
+      let pumpObj = {"pump1":pump1_1,"tank_id":tank_id_1,"opMode":opMode_1};
+      var wellP = JSON.stringify(pumpObj);
+      
+
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function(){
+          if(xhr.status === 200){
+         }
+    }
+      xhr.open("POST", "/editSensorValues.php", true);
+      xhr.setRequestHeader("Content-type","application/json");
+      xhr.send(wellP);
+  });
+  
+  //Handles the pressure pump button
+   $("#the_container2").find("#pump2").click(function(){
+     if(pump2_1 == 0){
+        pump2_1 = 1;
+      }
+      else{
+        pump2_1 = 0;
+      }
+      
+      if(pump2_1){
+         $(this).text("ON");
+         $(this).css("background-color","#10B981");
+      }
+      else{
+         $(this).text("OFF");
+         $(this).css("background-color","#EF4444");
+      }
+
+      let pumpObj = {"pump2":pump2_1,"tank_id":tank_id_1,"opMode":opMode_1};
+      var pressP = JSON.stringify(pumpObj);
+
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function(){
+          if(xhr.status === 200){
+          
+         }
+    }
+      xhr.open("POST", "/editSensorValues.php", true);
+      xhr.setRequestHeader("Content-type","application/json");
+      xhr.send(pressP);
+   });
+   
+   //Handles the outlet valve button
+  $("#the_container2").find("#valve1").click(function(){
+    if(valve1_1 == 0){
+      valve1_1 = 1;
+    }
+    else{
+      valve1_1 = 0;
+    }
+    
+    if(valve1_1){
+       $(this).text("ON");
+       $(this).css("background-color","#10B981");
+    }
+    
+    else{
+       $(this).text("OFF");
+       $(this).css("background-color","#EF4444");
+    }
+
+    let pumpObj = {"valve1":valve1_1,"tank_id":tank_id_1,"opMode":opMode_1};
+    var wellV = JSON.stringify(pumpObj);
+    
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if(xhr.status === 200){
+         
+       }
+  }
+    xhr.open("POST", "/editSensorValues.php", true);
+    xhr.setRequestHeader("Content-type","application/json");
+    xhr.send(wellV);
+  });
+  
+  //Handles the inlet valve button
+  $("#the_container2").find("#valve2").click(function(){
+    if(valve2_1 == 0){
+      valve2_1 = 1;
+    }else{
+      valve2_1 = 0;
+    }
+    
+    if(valve2_1){
+       $(this).text("ON");
+       $(this).css("background-color","#10B981");
+    }
+    else{
+       $(this).text("OFF");
+       $(this).css("background-color","#EF4444");
+    }
+
+    let pumpObj = {"valve2":valve2_1,"tank_id":tank_id_1,"opMode":opMode_1};
+    var wbV = JSON.stringify(pumpObj);
+   
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if(xhr.status === 200){
+         
+       }
+  }
+    xhr.open("POST", "/editSensorValues.php", true);
+    xhr.setRequestHeader("Content-type","application/json");
+    xhr.send(wbV);
+  });
+  
+  $("#mode_2").click(function(){
+    if(mode_1 == 0){
+    mode_1 = 1;
+    }
+    else{
+      mode_1 = 0;
+    }
+    
+    if(mode_1 == 1){
+       $("#mode_2").text("Manual-mode");
+       $("#mode_2").css("background-color","#10B981");
+       $("#control_2").css("display","flex");
+    }
+    else{
+       $("#mode_2").text("Auto-mode");
+       $("#mode_2").css("background-color","#EF4444");
+       $("#control_2").css("display","none");
+    }
+
+    let modeObj = {"override":mode_1,"tank_id":tank_id_1,"opMode":opMode_1};
+    var md = JSON.stringify(modeObj);
+    
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if(xhr.status === 200){
+        
+       }
+    }
+    xhr.open("POST", "/editSensorValues.php", true);
+    xhr.setRequestHeader("Content-type","application/json");
+    xhr.send(md);
+    
+  });
+  
+  /*
+   *CONTROLS FOR TANK 3
+   */
+  
+  $("#the_container3").find("#pump1").click(function(){
+      if(pump1_2 == 0){
+        pump1_2 = 1;
+      }
+      else{
+        pump1_2 = 0;
+      }
+
+      if(pump1_2){
+         $(this).text("ON");
+         $(this).css("background-color","#10B981");
+      }
+       else{
+         $(this).text("OFF");
+         $(this).css("background-color","#EF4444");
+       }
+
+      let pumpObj = {"pump1":pump1_2,"tank_id":tank_id_2,"opMode":opMode_2};
+      var wellP = JSON.stringify(pumpObj);
+      
+
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function(){
+          if(xhr.status === 200){
+         }
+    }
+      xhr.open("POST", "/editSensorValues.php", true);
+      xhr.setRequestHeader("Content-type","application/json");
+      xhr.send(wellP);
+  });
+  
+  //Handles the pressure pump button
+   $("#the_container3").find("#pump2").click(function(){
+     if(pump2_2 == 0){
+        pump2_2 = 1;
+      }
+      else{
+        pump2_2 = 0;
+      }
+      
+      if(pump2_2){
+         $(this).text("ON");
+         $(this).css("background-color","#10B981");
+      }
+      else{
+         $(this).text("OFF");
+         $(this).css("background-color","#EF4444");
+      }
+
+      let pumpObj = {"pump2":pump2_2,"tank_id":tank_id_2,"opMode":opMode_2};
+      var pressP = JSON.stringify(pumpObj);
+
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function(){
+          if(xhr.status === 200){
+          
+         }
+    }
+      xhr.open("POST", "/editSensorValues.php", true);
+      xhr.setRequestHeader("Content-type","application/json");
+      xhr.send(pressP);
+   });
+   
+   //Handles the well valve button
+  $("#the_container3").find("#valve1").click(function(){
+    if(valve1_2 == 0){
+      valve1_2 = 1;
+    }
+    else{
+      valve1_2 = 0;
+    }
+    
+    if(valve1_2){
+       $(this).text("ON");
+       $(this).css("background-color","#10B981");
+    }
+    
+    else{
+       $(this).text("OFF");
+       $(this).css("background-color","#EF4444");
+    }
+
+    let pumpObj = {"valve1":valve1_2,"tank_id":tank_id_2,"opMode":opMode_2};
+    var wellV = JSON.stringify(pumpObj);
+    
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if(xhr.status === 200){
+         
+       }
+  }
+    xhr.open("POST", "/editSensorValues.php", true);
+    xhr.setRequestHeader("Content-type","application/json");
+    xhr.send(wellV);
+  });
+  
+  //Handles the waterboard valve button
+  $("#the_container3").find("#valve2").click(function(){
+    if(valve2_2 == 0){
+      valve2_2 = 1;
+    }else{
+      valve2_2 = 0;
+    }
+    
+    if(valve2_2){
+       $(this).text("ON");
+       $(this).css("background-color","#10B981");
+    }
+    else{
+       $(this).text("OFF");
+       $(this).css("background-color","#EF4444");
+    }
+
+    let pumpObj = {"valve2":valve2_2,"tank_id":tank_id_2,"opMode":opMode_2};
+    var wbV = JSON.stringify(pumpObj);
+   
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if(xhr.status === 200){
+         
+       }
+  }
+    xhr.open("POST", "/editSensorValues.php", true);
+    xhr.setRequestHeader("Content-type","application/json");
+    xhr.send(wbV);
+  });
+  
+  $("#mode_3").click(function(){
+    if(mode_1 == 0){
+    mode_1 = 1;
+    }
+    else{
+      mode_1 = 0;
+    }
+    
+    if(mode_1 == 1){
+       $("#mode_3").text("Manual-mode");
+       $("#mode_3").css("background-color","#10B981");
+       $("#control_3").css("display","flex");
+    }
+    else{
+       $("#mode_3").text("Auto-mode");
+       $("#mode_3").css("background-color","#EF4444");
+       $("#control_3").css("display","none");
+    }
+
+    let modeObj = {"override":mode_2,"tank_id":tank_id_1,"opMode":opMode_2};
+    var md = JSON.stringify(modeObj);
+    
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if(xhr.status === 200){
+        
+       }
+    }
+    xhr.open("POST", "/editSensorValues.php", true);
+    xhr.setRequestHeader("Content-type","application/json");
+    xhr.send(md);
+    
+  });
+  
+  
+  
+});
+
+/*
 //listens for any changes to the select attribute
 $(function(){
   $("select").change(onSelect);
@@ -1081,13 +1471,19 @@ function onSelect(){
   }
   //this means with the select option, you can render the tank you want  
 }
+* */
 
-
-if(num_of_tanks == 2){
-  setInterval(function(){
+if(num_of_tanks == 1){
+  
+  $(function(){
+    $("#the_container3").addClass("visually-hidden");
+    $("#the_container2").addClass("mb-5");
+    setInterval( function(){
     getReadings();
     getReadings2();
-    }, 2000);
+    },2000);
+    });
+    
 }else if(num_of_tanks == 3){
   setInterval(function(){
     getReadings();
@@ -1095,5 +1491,9 @@ if(num_of_tanks == 2){
     getReadings3();
     }, 2000);
     
-}else{setInterval(getReadings,2000);}
+}else{setInterval(getReadings,2000);
+  $("#the_container1").addClass("mb-5");
+  $("#the_container2").addClass("visually-hidden");
+  $("#the_container3").addClass("visually-hidden");
+  }
 

@@ -75,7 +75,7 @@ try {
      $conn->exec($sql);
      echo "record for opCode in ".$table ."updated successfully";
     }
-}
+  }
 
   //Checks incoming opcode and then performs operations
   if($opCode > 0 && $opCode < 3 ){
@@ -127,7 +127,7 @@ try {
      $conn->exec($sql);
      echo "record opCode in ".$table ."updated successfully";
     }
-}
+  }
 
   if($opCode == 3 ){
     
@@ -178,14 +178,14 @@ try {
      $conn->exec($sql);
      echo "record opCode in ".$table ."updated successfully";
     }
-}
+  }
     
-   //updates
-    if(!isset($opCode) && isset($volume)){
-      $sql = "UPDATE sensorValues SET Volume = '".$volume."' WHERE watertank_id = '".$tank_id."' ORDER BY id DESC LIMIT 1";
-      $conn->exec($sql);
-      echo "record volume in ".$table ."updated for ".$tank_id." successfully";
-    } 
+ //updates
+  if(!isset($opCode) && isset($volume)){
+    $sql = "UPDATE sensorValues SET Volume = '".$volume."' WHERE watertank_id = '".$tank_id."' ORDER BY id DESC LIMIT 1";
+    $conn->exec($sql);
+    echo "record volume in ".$table ."updated for ".$tank_id." successfully";
+  } 
 
 
 } catch(PDOException $e) {

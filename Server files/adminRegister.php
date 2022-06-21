@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $error = '';
 $user = "admin";
 $password = "password";
@@ -83,11 +85,52 @@ if (isset($_POST['submit'])){
 		<title>Admin</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel ="stylesheet" href="assets/bootstrap.min.css">
+		<link rel ="stylesheet" href="assets/all.min.css">
 		<link rel ="stylesheet" href="css/adminRegister.css?v=<?php echo time() ?>">
 		<script src="assets/jquery.min.js"></script>
 	</head>
 	<body class="bg-light">
-		<div id="main-container" class= "container d-grid h-100">
+		<!--Start of navbar-->
+		<div class="navbar navbar-expand-lg navbar-dark bg-dark shadow mb-3">
+		  <div class="container-fluid">
+			<a class="navbar-brand" href="admin.php">Water Management System</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" aria-expanded="false" aria-label="Toggle navigation">
+			  <span class="navbar-toggler-icon "></span>
+			</button>
+			<div class=" offcanvas offcanvas-start d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: auto;" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+			  <div class="offcanvas-header">
+				<a href="admin.php" class="offcanvas-title fs-4 align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none" id="offcanvasExampleLabel">WATER MANAGEMENT SYSTEM</a>
+				<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+			  </div>
+			  <div class ="offcanvas-body">
+				<hr>
+				<ul class="navbar-nav ms-auto nav-pills mb-auto">
+				  <li id = "home" class="nav-item">
+					<a href="admin.php" class="nav-link" aria-current="page">
+					  Home
+					</a>
+				  </li>
+				  <li id = "dash" class="nav-item">
+					<a href="adminRegister.php" class="nav-link">
+					  Add User
+					</a>
+				  </li>
+				</ul>
+				<hr>
+				<div class="dropdown">
+				  <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+					<img src="assets/images/user-svgrepo-com.svg" alt="" width="32" height="32" class="rounded-circle me-2">
+					<strong> <?=$_SESSION['name']?></strong>
+				  </a>
+				  <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+					<li id ="signout" ><a class="dropdown-item" href="logout.php">Sign out</a></li>
+				  </ul>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		<div id="main-container" class= "container d-grid h-100 mt-5">
 			<div id="thecard2" class="card shadow col-md-5">
 				<div class="text-end"><button type="button" class="btn-close mt-3 pe-5" aria-label="Close" onclick="close6()" ></button></div>
 				<div class="img-pos mb-0 mt-5"><img class="user-img" src="assets/images/user-regular.svg"/></div>
@@ -112,6 +155,7 @@ if (isset($_POST['submit'])){
 			</div>
 		</div>
 		<script src="assets/bootstrap.min.js"></script>
+		<script src="assets/all.min.js"></script>
 		<script src="scripts/adminRegister.js?v=<?php echo time() ?>"></script>
 	</body>
 </html>

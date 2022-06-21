@@ -16,6 +16,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
     <title>Water Management System</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel ="stylesheet" href="assets/bootstrap.min.css">
+    <link rel ="stylesheet" href="assets/all.min.css">
     <link rel ="stylesheet" href="css/admin.css?v=<?php echo time() ?>">
     <script src="assets/gauges.min.js"></script>
     <script src="assets/apexcharts.min.js"></script>
@@ -25,28 +26,44 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
     <!--Start of navbar-->
     <div class="navbar navbar-expand-lg navbar-dark bg-dark shadow mb-3">
       <div class="container-fluid">
-        <a class="navbar-brand" href="/">Water Management System</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <a class="navbar-brand" href="admin.php">Water Management System</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon "></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <ul class="nav nav-1">
-            <li class="nav-item">
-              <p class = "nav-text me-4" >Hello, <?=$_SESSION['name']?>!</p>
-            </li>
-            <li class="nav-item">
-              <a href="adminRegister.php" id="logout" class ="h-auto"><img class="adduser-img me-1" src="assets/images/add-user-add-svgrepo-com.svg"/>Register user</a>
-            </li>
-            <li class="nav-item">
-              <a href="logout.php" id="logout" class ="me-2 h-auto"><img class="logout-img me-1 color-white" src="assets/images/logout-svgrepo-com.svg"/>Logout</a>
-            </li>
-          </ul>
-        </div>
+        <div class=" offcanvas offcanvas-start d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: auto;" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+          <div class="offcanvas-header">
+            <a href="admin.php" class="offcanvas-title fs-4 align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none" id="offcanvasExampleLabel">WATER MANAGEMENT SYSTEM</a>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class ="offcanvas-body">
+            <hr>
+            <ul class="navbar-nav ms-auto nav-pills mb-auto">
+              <li id = "home" class="nav-item">
+                <a href="admin.php" class="nav-link" aria-current="page">
+                  <i class="fab fa-github"></i>
+                  Home
+                </a>
+              </li>
+              <li id = "dash" class="nav-item">
+                <a href="adminRegister.php" class="nav-link">
+                  Add User
+                </a>
+              </li>
+            </ul>
+            <hr>
+            <div class="dropdown">
+              <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="assets/images/user-svgrepo-com.svg" alt="" width="32" height="32" class="rounded-circle me-2">
+                <strong> <?=$_SESSION['name']?></strong>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                <li id ="signout" ><a class="dropdown-item" href="logout.php">Sign out</a></li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-
-
     <!-- Start of content-->
     <div id="the_container" class="container-fluid">
       <ul class="nav nav-2">
@@ -99,7 +116,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
       
       </div>
     </div>
-    <div class="toast-container position-fixed top-0 end-0 pt-5 pe-5">
+    <div class="toast-container position-fixed top-0 end-0 p-5 mt-5">
       <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
           <img src="assets/images/triangle-exclamation-solid.svg" class="toast-img rounded me-2" alt="img">
@@ -115,6 +132,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
     <script src="assets/bootstrap.min.js"></script>
+    <script src="assets/all.min.js"></script>
     <script src="scripts/admin.js?v=<?php echo time() ?>"></script>
   </body>
 </html>

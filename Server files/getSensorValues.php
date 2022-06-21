@@ -9,6 +9,7 @@ $database = "WMS";
 $table1 = "sensorValues";
 $table2 ="commands";
 $table3 = "users";
+$table4 ="water_tanks";
 
 try{
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
@@ -39,8 +40,11 @@ try{
   
   foreach($db->query("SELECT username FROM $table3 WHERE username = '".$_SESSION['name']."'") as $row) {
     $myObj->uname = $row['username'];
-    
-
+  }
+  
+  foreach($db->query("SELECT capacity,name FROM $table4 WHERE watertank_id = '".$tank_id."'") as $row) {
+    $myObj->capacity = $row['capacity'];
+    $myObj->tname =  $row['name'];
   }
 
   #$myObj -> data_points = $data_points;

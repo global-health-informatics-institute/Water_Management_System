@@ -32,7 +32,26 @@ function close5(){
     });
 }
 
-function close6(){
-  window.history.back();
+$(function(){
+  $("li#home").find("a").click(function(){
+    window.localStorage.setItem("page",1);
+  });
   
+  if(window.localStorage.getItem("page") == 0){
+    $("li#dash").find("a").addClass("active").css("background-color","#3D72A4");
+    $("li#home").find("a").removeClass("active");
   }
+  
+  if(window.localStorage.getItem("page") == null){
+    $("li#home").find("a").addClass("active").css("background-color","#3D72A4");
+  }
+  
+  })
+window.onhashchange = function() {
+ window.localStorage.setItem("page",1);
+}
+
+function close6(){
+  window.localStorage.setItem("page",1);
+  window.history.back();
+}
