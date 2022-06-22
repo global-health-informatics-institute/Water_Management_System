@@ -102,7 +102,7 @@ try:
                 
                 if response.status_code == 200:
                     data = response.json()
-                    toggle_reset = int(data["reset"])
+                    toggle_reset = int(data["resetM"])
                     if toggle_reset == 1:
                         #IF RESET COMMAND IS THERE SEND ZERO AS ACKNOWLEDGEMENT
                         try:
