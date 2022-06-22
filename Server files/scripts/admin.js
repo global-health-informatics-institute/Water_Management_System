@@ -566,4 +566,4 @@ function onSelect(){
 
 
 
-setInterval(getReadings, 2000);
+setInterval(getReadings, 60000);

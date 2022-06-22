@@ -484,6 +484,7 @@ function getReadings() {
         tank1_volume = Number(one);
         chart1.updateOptions({
           yaxis: {
+            min: 0,
             max: tank1_volume
           }
           });
@@ -494,8 +495,8 @@ function getReadings() {
     //Checks if there any warnings
     if(warning1 == 1){
       if(theAlert==1){
-        const toast = new bootstrap.Toast($("#liveToast"));
-        $("#warning").html("Water level is too low!");
+        const toast = new bootstrap.Toast($("#liveToast1"));
+        $("#warning1").html("Water level is too low for "+tname);
         toast.show();
         
         msg = "Water level is too low!";
@@ -505,8 +506,8 @@ function getReadings() {
     }
     else if(warning2 == 1){
       if(theAlert==1){
-        const toast = new bootstrap.Toast($("#liveToast"))
-        $("#warning").html("Water level is too high!");
+        const toast = new bootstrap.Toast($("#liveToast1"))
+        $("#warning1").html("Water level is too high for "+tname);
         toast.show();
         
         msg = "Water level is too low!";
@@ -654,10 +655,14 @@ function getReadings2() {
         tank2_volume = Number(two);
         chart3.updateOptions({
           yaxis: {
+            min: 0,
             max: tank2_volume
           }
         });
       }
+      
+      
+      
       
     }
     
@@ -665,8 +670,8 @@ function getReadings2() {
     //Checks if there any warnings
     if(warning1_1 == 1){
       if(theAlert_1==1){
-        const toast = new bootstrap.Toast($("#liveToast"));
-        $("#warning").html("Water level is too low!");
+        const toast = new bootstrap.Toast($("#liveToast2"));
+        $("#warning2").html("Water level is too low for "+tname);
         toast.show();
         
         msg_1 = "Water level is too low!";
@@ -676,8 +681,8 @@ function getReadings2() {
     }
     else if(warning2_1 == 1){
       if(theAlert_1==1){
-        const toast = new bootstrap.Toast($("#liveToast"))
-        $("#warning").html("Water level is too high!");
+        const toast = new bootstrap.Toast($("#liveToast2"))
+        $("#warning2").html("Water level is too high for "+tname);
         toast.show();
         
         msg_1 = "Water level is too low!";
@@ -818,6 +823,7 @@ function getReadings3() {
         tank3_volume = Number(three);
         chart5.updateOptions({
           yaxis: {
+            min: 0,
             max: tank3_volume
           }
           })
@@ -828,8 +834,8 @@ function getReadings3() {
     //Checks if there any warnings
     if(warning1_2 == 1){
       if(theAlert_2==1){
-        const toast = new bootstrap.Toast($("#liveToast"));
-        $("#warning").html("Water level is too low!");
+        const toast = new bootstrap.Toast($("#liveToast3"));
+        $("#warning3").html("Water level is too low for "+tname);
         toast.show();
         
         msg_2 = "Water level is too low!";
@@ -839,8 +845,8 @@ function getReadings3() {
     }
     else if(warning2_2 == 1){
       if(theAlert_2==1){
-        const toast = new bootstrap.Toast($("#liveToast"))
-        $("#warning").html("Water level is too high!");
+        const toast = new bootstrap.Toast($("#liveToast3"))
+        $("#warning3").html("Water level is too high for "+tname);
         toast.show();
         
         msg_2 = "Water level is too low!";
@@ -1100,6 +1106,24 @@ $(function(){
     
   });
   
+  $("#reset").click(function(){
+    console.log("clicked!");
+    let modeObj = {"reset":1,"tank_id":tank_id_0,"opMode":opMode};
+    var md = JSON.stringify(modeObj);
+    
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if(xhr.status === 200){
+        
+       }
+  }
+    xhr.open("POST", "/editSensorValues.php", true);
+    xhr.setRequestHeader("Content-type","application/json");
+    xhr.send(md);
+    
+  });
+  
    /*
    *CONTROLS FOR TANK 2
    */
@@ -1268,6 +1292,24 @@ $(function(){
     
   });
   
+  $("#reset2").click(function(){
+
+    let modeObj = {"override":1,"tank_id":tank_id_1,"opMode":opMode_1};
+    var md = JSON.stringify(modeObj);
+    
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if(xhr.status === 200){
+        
+       }
+    }
+    xhr.open("POST", "/editSensorValues.php", true);
+    xhr.setRequestHeader("Content-type","application/json");
+    xhr.send(md);
+    
+  });
+  
   /*
    *CONTROLS FOR TANK 3
    */
@@ -1421,6 +1463,24 @@ $(function(){
     }
 
     let modeObj = {"override":mode_2,"tank_id":tank_id_1,"opMode":opMode_2};
+    var md = JSON.stringify(modeObj);
+    
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if(xhr.status === 200){
+        
+       }
+    }
+    xhr.open("POST", "/editSensorValues.php", true);
+    xhr.setRequestHeader("Content-type","application/json");
+    xhr.send(md);
+    
+  });
+  
+  $("#reset3").click(function(){
+
+    let modeObj = {"override":1,"tank_id":tank_id_1,"opMode":opMode_2};
     var md = JSON.stringify(modeObj);
     
 
