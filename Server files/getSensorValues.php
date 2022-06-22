@@ -35,6 +35,7 @@ try{
     $myObj->valve2 = $row['wbValve'];
     $myObj->override = $row['overRide'];
     $myObj->opCode = $row['OpCode'];
+    $myObj->resetM = $row['reset'];
 
   }
   

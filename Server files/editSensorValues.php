@@ -14,6 +14,7 @@ $valve2 = $data["valve2"];
 $override = $data["override"];
 $tank_id = $data["tank_id"];
 $opCode = $data["opCode"];
+$resetM = $data["reset"];
 
 $user = "admin";
 $password = "password";
@@ -75,6 +76,12 @@ try {
      $conn->exec($sql);
      echo "record for opCode in ".$table ."updated successfully";
     }
+    //updates the OpMode in commands table
+    if(isset($resetM)){
+     $sql = "UPDATE commands SET reset = '".$resetM."' WHERE watertank_id = '".$tank_id."'";
+     $conn->exec($sql);
+     echo "record opCode in ".$table ."updated successfully";
+    }
   }
 
   //Checks incoming opcode and then performs operations
@@ -127,6 +134,12 @@ try {
      $conn->exec($sql);
      echo "record opCode in ".$table ."updated successfully";
     }
+    //updates the OpMode in commands table
+    if(isset($resetM)){
+     $sql = "UPDATE commands SET reset = '".$resetM."' WHERE watertank_id = '".$tank_id."'";
+     $conn->exec($sql);
+     echo "record opCode in ".$table ."updated successfully";
+    }
   }
 
   if($opCode == 3 ){
@@ -175,6 +188,12 @@ try {
     //updates the OpMode in commands table
     if(isset($opCode)){
      $sql = "UPDATE commands SET OpCode = '".$opCode."' WHERE watertank_id = '".$tank_id."'";
+     $conn->exec($sql);
+     echo "record opCode in ".$table ."updated successfully";
+    }
+    //updates the OpMode in commands table
+    if(isset($resetM)){
+     $sql = "UPDATE commands SET reset = '".$resetM."' WHERE watertank_id = '".$tank_id."'";
      $conn->exec($sql);
      echo "record opCode in ".$table ."updated successfully";
     }

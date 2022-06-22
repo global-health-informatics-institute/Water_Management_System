@@ -69,6 +69,9 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
           <li class="nav-item text-start">
             <button id="mode" class="btn-nav button-30 me-2">Auto-mode</button>
           </li>
+          <li class="nav-item text-start">
+            <button id="reset" class="btn-nav button-30 me-2">Reset</button>
+          </li>
         </ul>
         <div id="control_1" class= "row" style="display:none;">
           <!--Buttons-->
@@ -115,6 +118,9 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
         <ul class="nav nav-2">
           <li class="nav-item text-start">
             <button id="mode_2" class="btn-nav button-30 me-2">Auto-mode</button>
+          </li>
+          <li class="nav-item text-start">
+            <button id="reset2" class="btn-nav button-30 me-2">Reset</button>
           </li>
         </ul>
         <div id="control_2" class= "row" style="display:none;">
@@ -163,6 +169,9 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
           <li class="nav-item text-start">
             <button id="mode_3" class="btn-nav button-30 me-2">Auto-mode</button>
           </li>
+          <li class="nav-item text-start">
+            <button id="reset3" class="btn-nav button-30 me-2">Reset</button>
+          </li>
         </ul>
         
         <div id="control_3" class= "row" style="display:none;">
@@ -205,14 +214,36 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
     </div>
     
     <div class="toast-container position-fixed top-0 end-0 p-5 mt-5">
-      <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div id="liveToast1" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
           <img src="assets/images/triangle-exclamation-solid.svg" class="toast-img rounded me-2" alt="img">
           <strong class="me-auto toast-label">Warning!</strong>
           <small>Just now</small>
           <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
-        <div id = "warning" class="toast-body"></div>
+        <div id = "warning1" class="toast-body"></div>
+      </div>
+    </div>
+    <div class="toast-container position-fixed bottom-50 end-0 p-5 mt-5">
+      <div id="liveToast2" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <img src="assets/images/triangle-exclamation-solid.svg" class="toast-img rounded me-2" alt="img">
+          <strong class="me-auto toast-label">Warning!</strong>
+          <small>Just now</small>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div id = "warning2" class="toast-body"></div>
+      </div>
+    </div>
+    <div class="toast-container position-fixed bottom-50 end-0 p-5 mt-5">
+      <div id="liveToast3" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <img src="assets/images/triangle-exclamation-solid.svg" class="toast-img rounded me-2" alt="img">
+          <strong class="me-auto toast-label">Warning!</strong>
+          <small>Just now</small>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div id = "warning3" class="toast-body"></div>
       </div>
     </div>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
