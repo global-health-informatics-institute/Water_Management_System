@@ -1,4 +1,5 @@
 #required Libraries
+from machine import reset
 import urequests
 import ujson as json
 from time import sleep
@@ -57,7 +58,7 @@ def checkWifi():
 wifi = network.WLAN(network.STA_IF)
 
 #API URL
-BASE = "http://192.168.0.123/"
+BASE = config["Base"]
     
 try:
     while True:
@@ -70,10 +71,10 @@ try:
         
         #HTTP methods executed only when wifi is available
         if wifi.active():
-            #HTTP PATCH METHOD
+            #UPDATE TANK VOLUME FOR SPECIFIC TANK
                 
             #Send Sensor Readings to API 
-            sensor = {"Volume":well_tank, "tank_id": 1 }
+            sensor = {"Volume":well_tank, "tank_id": config["tank_id"]}
             print('Printing sensor readings')
             print(sensor)
             
@@ -90,11 +91,41 @@ try:
                     
                 except Exception as e:
                     print("Error:",e)
-                    sleep(10)
+                    reset()
             else:
                 print("No value for well tank")
+            
+            try:
+                #LISTEN FOR ANY RESET COMMANDS
+                tankID = str(config["tank_id"])
+                response = urequests.get(self.BASE+"/getSensorValues.php?q="+tankID)
+                
+                if response.status_code == 200:
+                    data = response.json()
+                    toggle_reset = int(data["reset"])
+                    if toggle_reset == 1:
+                        #IF RESET COMMAND IS THERE SEND ZERO AS ACKNOWLEDGEMENT
+                        try:
+                            request_headers = {'Content-Type': 'application/json'}
+                            request = urequests.patch(
+                                BASE+"editSensorValues.php",
+                                json={"reset": 0},
+                                headers=request_headers)
+                            print(request.text)
+                            request.close()
+                            
+                        except Exception as e:
+                            print("Error:",e)
+                        #RESET MICROCONTROLLER
+                        reset()
+                    
+            except Exception as e:
+                print("getTankVolume Error:", e)
+                tankVolume = 0
+                pass
         
 except Exception as e:
     print("Error:", e)
+    reset()
     
     

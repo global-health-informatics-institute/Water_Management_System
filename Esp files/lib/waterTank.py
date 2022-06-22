@@ -12,7 +12,7 @@ class WaterTank:
     def __init__(self,height,radius,volume,trigger,echo):
         self.ultra_sensor = HCSR04(trigger_pin=trigger, echo_pin=echo, echo_timeout_us=10000)
         self.h = height 
-        self.r = radius
+        self.r = ((((radius)/2)/100)**2)
         self.v = volume
         self.tank_counter = 0
         self.initial_height = 0
@@ -38,18 +38,20 @@ class WaterTank:
                 self.tank_counter += 1
             
             if self.initial_height != self.prev1:
-                print("initial height",self.initial_height)
                 temp1 = self.prev1 + 5
                 temp2 = self.prev1 - 5
                 if self.initial_height > temp1 or self.initial_height < temp2 :
                     print(self.initial_height, "cm The filtered distance")
-                    self.initial_height1 = temp1-5
+                    self.initial_height = temp1-5
+                    print("initial height is now: ",self.initial_height)
+                    theSum = theSum + self.initial_height
+                    self.tank_counter += 1
+                    print("sum 1 is now: ",theSum)
                     count += 1
-                    if count == 10:
+                    if count == 30:
                         self.prev1 = self.initial_height
                         count = 0
                 else:
-                    print("then this")
                     self.prev1 = self.initial_height
                     theSum = theSum + self.initial_height
                     self.tank_counter += 1
@@ -58,6 +60,7 @@ class WaterTank:
 
         self.tank_counter = 0
         current_height = theSum/10
+        print("The current height is now",current_height)
         theSum=0
         
         #well_tank is the value in Litres that is sent to database
