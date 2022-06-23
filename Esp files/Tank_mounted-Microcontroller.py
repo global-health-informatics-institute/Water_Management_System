@@ -80,7 +80,6 @@ try:
             
             if well_tank >= 0 :
                 try:
-                    sleep(1)
                     request_headers = {'Content-Type': 'application/json'}
                     request = urequests.patch(
                         BASE+"editSensorValues.php",
@@ -105,7 +104,7 @@ try:
                     if toggle_reset == 1:
                         #IF RESET COMMAND IS THERE SEND ZERO AS ACKNOWLEDGEMENT
                         try:
-                            tank_commands = { "reset " : 0, "tank_id" : config["tank_id"], "opCode": config["opCode"]}
+                            tank_commands = { "reset" : 0, "tank_id" : config["tank_id"]}
                             request_headers = {'Content-Type': 'application/json'}
                             request = urequests.patch(
                                 BASE+"editSensorValues.php",
@@ -117,7 +116,7 @@ try:
                         except Exception as e:
                             print("Error:",e)
                         #RESET MICROCONTROLLER
-                    
+                        reset()
             except Exception as e:
                 print("getTankVolume Error:", e)
                 tankVolume = 0
