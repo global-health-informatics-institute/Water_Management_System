@@ -40,6 +40,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
             <ul class="navbar-nav ms-auto nav-pills mb-auto">
               <li id = "home" class="nav-item">
                 <a href="index.php" class="nav-link" aria-current="page">
+                  <i class="fas fa-home"></i>
                   Home
                 </a>
               </li>
@@ -70,7 +71,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
             <button id="mode" class="btn-nav button-30 me-2">Auto-mode</button>
           </li>
           <li class="nav-item text-start">
-            <button id="reset" class="btn-nav button-30 me-2">Reset</button>
+            <button id="reset" class="button-30 me-2">Reset</button>
           </li>
         </ul>
         <div id="control_1" class= "row" style="display:none;">
@@ -101,7 +102,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
           </div>
           
           <!--Water Tank Chart-->
-          <div class="col-lg-9 col-md-8 ">
+          <div id = "Chart" class="col-lg-9 col-md-8 ">
             <div id="thecard" class="shadow mt-5 mb-5">
               <p id="volume" class="card-title">Water Volume</p>
               <div id="chart1"></div>
@@ -120,7 +121,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
             <button id="mode_2" class="btn-nav button-30 me-2">Auto-mode</button>
           </li>
           <li class="nav-item text-start">
-            <button id="reset2" class="btn-nav button-30 me-2">Reset</button>
+            <button id="reset2" class="button-30 me-2">Reset</button>
           </li>
         </ul>
         <div id="control_2" class= "row" style="display:none;">
@@ -151,7 +152,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
           </div>
           
           <!--Water Tank Chart-->
-          <div class="col-lg-9 col-md-8 ">
+          <div id = "Chart" class="col-lg-9 col-md-8 ">
             <div id="thecard" class="shadow mt-5 mb-5">
               <p id="volume" class="card-title">Water Volume</p>
               <div id="chart3"></div>
@@ -170,7 +171,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
             <button id="mode_3" class="btn-nav button-30 me-2">Auto-mode</button>
           </li>
           <li class="nav-item text-start">
-            <button id="reset3" class="btn-nav button-30 me-2">Reset</button>
+            <button id="reset3" class="button-30 me-2">Reset</button>
           </li>
         </ul>
         
@@ -202,7 +203,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
           </div>
           
           <!--Water Tank Chart-->
-          <div class="col-lg-9 col-md-4">
+          <div id = "Chart" class="col-lg-9 col-md-4">
             <div id="thecard" class="shadow mt-5 mb-5">
               <p id="volume" class="card-title">Water Volume</p>
               <div id="chart5"></div>

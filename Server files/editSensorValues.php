@@ -76,12 +76,6 @@ try {
      $conn->exec($sql);
      echo "record for opCode in ".$table ."updated successfully";
     }
-    //updates the OpMode in commands table
-    if(isset($resetM)){
-     $sql = "UPDATE commands SET reset = '".$resetM."' WHERE watertank_id = '".$tank_id."'";
-     $conn->exec($sql);
-     echo "record opCode in ".$table ."updated successfully";
-    }
   }
 
   //Checks incoming opcode and then performs operations
@@ -132,13 +126,7 @@ try {
     if(isset($opCode)){
      $sql = "UPDATE commands SET OpCode = '".$opCode."' WHERE watertank_id = '".$tank_id."'";
      $conn->exec($sql);
-     echo "record opCode in ".$table ."updated successfully";
-    }
-    //updates the OpMode in commands table
-    if(isset($resetM)){
-     $sql = "UPDATE commands SET reset = '".$resetM."' WHERE watertank_id = '".$tank_id."'";
-     $conn->exec($sql);
-     echo "record opCode in ".$table ."updated successfully";
+     echo "record opCode in commands updated successfully";
     }
   }
 
@@ -189,23 +177,22 @@ try {
     if(isset($opCode)){
      $sql = "UPDATE commands SET OpCode = '".$opCode."' WHERE watertank_id = '".$tank_id."'";
      $conn->exec($sql);
-     echo "record opCode in ".$table ."updated successfully";
-    }
-    //updates the OpMode in commands table
-    if(isset($resetM)){
-     $sql = "UPDATE commands SET reset = '".$resetM."' WHERE watertank_id = '".$tank_id."'";
-     $conn->exec($sql);
-     echo "record opCode in ".$table ."updated successfully";
+     echo "record opCode in commands updated successfully";
     }
   }
     
- //updates
+ //updates volume
   if(!isset($opCode) && isset($volume)){
     $sql = "UPDATE sensorValues SET Volume = '".$volume."' WHERE watertank_id = '".$tank_id."' ORDER BY id DESC LIMIT 1";
     $conn->exec($sql);
     echo "record volume in ".$table ."updated for ".$tank_id." successfully";
-  } 
-
+  }
+  //updates reset
+  if(isset($resetM)){
+    $sql = "UPDATE commands SET reset = '".$resetM."' WHERE watertank_id = '".$tank_id."'";
+    $conn->exec($sql);
+    echo "record reset in commands updated successfully";
+   }
 
 } catch(PDOException $e) {
   echo $sql . "<br>" . $e->getMessage();

@@ -107,12 +107,14 @@ if (isset($_POST['submit'])){
 				<ul class="navbar-nav ms-auto nav-pills mb-auto">
 				  <li id = "home" class="nav-item">
 					<a href="admin.php" class="nav-link" aria-current="page">
+						<i class="fas fa-home"></i>
 					  Home
 					</a>
 				  </li>
 				  <li id = "dash" class="nav-item">
 					<a href="adminRegister.php" class="nav-link">
-					  Add User
+					   <i class="fas fa-user-plus"></i>
+					   Add User
 					</a>
 				  </li>
 				</ul>

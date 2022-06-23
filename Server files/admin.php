@@ -40,12 +40,13 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
             <ul class="navbar-nav ms-auto nav-pills mb-auto">
               <li id = "home" class="nav-item">
                 <a href="admin.php" class="nav-link" aria-current="page">
-                  <i class="fab fa-github"></i>
+                  <i class="fas fa-home"></i>
                   Home
                 </a>
               </li>
               <li id = "dash" class="nav-item">
                 <a href="adminRegister.php" class="nav-link">
+                  <i class="fas fa-user-plus"></i>
                   Add User
                 </a>
               </li>
@@ -69,6 +70,9 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
       <ul class="nav nav-2">
         <li class="nav-item text-start me-2">
           <button id="mode" class="btn-nav button-30 me-2" onclick="handleClick5()">Auto-mode</button>
+        </li>
+        <li class="nav-item text-start">
+          <button id="reset" class="button-30 me-2">Reset</button>
         </li>
         <li class="nav-item l2">
           <select class="form-select" id="select">
@@ -107,7 +111,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
         </div>
         
         <!--Water Tank Chart-->
-        <div class="col-lg-6">
+        <div id="Chart" class="col-lg-6">
           <div id="thecard" class="card shadow mt-5">
             <p class="card-title">Water Volume</p>
             <div id="chart1"></div>
