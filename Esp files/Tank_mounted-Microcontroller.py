@@ -20,7 +20,7 @@ Tank1 = WaterTank(height=config["tank_height"],radius=config["tank_radius"],volu
 
 #Timer Initialization
 timer = Timer(-1)
-timer.init(period = 12000,
+timer.init(period = 20000,
            mode= Timer.PERIODIC,
            callback = lambda t: checkWifi()) #checkWifi function called to check the wifi status
 
@@ -91,7 +91,6 @@ try:
                     
                 except Exception as e:
                     print("Error:",e)
-                    reset()
             else:
                 print("No value for well tank")
             
@@ -106,10 +105,11 @@ try:
                     if toggle_reset == 1:
                         #IF RESET COMMAND IS THERE SEND ZERO AS ACKNOWLEDGEMENT
                         try:
+                            tank_commands = { "reset " : 0, "tank_id" : config["tank_id"], "opCode": config["opCode"]}
                             request_headers = {'Content-Type': 'application/json'}
                             request = urequests.patch(
                                 BASE+"editSensorValues.php",
-                                json={"reset": 0, "tank_id":config.["tank_id"], "opCode":config["opCode"]},
+                                json=tank_commands,
                                 headers=request_headers)
                             print(request.text)
                             request.close()
@@ -117,7 +117,6 @@ try:
                         except Exception as e:
                             print("Error:",e)
                         #RESET MICROCONTROLLER
-                        reset()
                     
             except Exception as e:
                 print("getTankVolume Error:", e)

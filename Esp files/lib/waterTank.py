@@ -1,5 +1,6 @@
 #required library
 from hcsr04 import HCSR04
+from time import sleep
 
 # Gets the height of the tank in cm, the radius in meters, the volume of the tank in Litres
 # gets the echo and trigger pins of ultrasonic sensor 
@@ -40,6 +41,7 @@ class WaterTank:
             if self.initial_height != self.prev1:
                 temp1 = self.prev1 + 2
                 temp2 = self.prev1 - 2
+                
                 if self.initial_height > temp1 or self.initial_height < temp2 :
                     print(self.initial_height, "cm The filtered distance")
                     self.initial_height = temp1-5
@@ -61,8 +63,8 @@ class WaterTank:
         self.tank_counter = 0
         current_height = theSum/10
         print("The current height is now",current_height)
-        print("The retained previous height right now is",self.prev1)
         theSum=0
+        sleep(1)
         
         #well_tank is the value in Litres that is sent to database
         tank_volume = (pi*self.r*((self.h-current_height)/100))*1000 # pi*r^2*(b/100) * 1000m^3 to get litres,
