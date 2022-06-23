@@ -38,8 +38,8 @@ class WaterTank:
                 self.tank_counter += 1
             
             if self.initial_height != self.prev1:
-                temp1 = self.prev1 + 5
-                temp2 = self.prev1 - 5
+                temp1 = self.prev1 + 2
+                temp2 = self.prev1 - 2
                 if self.initial_height > temp1 or self.initial_height < temp2 :
                     print(self.initial_height, "cm The filtered distance")
                     self.initial_height = temp1-5
@@ -61,6 +61,7 @@ class WaterTank:
         self.tank_counter = 0
         current_height = theSum/10
         print("The current height is now",current_height)
+        print("The retained previous height right now is",self.prev1)
         theSum=0
         
         #well_tank is the value in Litres that is sent to database

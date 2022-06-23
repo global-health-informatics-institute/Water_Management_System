@@ -98,7 +98,7 @@ try:
             try:
                 #LISTEN FOR ANY RESET COMMANDS
                 tankID = str(config["tank_id"])
-                response = urequests.get(self.BASE+"/getSensorValues.php?q="+tankID)
+                response = urequests.get(BASE+"/getSensorValues.php?q="+tankID)
                 
                 if response.status_code == 200:
                     data = response.json()
@@ -109,7 +109,7 @@ try:
                             request_headers = {'Content-Type': 'application/json'}
                             request = urequests.patch(
                                 BASE+"editSensorValues.php",
-                                json={"reset": 0},
+                                json={"reset": 0, "tank_id":config.["tank_id"], "opCode":config["opCode"]},
                                 headers=request_headers)
                             print(request.text)
                             request.close()
