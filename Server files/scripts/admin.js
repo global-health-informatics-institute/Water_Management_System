@@ -29,7 +29,7 @@ const database = firebase.database();
 window.addEventListener("load", function(){
   
   if(window.localStorage.getItem("page") == 0){
-    window.location.assign("http://192.168.0.126/adminRegister.php");
+    window.location.assign("http://localhost/adminRegister.php");
   }
   getReadings();
   
@@ -44,6 +44,7 @@ var theAlert = 1;
 var mode = 0;
 var msg = '';
 var yVal = 15;
+var h = false;
 
 //Check if there is a tank id in local storage
 if(window.localStorage.getItem("admin_tank_id")!==null)
@@ -215,6 +216,15 @@ function getReadings() {
       
       //update pressure gauge
       chart2.updateSeries([pressureV]);
+      if(h == true){
+        chart1.updateOptions({
+          chart: {
+            height: 500,
+            type: 'area'
+          }
+        });
+      }
+     
      
       //command values updated
       warning1 = myObj.warning1;
@@ -306,17 +316,23 @@ function getReadings() {
   }
   if(opMode == "1"){
     $("#Gauge").addClass("visually-hidden");
+    $("#Chart").removeClass("col-lg-6");
+    $("#Chart").addClass("col-lg-12");
     $("#b1").addClass("visually-hidden");
     $("#b2").addClass("visually-hidden");
     $("#v1").text("Outlet Valve");
     $("#v2").text("Inlet Valve");
+    h = true;
   }
   if(opMode == "2"){
     $("#Gauge").addClass("visually-hidden");
+    $("#Chart").removeClass("col-lg-6");
+    $("#Chart").addClass("col-lg-12");
     $("#b2").addClass("visually-hidden");
     $("#b4").addClass("visually-hidden");
     $("#p1").text("Water Pump");
     $("#v1").text("Outlet Valve");
+    h = true;
   }
   if(opMode == "3"){
     $("#b4").addClass("visually-hidden");
@@ -524,6 +540,25 @@ $(function(){
         }).prop('selected', true);
     }
     
+  //handles reset button click
+  $("#reset").click(function(){
+    let modeObj = {"reset":1,"tank_id":tank_id,"opMode":opMode};
+    var md = JSON.stringify(modeObj);
+    
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if(xhr.status === 200){
+        
+       }
+  }
+    xhr.open("POST", "/editSensorValues.php", true);
+    xhr.setRequestHeader("Content-type","application/json");
+    xhr.send(md);
+    
+  });
+  
+    
    /*
    *NAVBAR LOGIC 
    */
@@ -566,4 +601,4 @@ function onSelect(){
 
 
 
-setInterval(getReadings, 60000);
+setInterval(getReadings, 2000);

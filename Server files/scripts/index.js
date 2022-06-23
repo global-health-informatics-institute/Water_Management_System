@@ -33,7 +33,7 @@ window.addEventListener("load", function(){
   getReadings3();  
 });
 
-
+//first tank variables
 var warning1 = 0;
 var warning2 = 0;
 var pump1 = 0;
@@ -50,7 +50,7 @@ var press = [];
 var opMode = 0;
 var tank1_volume = 0;
 
-
+//second tank variables
 var warning1_1 = 0;
 var warning2_1 = 0;
 var pump1_1 = 0;
@@ -67,7 +67,7 @@ var press_1 = [];
 var opMode_1 = 0;
 var tank2_volume = 0;
 
-
+//third tank variables
 var warning1_2 = 0;
 var warning2_2 = 0;
 var pump1_2 = 0;
@@ -85,16 +85,8 @@ var opMode_2 = 0;
 var tank_id_2 = "4";
 var tank3_volume = 0;
 
-if(window.localStorage.getItem("tank_id")!==null)
-{
-  var tank_id = window.localStorage.getItem('tank_id');
-}else{var tank_id = "3";}
 
-
-
-
-// Create Well Water Volume chart
-var logs = [];//datalogs array.
+//Create Water Volume chart
 
 var options1 = {
   series: [{
@@ -202,9 +194,7 @@ chart1.render();
 var chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
 chart2.render();
 
-// Create Well Water Volume chart
-var logs = [];//datalogs array.
-
+//water volume chart
 var options3 = {
   series: [{
   name: 'Water Level',
@@ -312,8 +302,6 @@ var chart4 = new ApexCharts(document.querySelector("#chart4"), options4);
 chart4.render()
 
 // Create Well Water Volume chart
-var logs = [];//datalogs array.
-
 var options5 = {
   series: [{
   name: 'Water Level',
@@ -420,6 +408,7 @@ chart5.render();
 var chart6 = new ApexCharts(document.querySelector("#chart6"), options6);
 chart6.render()
 
+
 //sends notification to mobile phone
 function Notification(msg){
   let data = {"timestamp":Date.now(), "msg": msg}
@@ -499,7 +488,7 @@ function getReadings() {
         $("#warning1").html("Water level is too low for "+tname);
         toast.show();
         
-        msg = "Water level is too low!";
+        msg = "Water level is too low for "+tname;
         Notification(msg);
         }
         theAlert = 0;
@@ -510,7 +499,7 @@ function getReadings() {
         $("#warning1").html("Water level is too high for "+tname);
         toast.show();
         
-        msg = "Water level is too low!";
+        msg = "Water level is too high for "+tname;
         Notification(msg);
             
            }
@@ -570,6 +559,8 @@ function getReadings() {
   }
   if(opMode == "1"){
     $("#the_container1").find("#Gauge").addClass("visually-hidden");
+    $("#the_container1").find("#Chart").removeClass("col-lg-6");
+    $("#the_container1").find("#Chart").addClass("col-lg-12");
     $("#the_container1").find("#b1").addClass("visually-hidden");
     $("#the_container1").find("#b2").addClass("visually-hidden");
     $("#the_container1").find("#v1").text("Outlet Valve");
@@ -577,6 +568,8 @@ function getReadings() {
   }
   if(opMode == "2"){
     $("#the_container1").find("#Gauge").addClass("visually-hidden");
+    $("#the_container1").find("#Chart").removeClass("col-lg-6");
+    $("#the_container1").find("#Chart").addClass("col-lg-12");
     $("#the_container1").find("#b2").addClass("visually-hidden");
     $("#the_container1").find("#b4").addClass("visually-hidden");
     $("#the_container1").find("#p1").text("Water Pump");
@@ -674,7 +667,7 @@ function getReadings2() {
         $("#warning2").html("Water level is too low for "+tname);
         toast.show();
         
-        msg_1 = "Water level is too low!";
+        msg_1 = "Water level is too low for "+tname;
         Notification(msg_1);
         }
         theAlert_1 = 0;
@@ -685,7 +678,7 @@ function getReadings2() {
         $("#warning2").html("Water level is too high for "+tname);
         toast.show();
         
-        msg_1 = "Water level is too low!";
+        msg_1 = "Water level is too high for "+tname;
         Notification(msg_1);
             
            }
@@ -743,6 +736,8 @@ function getReadings2() {
   }
   if(opMode_1 == "1"){
     $("#the_container2").find("#Gauge").addClass("visually-hidden");
+    $("#the_container2").find("#Chart").removeClass("col-lg-6");
+    $("#the_container2").find("#Chart").addClass("col-lg-12");
     $("#the_container2").find("#b1_1").addClass("visually-hidden");
     $("#the_container2").find("#b2_1").addClass("visually-hidden");
     $("#the_container2").find("#v1").text("Outlet Valve");
@@ -750,6 +745,8 @@ function getReadings2() {
   }
   if(opMode_1 == "2"){
     $("#the_container2").find("#Gauge").addClass("visually-hidden");
+    $("#the_container2").find("#Chart").removeClass("col-lg-6");
+    $("#the_container2").find("#Chart").addClass("col-lg-12");
     $("#the_container2").find("#b2_1").addClass("visually-hidden");
     $("#the_container2").find("#b4_1").addClass("visually-hidden");
     $("#the_container2").find("#p1").text("Water Pump");
@@ -838,7 +835,7 @@ function getReadings3() {
         $("#warning3").html("Water level is too low for "+tname);
         toast.show();
         
-        msg_2 = "Water level is too low!";
+        msg_2 = "Water level is too low for "+tname;
         Notification(msg_2);
         }
         theAlert = 0;
@@ -849,7 +846,7 @@ function getReadings3() {
         $("#warning3").html("Water level is too high for "+tname);
         toast.show();
         
-        msg_2 = "Water level is too low!";
+        msg_2 = "Water level is too high for "+tname;
         Notification(msg_2);
             
            }
@@ -907,6 +904,8 @@ function getReadings3() {
   }
   if(opMode_2 == "1"){
     $("#the_container3").find("#Gauge").addClass("visually-hidden");
+    $("#the_container3").find("#Chart").removeClass("col-lg-6");
+    $("#the_container3").find("#Chart").addClass("col-lg-12");
     $("#the_container3").find("#b1_2").addClass("visually-hidden");
     $("#the_container3").find("#b2_2").addClass("visually-hidden");
     $("#the_container3").find("#v1").text("Outlet Valve");
@@ -914,6 +913,8 @@ function getReadings3() {
   }
   if(opMode_2 == "2"){
     $("#the_container3").find("#Gauge").addClass("visually-hidden");
+    $("#the_container3").find("#Chart").removeClass("col-lg-6");
+    $("#the_container3").find("#Chart").addClass("col-lg-12");
     $("#the_container3").find("#b2_2").addClass("visually-hidden");
     $("#the_container3").find("#b4_2").addClass("visually-hidden");
     $("#the_container3").find("#p1").text("Water Pump");
@@ -931,10 +932,6 @@ function getReadings3() {
 }
 
 
-
-
-
-//Handles the Mode Button
 $(function(){
   
    /*
@@ -1070,7 +1067,7 @@ $(function(){
     xhr.send(wbV);
   });
   
-  
+  //handles mode button click
   $("#mode").click(function(){
     if(mode == 0){
     mode = 1;
@@ -1106,8 +1103,8 @@ $(function(){
     
   });
   
+  //handles reset button click
   $("#reset").click(function(){
-    console.log("clicked!");
     let modeObj = {"reset":1,"tank_id":tank_id_0,"opMode":opMode};
     var md = JSON.stringify(modeObj);
     
@@ -1294,7 +1291,7 @@ $(function(){
   
   $("#reset2").click(function(){
 
-    let modeObj = {"override":1,"tank_id":tank_id_1,"opMode":opMode_1};
+    let modeObj = {"reset":1,"tank_id":tank_id_1,"opMode":opMode_1};
     var md = JSON.stringify(modeObj);
     
 
@@ -1480,7 +1477,7 @@ $(function(){
   
   $("#reset3").click(function(){
 
-    let modeObj = {"override":1,"tank_id":tank_id_1,"opMode":opMode_2};
+    let modeObj = {"reset":1,"tank_id":tank_id_1,"opMode":opMode_2};
     var md = JSON.stringify(modeObj);
     
 
@@ -1499,39 +1496,6 @@ $(function(){
   
   
 });
-
-/*
-//listens for any changes to the select attribute
-$(function(){
-  $("select").change(onSelect);
-  if (tank_id == "1"){
-    let text = 'GHII Well Tank';
-      $("select option").filter(function() {
-          return $(this).text() == text;
-        }).prop('selected', true);
-  }
-  if (tank_id == "3"){
-    let text = 'GHII Waterboard Tank';
-      $("select option").filter(function() {
-          return $(this).text() == text;
-        }).prop('selected', true);
-    }
-  });
-
-
-//pick a selection
-function onSelect(){
-  var theOption = $("select#select").val();
-  if((theOption == 1) || (theOption == 3)){
-    tank_id = String(theOption);
-    //stores tank_id in local storage
-    window.localStorage.setItem("tank_id",tank_id);
-    //reloads window
-    window.location.reload();
-  }
-  //this means with the select option, you can render the tank you want  
-}
-* */
 
 if(num_of_tanks == 1){
   
