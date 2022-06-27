@@ -49,6 +49,7 @@ var ydps = [];
 var press = [];
 var opMode = 0;
 var tank1_volume = 0;
+var tname1 = "";
 
 //second tank variables
 var warning1_1 = 0;
@@ -66,6 +67,7 @@ var ydps_1 = [];
 var press_1 = [];
 var opMode_1 = 0;
 var tank2_volume = 0;
+var tname2 = "";
 
 //third tank variables
 var warning1_2 = 0;
@@ -84,6 +86,7 @@ var press_2 = [];
 var opMode_2 = 0;
 var tank_id_2 = "4";
 var tank3_volume = 0;
+var tname3 = "";
 
 
 //Create Water Volume chart
@@ -96,7 +99,7 @@ var options1 = {
 
 
   chart: {
-  height: 320,
+  height: 400,
   type: 'area'
 },
 dataLabels: {
@@ -203,7 +206,7 @@ var options3 = {
 
 
   chart: {
-  height: 320,
+  height: 400,
   type: 'area'
 },
 dataLabels: {
@@ -465,14 +468,19 @@ function getReadings() {
       valve2 = myObj.valve2;
       mode = myObj.override;
       opMode = myObj.opCode;
+      tname1 = myObj.tname;
+      
       if(tank1_volume == 0){
-        var tname = myObj.tname;
-        $("#the_container1").find("#volume").text(tname+" Volume");
-        $("#the_container1").find("#pressure").text(tname+" Pressure");
+        
+        $("#the_container1").find("#volume").text(tname1+" Volume");
+        $("#the_container1").find("#pressure").text(tname1+" Pressure");
         var one = myObj.capacity;
         tank1_volume = Number(one);
         chart1.updateOptions({
           yaxis: {
+            title:{
+            text: "Litres",
+            },
             min: 0,
             max: tank1_volume
           }
@@ -485,10 +493,10 @@ function getReadings() {
     if(warning1 == 1){
       if(theAlert==1){
         const toast = new bootstrap.Toast($("#liveToast1"));
-        $("#warning1").html("Water level is too low for "+tname);
+        $("#warning1").html("Water level is too low for "+tname1);
         toast.show();
         
-        msg = "Water level is too low for "+tname;
+        msg = "Water level is too low for "+tname1;
         Notification(msg);
         }
         theAlert = 0;
@@ -496,10 +504,10 @@ function getReadings() {
     else if(warning2 == 1){
       if(theAlert==1){
         const toast = new bootstrap.Toast($("#liveToast1"))
-        $("#warning1").html("Water level is too high for "+tname);
+        $("#warning1").html("Water level is too high for "+tname1);
         toast.show();
         
-        msg = "Water level is too high for "+tname;
+        msg = "Water level is too high for "+tname1;
         Notification(msg);
             
            }
@@ -640,14 +648,19 @@ function getReadings2() {
       valve2_1 = myObj.valve2;
       mode_1 = myObj.override;
       opMode_1 = myObj.opCode;
+      tname2 = myObj.tname;
+      
       if(tank2_volume == 0){
         var tname = myObj.tname;
-        $("#the_container2").find("#volume").text(tname+" Volume");
-        $("#the_container2").find("#pressure").text(tname+" Pressure");
+        $("#the_container2").find("#volume").text(tname2+" Volume");
+        $("#the_container2").find("#pressure").text(tname2+" Pressure");
         var two = myObj.capacity;
         tank2_volume = Number(two);
         chart3.updateOptions({
           yaxis: {
+            title:{
+            text: "Litres",
+            },
             min: 0,
             max: tank2_volume
           }
@@ -664,10 +677,10 @@ function getReadings2() {
     if(warning1_1 == 1){
       if(theAlert_1==1){
         const toast = new bootstrap.Toast($("#liveToast2"));
-        $("#warning2").html("Water level is too low for "+tname);
+        $("#warning2").html("Water level is too low for "+tname2);
         toast.show();
         
-        msg_1 = "Water level is too low for "+tname;
+        msg_1 = "Water level is too low for "+tname2;
         Notification(msg_1);
         }
         theAlert_1 = 0;
@@ -675,10 +688,10 @@ function getReadings2() {
     else if(warning2_1 == 1){
       if(theAlert_1==1){
         const toast = new bootstrap.Toast($("#liveToast2"))
-        $("#warning2").html("Water level is too high for "+tname);
+        $("#warning2").html("Water level is too high for "+tname2);
         toast.show();
         
-        msg_1 = "Water level is too high for "+tname;
+        msg_1 = "Water level is too high for "+tname2;
         Notification(msg_1);
             
            }
@@ -812,14 +825,19 @@ function getReadings3() {
       valve2_2 = myObj.valve2;
       mode_2 = myObj.override;
       opMode_2 = myObj.opCode;
+      tname3 = myObj.tname;
+      
       if(tank3_volume == 0){
         var tname = myObj.tname;
-        $("#the_container3").find("#volume").text(tname+" Volume");
-        $("#the_container3").find("#pressure").text(tname+" Pressure");
+        $("#the_container3").find("#volume").text(tname3+" Volume");
+        $("#the_container3").find("#pressure").text(tname3+" Pressure");
         var three = myObj.capacity;
         tank3_volume = Number(three);
         chart5.updateOptions({
           yaxis: {
+            title:{
+            text: "Litres",
+            },
             min: 0,
             max: tank3_volume
           }
@@ -832,10 +850,10 @@ function getReadings3() {
     if(warning1_2 == 1){
       if(theAlert_2==1){
         const toast = new bootstrap.Toast($("#liveToast3"));
-        $("#warning3").html("Water level is too low for "+tname);
+        $("#warning3").html("Water level is too low for "+tname3);
         toast.show();
         
-        msg_2 = "Water level is too low for "+tname;
+        msg_2 = "Water level is too low for "+tname3;
         Notification(msg_2);
         }
         theAlert = 0;
@@ -843,10 +861,10 @@ function getReadings3() {
     else if(warning2_2 == 1){
       if(theAlert_2==1){
         const toast = new bootstrap.Toast($("#liveToast3"))
-        $("#warning3").html("Water level is too high for "+tname);
+        $("#warning3").html("Water level is too high for "+tname3);
         toast.show();
         
-        msg_2 = "Water level is too high for "+tname;
+        msg_2 = "Water level is too high for "+tname3;
         Notification(msg_2);
             
            }
@@ -1103,8 +1121,9 @@ $(function(){
     
   });
   
-  //handles reset button click
-  $("#reset").click(function(){
+  /*reset for modal 1*/
+  $("#staticBackdrop1").find("#reset").click(function(){
+    console.log("Clicked");
     let modeObj = {"reset":1,"tank_id":tank_id_0,"opMode":opMode};
     var md = JSON.stringify(modeObj);
     
@@ -1118,7 +1137,6 @@ $(function(){
     xhr.open("POST", "/editSensorValues.php", true);
     xhr.setRequestHeader("Content-type","application/json");
     xhr.send(md);
-    
   });
   
    /*
@@ -1289,7 +1307,7 @@ $(function(){
     
   });
   
-  $("#reset2").click(function(){
+  $("#staticBackdrop2").find("#reset").click(function(){
 
     let modeObj = {"reset":1,"tank_id":tank_id_1,"opMode":opMode_1};
     var md = JSON.stringify(modeObj);
@@ -1475,7 +1493,7 @@ $(function(){
     
   });
   
-  $("#reset3").click(function(){
+  $("#staticBackdrop3").find("#reset").click(function(){
 
     let modeObj = {"reset":1,"tank_id":tank_id_1,"opMode":opMode_2};
     var md = JSON.stringify(modeObj);
@@ -1491,6 +1509,17 @@ $(function(){
     xhr.setRequestHeader("Content-type","application/json");
     xhr.send(md);
     
+  });
+  
+  /*Modal Logic*/
+  $("#the_container1").find("#modalToggle").click(function(){
+    $("#staticBackdrop1").find(".modal-body").html("Are you sure you want to reset the "+tname1+" microcontroller?");
+  });
+  $("#the_container2").find("#modalToggle").click(function(){
+    $("#staticBackdrop2").find(".modal-body").html("Are you sure you want to reset the "+tname2+" microcontroller?");
+  });
+  $("#the_container3").find("#modalToggle").click(function(){
+    $("#staticBackdrop3").find(".modal-body").html("Are you sure you want to reset the "+tname3+" microcontroller?");
   });
   
   
