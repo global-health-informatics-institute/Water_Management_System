@@ -20,8 +20,8 @@ const firebaseConfig = {
 };
 
 // // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const database = firebase.database();
+//firebase.initializeApp(firebaseConfig);
+//const database = firebase.database();
 
 var num_of_tanks = 1;
 var tank_id_0 = "3";
@@ -415,7 +415,7 @@ chart6.render()
 //sends notification to mobile phone
 function Notification(msg){
   let data = {"timestamp":Date.now(), "msg": msg}
-  database.ref("message").push(data);
+  //database.ref("message").push(data);
   
   return;
 }
@@ -568,7 +568,7 @@ function getReadings() {
   if(opMode == "1"){
     $("#the_container1").find("#Gauge").addClass("visually-hidden");
     $("#the_container1").find("#Chart").removeClass("col-lg-6");
-    $("#the_container1").find("#Chart").addClass("col-lg-12");
+    $("#the_container1").find("#Chart").addClass("col-lg-12 col-md-12 col-sm-12");
     $("#the_container1").find("#b1").addClass("visually-hidden");
     $("#the_container1").find("#b2").addClass("visually-hidden");
     $("#the_container1").find("#v1").text("Outlet Valve");
@@ -577,7 +577,7 @@ function getReadings() {
   if(opMode == "2"){
     $("#the_container1").find("#Gauge").addClass("visually-hidden");
     $("#the_container1").find("#Chart").removeClass("col-lg-6");
-    $("#the_container1").find("#Chart").addClass("col-lg-12");
+    $("#the_container1").find("#Chart").addClass("col-lg-12 col-md-12 col-sm-12");
     $("#the_container1").find("#b2").addClass("visually-hidden");
     $("#the_container1").find("#b4").addClass("visually-hidden");
     $("#the_container1").find("#p1").text("Water Pump");

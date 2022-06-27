@@ -20,8 +20,8 @@ const firebaseConfig = {
 };
 
 // // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const database = firebase.database();
+//firebase.initializeApp(firebaseConfig);
+//const database = firebase.database();
 
 
 
@@ -173,7 +173,7 @@ chart2.render();
 //sends notification to mobile phone
 function Notification(msg){
   let data = {"timestamp":Date.now(), "msg": msg}
-  database.ref("message").push(data);
+  //database.ref("message").push(data);
   
   return;
 }
