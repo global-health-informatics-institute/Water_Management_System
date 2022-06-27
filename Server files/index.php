@@ -71,7 +71,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
             <button id="mode" class="btn-nav button-30 me-2">Auto-mode</button>
           </li>
           <li class="nav-item text-start">
-            <button id="reset" class="button-30 me-2">Reset</button>
+            <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Reset</button>
           </li>
         </ul>
         <div id="control_1" class= "row" style="display:none;">
@@ -121,7 +121,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
             <button id="mode_2" class="btn-nav button-30 me-2">Auto-mode</button>
           </li>
           <li class="nav-item text-start">
-            <button id="reset2" class="button-30 me-2">Reset</button>
+            <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">Reset</button>
           </li>
         </ul>
         <div id="control_2" class= "row" style="display:none;">
@@ -171,7 +171,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
             <button id="mode_3" class="btn-nav button-30 me-2">Auto-mode</button>
           </li>
           <li class="nav-item text-start">
-            <button id="reset3" class="button-30 me-2">Reset</button>
+            <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop3">Reset</button>
           </li>
         </ul>
         
@@ -214,6 +214,59 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
       </div>
     </div>
     
+    <!-- Modals -->
+    <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel"><img src="assets/images/triangle-exclamation-solid.svg" class="toast-img rounded me-2" alt="img">Confirmation</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn button-31" data-bs-dismiss="modal">Close</button>
+            <button id="reset" type="button" class="btn button-32" data-bs-dismiss="modal">Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel"><img src="assets/images/triangle-exclamation-solid.svg" class="toast-img rounded me-2" alt="img">Confirmation</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn button-31" data-bs-dismiss="modal">Close</button>
+            <button id="reset" type="button" class="btn button-32" data-bs-dismiss="modal">Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel"><img src="assets/images/triangle-exclamation-solid.svg" class="toast-img rounded me-2" alt="img">Confirmation</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn button-31" data-bs-dismiss="modal">Close</button>
+            <button id="reset" type="button" class="btn button-32" data-bs-dismiss="modal">Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- toasts -->
     <div class="toast-container position-fixed top-0 end-0 p-5 mt-5">
       <div id="liveToast1" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
