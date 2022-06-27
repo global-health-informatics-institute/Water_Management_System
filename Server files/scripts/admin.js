@@ -44,7 +44,9 @@ var theAlert = 1;
 var mode = 0;
 var msg = '';
 var yVal = 15;
-var h = false;
+var h = 0;
+var Tcap = true;
+var tname = "";
 
 //Check if there is a tank id in local storage
 if(window.localStorage.getItem("admin_tank_id")!==null)
@@ -82,17 +84,16 @@ stroke: {
 yaxis: {
     title:{
       text: "Litres",
-      
       },
     labels:{
       formatter: function(val,index){
         return val.toFixed(2);
         }
       },
-            min: 0,
-            max: 1350,
-            tickAmount: 9,
-            type: 'numeric',
+      min: 0,
+      max: 0,
+      tickAmount: 9,
+      type: 'numeric',
 },
 xaxis:{
   type: "datetime",
@@ -216,15 +217,38 @@ function getReadings() {
       
       //update pressure gauge
       chart2.updateSeries([pressureV]);
-      if(h == true){
+      if(h == 1){
+        var capacity = myObj.capacity;
+        capacity = Number(capacity);
         chart1.updateOptions({
           chart: {
             height: 500,
             type: 'area'
+          },
+          yaxis: {
+            title:{
+            text: "Litres",
+            },
+            min: 0,
+            max: capacity
           }
         });
+        h = 2;
       }
-     
+      if(Tcap == true){
+        var capacity = myObj.capacity;
+        capacity = Number(capacity);
+        chart1.updateOptions({
+          yaxis: {
+            title:{
+            text: "Litres",
+            },
+            min: 0,
+            max: capacity
+          }
+        });
+        Tcap = false;
+     }
      
       //command values updated
       warning1 = myObj.warning1;
@@ -235,6 +259,7 @@ function getReadings() {
       valve2 = myObj.valve2;
       mode = myObj.override;
       opMode = myObj.opCode;
+      tname = myObj.tname;
     }
     
     
@@ -322,7 +347,10 @@ function getReadings() {
     $("#b2").addClass("visually-hidden");
     $("#v1").text("Outlet Valve");
     $("#v2").text("Inlet Valve");
-    h = true;
+    if(h == 0){
+      h = 1;
+    }
+    
   }
   if(opMode == "2"){
     $("#Gauge").addClass("visually-hidden");
@@ -332,7 +360,9 @@ function getReadings() {
     $("#b4").addClass("visually-hidden");
     $("#p1").text("Water Pump");
     $("#v1").text("Outlet Valve");
-    h = true;
+    if(h == 0){
+      h = 1;
+    }
   }
   if(opMode == "3"){
     $("#b4").addClass("visually-hidden");
@@ -582,6 +612,11 @@ $(function(){
   if(window.localStorage.getItem("page") == null){
     $("li#home").find("a").addClass("active").css("background-color","#3D72A4");
   }
+    
+  $("#modalToggle").click(function(){
+    $(".modal-body").html("Are you sure you want to reset the "+tname+" microcontroller?");
+  });
+  
     
   });
 
