@@ -72,9 +72,9 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
           <button id="mode" class="btn-nav button-30 me-2" onclick="handleClick5()">Auto-mode</button>
         </li>
         <li class="nav-item text-start">
-          <button id="reset" class="button-30 me-2">Reset</button>
+          <button id = "modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Reset</button>
         </li>
-        <li class="nav-item l2">
+        <li id = "selection" class="nav-item l2">
           <select class="form-select" id="select">
             <option>Choose Water Tank</option>
             <option value="1">GHII Well Tank</option>
@@ -83,6 +83,23 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
           </select>
         </li>
       </ul>
+      <!-- Modal -->
+      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel"><img src="assets/images/triangle-exclamation-solid.svg" class="toast-img rounded me-2" alt="img">Confirmation</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn button-31" data-bs-dismiss="modal">Close</button>
+              <button id="reset" type="button" class="btn button-32" data-bs-dismiss="modal">Yes</button>
+            </div>
+          </div>
+        </div>
+      </div>
       <div id="control" class= "row" style="display:none;">
         <!--Buttons-->
         <div id="b1" class = "col-lg-3 col-md-6">
