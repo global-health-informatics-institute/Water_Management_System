@@ -13,24 +13,25 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Water Management System</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel = "icon" type="image/png" href = "assets/images/ghii_logo.png">
     <link rel ="stylesheet" href="assets/bootstrap.min.css">
     <link rel ="stylesheet" href="assets/all.min.css">
     <link rel ="stylesheet" href="css/index.css?v=<?php echo time() ?>">
     <script src="assets/gauges.min.js"></script>
     <script src="assets/apexcharts.min.js"></script>
     <script src="assets/jquery.min.js"></script>
+    <title>Water Management System</title>
   </head>
   <body>
     <!--Start of navbar-->
-    <div class="navbar navbar-expand-lg navbar-dark bg-dark shadow mb-3">
+    <div class="navbar navbar-expand-lg navbar-dark shadow mb-3">
       <div class="container-fluid">
         <a class="navbar-brand" href="index.php">Water Management System</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon "></span>
         </button>
-        <div class=" offcanvas offcanvas-start d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: auto;" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class=" offcanvas offcanvas-start d-flex flex-column flex-shrink-0 p-3 text-white" style="width: auto;" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
           <div class="offcanvas-header">
             <a href="index.php" class="offcanvas-title fs-4 align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none" id="offcanvasExampleLabel">WATER MANAGEMENT SYSTEM</a>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>

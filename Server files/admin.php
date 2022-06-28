@@ -13,14 +13,15 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Water Management System</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel = "icon" type="image/png" href = "assets/images/ghii_logo.png"> 
     <link rel ="stylesheet" href="assets/bootstrap.min.css">
     <link rel ="stylesheet" href="assets/all.min.css">
     <link rel ="stylesheet" href="css/admin.css?v=<?php echo time() ?>">
     <script src="assets/gauges.min.js"></script>
     <script src="assets/apexcharts.min.js"></script>
     <script src="assets/jquery.min.js"></script>
+    <title>Water Management System</title>
   </head>
   <body>
     <!--Start of navbar-->

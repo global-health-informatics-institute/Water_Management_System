@@ -86,12 +86,13 @@ if (isset($_POST['submit'])){
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Admin</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel = "icon" type="image/png" href = "assets/images/ghii_logo.png">
 		<link rel ="stylesheet" href="assets/bootstrap.min.css">
 		<link rel ="stylesheet" href="assets/all.min.css">
 		<link rel ="stylesheet" href="css/adminRegister.css?v=<?php echo time() ?>">
 		<script src="assets/jquery.min.js"></script>
+		<title>Admin</title>
 	</head>
 	<body class="bg-light">
 		<!--Start of navbar-->

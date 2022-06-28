@@ -4,12 +4,13 @@ require_once "session.php";
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Login</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel = "icon" type="image/png" href = "assets/images/ghii_logo.png">
 		<link rel ="stylesheet" href="assets/bootstrap.min.css">
 		<link rel ="stylesheet" href="assets/bootstrap-icons.css">
 		<link rel ="stylesheet" href="css/login.css?v=<?php echo time() ?>">
 		<script src="assets/jquery.min.js"></script>
+		<title>Login</title>
 	</head>
 	<body class="bg-light">
 		<div id="main-container" class= "container d-grid h-100">
