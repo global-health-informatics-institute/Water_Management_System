@@ -38,12 +38,12 @@ $(function(){
   });
   
   if(window.localStorage.getItem("page") == 0){
-    $("li#dash").find("a").addClass("active").css("background-color","#3D72A4");
+    $("li#dash").find("a").addClass("active").css("background-color","#3375c4");
     $("li#home").find("a").removeClass("active");
   }
   
   if(window.localStorage.getItem("page") == null){
-    $("li#home").find("a").addClass("active").css("background-color","#3D72A4");
+    $("li#home").find("a").addClass("active").css("background-color","#3375c4");
   }
   
   })
@@ -53,5 +53,5 @@ window.onhashchange = function() {
 
 function close6(){
   window.localStorage.setItem("page",1);
-  window.history.back();
+  window.location = "admin.php";
 }

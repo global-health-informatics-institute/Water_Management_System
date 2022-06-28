@@ -605,12 +605,12 @@ $(function(){
   });
   
   if(window.localStorage.getItem("page") == 1){
-    $("li#home").find("a").addClass("active").css("background-color","#3D72A4");
+    $("li#home").find("a").addClass("active").css("background-color","#3375c4");
     $("li#dash").find("a").removeClass("active");
   }
   
   if(window.localStorage.getItem("page") == null){
-    $("li#home").find("a").addClass("active").css("background-color","#3D72A4");
+    $("li#home").find("a").addClass("active").css("background-color","#3375c4");
   }
     
   $("#modalToggle").click(function(){

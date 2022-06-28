@@ -91,13 +91,13 @@ if (isset($_POST['submit'])){
 	</head>
 	<body class="bg-light">
 		<!--Start of navbar-->
-		<div class="navbar navbar-expand-lg navbar-dark bg-dark shadow mb-3">
+		<div class="navbar navbar-expand-lg navbar-dark shadow mb-3">
 		  <div class="container-fluid">
 			<a class="navbar-brand" href="admin.php">Water Management System</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" aria-expanded="false" aria-label="Toggle navigation">
 			  <span class="navbar-toggler-icon "></span>
 			</button>
-			<div class=" offcanvas offcanvas-start d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: auto;" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+			<div class=" offcanvas offcanvas-start d-flex flex-column flex-shrink-0 p-3 text-white" style="width: auto;" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
 			  <div class="offcanvas-header">
 				<a href="admin.php" class="offcanvas-title fs-4 align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none" id="offcanvasExampleLabel">WATER MANAGEMENT SYSTEM</a>
 				<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
