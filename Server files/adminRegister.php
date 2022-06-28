@@ -1,7 +1,10 @@
 <?php
 session_start();
 
-$error = '';
+$error1 = '';
+$error3 = '';
+$error4 = '';
+$error5 = '';
 $user = "admin";
 $password = "password";
 $database = "WMS";
@@ -20,35 +23,36 @@ if (isset($_POST['submit'])){
 		//checks if form is complete
 		if (!isset($_POST['username'], $_POST['password'], $_POST['email'])) {
 			// Could not get the data that should have been sent.
-			$error .= '<div id="e1" class= "alert alert-danger ms-5 me-5"> Please complete the registration form<button type="button" class="btn-close ms-2" aria-label="Close" onclick="close1()"></div>';;
+			$error1 .= '<div id="e1" class= "alert alert-danger ms-5 me-5"> Please complete the registration form<button type="button" class="btn-close ms-2" aria-label="Close" onclick="close1()"></div>';
 			
         }
         
         // Make sure the submitted registration values are not empty.
         if (empty($username) || empty($email) || empty($u_password)) {
 			// One or more values are empty.
-			$error .= '<div id="e2" class= "alert alert-danger ms-5 me-5"> Please complete the registration form<button type="button" class="btn-close ms-2" aria-label="Close" onclick="close2()"></div>';
+			$error1 .= '<div id="e2" class= "alert alert-danger ms-5 me-5"> Please complete the registration form<button type="button" class="btn-close ms-2" aria-label="Close" onclick="close2()"></div>';
 			
         }
         
         //validates email
         if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-			$error .= '<div id="e3" class= "alert alert-danger ms-5 me-5"> Email is not valid!<button type="button" class="btn-close ms-2" aria-label="Close" onclick="close3()"></div>';
+			$error3 .= '<p id="e3" class= "mb-0 text-danger text-start"> Email is not valid!</p>';
 		}
 		
 		//validates username characters
 		if (preg_match('/^[a-zA-Z0-9]+$/', $_POST['username']) == 0) {
-			$error .= '<div id="e4" class= "alert alert-danger ms-5 me-5"> Username is not valid!<button type="button" class="btn-close ms-2" aria-label="Close" onclick="close4()"></div>';
+			$error4 .= '<p id="e4" class= " mb-0 text-danger text-start"> Username is not valid!</p>';
 			
 		}
 		
 		//Checks length of password
 		if (strlen($_POST['password']) > 20 || strlen($_POST['password']) < 5) {
-			$error .= '<div id="e5" class= "alert alert-danger ms-5 me-5">Password must be between 5 and 20 characters long!<button type="button" class="btn-close ms-2" aria-label="Close" onclick="close5()"></div>';
+			$error5 .= '<p id="e5" class= " mb-0 text-danger text-start">Password must be between 5 and 20 characters long!</p>';
 		}
         
-        if(empty($error)){
+        if(empty($error3) && empty($error4) && empty($error5) && empty($error1)){
 			//checks if any equivalent usernames exist
+			die();
 			$query = $db->prepare("SELECT * FROM $table WHERE username= ?");
 			$query->bindValue(1, $username);
 			$query->execute();
@@ -56,13 +60,13 @@ if (isset($_POST['submit'])){
 			
 			if ($row) {
 				// Username already exists
-				$error .= 'Username exists, please choose another!';
+				$error1 .= 'Username exists, please choose another!';
 			} else {
 				// Insert new account
 				$query = "INSERT INTO $table (username,email,password)
 				VALUES ('".$username."','".$email."', '".$u_password."') ";
 				$db->exec($query);
-				$error .= "<div  class='alert alert-success ms-5 me-5'> New record in ".$table." created successfully</div>";
+				$error1 .= "<div  class='alert alert-success ms-5 me-5'> New record in ".$table." created successfully</div>";
 				header("location: admin.php");
 				exit;
 			}
@@ -137,15 +141,18 @@ if (isset($_POST['submit'])){
 				<div class="text-end"><button type="button" class="btn-close mt-3 pe-5" aria-label="Close" onclick="close6()" ></button></div>
 				<div class="img-pos mb-0 mt-5"><img class="user-img" src="assets/images/user-regular.svg"/></div>
 				<div class="card-title mt-2">Admin Register</div>
-				<?php  echo $error; ?>
+				<?php  echo $error1; ?>
 				<form class="h-100 mt-3" action ="" method="post">
 					<div class="form-group text-center ms-2 me-2">
+						<?php  echo $error4; ?>
 						<input class="register" type = "username" name = "username" placeholder="username" class="form-control" required/>
 					</div>
 					<div class="form-group text-center ms-2 me-2">
+						<?php  echo $error3; ?>
 						<input class="register" type = "email" name = "email" placeholder="example@email.com" class="form-control" required/>
 					</div>
 					<div class="form-group text-center ms-2 me-2">
+						<?php  echo $error5; ?>
 						<input class="register" type = "password" name = "password" placeholder="password" class="form-control" required/>
 					</div>
 					<div class="form-group mb-2">

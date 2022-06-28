@@ -25,7 +25,7 @@
       .card-title {
         font-size: 1.7rem;
         font-weight: bold;
-        color: hsl(209, 95%, 24%);
+        color: #122945;
       }
       #thecard2{
         max-width: 350px;
@@ -64,8 +64,8 @@
         cursor: pointer;
       }
       .user-img{
-        height:80px;
-        width:80px;
+        height:100px;
+        width:100px;
       }
       .user2-img{
         height:40px;
@@ -78,5 +78,5 @@
       #login{
         width:50%;
         margin-top:20px;
-        background-color:black;
+        background-color:#122945;
       }

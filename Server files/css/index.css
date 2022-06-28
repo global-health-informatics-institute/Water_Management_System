@@ -36,6 +36,15 @@ a:hover{
   color: white;
   font-weight:bold;
 }
+
+.navbar{
+  background-color:#122945;
+}
+
+.offcanvas{
+  background-color:#122945;
+}
+
   
 /*CONTENT SECTION*/
 .theRow{
