@@ -66,6 +66,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
       
       <!--Card for tank 1-->
       <div id="the_container1" class="card col-lg-12 p-2 mt-5">
+        <div id = "tankName" class="card-title"></div>
         <!--Toggle and select-->
         <ul class="nav nav-2">
           <li class="nav-item text-start">
@@ -116,6 +117,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
       
       <!--Card for tank 2-->
       <div id="the_container2" class="card col-lg-12 p-2 mt-5">
+        <div id = "tankName" class="card-title"></div>
         <!--Toggle and select-->
         <ul class="nav nav-2">
           <li class="nav-item text-start">
@@ -166,6 +168,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
       
       <!--Card for tank 3-->
       <div id="the_container3" class="card col-lg-12 shadow-lg p-2 mt-5">
+        <div id = "tankName" class="card-title"></div>
         <!--Toggle and select-->
         <ul class="nav nav-2">
           <li class="nav-item text-start">
@@ -226,8 +229,8 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
           <div class="modal-body">
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn button-31" data-bs-dismiss="modal">Close</button>
-            <button id="reset" type="button" class="btn button-32" data-bs-dismiss="modal">Yes</button>
+            <button type="button" class="button-31" data-bs-dismiss="modal">Close</button>
+            <button id="reset" type="button" class="button-32" data-bs-dismiss="modal">Yes</button>
           </div>
         </div>
       </div>

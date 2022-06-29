@@ -472,8 +472,8 @@ function getReadings() {
       
       if(tank1_volume == 0){
         
-        $("#the_container1").find("#volume").text(tname1+" Volume");
-        $("#the_container1").find("#pressure").text(tname1+" Pressure");
+        $("#the_container1").find("#tankName").text(tname1);
+        
         var one = myObj.capacity;
         tank1_volume = Number(one);
         chart1.updateOptions({
@@ -652,8 +652,7 @@ function getReadings2() {
       
       if(tank2_volume == 0){
         var tname = myObj.tname;
-        $("#the_container2").find("#volume").text(tname2+" Volume");
-        $("#the_container2").find("#pressure").text(tname2+" Pressure");
+        $("#the_container2").find("#tankName").text(tname2);
         var two = myObj.capacity;
         tank2_volume = Number(two);
         chart3.updateOptions({
@@ -829,8 +828,8 @@ function getReadings3() {
       
       if(tank3_volume == 0){
         var tname = myObj.tname;
-        $("#the_container3").find("#volume").text(tname3+" Volume");
-        $("#the_container3").find("#pressure").text(tname3+" Pressure");
+        $("#the_container3").find("#tankName").text(tname3);
+        
         var three = myObj.capacity;
         tank3_volume = Number(three);
         chart5.updateOptions({

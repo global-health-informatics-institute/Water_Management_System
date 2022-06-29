@@ -203,7 +203,7 @@ function getReadings() {
       ydps.push(datapoints); // push to main array
       datapoints =[]; // clear temporal array
       
-      if (ydps.length >  15 )
+      if (ydps.length >  60 )
       {
         ydps.shift();				
       }
@@ -636,4 +636,4 @@ function onSelect(){
 
 
 
-setInterval(getReadings, 2000);
+setInterval(getReadings, 60000);

@@ -95,8 +95,8 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
             <div class="modal-body">
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn button-31" data-bs-dismiss="modal">Close</button>
-              <button id="reset" type="button" class="btn button-32" data-bs-dismiss="modal">Yes</button>
+              <button type="button" class="button-31" data-bs-dismiss="modal">Close</button>
+              <button id="reset" type="button" class="button-32" data-bs-dismiss="modal">Yes</button>
             </div>
           </div>
         </div>
