@@ -105,7 +105,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
           
           <!--Water Tank Chart-->
           <div id = "Chart" class="col-lg-9 col-md-8 ">
-            <div id="thecard" class="shadow mt-5 mb-5">
+            <div id="thecard" class="mt-5 mb-5">
               <p id="volume" class="card-title">Water Volume</p>
               <div id="chart1"></div>
             </div>
@@ -156,7 +156,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
           
           <!--Water Tank Chart-->
           <div id = "Chart" class="col-lg-8 col-md-7 ">
-            <div id="thecard" class="shadow mt-5 mb-5">
+            <div id="thecard" class="mt-5 mb-5">
               <p id="volume" class="card-title">Water Volume</p>
               <div id="chart3"></div>
             </div>
@@ -208,7 +208,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
           
           <!--Water Tank Chart-->
           <div id = "Chart" class="col-lg-9 col-md-4">
-            <div id="thecard" class="shadow mt-5 mb-5">
+            <div id="thecard" class="mt-5 mb-5">
               <p id="volume" class="card-title">Water Volume</p>
               <div id="chart5"></div>
             </div>

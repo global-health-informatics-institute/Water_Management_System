@@ -19,11 +19,13 @@ require_once "session.php";
 				<div class="card-title mt-2">Sign In</div>
 				<div class="alert alert-danger mx-5" style="display:none">invalid credentials<button type="button" class="btn-close ms-2" aria-label="Close" onclick="close1()"></div>
 				<form id="form" class="h-100 mt-3" action ="" method="post">
-					<div class="form-group text-center ms-2 me-2">
-						<input class="username" type = "text" id = "username" placeholder="username" class="form-control" required/>
+					<div class="form-floating me-2 ms-2">
+					  <input type="text" class="input-fields form-control" id="floatingInput" placeholder="Username" >
+					  <label for="floatingInput">Username</label>
 					</div>
-					<div class="form-group text-center ms-2 me-2">
-						<input class="password" type = "password" id = "password" placeholder="password" class="form-control" required/>
+					<div class="form-floating me-2 ms-2">
+					  <input type="password" class="input-fields form-control" id="floatingPassword" placeholder="Password">
+					  <label for="floatingPassword">Password</label>
 					</div>
 					<div class="form-group mb-2">
 						<button id="login" class="btn" type="submit">
