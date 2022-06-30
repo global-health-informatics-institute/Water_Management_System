@@ -1,11 +1,41 @@
+@font-face{
+  font-family: 'Montserrat';
+  src: url(../webfonts/Montserrat-VariableFont_wght.ttf);
+  src: url(../webfonts/Montserrat-VariableFont_wght.ttf) format('truetype'),
+       url(../webfonts/Montserrat-Italic-VariableFont_wght.ttf) format('truetype');
+}
+
+@font-face{
+  font-family: 'Poppins';
+  src: url(../webfonts/Poppins-Regular.ttf);
+  src: url(../webfonts/Poppins-Regular.ttf) format('truetype'),
+       url(../webfonts/Poppins-BlackItalic.ttf) format('truetype'),
+       url(../webfonts/Poppins-Bold.ttf) format('truetype'),
+       url(../webfonts/Poppins-BoldItalic.ttf) format('truetype'),
+       url(../webfonts/Poppins-ExtraBold.ttf) format('truetype'),
+       url(../webfonts/Poppins-ExtraBoldItalic.ttf) format('truetype'),
+       url(../webfonts/Poppins-ExtraLight.ttf) format('truetype'),
+       url(../webfonts/Poppins-ExtraLightItalic.ttf) format('truetype'),
+       url(../webfonts/Poppins-Italic.ttf) format('truetype'),
+       url(../webfonts/Poppins-Light.ttf) format('truetype'),
+       url(../webfonts/Poppins-LightItalic.ttf) format('truetype'),
+       url(../webfonts/Poppins-Medium.ttf) format('truetype'),
+       url(../webfonts/Poppins-MediumItalic.ttf) format('truetype'),
+       url(../webfonts/Poppins-Regular.ttf) format('truetype'),
+       url(../webfonts/Poppins-SemiBold.ttf) format('truetype'),
+       url(../webfonts/Poppins-SemiBoldItalic.ttf) format('truetype'),
+       url(../webfonts/Poppins-Thin.ttf) format('truetype'),
+       url(../webfonts/Poppins-ThinItalic.ttf) format('truetype');
+}
+
+
 /*DOCUMENT*/
 html {
-  font-family: Arial, Helvetica, sans-serif;
   text-align: center;
   background-color: rgb(241, 241, 234);
 }
 body{
-  font-family: 'Montserrat', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI","Poppins", sans-serif, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   background-color: #F5F5F5;
   min-height: 100vh;
 }
@@ -16,14 +46,14 @@ h1 {
 }
 p {
   font-size: 1.4rem;
-  font-family: 'Montserrat', sans-serif;
+  
 }
 
 a{
   padding: 0 20px;
   text-decoration: none;
   color: #c1c4c8;
-  font-weight: bold;
+  
 }
 a:hover{
   color: #eaebed;
@@ -34,10 +64,10 @@ a:hover{
 /*NAVBAR SECTION*/
 
 .navbar-brand{
-  font-family: 'Montserrat', sans-serif;
+  
   font-size: 30px;
   color: white;
-  font-weight:bold;
+  
 }
 
 .navbar{
@@ -52,7 +82,7 @@ a:hover{
 .labels {
   font-size: large;
   text-align: center;
-  font-weight: bold;
+  
   margin-top: 1.5rem;
   
 }
@@ -109,7 +139,7 @@ a:hover{
 
 .card-title {
   font-size: 1.2rem;
-  font-weight: bold;
+  
   color: hsl(209, 95%, 24%);
 }
 .nav{
@@ -121,12 +151,12 @@ a:hover{
 }
 .toast-body{
   font-size:20px;
-  font-family: 'Montserrat', sans-serif;
+  
 }
 .toast-label{
   font-size:18px;
   color: red;
-  font-family: 'Montserrat', sans-serif;
+  
 }
 
 /* content buttons */
@@ -141,7 +171,7 @@ a:hover{
   color: #36395A;
   cursor: pointer;
   display: inline-flex;
-  font-family: "JetBrains Mono",monospace;
+  
   height: 48px;
   justify-content: center;
   line-height: 1;
@@ -186,7 +216,7 @@ a:hover{
   color: #FFFFFF;
   cursor: pointer;
   display: inline-flex;
-  font-family: "JetBrains Mono",monospace;
+  
   height: 48px;
   justify-content: center;
   line-height: 1;
@@ -231,7 +261,7 @@ a:hover{
   color: #FFFFFF;
   cursor: pointer;
   display: inline-flex;
-  font-family: "JetBrains Mono",monospace;
+  
   height: 48px;
   justify-content: center;
   line-height: 1;
@@ -303,10 +333,10 @@ a:hover{
     font-size:12px;
     }
     .navbar-brand{
-    font-family: 'Montserrat', sans-serif;
+    
     font-size: 20px;
     color: white;
-    font-weight:bold;
+    
   }
   .nav-text{
     margin-top:6px;
