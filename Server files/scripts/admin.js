@@ -203,7 +203,7 @@ function getReadings() {
       ydps.push(datapoints); // push to main array
       datapoints =[]; // clear temporal array
       
-      if (ydps.length >  60 )
+      if (ydps.length >  120 )
       {
         ydps.shift();				
       }
