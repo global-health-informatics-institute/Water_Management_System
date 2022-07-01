@@ -41,13 +41,13 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
             <ul class="navbar-nav ms-auto nav-pills mb-auto">
               <li id = "home" class="nav-item">
                 <a href="admin.php" class="nav-link" aria-current="page">
-                  <i class="fas fa-home ms-2"></i>
+                  <i class="fas fa-home nav-icon"></i>
                   Home
                 </a>
               </li>
               <li id = "dash" class="nav-item">
                 <a href="adminRegister.php" class="nav-link">
-                  <i class="fas fa-user-plus ms-2"></i>
+                  <i class="fas fa-user-plus nav-icon"></i>
                   Add User
                 </a>
               </li>

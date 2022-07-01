@@ -17,7 +17,7 @@ require_once "session.php";
 		<div id="main-container" class= "container d-grid h-100">
 			<div id="thecard2" class="card shadow col-md-5">
 				<div class="img-pos mt-5 mb-0" ><img class="user-img" src="assets/images/logo with text.png"/></div>
-				<div class="card-title mt-2">Sign In</div>
+				<div class="card-title mt-2"><strong>Sign In</strong></div>
 				<div class="alert alert-danger mx-5" style="display:none">invalid credentials<button type="button" class="btn-close ms-2" aria-label="Close" onclick="close1()"></div>
 				<form id="form" class="h-100 mt-3" action ="" method="post">
 					<div class="form-floating me-3 ms-3">

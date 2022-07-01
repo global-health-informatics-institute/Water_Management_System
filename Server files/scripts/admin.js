@@ -29,7 +29,7 @@ const firebaseConfig = {
 window.addEventListener("load", function(){
   
   if(window.localStorage.getItem("page") == 0){
-    window.location.assign("http://localhost/adminRegister.php");
+    window.location.assign("http://192.168.0.126/adminRegister.php");
   }
   getReadings();
   
