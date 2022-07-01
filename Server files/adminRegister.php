@@ -36,18 +36,18 @@ if (isset($_POST['submit'])){
         
         //validates email
         if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-			$error3 .= '<p id="e3" class= "mb-0 text-danger text-start"> Email is not valid!</p>';
+			$error3 .= '<p id="e3" class= "mt-0 text-danger text-start"> Email is not valid!</p>';
 		}
 		
 		//validates username characters
 		if (preg_match('/^[a-zA-Z0-9]+$/', $_POST['username']) == 0) {
-			$error4 .= '<p id="e4" class= " mb-0 text-danger text-start"> Username is not valid!</p>';
+			$error4 .= '<p id="e4" class= " mt-0 text-danger text-start"> Username is not valid!</p>';
 			
 		}
 		
 		//Checks length of password
 		if (strlen($_POST['password']) > 20 || strlen($_POST['password']) < 5) {
-			$error5 .= '<p id="e5" class= " mb-0 text-danger text-start">Password must be between 5 and 20 characters long!</p>';
+			$error5 .= '<p id="e5" class= " mt-0 text-danger text-start">Password must be between 5 and 20 characters long!</p>';
 		}
         
         if(empty($error3) && empty($error4) && empty($error5) && empty($error1)){
@@ -98,7 +98,7 @@ if (isset($_POST['submit'])){
 		<!--Start of navbar-->
 		<div class="navbar navbar-expand-lg navbar-dark shadow mb-3">
 		  <div class="container-fluid">
-			<a class="navbar-brand" href="admin.php">Water Management System</a>
+			<a class="navbar-brand" href="admin.php"><img src="assets/images/ghii_logo.png" alt="" width="32" height="32" class="me-2">Water Management System</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" aria-expanded="false" aria-label="Toggle navigation">
 			  <span class="navbar-toggler-icon "></span>
 			</button>
@@ -138,7 +138,7 @@ if (isset($_POST['submit'])){
 		  </div>
 		</div>
 		<div id="main-container" class= "container d-flex h-100 mt-5">
-			<div id="thecard2" class="card shadow col-md-5">
+			<div id="thecard2" class="card shadow col-md-5 mb-5">
 				<div class="text-end"><button type="button" class="btn-close mt-3 pe-5" aria-label="Close" onclick="close6()" ></button></div>
 				<div class="img-pos mb-0 mt-3"><img class="user-img" src="assets/images/user-regular.svg"/></div>
 				<div class="card-title mt-2 mb-4"><strong>Admin Register</strong></div>
@@ -146,26 +146,26 @@ if (isset($_POST['submit'])){
 				<form class="h-100 mt-3" action ="" method="post">
 					<div class ="row" >
 						<div class="form-floating col-lg-6">
-						  <?php  echo $error4; ?>
 						  <input type="text" class="input-fields form-control" id="floatingInput" placeholder="Username" name = "username" >
 						  <label for="floatingInput"><i class="fas fa-user ms-1 me-2"></i>Username</label>
+						  <?php  echo $error4; ?>
 						</div>
-						<div class="form-floating col-lg-6">
-						  <?php  echo $error3; ?>
+						<div class="form-floating col-lg-6 mb-3">
 						  <input type="email" class="input-fields form-control" id="floatingEmail" placeholder="Email" name = "email">
 						  <label for="floatingPassword"><i class="fas fa-at ms-1 me-2"></i>Email</label>
+						  <?php  echo $error3; ?>
 						</div>
-						<div class="form-floating col-lg-12">
-						  <?php  echo $error5; ?>
+						<div class="form-floating col-lg-12 mb-3">
 						  <input type="password" class="input-fields form-control" id="floatingPassword" placeholder="Password" name = "password">
 						  <label for="floatingPassword"><i class="fas fa-key ms-1 me-2"></i>Password</label>
+						  <?php  echo $error5; ?>
 						</div>
 					</div>
 					<div class="form-group mb-2">
 						<input type = "submit" id ="register" name = "submit" class="btn btn-secondary" value="Register"/>
 					</div>
 				</form>
-				<div class="mb-3"> &copy 2022</div>
+				<div class="mb-3"><a href="http://ghii.org" class="org-link">Global Health Informatics Institute, &copy 2022 </a></div>
 				</div>
 			</div>
 		</div>

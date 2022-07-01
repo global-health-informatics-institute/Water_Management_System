@@ -106,7 +106,6 @@ background-color: #F5F5F5;
 border-width:0 0;
 border-color:#F5F5F5;
 cursor: pointer;
-margin-bottom:10px;
 margin-right: 0px;
 }
 .input-fields:focus{
@@ -151,6 +150,9 @@ background-color: #F5F5F5;
   height:50px;
   border-radius: 0 0;
 }
+#register:hover{
+  background-color:#1d436e;
+}
 
 #thecard2{
   border-radius:0.8rem;
@@ -160,7 +162,13 @@ background-color: #F5F5F5;
   align-items:center;
   justify-content:center;
 }
-
+.org-link{
+  text-decoration:none;
+  color:black;
+}
+.org-link:hover{
+  color:#122945;
+}
 
 /*MEDIA QUERIES*/
 

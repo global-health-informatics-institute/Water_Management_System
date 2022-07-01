@@ -35,18 +35,16 @@ html {
   background-color: rgb(241, 241, 234);
 }
 body{
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI","Poppins", sans-serif, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: -apple-system, BlinkMacSystemFont, "Poppins", sans-serif,"Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   background-color: #F5F5F5;
   min-height: 100vh;
 }
 h1 {
   font-size: 1.8rem;
   color: white;
-  font-weight: 300;
 }
 p {
-  font-size: 1.4rem;
-  font-weight: 200;
+  font-size: 1.8rem;
 }
 
 a{
@@ -57,7 +55,6 @@ a{
 }
 a:hover{
   color: #eaebed;
-
 }
 
 /*NAVBAR SECTION*/
@@ -172,7 +169,6 @@ a:hover{
   justify-content:center;
 }
 .card-title {
-  font-size: 1.2rem;
   color: hsl(209, 95%, 24%);
 }
 #tankName{

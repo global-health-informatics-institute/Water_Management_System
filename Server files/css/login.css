@@ -111,3 +111,10 @@ background-color:#122945;
 .login:hover{
   background-color:#1d436e;
 }
+.org-link{
+  text-decoration:none;
+  color:black;
+}
+.org-link:hover{
+  color:#122945;
+}

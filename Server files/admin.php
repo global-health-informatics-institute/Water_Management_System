@@ -27,7 +27,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
     <!--Start of navbar-->
     <div class="navbar navbar-expand-lg navbar-dark shadow mb-3">
       <div class="container-fluid">
-        <a class="navbar-brand" href="admin.php">Water Management System</a>
+        <a class="navbar-brand" href="admin.php"><img src="assets/images/ghii_logo.png" alt="" width="32" height="32" class="me-2">Water Management System</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon "></span>
         </button>

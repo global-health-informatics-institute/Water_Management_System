@@ -21,11 +21,11 @@ require_once "session.php";
 				<div class="alert alert-danger mx-5" style="display:none">invalid credentials<button type="button" class="btn-close ms-2" aria-label="Close" onclick="close1()"></div>
 				<form id="form" class="h-100 mt-3" action ="" method="post">
 					<div class="form-floating me-3 ms-3">
-					  <input type="text" class="input-fields form-control" id="floatingInput" placeholder="Username" >
+					  <input type="text" class="input-fields form-control" id="floatingInput" placeholder="Username" required>
 					  <label for="floatingInput"><i class="fas fa-user me-2"></i>Username</label>
 					</div>
 					<div class="form-floating me-3 ms-3">
-					  <input type="password" class="input-fields form-control" id="floatingPassword" placeholder="Password">
+					  <input type="password" class="input-fields form-control" id="floatingPassword" placeholder="Password" required>
 					  <label for="floatingPassword"><i class="fas fa-key me-2"></i>Password</label>
 					</div>
 					<div class="form-group mb-2 ms-3 me-3 mt-5">
@@ -35,7 +35,7 @@ require_once "session.php";
 						</button>
 					</div>
 				</form>
-				<div class="mb-2"> &copy 2022, GHII</div>
+				<div class="mb-3 mt-2"><a href="http://ghii.org" class="org-link">Global Health Informatics Institute, &copy 2022 </a></div>
 				</div>
 			</div>
 		</div>
