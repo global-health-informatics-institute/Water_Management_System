@@ -121,7 +121,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
       <div id="content" class="row mt-2 text-center">
         
         <!--Water Pressure gauge-->
-        <div id ="Gauge" class="col-lg-6">
+        <div id ="Gauge" class="col-lg-4">
           <div id="thecard" class="card shadow mt-5">
             <p class="card-title">Water Pressure</p>
             <div id="chart2"></div>
@@ -129,7 +129,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
         </div>
         
         <!--Water Tank Chart-->
-        <div id="Chart" class="col-lg-6">
+        <div id="Chart" class="col-lg-8">
           <div id="thecard" class="card shadow mt-5">
             <p class="card-title">Water Volume</p>
             <div id="chart1"></div>
