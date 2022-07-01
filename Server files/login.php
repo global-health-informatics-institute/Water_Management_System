@@ -8,6 +8,7 @@ require_once "session.php";
 		<link rel = "icon" type="image/png" href = "assets/images/ghii_logo.png">
 		<link rel ="stylesheet" href="assets/bootstrap.min.css">
 		<link rel ="stylesheet" href="assets/bootstrap-icons.css">
+		<link rel ="stylesheet" href="assets/all.min.css">
 		<link rel ="stylesheet" href="css/login.css?v=<?php echo time() ?>">
 		<script src="assets/jquery.min.js"></script>
 		<title>Login</title>
@@ -19,13 +20,13 @@ require_once "session.php";
 				<div class="card-title mt-2">Sign In</div>
 				<div class="alert alert-danger mx-5" style="display:none">invalid credentials<button type="button" class="btn-close ms-2" aria-label="Close" onclick="close1()"></div>
 				<form id="form" class="h-100 mt-3" action ="" method="post">
-					<div class="form-floating me-2 ms-2">
+					<div class="form-floating me-3 ms-3">
 					  <input type="text" class="input-fields form-control" id="floatingInput" placeholder="Username" >
-					  <label for="floatingInput">Username</label>
+					  <label for="floatingInput"><i class="fas fa-user me-2"></i>Username</label>
 					</div>
-					<div class="form-floating me-2 ms-2">
+					<div class="form-floating me-3 ms-3">
 					  <input type="password" class="input-fields form-control" id="floatingPassword" placeholder="Password">
-					  <label for="floatingPassword">Password</label>
+					  <label for="floatingPassword"><i class="fas fa-key me-2"></i>Password</label>
 					</div>
 					<div class="form-group mb-2">
 						<button id="login" class="btn" type="submit">
@@ -39,6 +40,7 @@ require_once "session.php";
 			</div>
 		</div>
 		<script src="assets/bootstrap.min.js"></script>
+		<script src="assets/all.min.js"></script>
 		<script src="scripts/login.js?v=<?php echo time() ?>"></script>
 	</body>
 </html>
