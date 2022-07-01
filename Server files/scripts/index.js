@@ -444,7 +444,7 @@ function getReadings() {
       ydps.push(datapoints); // push to main array
       datapoints =[]; // clear temporal array
       
-      if (ydps.length >  15 )
+      if (ydps.length >  20 )
       {
         ydps.shift();				
       }
@@ -621,7 +621,7 @@ function getReadings2() {
      
       datapoints_1 =[]; // clear temporal array
       
-      if (ydps_1.length >  15 )
+      if (ydps_1.length >  20 )
       {
         ydps_1.shift();				
       }
@@ -800,7 +800,7 @@ function getReadings3() {
       ydps_2.push(datapoints_2); // push to main array
       datapoints_2 =[]; // clear temporal array
       
-      if (ydps_2.length >  15 )
+      if (ydps_2.length >  20 )
       {
         ydps_2.shift();				
       }

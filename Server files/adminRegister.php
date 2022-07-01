@@ -112,13 +112,13 @@ if (isset($_POST['submit'])){
 				<ul class="navbar-nav ms-auto nav-pills mb-auto">
 				  <li id = "home" class="nav-item">
 					<a href="admin.php" class="nav-link" aria-current="page">
-						<i class="fas fa-home"></i>
+						<i class="fas fa-home ms-2 "></i>
 					  Home
 					</a>
 				  </li>
 				  <li id = "dash" class="nav-item">
 					<a href="adminRegister.php" class="nav-link">
-					   <i class="fas fa-user-plus"></i>
+					   <i class="fas fa-user-plus ms-2 "></i>
 					   Add User
 					</a>
 				  </li>
@@ -137,24 +137,29 @@ if (isset($_POST['submit'])){
 			</div>
 		  </div>
 		</div>
-		<div id="main-container" class= "container d-grid h-100 mt-5">
+		<div id="main-container" class= "container d-flex h-100 mt-5">
 			<div id="thecard2" class="card shadow col-md-5">
 				<div class="text-end"><button type="button" class="btn-close mt-3 pe-5" aria-label="Close" onclick="close6()" ></button></div>
-				<div class="img-pos mb-0 mt-5"><img class="user-img" src="assets/images/user-regular.svg"/></div>
-				<div class="card-title mt-2">Admin Register</div>
+				<div class="img-pos mb-0 mt-3"><img class="user-img" src="assets/images/user-regular.svg"/></div>
+				<div class="card-title mt-2 mb-4">Admin Register</div>
 				<?php  echo $error1; ?>
 				<form class="h-100 mt-3" action ="" method="post">
-					<div class="form-group text-center ms-2 me-2">
-						<?php  echo $error4; ?>
-						<input class="register" type = "username" name = "username" placeholder="username" class="form-control" required/>
-					</div>
-					<div class="form-group text-center ms-2 me-2">
-						<?php  echo $error3; ?>
-						<input class="register" type = "email" name = "email" placeholder="example@email.com" class="form-control" required/>
-					</div>
-					<div class="form-group text-center ms-2 me-2">
-						<?php  echo $error5; ?>
-						<input class="register" type = "password" name = "password" placeholder="password" class="form-control" required/>
+					<div class ="row" >
+						<div class="form-floating col-lg-6">
+						  <?php  echo $error4; ?>
+						  <input type="text" class="input-fields form-control" id="floatingInput" placeholder="Username" name = "username" >
+						  <label for="floatingInput"><i class="fas fa-user ms-1 me-2"></i>Username</label>
+						</div>
+						<div class="form-floating col-lg-6">
+						  <?php  echo $error3; ?>
+						  <input type="email" class="input-fields form-control" id="floatingEmail" placeholder="Email" name = "email">
+						  <label for="floatingPassword"><i class="fas fa-at ms-1 me-2"></i>Email</label>
+						</div>
+						<div class="form-floating col-lg-12">
+						  <?php  echo $error5; ?>
+						  <input type="password" class="input-fields form-control" id="floatingPassword" placeholder="Password" name = "password">
+						  <label for="floatingPassword"><i class="fas fa-key ms-1 me-2"></i>Password</label>
+						</div>
 					</div>
 					<div class="form-group mb-2">
 						<input type = "submit" id ="register" name = "submit" class="btn btn-secondary" value="Register"/>

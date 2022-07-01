@@ -557,6 +557,7 @@ function handleClick5(){
 //listens for any changes to the select attribute
 $(function(){
   $("select").change(onSelect);
+  
   if (tank_id == "1"){
     let text = 'GHII Well Tank';
       $("select option").filter(function() {
@@ -588,7 +589,6 @@ $(function(){
     
   });
   
-    
    /*
    *NAVBAR LOGIC 
    */
@@ -636,4 +636,4 @@ function onSelect(){
 
 
 
-setInterval(getReadings, 60000);
+setInterval(getReadings, 2000);

@@ -5,7 +5,7 @@ $("#form").submit(function(e){
   $.ajax({
     url:"authenticate.php",
     method: "POST",
-    data: {username: $("#username").val(), password: $("#password").val()},
+    data: {username: $("#floatingInput").val(), password: $("#floatingPassword").val()},
   beforeSend: function(e){
     //show spinner
     $(".spinner").removeClass("visually-hidden");

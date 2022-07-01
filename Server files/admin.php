@@ -41,20 +41,20 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
             <ul class="navbar-nav ms-auto nav-pills mb-auto">
               <li id = "home" class="nav-item">
                 <a href="admin.php" class="nav-link" aria-current="page">
-                  <i class="fas fa-home"></i>
+                  <i class="fas fa-home ms-2"></i>
                   Home
                 </a>
               </li>
               <li id = "dash" class="nav-item">
                 <a href="adminRegister.php" class="nav-link">
-                  <i class="fas fa-user-plus"></i>
+                  <i class="fas fa-user-plus ms-2"></i>
                   Add User
                 </a>
               </li>
             </ul>
             <hr>
             <div class="dropdown">
-              <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+              <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="assets/images/user-svgrepo-com.svg" alt="" width="32" height="32" class="rounded-circle me-2">
                 <strong> <?=$_SESSION['name']?></strong>
               </a>
@@ -77,10 +77,10 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
         </li>
         <li id = "selection" class="nav-item l2">
           <select class="form-select" id="select">
-            <option>Choose Water Tank</option>
-            <option value="1">GHII Well Tank</option>
-            <option value="3">GHII Waterboard Tank</option>
-            <option value="4">Some other tank</option>
+            <option selected value="default">Choose Water Tank</option>
+            <option  value="1">GHII Well Tank</option>
+            <option  value="3">GHII Waterboard Tank</option>
+            <option  value="4">Some other tank</option>
           </select>
         </li>
       </ul>
@@ -101,7 +101,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
           </div>
         </div>
       </div>
-      <div id="control" class= "row" style="display:none;">
+      <div id="control" class= "row text-center" style="display:none;">
         <!--Buttons-->
         <div id="b1" class = "col-lg-3 col-md-6">
           <p id="p1" class="labels">Water Pump</p>
@@ -153,8 +153,8 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
     
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="scripts/admin.js?v=<?php echo time() ?>"></script>
     <script src="assets/bootstrap.min.js"></script>
     <script src="assets/all.min.js"></script>
-    <script src="scripts/admin.js?v=<?php echo time() ?>"></script>
   </body>
 </html>

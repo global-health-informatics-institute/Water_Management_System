@@ -31,7 +31,6 @@
 
 /*DOCUMENT*/
 html {
-  text-align: center;
   background-color: rgb(241, 241, 234);
 }
 body{
@@ -60,6 +59,11 @@ a:hover{
 
 }
 
+select option:checked{
+  background-color:#3cc4a0;
+  color:white;
+}
+
 
 /*NAVBAR SECTION*/
 
@@ -82,7 +86,6 @@ a:hover{
 .labels {
   font-size: large;
   text-align: center;
-  
   margin-top: 1.5rem;
   
 }
@@ -98,7 +101,12 @@ a:hover{
   border-radius:6px;
   padding:15px;
   border:0
+}
 
+#select:focus{
+  outline: none;
+  box-shadow: 0px 0px 10px #3cc4a0;/*here change the color*/
+  border: 1px solid #3cc4a0;
 }
 
 .btn-nav:hover{

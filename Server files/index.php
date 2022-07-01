@@ -41,14 +41,14 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
             <ul class="navbar-nav ms-auto nav-pills mb-auto">
               <li id = "home" class="nav-item">
                 <a href="index.php" class="nav-link" aria-current="page">
-                  <i class="fas fa-home"></i>
+                  <i class="fas fa-home ms-2"></i>
                   Home
                 </a>
               </li>
             </ul>
             <hr>
             <div class="dropdown">
-              <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+              <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="assets/images/user-svgrepo-com.svg" alt="" width="32" height="32" class="rounded-circle me-2">
                 <strong> <?=$_SESSION['name']?></strong>
               </a>
@@ -66,7 +66,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
       
       <!--Card for tank 1-->
       <div id="the_container1" class="card col-lg-12 p-2 mt-5">
-        <div id = "tankName" class="card-title"></div>
+        <div id = "tankName" class="card-title text-center"></div>
         <!--Toggle and select-->
         <ul class="nav nav-2">
           <li class="nav-item text-start">
@@ -76,7 +76,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
             <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Reset</button>
           </li>
         </ul>
-        <div id="control_1" class= "row" style="display:none;">
+        <div id="control_1" class= "row text-center" style="display:none;">
           <!--Buttons-->
           <div id="b1" class = "col-lg-3 col-md-6">
             <p id="p1" class="labels">Water Pump</p>
@@ -117,7 +117,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
       
       <!--Card for tank 2-->
       <div id="the_container2" class="card col-lg-12 p-2 mt-5">
-        <div id = "tankName" class="card-title"></div>
+        <div id = "tankName" class="card-title text-center"></div>
         <!--Toggle and select-->
         <ul class="nav nav-2">
           <li class="nav-item text-start">
@@ -127,7 +127,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
             <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">Reset</button>
           </li>
         </ul>
-        <div id="control_2" class= "row" style="display:none;">
+        <div id="control_2" class= "row text-center" style="display:none;">
           <!--Buttons-->
           <div id="b1_1" class = "col-lg-3 col-md-6">
             <p id="p1" class="labels">Water Pump</p>
@@ -168,7 +168,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
       
       <!--Card for tank 3-->
       <div id="the_container3" class="card col-lg-12 shadow-lg p-2 mt-5">
-        <div id = "tankName" class="card-title"></div>
+        <div id = "tankName" class="card-title text-center"></div>
         <!--Toggle and select-->
         <ul class="nav nav-2">
           <li class="nav-item text-start">
@@ -179,7 +179,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
           </li>
         </ul>
         
-        <div id="control_3" class= "row" style="display:none;">
+        <div id="control_3" class= "row text-center" style="display:none;">
           <!--Buttons-->
           <div id="b1_2" class = "col-lg-3 col-md-6">
             <p id="p1" class="labels">Water Pump</p>

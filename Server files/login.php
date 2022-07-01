@@ -28,10 +28,10 @@ require_once "session.php";
 					  <input type="password" class="input-fields form-control" id="floatingPassword" placeholder="Password">
 					  <label for="floatingPassword"><i class="fas fa-key me-2"></i>Password</label>
 					</div>
-					<div class="form-group mb-2">
-						<button id="login" class="btn" type="submit">
+					<div class="form-group mb-2 ms-3 me-3 mt-5">
+						<button id="login" class="btn login" type="submit">
 						  <span class=" spinner spinner-border spinner-border-sm text-white visually-hidden" role="status" aria-hidden="true"></span>
-						  <span class="text-white">Login</span>
+						  <span class = "login-text">Login</span>
 						</button>
 					</div>
 				</form>
