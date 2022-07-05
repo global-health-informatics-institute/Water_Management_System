@@ -1,12 +1,16 @@
 # This file is executed on every boot (including wake-boot from deepsleep)
-#import esp
-#esp.osdebug(None)
-import uos, machine
+import esp
+esp.osdebug(None)
+
+#import uos, machine
 #uos.dupterm(None, 1) # disable REPL on UART(0)
+
 import gc
+gc.collect()
 #import webrepl
 #webrepl.start()
-gc.collect()
+
+
 import network
 from machine import Timer, Pin
 
@@ -20,7 +24,7 @@ led.value(0)
  
 #timer is started before attempting to connect to wifi
 timer = Timer(-1)
-timer.init(period = 10000,
+timer.init(period = 20000,
            mode= Timer.ONE_SHOT,
            callback = lambda t: led.value(1))
 
