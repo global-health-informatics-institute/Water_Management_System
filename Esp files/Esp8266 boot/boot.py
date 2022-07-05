@@ -1,20 +1,11 @@
 # This file is executed on every boot (including wake-boot from deepsleep)
-import esp
-esp.osdebug(None)
-
-#import uos, machine
-#uos.dupterm(None, 1) # disable REPL on UART(0)
-
-import gc
-gc.collect()
+#import esp
+#esp.osdebug(None)
 #import webrepl
 #webrepl.start()
-
-
 import network
 from machine import Timer, Pin
 
-#get content from config file
 filename = "tankController.config"
 contents = open(filename).read()
 config = eval(contents)
@@ -24,7 +15,7 @@ led.value(0)
  
 #timer is started before attempting to connect to wifi
 timer = Timer(-1)
-timer.init(period = 20000,
+timer.init(period = 10000,
            mode= Timer.ONE_SHOT,
            callback = lambda t: led.value(1))
 
@@ -37,7 +28,7 @@ Wifi=network.WLAN(network.STA_IF)
 if not Wifi.isconnected():
     print("Connecting to:", SSID)
     Wifi.active(True)
-    #Wifi.ifconfig(('192.168.0.119', '255.255.255.0', '192.168.0.1', '192.168.0.1'))
+    #Wifi.ifconfig(('192.168.0.158', '255.255.255.0', '192.168.0.1', '192.168.0.1'))
     Wifi.connect(SSID, Password)
     while not Wifi.isconnected():
         if led.value() == 1:
@@ -47,7 +38,6 @@ if not Wifi.isconnected():
             timer.deinit()
             break
         else:
-            Wifi.active(True)
             pass
 
 if Wifi.isconnected():

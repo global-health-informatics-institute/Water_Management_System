@@ -6,7 +6,7 @@
 import network
 from machine import Timer, Pin
 
-filename = "tankController.config"
+filename = "mainController.config"
 contents = open(filename).read()
 config = eval(contents)
 
