@@ -115,25 +115,25 @@ def checkWifi():
         print("Wifi Connected")
         print(Wifi.ifconfig())
     
-#try:
-while True:
-    # **************************************************
-    # OPERATION
-    # **************************************************
-    if config["num_of_tanks"] == 1:
-        Tank1.operateSys()
-    if config["num_of_tanks"] == 2:
-        print("came here")
-        Tank1.operateSys()
-        Tank2.operateSys()
-    if config["num_of_tanks"] == 3:
-        Tank1.operateSys()
-        Tank2.operateSys()
-        Tank3.operateSys()
+try:
+    while True:
+        # **************************************************
+        # OPERATION
+        # **************************************************
+        if config["num_of_tanks"] == 1:
+            Tank1.operateSys()
+        if config["num_of_tanks"] == 2:
+            print("came here")
+            Tank1.operateSys()
+            Tank2.operateSys()
+        if config["num_of_tanks"] == 3:
+            Tank1.operateSys()
+            Tank2.operateSys()
+            Tank3.operateSys()
 
-#except Exception as e:
-    #print("Error Detected:",e)
-    #reset()
+except Exception as e:
+    print("Error Detected:",e)
+    reset()
             
 
 
