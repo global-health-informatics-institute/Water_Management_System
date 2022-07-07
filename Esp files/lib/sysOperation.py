@@ -11,7 +11,7 @@ contents = open(filename).read()
 config = eval(contents)
 
 class Operation1:
-    def __init__(self,tank_id,tank_volume,pressure_sensor_pin =32 ,tank_valve_pin = 23,secondary_valve_pin = 4,water_pump_pin = 2,pressure_pump_pin = 27):
+    def __init__(self,tank_id,tank_volume,pressure_sensor_pin,tank_valve_pin,secondary_valve_pin,water_pump_pin,pressure_pump_pin):
         
         self.tankId = str(tank_id)
         # **************************************************
@@ -268,7 +268,7 @@ class Operation1:
         self.getData()
 
 class Operation2:
-    def __init__(self,tank_id,tank_volume,outlet_valve_pin = 23,inlet_valve_pin = 4):
+    def __init__(self,tank_id,tank_volume,outlet_valve_pin,inlet_valve_pin):
         
         self.tankId = str(tank_id)
         # **************************************************
@@ -464,7 +464,7 @@ class Operation2:
         self.getData()
         
 class Operation3:
-    def __init__(self,tank_id,tank_volume,outlet_valve_pin = 23,water_pump_pin = 2):
+    def __init__(self,tank_id,tank_volume,outlet_valve_pin,water_pump_pin):
         
         self.tankId = str(tank_id)
         # **************************************************
@@ -658,25 +658,383 @@ class Operation3:
         self.patchData(data,components)
         self.getData()
 
-class Operation4:
-    def __init__(self,tank_id,tank_volume,pressure_sensor_pin = 32,outlet_valve_pin = 23,water_pump_pin = 23,pressure_pump_pin = 27):
+class Operation5:
+    def __init__(self,tank_id,tank_volume,inlet_valve_pin):
         
         self.tankId = str(tank_id)
         # **************************************************
         # PIN ASSIGNMENT
         # **************************************************
-        self.valveOut = machine.Pin(outlet_valve_pin,machine.Pin.OUT)
-        self.waterPump = machine.Pin(water_pump_pin,machine.Pin.OUT) 
+        self.valveIn = machine.Pin(inlet_valve_pin,machine.Pin.OUT)
+        
+        #offset Variables ensure that the valves and pumps are operated once  
+        self.offsetVariable1 = self.valveIn.value()
+        
+        #Manual Mode Variables
+        self.value1 = 0
+        
+        #Tank thresholds
+        self.maximum_capacity = (tank_volume * 0.90)
+        self.minimum_capacity = (tank_volume * (30/100))
+        self.mid_capacity = (tank_volume * (45/100))
+        
+        #used to switch operation mode
+        self.overRide = False
+        
+        #API URL
+        self.BASE = config["BASE"]
+    
+    # **************************************************
+    # Gets latest tank volume from database
+    # **************************************************
+    def getTankVolume(self):
+        try:
+            #HTTP GET METHOD
+            response = urequests.get(self.BASE+"/getSensorValues.php?q="+self.tankId)
+            
+            if response.status_code == 200:
+                data = response.json()
+                print("incoming tank value", data)
+                tankVolume = float(data["volume"])
+                
+        except Exception as e:
+            print("getTankVolume Error:", e)
+            tankVolume = 0
+            pass
+        
+        return tankVolume
+    
+    # **************************************************
+    # Sends sensor and component data to database
+    # **************************************************
+    def patchData(self, data,components):
+        
+        #initialization of network object
+        wifi = network.WLAN(network.STA_IF)
+        
+        if wifi.active():
+            
+            #HTTP PATCH METHOD
+            try:
+                #Send Sensor Readings to API 
+                sensors = data
+                print('Printing sensor readings',sensors)
+                sleep(1)
+                if sensors["Volume"] >= 0 :
+                    request_headers = {'Content-Type': 'application/json'}
+                    request = urequests.patch(
+                        self.BASE+"/editSensorValues.php",
+                        json=sensors,
+                        headers=request_headers)
+                    print(request.text)
+                    request.close()
+                else:
+                    print("No values")
+                
+                request_headers = {'Content-Type': 'application/json'}
+                
+                #If it is operating in Automated mode, send the status of the compoments to database
+                if not self.overRide:
+                    components=components
+                    request = urequests.patch(
+                        self.BASE+"/editSensorValues.php",
+                        json=components,
+                        headers=request_headers)
+                    print(request.text)
+                    request.close()
+            except Exception as e:
+                print("Error:", e)
+    
+    # **************************************************
+    # Get latest tank values from database
+    # **************************************************
+    def getData(self):
+        #HTTP GET METHOD
+        try:
+            response = urequests.get(self.BASE+"/getSensorValues.php?q="+self.tankId)
+        
+            if self.overRide:
+                if response.status_code == 200:
+                    data = response.json()
+                    self.overRide = int(data["override"])
+                    self.value1 = int(data["valve2"])
+               
+          
+            else:
+                if response.status_code == 200:
+                    data = response.json()
+                    self.overRide = int(data["override"])
+            
+        except Exception as e:
+            print("getData Error",e)
+    
+    # **************************************************
+    #  Manages the system
+    # **************************************************
+    def operateSys(self):
+        
+        #gets tank's current volume and pressure of pressure sensor
+        tankVolume = self.getTankVolume()
+        
+        #tank id
+        tank_id = int(self.tankId)
+        
+        #Automatic control mode
+        if not self.overRide:
+            print("entered auto mode")
+            
+            if (tankVolume < self.minimum_capacity):
+                print("water level too low")
+                warning1 = 1
+                #switch off outlet valve
+                if(self.offsetVariable1 == False):
+                    #switch on inlet valve
+                    self.valveIn.on()
+                    self.offsetVariable1 = True
+            else:
+                warning1 = 0
+                    
+            #Check if tank volume is greater than the maximum allowable threshold
+            if (tankVolume >= self.maximum_capacity):
+                print("water level too high")
+                warning2 = 1
+                #switch off the inlet valve
+                if (self.offsetVariable1 == True):
+                    self.valveIn.off()
+                    self.offsetVariable1 = False
+            else:
+                warning2 = 0
+                     
+        #Manual Control Mode
+        elif self.overRide:
+            warning1 = 0
+            warning2 = 0
+            print("entered manual mode")
+                
+            #toggle inlet valve on/off
+            if self.value1 and self.offsetVariable1 == False:
+                self.valveIn .on()
+                self.offsetVariable1 = True
+            elif not self.value1 and self.offsetVariable1 == True:
+                self.valveIn.off()
+                self.offsetVariable1 = False
+                
+        data = {"Volume":tankVolume ,"warning1":warning1,"warning2":warning2,"tank_id": tank_id,"opCode": 4}
+        components = {"valve2":self.valveIn.value(),"tank_id": tank_id,"opCode": 4}
+        
+        self.patchData(data,components)
+        self.getData()
+        
+class Operation6:
+    def __init__(self,tank_id,tank_volume,inlet_valve_pin,water_pump_pin):
+        
+        self.tankId = str(tank_id)
+        # **************************************************
+        # PIN ASSIGNMENT
+        # **************************************************
+        self.valveIn = machine.Pin(inlet_valve_pin,machine.Pin.OUT)
+        self.waterPump = machine.Pin(water_pump_pin,machine.Pin.OUT)
+        
+        #offset Variables ensure that the valves and pumps are operated once  
+        self.offsetVariable1 = self.valveIn.value()
+        self.offsetVariable3 = self.waterPump.value()
+        
+        #Manual Mode Variables
+        self.value1 = 0
+        self.value2 = 0
+        
+        #Tank thresholds
+        self.maximum_capacity = (tank_volume * 0.90)
+        self.minimum_capacity = (tank_volume * (30/100))
+        self.mid_capacity = (tank_volume * (45/100))
+        
+        #used to switch operation mode
+        self.overRide = False
+        
+        #API URL
+        self.BASE = config["BASE"]
+    
+    
+    # **************************************************
+    # Gets latest tank volume from database
+    # **************************************************
+    def getTankVolume(self):
+        try:
+            #HTTP GET METHOD
+            response = urequests.get(self.BASE+"/getSensorValues.php?q="+self.tankId)
+            
+            if response.status_code == 200:
+                data = response.json()
+                print("incoming tank value", data)
+                tankVolume = float(data["volume"])
+                
+        except Exception as e:
+            print("getTankVolume Error:", e)
+            tankVolume = 0
+            pass
+        
+        return tankVolume
+    
+    # **************************************************
+    # Sends sensor and component data to database
+    # **************************************************
+    def patchData(self, data,components):
+        
+        #initialization of network object
+        wifi = network.WLAN(network.STA_IF)
+        
+        if wifi.active():
+            
+            #HTTP PATCH METHOD
+            try:
+                #Send Sensor Readings to API 
+                sensors = data
+                print('Printing sensor readings',sensors)
+                sleep(1)
+                if sensors["Volume"]  >= 0:
+                    request_headers = {'Content-Type': 'application/json'}
+                    request = urequests.patch(
+                        self.BASE+"/editSensorValues.php",
+                        json=sensors,
+                        headers=request_headers)
+                    print(request.text)
+                    request.close()
+                else:
+                    print("No values")
+                
+                request_headers = {'Content-Type': 'application/json'}
+                
+                #If it is operating in Automated mode, send the status of the compoments to database
+                if not self.overRide:
+                    components=components
+                    request = urequests.patch(
+                        self.BASE+"/editSensorValues.php",
+                        json=components,
+                        headers=request_headers)
+                    print(request.text)
+                    request.close()
+            except Exception as e:
+                print("Error:", e)
+    
+    # **************************************************
+    # Get latest tank values from database
+    # **************************************************
+    def getData(self):
+        #HTTP GET METHOD
+        try:
+            response = urequests.get(self.BASE+"/getSensorValues.php?q="+self.tankId)
+        
+            if self.overRide:
+                if response.status_code == 200:
+                    data = response.json()
+                    self.overRide = int(data["override"])
+                    self.value1 = int(data["pump1"])
+                    self.value2 = int(data["valve2"])
+          
+            else:
+                if response.status_code == 200:
+                    data = response.json()
+                    self.overRide = int(data["override"])
+            
+        except Exception as e:
+            print("getData Error",e)
+    
+    # **************************************************
+    #  Manages the system
+    # **************************************************
+    def operateSys(self):
+        
+        #gets tank's current volume 
+        tankVolume = self.getTankVolume()
+        #tank id
+        tank_id = int(self.tankId)
+        
+        #Automatic control mode
+        if not self.overRide:
+            print("entered auto mode")
+            
+            if (tankVolume < self.minimum_capacity):
+                print("water level too low")
+                warning1 = 1
+                if(self.offsetVariable3 == False):
+                    #switch on Water-Pump
+                    self.waterPump.on()
+                    self.offsetVariable3 = True
+            else:
+                warning1 = 0
+                     
+            
+            if (tankVolume > self.mid_capacity and tankVolume < self.maximum_capacity ):
+                sense = self.valveOut.value()
+                #switch on outlet valve
+                if(self.offsetVariable2 == True):
+                    self.valveOut.on()
+                    self.offsetVariable1 = False
+                elif(sense == 0):
+                    self.valveOut.on()
+                    self.offsetVariable1 = False
+                    
+            #Check if water tank volume is greater than the maximum allowable threshold
+            if (tankVolume >= self.maximum_capacity):
+                sense = self.valveWell.value()
+                print("water level too high")
+                warning2 = 1
+                #switch off water-Pump
+                if (self.offsetVariable3 == True):
+                    self.waterPump.off()
+                    self.offsetVariable3 = False
+                elif(sense == 0):
+                    self.valveOut.on()
+                    self.offsetVariable1 = False
+            else:
+                warning2 = 0
+        
+        #Manual Control Mode
+        elif self.overRide:
+            warning1 = 0
+            warning2 = 0
+            print("entered manual mode")
+                
+            #toggle water pump on/off
+            if self.value1 and self.offsetVariable3 == False:
+                self.waterPump.on()
+                self.offsetVariable3 = True
+            elif not self.value1 and self.offsetVariable3 == True:
+                self.waterPump.off()
+                self.offsetVariable3 = False
+                
+            #toggle outlet valve on/off
+            if self.value2 and self.offsetVariable1 == True:
+                self.valveIn.on()
+                self.offsetVariable1 = False
+            elif not self.value2 and self.offsetVariable1 == False:
+                self.valveIn.off()
+                self.offsetVariable1 = True
+            
+        data = {"Volume":tankVolume ,"warning1":warning1,"warning2":warning2,"tank_id": tank_id,"opCode": 5}
+        components = {"pump1":self.waterPump.value(),"valve2":self.valveIn.value(),"tank_id": tank_id,"opCode": 5}
+        
+        self.patchData(data,components)
+        self.getData()
+        
+class Operation7:
+    def __init__(self, tank_id, tank_volume, outlet_valve_pin, inlet_valve_pin, pressure_sensor_pin, pressure_pump_pin):
+        
+        self.tankId = str(tank_id)
+        # **************************************************
+        # PIN ASSIGNMENT
+        # **************************************************
+        self.outletValve = machine.Pin(outlet_valve_pin,machine.Pin.OUT)
+        self.inletValve = machine.Pin(inlet_valve_pin,machine.Pin.OUT)
         self.pressurePump = machine.Pin(pressure_pump_pin,machine.Pin.OUT)
         self.pressureSensor = PTOFAW100_150(pressure_sensor_pin)
         
         #offset Variables ensure that the valves and pumps are operated once  
-        self.offsetVariable1 = self.valveOut.value()
-        self.offsetVariable3 = self.waterPump.value()
+        self.offsetVariable1 = self.outletValve.value()
+        self.offsetVariable2 = self.inletValve.value()
         self.offsetVariable4 = self.pressurePump.value()
         
         #Manual Mode Variables
-        self.value1 = 0
         self.value2 = 0
         self.value3 = 0
         self.value4 = 0
@@ -721,7 +1079,6 @@ class Operation4:
             pass
         
         return tankVolume
-    
     # **************************************************
     # Sends sensor and component data to database
     # **************************************************
@@ -747,7 +1104,7 @@ class Operation4:
                     print(request.text)
                     request.close()
                 else:
-                    print("No values for sensors")
+                    print("No values for sensors pressure")
                 
                 request_headers = {'Content-Type': 'application/json'}
                 
@@ -762,7 +1119,6 @@ class Operation4:
                     request.close()
             except Exception as e:
                 print("Error:", e)
-    
     # **************************************************
     # Get latest tank values from database
     # **************************************************
@@ -775,10 +1131,9 @@ class Operation4:
                 if response.status_code == 200:
                     data = response.json()
                     self.overRide = int(data["override"])
-                    self.value1 = int(data["pump1"])
                     self.value2 = int(data["pump2"])
                     self.value3 = int(data["valve1"])
-                    
+                    self.value4 = int(data["valve2"])
             else:
                 if response.status_code == 200:
                     data = response.json()
@@ -792,7 +1147,7 @@ class Operation4:
     # **************************************************
     def operateSys(self):
         
-        #gets tank's current volume and pressure
+        #gets tank's current volume and pressure of pressure sensor
         tankVolume = self.getTankVolume()
         pressure = self.getPressureReading()
         #tank id
@@ -807,37 +1162,35 @@ class Operation4:
                 warning1 = 1
                 #switch off outlet valve
                 if(self.offsetVariable1 == False):
-                    self.valveOut.off()
-                    #switch on Water Pump
-                    self.waterPump.on()
-                    
+                    self.outletValve.off()
+                    #switch on inlet valve
+                    self.inletValve.on()
                     self.offsetVariable1 = True
-                    self.offsetVariable3 = True
+                    self.offsetVariable2 = True
             else:
                 warning1 = 0
-                     
-            
+                
             if (tankVolume > self.mid_capacity and tankVolume < self.maximum_capacity ):
-                sense = self.valveOut.value()
+                sense = self.outletValve.value()
                 #switch on outlet valve
-                if(self.offsetVariable2 == True):
-                    self.valveOut.on()
+                if(self.offsetVariable1 == True):
+                    self.outletValve.on()
                     self.offsetVariable1 = False
                 elif(sense == 0):
-                    self.valveOut.on()
+                    self.outletValve.on()
                     self.offsetVariable1 = False
                     
-            #Check if tank volume is greater than the maximum allowable threshold
+            #Check if well tank volume is greater than the maximum allowable threshold
             if (tankVolume >= self.maximum_capacity):
-                sense = self.valveOut.value()
+                sense = self.outletValve.value()
                 print("water level too high")
                 warning2 = 1
-                #switch off Water Pump
-                if (self.offsetVariable3 == True):
-                    self.waterPump.off()
-                    self.offsetVariable3 = False
+                #switch off inlet valve
+                if (self.offsetVariable2 == True):
+                    self.inletValve.off()
+                    self.offsetVariable2 = False
                 elif(sense == 0):
-                    self.valveOut.on()
+                    self.outletValve.on()
                     self.offsetVariable1 = False
             else:
                 warning2 = 0
@@ -867,14 +1220,6 @@ class Operation4:
             warning1 = 0
             warning2 = 0
             print("entered manual mode")
-                
-            #toggle water pump on/off
-            if self.value1 and self.offsetVariable3 == False:
-                self.waterPump.on()
-                self.offsetVariable3 = True
-            elif not self.value1 and self.offsetVariable3 == True:
-                self.waterPump.off()
-                self.offsetVariable3 = False
             
             #toggle pressure pump on/off
             if self.value2 and self.offsetVariable4 == True:
@@ -886,14 +1231,22 @@ class Operation4:
                 
             #toggle outlet valve on/off
             if self.value3 and self.offsetVariable1 == True:
-                self.valveOut.on()
+                self.outletValve.on()
                 self.offsetVariable1 = False
             elif not self.value3 and self.offsetVariable1 == False:
-                self.valveOut.off()
+                self.outletValve.off()
                 self.offsetVariable1 = True
+            
+            #toggle inlet valve on/off
+            if self.value4 and self.offsetVariable2 == False:
+                self.inletValve.on()
+                self.offsetVariable2 = True
+            elif not self.value4 and self.offsetVariable2 == True:
+                self.inletValve.off()
+                self.offsetVariable2 = False
                 
-        data = {"Pressure":pressure, "Volume":tankVolume ,"warning1":warning1,"warning2":warning2,"tank_id": tank_id, "opCode": 3}
-        components = {"pump1":self.waterPump.value(),"pump2":self.pressurePump.value(),"valve1":self.valveOut.value(),"tank_id": tank_id, "opCode": 3}
+        data = {"Pressure":pressure, "Volume":tankVolume ,"warning1":warning1,"warning2":warning2,"tank_id": tank_id,"opCode": 6}
+        components = {"pump2":self.pressurePump.value(),"valve1":self.outletValve.value(),"valve2":self.inletValve.value(),"tank_id": tank_id,"opCode": 6}
         
         self.patchData(data,components)
         self.getData()
