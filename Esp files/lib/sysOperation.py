@@ -439,8 +439,7 @@ class Operation2:
         elif self.overRide:
             warning1 = 0
             warning2 = 0
-            print("entered manual mode")
-                
+            print("entered manual mode")  
             #toggle outlet valve on/off
             if self.value1 and self.offsetVariable1 == True:
                 self.valveOut.on()
@@ -448,21 +447,17 @@ class Operation2:
             elif not self.value1 and self.offsetVariable1 == False:
                 self.valveOut.off()
                 self.offsetVariable1 = True
-            
             #toggle inlet valve on/off
             if self.value2 and self.offsetVariable2 == False:
                 self.valveIn .on()
                 self.offsetVariable2 = True
             elif not self.value2 and self.offsetVariable2 == True:
                 self.valveIn.off()
-                self.offsetVariable2 = False
-                
+                self.offsetVariable2 = False     
         data = {"Volume":tankVolume ,"warning1":warning1,"warning2":warning2,"tank_id": tank_id,"opCode": 1}
         components = {"valve1":self.valveOut.value(),"valve2":self.valveIn.value(),"tank_id": tank_id,"opCode": 1}
-        
         self.patchData(data,components)
         self.getData()
-        
 class Operation3:
     def __init__(self,tank_id,tank_volume,outlet_valve_pin,water_pump_pin):
         
@@ -958,33 +953,26 @@ class Operation6:
                 warning1 = 1
                 if(self.offsetVariable3 == False):
                     #switch on Water-Pump
+                    self.valveIn.on()
                     self.waterPump.on()
+                    self.offsetVariable1 = True
                     self.offsetVariable3 = True
             else:
                 warning1 = 0
-                     
-            
-            if (tankVolume > self.mid_capacity and tankVolume < self.maximum_capacity ):
-                sense = self.valveOut.value()
-                #switch on outlet valve
-                if(self.offsetVariable2 == True):
-                    self.valveOut.on()
-                    self.offsetVariable1 = False
-                elif(sense == 0):
-                    self.valveOut.on()
-                    self.offsetVariable1 = False
                     
             #Check if water tank volume is greater than the maximum allowable threshold
             if (tankVolume >= self.maximum_capacity):
-                sense = self.valveWell.value()
+                sense = self.valveIn.value()
                 print("water level too high")
                 warning2 = 1
                 #switch off water-Pump
                 if (self.offsetVariable3 == True):
                     self.waterPump.off()
+                    self.valveIn.off()
+                    self.offsetVariable1 = False
                     self.offsetVariable3 = False
-                elif(sense == 0):
-                    self.valveOut.on()
+                elif(sense == 1):
+                    self.valveIn.off()
                     self.offsetVariable1 = False
             else:
                 warning2 = 0
