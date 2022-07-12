@@ -10,14 +10,17 @@ from time import sleep
 #
 
 class WaterTank:
-    def __init__(self,height,radius,volume,trigger,echo):
+    def __init__(self, height, radius,volume, length, width, tank_type, trigger,echo):
         self.ultra_sensor = HCSR04(trigger_pin=trigger, echo_pin=echo, echo_timeout_us=10000)
         self.h = height 
         self.r = ((((radius)/2)/100)**2)
         self.v = volume
+        self.l = length
+        self.w = width
         self.tank_counter = 0
         self.initial_height = 0
         self.prev1 = 0
+        self.tank_type = tank_type
         
     def getSensorValues(self):
         #Tank constant
@@ -66,9 +69,14 @@ class WaterTank:
         theSum=0
         sleep(1)
         
-        #well_tank is the value in Litres that is sent to database
-        tank_volume = (pi*self.r*((self.h-current_height)/100))*1000 # pi*r^2*(b/100) * 1000m^3 to get litres,
-                                            # b = height(cm) - ultrasonic sensed height(cm)
+        #vertical cylindrical tank
+        if self.tank_type == "vCylindrical":
+            #well_tank is the value in Litres that is sent to database
+            tank_volume = (pi*self.r*((self.h-current_height)/100))*1000 # pi*r^2*(b/100) * 1000m^3 to get litres,
+                                                                         # b = height(cm) - ultrasonic sensed height(cm)
+        #Square/rectangular tank
+        elif self.tank_type == "rectangular":
+            tank_volume = (self.l/100) * (self.w/100) * ((self.h-current_height)/100) #l*w*f where f = height - sensed height, l = length, w = width
         
         
         if tank_volume > self.v:
