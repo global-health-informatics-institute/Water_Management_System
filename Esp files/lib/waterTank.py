@@ -94,7 +94,7 @@ class WaterTank:
                                                                          # b = height(cm) - ultrasonic sensed height(cm)
         #Square/rectangular tank
         elif self.tank_type == "rectangular":
-            tank_volume = (self.l/100) * (self.w/100) * ((self.h-current_height)/100) #l*w*f where f = height - sensed height, l = length, w = width
+            tank_volume = ((self.l/100) * (self.w/100) * ((self.h-current_height)/100))*1000 #l*w*f where f = height - sensed height, l = length, w = width
         
         
         if tank_volume > self.v:
