@@ -15,6 +15,7 @@ $override = $data["override"];
 $tank_id = $data["tank_id"];
 $opCode = $data["opCode"];
 $resetM = $data["reset"];
+$toggleP = $data["toggleP"];
 
 $user = "admin";
 $password = "password";
@@ -38,7 +39,7 @@ try {
     
     //updates the wellPump in commands table
     if(isset($pump1)){
-     $sql = "UPDATE commands SET wellPump = '".$pump1."' WHERE watertank_id = '".$tank_id."'" ;
+     $sql = "UPDATE commands SET waterPump = '".$pump1."' WHERE watertank_id = '".$tank_id."'" ;
      $conn->exec($sql);
      echo "record in commands updated successfully";
     }
@@ -52,14 +53,14 @@ try {
     
     //updates the wellValve in commands table
     if(isset($valve1)){
-     $sql = "UPDATE commands SET wellValve = '".$valve1."' WHERE watertank_id = '".$tank_id."'";
+     $sql = "UPDATE commands SET outletValve = '".$valve1."' WHERE watertank_id = '".$tank_id."'";
      $conn->exec($sql);
      echo "record in ".$table ."updated successfully";
     }
     
     //updates the wellValve in commands table
     if(isset($valve2)){
-     $sql = "UPDATE commands SET wbValve = '".$valve2."' WHERE watertank_id = '".$tank_id."'";
+     $sql = "UPDATE commands SET inletValve = '".$valve2."' WHERE watertank_id = '".$tank_id."'";
      $conn->exec($sql);
      echo "record in ".$table ."updated successfully";
     }
@@ -79,7 +80,7 @@ try {
   }
 
   //Checks incoming opcode and then performs operations
-  if($opCode > 0 && $opCode < 3 ){
+  if($opCode > 0 && $opCode < 6 ){
     
     if(isset($volume)){ 
      $sql = "INSERT INTO $table (Pressure, Volume, warning1, warning2, watertank_id)
@@ -90,7 +91,7 @@ try {
 
     //updates the wellPump in commands table
     if(isset($pump1)){
-     $sql = "UPDATE commands SET wellPump = '".$pump1."' WHERE watertank_id = '".$tank_id."'" ;
+     $sql = "UPDATE commands SET waterPump = '".$pump1."' WHERE watertank_id = '".$tank_id."'" ;
      $conn->exec($sql);
      echo "record ".$pump1."  in commands updated successfully";
     }
@@ -104,14 +105,14 @@ try {
     
     //updates the wellValve in commands table
     if(isset($valve1)){
-     $sql = "UPDATE commands SET wellValve = '".$valve1."' WHERE watertank_id = '".$tank_id."'";
+     $sql = "UPDATE commands SET outletValve = '".$valve1."' WHERE watertank_id = '".$tank_id."'";
      $conn->exec($sql);
      echo "record ".$valve1." in ".$table ."updated successfully";
     }
     
     //updates the wellValve in commands table
     if(isset($valve2)){
-     $sql = "UPDATE commands SET wbValve = '".$valve2."' WHERE watertank_id = '".$tank_id."'";
+     $sql = "UPDATE commands SET inletValve = '".$valve2."' WHERE watertank_id = '".$tank_id."'";
      $conn->exec($sql);
      echo "record ".$valve2." in ".$table ."updated successfully";
     }
@@ -130,7 +131,7 @@ try {
     }
   }
 
-  if($opCode == 3 ){
+  if($opCode == 6 ){
     
     if(isset($volume) && (isset($war1) || isset($war2))){ 
      $sql = "INSERT INTO $table (Pressure, Volume, warning1, warning2, watertank_id)
@@ -141,7 +142,7 @@ try {
 
     //updates the wellPump in commands table
     if(isset($pump1)){
-     $sql = "UPDATE commands SET wellPump = '".$pump1."' WHERE watertank_id = '".$tank_id."'" ;
+     $sql = "UPDATE commands SET waterPump = '".$pump1."' WHERE watertank_id = '".$tank_id."'" ;
      $conn->exec($sql);
      echo "record ".$pump1." in commands updated successfully";
     }
@@ -155,14 +156,14 @@ try {
     
     //updates the wellValve in commands table
     if(isset($valve1)){
-     $sql = "UPDATE commands SET wellValve = '".$valve1."' WHERE watertank_id = '".$tank_id."'";
+     $sql = "UPDATE commands SET outletValve = '".$valve1."' WHERE watertank_id = '".$tank_id."'";
      $conn->exec($sql);
      echo "record ".$valve1." in ".$table ."updated successfully";
     }
     
     //updates the wellValve in commands table
     if(isset($valve2)){
-     $sql = "UPDATE commands SET wbValve = '".$valve2."' WHERE watertank_id = '".$tank_id."'";
+     $sql = "UPDATE commands SET inletValve = '".$valve2."' WHERE watertank_id = '".$tank_id."'";
      $conn->exec($sql);
      echo "record ".$valve2." in ".$table ."updated successfully";
     }
@@ -193,6 +194,12 @@ try {
     $conn->exec($sql);
     echo "record reset in commands updated successfully";
    }
+  //show or hide pressure gauge 
+  if(isset($toggleP)){
+    $sql = "UPDATE commands SET toggle pressure = '".$toggleP."' WHERE watertank_id = '".$tank_id."'";
+    $conn->exec($sql);
+    echo "record toggle pressure in commands updated successfully";
+  }
 
 } catch(PDOException $e) {
   echo $sql . "<br>" . $e->getMessage();

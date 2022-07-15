@@ -29,13 +29,14 @@ try{
     $myObj->tankid = $row['watertank_id'];
   }
   foreach($db->query("SELECT * FROM $table2 WHERE watertank_id = '".$tank_id."' order by id DESC limit 1") as $row) {
-    $myObj->pump1 = $row['wellPump'];
+    $myObj->pump1 = $row['waterPump'];
     $myObj->pump2 = $row['pressurePump'];
-    $myObj->valve1 = $row['wellValve'];
-    $myObj->valve2 = $row['wbValve'];
+    $myObj->valve1 = $row['outletValve'];
+    $myObj->valve2 = $row['inletValve'];
     $myObj->override = $row['overRide'];
     $myObj->opCode = $row['OpCode'];
     $myObj->resetM = $row['reset'];
+    $myObj->toggleP = $row['toggle_pressure'];
 
   }
   

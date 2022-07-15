@@ -145,7 +145,7 @@ if (isset($_POST['submit'])){
 				<?php  echo $error1; ?>
 				<form class="h-100 mt-3" action ="" method="post">
 					<div class ="row" >
-						<div class="form-floating col-lg-6">
+						<div class="form-floating col-lg-6 mb-3">
 						  <input type="text" class="input-fields form-control" id="floatingInput" placeholder="Username" name = "username" >
 						  <label for="floatingInput"><i class="fas fa-user ms-1 me-2"></i>Username</label>
 						  <?php  echo $error4; ?>
@@ -165,7 +165,7 @@ if (isset($_POST['submit'])){
 						<input type = "submit" id ="register" name = "submit" class="btn btn-secondary" value="Register"/>
 					</div>
 				</form>
-				<div class="mb-3"><a href="http://ghii.org" class="org-link">Global Health Informatics Institute, &copy 2022 </a></div>
+				<div class="mb-3 mt-2"><a href="http://ghii.org" class="org-link text-muted"><small>GHII, &copy 2022 </small></a></div>
 				</div>
 			</div>
 		</div>

@@ -47,6 +47,7 @@ var yVal = 15;
 var h = 0;
 var Tcap = true;
 var tname = "";
+var toggleP = "";
 
 //Check if there is a tank id in local storage
 if(window.localStorage.getItem("admin_tank_id")!==null)
@@ -111,6 +112,7 @@ tooltip: {
 
 var chart1 = new ApexCharts(document.querySelector("#chart1"), options1);
 chart1.render();
+
 
 //pressure gauge
  var options2 ={
@@ -235,6 +237,7 @@ function getReadings() {
         });
         h = 2;
       }
+      //update the tank capacity
       if(Tcap == true){
         var capacity = myObj.capacity;
         capacity = Number(capacity);
@@ -260,6 +263,8 @@ function getReadings() {
       mode = myObj.override;
       opMode = myObj.opCode;
       tname = myObj.tname;
+      toggleP = myObj.toggleP;
+    
     }
     
     
@@ -340,9 +345,6 @@ function getReadings() {
      $("#control").css("display","none");
   }
   if(opMode == "1"){
-    $("#Gauge").addClass("visually-hidden");
-    $("#Chart").removeClass("col-lg-6");
-    $("#Chart").addClass("col-lg-12");
     $("#b1").addClass("visually-hidden");
     $("#b2").addClass("visually-hidden");
     $("#v1").text("Outlet Valve");
@@ -353,9 +355,6 @@ function getReadings() {
     
   }
   if(opMode == "2"){
-    $("#Gauge").addClass("visually-hidden");
-    $("#Chart").removeClass("col-lg-6");
-    $("#Chart").addClass("col-lg-12");
     $("#b2").addClass("visually-hidden");
     $("#b4").addClass("visually-hidden");
     $("#p1").text("Water Pump");
@@ -367,6 +366,12 @@ function getReadings() {
   if(opMode == "3"){
     $("#b4").addClass("visually-hidden");
     $("#v1").text("Outlet Valve");
+  }
+  
+  if(toggleP == "1"){
+    $("#Gauge").removeClass("visually-hidden");
+    $("#Chart").removeClass("col-lg-12");
+    $("#Chart").addClass("col-lg-8");
   }
   
   };
@@ -517,8 +522,6 @@ function handleClick4(){
 }
 
 
-
-
 //Handles the Mode Button
 function handleClick5(){
   if(mode == 0){
@@ -579,8 +582,10 @@ $(function(){
 
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function(){
-        if(xhr.status === 200){
-        
+      if(xhr.status === 200){
+        const toast = new bootstrap.Toast($("#liveToast2"))
+        $("#success").html("Reset Successful!");
+        toast.show();
        }
   }
     xhr.open("POST", "/editSensorValues.php", true);

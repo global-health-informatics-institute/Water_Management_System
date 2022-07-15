@@ -88,57 +88,8 @@ var tank_id_2 = "4";
 var tank3_volume = 0;
 var tname3 = "";
 
-
-//Create Water Volume chart
-
-var options1 = {
-  series: [{
-  name: 'Water Level',
-  data: []
-}],
-
-
-  chart: {
-  height: 400,
-  type: 'area'
-},
-dataLabels: {
-  enabled: false
-},
-stroke: {
-  curve: 'smooth'
-},
-yaxis: {
-    title:{
-      text: "Litres",
-      
-      },
-    labels:{
-      formatter: function(val,index){
-        return val.toFixed(2);
-        }
-      },
-        min: 0,
-        max: 0,
-        tickAmount: 9,
-        type: 'numeric',
-},
-xaxis:{
-  type: "datetime",
-  
-  title:{
-      text: "Timestamp",
-      },
-  },        
-tooltip: {
-  x: {
-    format: 'dd/MM/yy HH:mm'
-  },
-},
-};
-
-var chart1 = new ApexCharts(document.querySelector("#chart1"), options1);
-chart1.render();
+//general variables
+var toggleP = "";
 
 //pressure gauge
  var options2 ={
@@ -197,7 +148,60 @@ chart1.render();
 var chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
 chart2.render();
 
-//water volume chart
+
+
+//Water Volume chart for tank 1
+var options1 = {
+  series: [{
+  name: 'Water Level',
+  data: []
+}],
+
+
+  chart: {
+  height: 400,
+  type: 'area'
+},
+dataLabels: {
+  enabled: false
+},
+stroke: {
+  curve: 'smooth'
+},
+yaxis: {
+    title:{
+      text: "Litres",
+      
+      },
+    labels:{
+      formatter: function(val,index){
+        return val.toFixed(2);
+        }
+      },
+        min: 0,
+        max: 0,
+        tickAmount: 9,
+        type: 'numeric',
+},
+xaxis:{
+  type: "datetime",
+  
+  title:{
+      text: "Timestamp",
+      },
+  },        
+tooltip: {
+  x: {
+    format: 'dd/MM/yy HH:mm'
+  },
+},
+};
+
+var chart1 = new ApexCharts(document.querySelector("#chart1"), options1);
+chart1.render();
+
+
+//Water Volume chart for tank 2
 var options3 = {
   series: [{
   name: 'Water Level',
@@ -247,64 +251,8 @@ tooltip: {
 var chart3 = new ApexCharts(document.querySelector("#chart3"), options3);
 chart3.render();
 
-//pressure gauge
- var options4 ={
-  chart: {
-    height: 350,
-    type: "radialBar",
-  },
-  series: [],
-  colors: ["#20E647"],
-  plotOptions: {
-    radialBar: {
-      startAngle: -135,
-      endAngle: 135,
-      track: {
-        dropShadow: {
-          enabled: true,
-          top: 2,
-          left: 0,
-          blur: 4,
-          opacity: 0.15
-        }
-      },
-      dataLabels: {
-        name: {
-          show: false,
-        },
-        value: {
-          fontSize: "18px",
-          show: true,
-          formatter: function (val) {
-            return val + ' PSI'
-          },
-        }
-      }
-    }
-  },
-  fill: {
-   colors: [function({ value, seriesIndex, w }) {
-    if(value < 13) {
-        return '#ff0000'
-    } else if (value >= 13 && value < 20) {
-        return '#fb9015'
-    } else if(value >= 20 && value < 65) {
-        return '#04fd00'
-    } else{
-      return '#ff0000'
-    }
-  }]
-  },
-  stroke: {
-    lineCap: "butt"
-  },
-  labels: ["Pressure"]
-};
 
-var chart4 = new ApexCharts(document.querySelector("#chart4"), options4);
-chart4.render()
-
-// Create Well Water Volume chart
+//Water Volume chart for tank 3
 var options5 = {
   series: [{
   name: 'Water Level',
@@ -353,63 +301,6 @@ tooltip: {
 
 var chart5 = new ApexCharts(document.querySelector("#chart5"), options5);
 chart5.render();
-
-//pressure gauge
- var options6 ={
-  chart: {
-    height: 350,
-    type: "radialBar",
-  },
-  series: [],
-  colors: ["#20E647"],
-  plotOptions: {
-    radialBar: {
-      startAngle: -135,
-      endAngle: 135,
-      track: {
-        dropShadow: {
-          enabled: true,
-          top: 2,
-          left: 0,
-          blur: 4,
-          opacity: 0.15
-        }
-      },
-      dataLabels: {
-        name: {
-          show: false,
-        },
-        value: {
-          fontSize: "18px",
-          show: true,
-          formatter: function (val) {
-            return val + ' PSI'
-          },
-        }
-      }
-    }
-  },
-  fill: {
-   colors: [function({ value, seriesIndex, w }) {
-    if(value < 13) {
-        return '#ff0000'
-    } else if (value >= 13 && value < 20) {
-        return '#fb9015'
-    } else if(value >= 20 && value < 65) {
-        return '#04fd00'
-    } else{
-      return '#ff0000'
-    }
-  }]
-  },
-  stroke: {
-    lineCap: "butt"
-  },
-  labels: ["Pressure"]
-};
-
-var chart6 = new ApexCharts(document.querySelector("#chart6"), options6);
-chart6.render()
 
 
 //sends notification to mobile phone
@@ -469,6 +360,7 @@ function getReadings() {
       mode = myObj.override;
       opMode = myObj.opCode;
       tname1 = myObj.tname;
+      toggleP = myObj.toggleP;
       
       if(tank1_volume == 0){
         
@@ -566,18 +458,13 @@ function getReadings() {
      $("#the_container1").find("#control_1").css("display","none");
   }
   if(opMode == "1"){
-    $("#the_container1").find("#Gauge").addClass("visually-hidden");
-    $("#the_container1").find("#Chart").removeClass("col-lg-6");
-    $("#the_container1").find("#Chart").addClass("col-lg-12 col-md-12 col-sm-12");
+    
     $("#the_container1").find("#b1").addClass("visually-hidden");
     $("#the_container1").find("#b2").addClass("visually-hidden");
     $("#the_container1").find("#v1").text("Outlet Valve");
     $("#the_container1").find("#v2").text("Inlet Valve");
   }
   if(opMode == "2"){
-    $("#the_container1").find("#Gauge").addClass("visually-hidden");
-    $("#the_container1").find("#Chart").removeClass("col-lg-6");
-    $("#the_container1").find("#Chart").addClass("col-lg-12 col-md-12 col-sm-12");
     $("#the_container1").find("#b2").addClass("visually-hidden");
     $("#the_container1").find("#b4").addClass("visually-hidden");
     $("#the_container1").find("#p1").text("Water Pump");
@@ -586,6 +473,11 @@ function getReadings() {
   if(opMode == "3"){
     $("#the_container1").find("#b4").addClass("visually-hidden");
     $("#the_container1").find("#v1").text("Outlet Valve");
+  }
+  if(toggleP == "1"){
+    $("#the_container0").removeClass("visually-hidden");
+  }else{
+    $("#the_container0").addClass("visually-hidden");
   }
   
   };
@@ -635,7 +527,7 @@ function getReadings2() {
             }]);
       
       //update pressure gauge
-      chart4.updateSeries([pressureV]);
+      chart2.updateSeries([pressureV]);
       
       
       
@@ -662,14 +554,10 @@ function getReadings2() {
             },
             min: 0,
             max: tank2_volume
-          }
-        });
+            }
+          });
+        }
       }
-      
-      
-      
-      
-    }
     
     
     //Checks if there any warnings
@@ -747,18 +635,14 @@ function getReadings2() {
      $("#the_container2").find("#control_2").css("display","none");
   }
   if(opMode_1 == "1"){
-    $("#the_container2").find("#Gauge").addClass("visually-hidden");
-    $("#the_container2").find("#Chart").removeClass("col-lg-6");
-    $("#the_container2").find("#Chart").addClass("col-lg-12");
+    
     $("#the_container2").find("#b1_1").addClass("visually-hidden");
     $("#the_container2").find("#b2_1").addClass("visually-hidden");
     $("#the_container2").find("#v1").text("Outlet Valve");
     $("#the_container2").find("#v2").text("Inlet Valve");
   }
   if(opMode_1 == "2"){
-    $("#the_container2").find("#Gauge").addClass("visually-hidden");
-    $("#the_container2").find("#Chart").removeClass("col-lg-6");
-    $("#the_container2").find("#Chart").addClass("col-lg-12");
+    
     $("#the_container2").find("#b2_1").addClass("visually-hidden");
     $("#the_container2").find("#b4_1").addClass("visually-hidden");
     $("#the_container2").find("#p1").text("Water Pump");
@@ -767,6 +651,9 @@ function getReadings2() {
   if(opMode_1 == "3"){
     $("#the_container2").find("#b4_1").addClass("visually-hidden");
     $("#the_container2").find("#v1").text("Outlet Valve");
+  }
+  if(toggleP == "1"){
+    $("#the_container0").removeClass("visually-hidden");
   }
   
   };
@@ -813,7 +700,7 @@ function getReadings3() {
             }]);
       
       //update pressure gauge
-      chart6.updateSeries([pressureV]);
+      chart2.updateSeries([pressureV]);
      
       //command values updated
       warning1_2 = myObj.warning1;
@@ -920,18 +807,12 @@ function getReadings3() {
      $("#the_container3").find("#control_3").css("display","none");
   }
   if(opMode_2 == "1"){
-    $("#the_container3").find("#Gauge").addClass("visually-hidden");
-    $("#the_container3").find("#Chart").removeClass("col-lg-6");
-    $("#the_container3").find("#Chart").addClass("col-lg-12");
     $("#the_container3").find("#b1_2").addClass("visually-hidden");
     $("#the_container3").find("#b2_2").addClass("visually-hidden");
     $("#the_container3").find("#v1").text("Outlet Valve");
     $("#the_container3").find("#v2").text("Inlet Valve");
   }
   if(opMode_2 == "2"){
-    $("#the_container3").find("#Gauge").addClass("visually-hidden");
-    $("#the_container3").find("#Chart").removeClass("col-lg-6");
-    $("#the_container3").find("#Chart").addClass("col-lg-12");
     $("#the_container3").find("#b2_2").addClass("visually-hidden");
     $("#the_container3").find("#b4_2").addClass("visually-hidden");
     $("#the_container3").find("#p1").text("Water Pump");
@@ -940,6 +821,10 @@ function getReadings3() {
   if(opMode_2 == "3"){
     $("#the_container3").find("#b4_2").addClass("visually-hidden");
     $("#the_container3").find("#v1").text("Outlet Valve");
+  }
+  
+  if(toggleP == "1"){
+    $("#the_container0").removeClass("visually-hidden");
   }
   
   };

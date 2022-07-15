@@ -48,7 +48,6 @@ p {
 }
 
 a{
-  padding: 0 20px;
   text-decoration: none;
   color: #c1c4c8;
   font-weight: 200;
@@ -59,6 +58,7 @@ a:hover{
 
 /*NAVBAR SECTION*/
 .navbar-brand{
+  margin-right:0rem;
   font-size: 30px;
   color: white;
 }
@@ -69,6 +69,7 @@ a:hover{
 
 .offcanvas{
   background-color:#122945;
+  width:auto;
 }
 
   
@@ -202,7 +203,15 @@ a:hover{
   color: red;
   
 }
+
+#the_container0{
+  justify-content: center;
+}
   
+#Gauge{
+  max-width: 650px;
+  border-radius:20px;
+}
 
 /* CSS */
 .button-30 {
@@ -350,10 +359,15 @@ a:hover{
   .nav-1{
   justify-content: flex-start;
   align-items: flex-start;
-
   }
+  
+  .offcanvas{
+  width: 332px;
+}
+
 
 }
+
 @media (max-width: 609px){
 .button-grid{
   grid-gap: 0rem;
@@ -382,6 +396,7 @@ margin-top:6px;
 }
 
 }
+
 @media (max-width: 991px){
 .nav{
   width: auto;

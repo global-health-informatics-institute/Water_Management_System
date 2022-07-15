@@ -2,10 +2,14 @@
 //start the session
 session_start();
 
-//if the user is already logged in then redirect user
+//if the user is not logged in then redirect user
 if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
 	header("location: login.php");
 	exit;
+}
+if($_SESSION['name'] == "admin"){
+		header("location: admin.php");
+    exit;
 }
 ?>
 
@@ -31,7 +35,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon "></span>
         </button>
-        <div class=" offcanvas offcanvas-start d-flex flex-column flex-shrink-0 p-3 text-white" style="width: auto;" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class=" offcanvas offcanvas-start d-flex flex-column flex-shrink-0 p-3 text-white" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
           <div class="offcanvas-header">
             <a href="index.php" class="offcanvas-title fs-4 align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none" id="offcanvasExampleLabel">WATER MANAGEMENT SYSTEM</a>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -64,6 +68,17 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
     <!-- Start of content-->
     <div class="container-fluid row theRow">
       
+      <!--Card for pressure gauge-->
+      <div id="the_container0" class="col-lg-12 p-2 mt-1 visually-hidden d-grid">
+        <!--Water Pressure gauge-->
+        <div id ="Gauge" class="card">
+          <div id="thecard" class="mt-5">
+            <p id="pressure" class="card-title text-center">Water Pressure</p>
+            <div id="chart2"></div>
+          </div>
+        </div>
+      </div>
+      
       <!--Card for tank 1-->
       <div id="the_container1" class="card col-lg-12 p-2 mt-5">
         <div id = "tankName" class="card-title text-center"></div>
@@ -94,17 +109,9 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
 
          <!--Card Content-->
         <div id="content" class="row mt-2 text-center">
-          
-          <!--Water Pressure gauge-->
-          <div id ="Gauge" class="col-lg-3 col-md-4 ">
-            <div id="thecard" class="mt-5">
-              <p id="pressure" class="card-title">Water Pressure</p>
-              <div id="chart2"></div>
-            </div>
-          </div>
-          
+
           <!--Water Tank Chart-->
-          <div id = "Chart" class="col-lg-9 col-md-8 ">
+          <div id = "Chart" class="col-lg-12 ">
             <div id="thecard" class="mt-5 mb-5">
               <p id="volume" class="card-title">Water Volume</p>
               <div id="chart1"></div>
@@ -146,16 +153,8 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
          <!--Card Content-->
         <div id="content" class="row mt-2 text-center">
           
-          <!--Water Pressure gauge-->
-          <div id ="Gauge" class="col-lg-4 col-md-5 ">
-            <div id="thecard" class="mt-5">
-              <p id="pressure" class="card-title">Water Pressure</p>
-              <div id="chart4"></div>
-            </div>
-          </div>
-          
           <!--Water Tank Chart-->
-          <div id = "Chart" class="col-lg-8 col-md-7 ">
+          <div id = "Chart" class="col-lg-12 ">
             <div id="thecard" class="mt-5 mb-5">
               <p id="volume" class="card-title">Water Volume</p>
               <div id="chart3"></div>
@@ -196,18 +195,10 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
         </div>
 
          <!--Card Content-->
-        <div id="content" class="row mt-2 text-center">
-          
-          <!--Water Pressure gauge-->
-          <div id ="Gauge" class="col-lg-3 col-md-4">
-            <div id="thecard" class="mt-5">
-              <p id="pressure" class="card-title">Water Pressure</p>
-              <div id="chart6"></div>
-            </div>
-          </div>
+        <div id="content" class=" row mt-2 text-center">
           
           <!--Water Tank Chart-->
-          <div id = "Chart" class="col-lg-9 col-md-4">
+          <div id = "Chart" class="col-lg-12 mb-2">
             <div id="thecard" class="mt-5 mb-5">
               <p id="volume" class="card-title">Water Volume</p>
               <div id="chart5"></div>

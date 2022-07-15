@@ -7,6 +7,10 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
 	header("location: login.php");
 	exit;
 }
+if($_SESSION['name'] !== "admin"){
+		header("location: index.php");
+    exit;
+}
 ?>
 
 
@@ -121,7 +125,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
       <div id="content" class="row mt-2 text-center">
         
         <!--Water Pressure gauge-->
-        <div id ="Gauge" class="col-lg-4">
+        <div id ="Gauge" class="col-lg-4 visually-hidden">
           <div id="thecard" class="card shadow mt-5">
             <p class="card-title">Water Pressure</p>
             <div id="chart2"></div>
@@ -129,7 +133,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
         </div>
         
         <!--Water Tank Chart-->
-        <div id="Chart" class="col-lg-8">
+        <div id="Chart" class="col-lg-12 mb-2">
           <div id="thecard" class="card shadow mt-5">
             <p class="card-title">Water Volume</p>
             <div id="chart1"></div>
@@ -142,11 +146,22 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
       <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
           <img src="assets/images/triangle-exclamation-solid.svg" class="toast-img rounded me-2" alt="img">
-          <strong class="me-auto toast-label">Warning!</strong>
+          <strong class="me-auto toast-label warning">Warning!</strong>
           <small>Just now</small>
           <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
         <div id = "warning" class="toast-body"></div>
+      </div>
+    </div>
+    <div class="toast-container position-fixed bottom-50 end-0 p-5 mt-5">
+      <div id="liveToast2" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <img src="assets/images/triangle-exclamation-solid.svg" class="toast-img rounded me-2" alt="img">
+          <strong class="me-auto toast-label success">Success!</strong>
+          <small>Just now</small>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div id = "success" class="toast-body"></div>
       </div>
     </div>
     <!--Footer-->

@@ -16,8 +16,8 @@ require_once "session.php";
 	<body class="bg-light">
 		<div id="main-container" class= "container d-grid h-100">
 			<div id="thecard2" class="card shadow col-md-5">
-				<div class="img-pos mt-5 mb-0" ><img class="user-img" src="assets/images/logo with text.png"/></div>
-				<div class="card-title mt-2"><strong>Sign In</strong></div>
+				<div class="img-pos mt-4 mb-0" ><img class="user-img" src="assets/images/logo with text.png"/></div>
+				<div class="card-title mt-2 mb-4"><strong>Sign In</strong></div>
 				<div class="alert alert-danger mx-5" style="display:none">invalid credentials<button type="button" class="btn-close ms-2" aria-label="Close" onclick="close1()"></div>
 				<form id="form" class="h-100 mt-3" action ="" method="post">
 					<div class="form-floating me-3 ms-3">
@@ -28,14 +28,14 @@ require_once "session.php";
 					  <input type="password" class="input-fields form-control" id="floatingPassword" placeholder="Password" required>
 					  <label for="floatingPassword"><i class="fas fa-key me-2"></i>Password</label>
 					</div>
-					<div class="form-group mb-2 ms-3 me-3 mt-5">
+					<div class="form-group mb-2 ms-3 me-3 mt-4">
 						<button id="login" class="btn login" type="submit">
 						  <span class=" spinner spinner-border spinner-border-sm text-white visually-hidden" role="status" aria-hidden="true"></span>
 						  <span class = "login-text">Login</span>
 						</button>
 					</div>
 				</form>
-				<div class="mb-3 mt-2"><a href="http://ghii.org" class="org-link">Global Health Informatics Institute, &copy 2022 </a></div>
+				<div class="mb-3 mt-2"><a href="http://ghii.org" class="org-link text-muted"><small>GHII, &copy 2022 </small></a></div>
 				</div>
 			</div>
 		</div>
