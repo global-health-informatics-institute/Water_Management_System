@@ -5,9 +5,6 @@ from time import sleep
 # Gets the height of the tank in cm, the radius in meters, the volume of the tank in Litres
 # gets the echo and trigger pins of ultrasonic sensor 
 #
-#
-#
-#
 
 class WaterTank:
     def __init__(self, height, radius,volume, length, width, tank_type, trigger,echo):
@@ -55,10 +52,8 @@ class WaterTank:
                     if self.initial_height > temp1 or self.initial_height < temp2 :
                         print(self.initial_height, "cm The filtered distance")
                         self.initial_height = self.prev1
-                        print("initial height is now: ",self.initial_height)
                         theSum = theSum + self.initial_height
                         self.tank_counter += 1
-                        print("sum 1 is now: ",theSum)
                         count += 1
                         if count == 30:
                             self.prev1 = self.initial_height
@@ -67,20 +62,16 @@ class WaterTank:
                         self.prev1 = self.initial_height
                         theSum = theSum + self.initial_height
                         self.tank_counter += 1
-                        print("sum is now: ",theSum)
                 else:
                     self.prev1 = self.initial_height
                     theSum = theSum + self.initial_height
                     self.tank_counter += 1
-                    print("sum is now: ",theSum)
-        
 
         self.tank_counter = 0
         self.escape = 0
         #check if there is a valid sum
         if theSum > 0:
             current_height = theSum/10
-            print("The current height is now",current_height)
             theSum=0
             sleep(1)
         #assign the previous valid value
