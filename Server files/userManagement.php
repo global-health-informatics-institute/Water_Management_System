@@ -77,41 +77,44 @@ if (isset($_POST['username'])){
 		</div>
 		<div id="main-container" class= "container d-flex h-100 mt-5">
 			<div id="thecard2" class="card shadow mb-5">
-				<table class="table text-start">
-				  <thead>
-					<tr>
-					  <th scope="col"></th>
-					  <th scope="col">User Id</th>
-					  <th scope="col">Username</th>
-					  <th scope="col">Email</th>
-					  <th scope="col"></th>
-					</tr>
-				  </thead>
-				  <tbody>
-					<?php 
-						foreach($db->query("SELECT id, username, email FROM users where username != 'admin'") as $row) {
-							echo'
-								<tr>
-								  <th scope="row"><img src="assets/images/user-svgrepo-com.svg" alt="" width="32" height="32" class="rounded-circle me-2"></th>
-								  <td>'.$row['id'].'</td>
-								  <td id = "username" >'.$row['username'].'</td>
-								  <td>'.$row['email'].'</td>
-								  <td><button type="button" class="btn-close" aria-label="Close" onClick ="deleteUser(this)" "></button></td>
-								</tr> ';
-						}					
-					?>
-					<tr>
-						<th><a href="adminRegister.php" data-bs-toggle="tooltip" data-bs-placement="top" title="Add User" class="nav-link"><i id="add-icon" class="fa-solid fa-circle-plus"></i></a></th>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				  </tbody>
-				</table>
+				<div style ="overflow-x:auto;">
+					<table class="table table-hover text-start">
+					  <thead>
+						<tr>
+						  <th scope="col"></th>
+						  <th scope="col">Id</th>
+						  <th scope="col">Username</th>
+						  <th scope="col">Email</th>
+						  <th scope="col"></th>
+						</tr>
+					  </thead>
+					  <tbody>
+						<?php 
+							foreach($db->query("SELECT id, username, email FROM users where username != 'admin'") as $row) {
+								echo'
+									<tr>
+									  <th scope="row"><img src="assets/images/user-svgrepo-com.svg" alt="" width="32" height="32" class="rounded-circle me-2"></th>
+									  <td>'.$row['id'].'</td>
+									  <td id = "username" >'.$row['username'].'</td>
+									  <td>'.$row['email'].'</td>
+									  <td><button type="button" class="btn-close" aria-label="Close" onClick ="deleteUser(this)" "></button></td>
+									</tr> ';
+							}					
+						?>
+						<tr>
+							<th><a href="adminRegister.php" data-bs-toggle="tooltip" data-bs-placement="top" title="Add User" class="nav-link"><i id="add-icon" class="fa-solid fa-circle-plus"></i></a></th>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+					  </tbody>
+					</table>
+				</div>
 				</div>
 			</div>
 		</div>
+		<script src="assets/bootstrap.min.js"></script>
 		<script src="assets/bootstrap.bundle.min.js"></script>
 		<script src="assets/all.min.js"></script>
 		<script src="scripts/userManagement.js?v=<?php echo time() ?>"></script>

@@ -109,7 +109,7 @@ if($_SESSION['name'] == "admin"){
         </div>
 
          <!--Card Content-->
-        <div id="content" class="row mt-2 text-center">
+        <div id="content" class="row mt-1 text-center">
 
           <!--Water Tank Chart-->
           <div id = "Chart" class="col-lg-12 ">
@@ -156,7 +156,7 @@ if($_SESSION['name'] == "admin"){
           
           <!--Water Tank Chart-->
           <div id = "Chart" class="col-lg-12 ">
-            <div id="thecard" class="mt-5 mb-5">
+            <div id="thecard" class="mt-1 mb-5">
               <p id="volume" class="card-title">Water Volume</p>
               <div id="chart3"></div>
             </div>
@@ -200,7 +200,7 @@ if($_SESSION['name'] == "admin"){
           
           <!--Water Tank Chart-->
           <div id = "Chart" class="col-lg-12 mb-2">
-            <div id="thecard" class="mt-5 mb-5">
+            <div id="thecard" class="mt-1 mb-5">
               <p id="volume" class="card-title">Water Volume</p>
               <div id="chart5"></div>
             </div>
