@@ -1406,6 +1406,9 @@ $(function(){
     $("#staticBackdrop3").find(".modal-body").html("Are you sure you want to reset the "+tname3+" microcontroller?");
   });
   
+  $( "#liveToast1" ).draggable();
+  $( "#liveToast2" ).draggable();
+  $( "#liveToast3" ).draggable();
   
   
 });

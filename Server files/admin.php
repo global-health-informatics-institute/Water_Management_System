@@ -20,6 +20,7 @@ if($_SESSION['name'] !== "admin"){
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel = "icon" type="image/png" href = "assets/images/ghii_logo.png"> 
     <link rel ="stylesheet" href="assets/bootstrap.min.css">
+    <link rel ="stylesheet" href="assets/jquery-ui.min.css">
     <link rel ="stylesheet" href="assets/all.min.css">
     <link rel ="stylesheet" href="css/admin.css?v=<?php echo time() ?>">
     <script src="assets/gauges.min.js"></script>
@@ -50,9 +51,9 @@ if($_SESSION['name'] !== "admin"){
                 </a>
               </li>
               <li id = "dash" class="nav-item">
-                <a href="adminRegister.php" class="nav-link">
+                <a href="userManagement.php" class="nav-link">
                   <i class="fas fa-user-plus nav-icon"></i>
-                  Add User
+                  Manage users
                 </a>
               </li>
             </ul>
@@ -170,6 +171,7 @@ if($_SESSION['name'] !== "admin"){
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
     <script src="scripts/admin.js?v=<?php echo time() ?>"></script>
     <script src="assets/bootstrap.min.js"></script>
+    <script src="assets/jquery-ui.js"></script>
     <script src="assets/all.min.js"></script>
   </body>
 </html>

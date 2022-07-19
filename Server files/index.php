@@ -21,6 +21,7 @@ if($_SESSION['name'] == "admin"){
     <link rel = "icon" type="image/png" href = "assets/images/ghii_logo.png">
     <link rel ="stylesheet" href="assets/bootstrap.min.css">
     <link rel ="stylesheet" href="assets/all.min.css">
+    <link rel ="stylesheet" href="assets/jquery-ui.min.css">
     <link rel ="stylesheet" href="css/index.css?v=<?php echo time() ?>">
     <script src="assets/gauges.min.js"></script>
     <script src="assets/apexcharts.min.js"></script>
@@ -299,6 +300,7 @@ if($_SESSION['name'] == "admin"){
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
     <script src="assets/bootstrap.min.js"></script>
     <script src="assets/all.min.js"></script>
+    <script src="assets/jquery-ui.js"></script>
     <script src="scripts/index.js?v=<?php echo time() ?>"></script>
   </body>
 </html>

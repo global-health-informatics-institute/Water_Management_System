@@ -52,7 +52,6 @@ if (isset($_POST['submit'])){
         
         if(empty($error3) && empty($error4) && empty($error5) && empty($error1)){
 			//checks if any equivalent usernames exist
-			die();
 			$query = $db->prepare("SELECT * FROM $table WHERE username= ?");
 			$query->bindValue(1, $username);
 			$query->execute();
@@ -67,7 +66,6 @@ if (isset($_POST['submit'])){
 				VALUES ('".$username."','".$email."', '".$u_password."') ";
 				$db->exec($query);
 				$error1 .= "<div  class='alert alert-success ms-5 me-5'> New record in ".$table." created successfully</div>";
-				header("location: admin.php");
 				exit;
 			}
 			
@@ -117,9 +115,9 @@ if (isset($_POST['submit'])){
 					</a>
 				  </li>
 				  <li id = "dash" class="nav-item">
-					<a href="adminRegister.php" class="nav-link">
+					<a href="userManagement.php" class="nav-link">
 					   <i class="fas fa-user-plus nav-icon"></i>
-					   Add User
+					   Manage users 
 					</a>
 				  </li>
 				</ul>

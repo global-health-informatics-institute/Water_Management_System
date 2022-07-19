@@ -27,10 +27,6 @@ const firebaseConfig = {
 
 // Get current sensor readings when the page loads
 window.addEventListener("load", function(){
-  
-  if(window.localStorage.getItem("page") == 0){
-    window.location.assign("http://192.168.0.126/adminRegister.php");
-  }
   getReadings();
   
 });
@@ -559,6 +555,9 @@ function handleClick5(){
 
 //listens for any changes to the select attribute
 $(function(){
+$( "#liveToast" ).draggable();
+$( "#liveToast2" ).draggable();
+  
   $("select").change(onSelect);
   
   if (tank_id == "1"){
@@ -601,22 +600,9 @@ $(function(){
    $(this).css("background-color","red");
   });
   
-  $("li#home").find("a").click(function(){
-    window.localStorage.setItem("page",1);
-  });
+  $("li#home").find("a").addClass("active").css("background-color","#3375c4");
+  $("li#dash").find("a").removeClass("active");
   
-  $("li#dash").find("a").click(function(){
-    window.localStorage.setItem("page",0);
-  });
-  
-  if(window.localStorage.getItem("page") == 1){
-    $("li#home").find("a").addClass("active").css("background-color","#3375c4");
-    $("li#dash").find("a").removeClass("active");
-  }
-  
-  if(window.localStorage.getItem("page") == null){
-    $("li#home").find("a").addClass("active").css("background-color","#3375c4");
-  }
     
   $("#modalToggle").click(function(){
     $(".modal-body").html("Are you sure you want to reset the "+tname+" microcontroller?");

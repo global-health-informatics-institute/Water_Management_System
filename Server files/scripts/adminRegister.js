@@ -19,25 +19,11 @@ function close2(){
 }
 
 $(function(){
-  $("li#home").find("a").click(function(){
-    window.localStorage.setItem("page",1);
-  });
-  
-  if(window.localStorage.getItem("page") == 0){
-    $("li#dash").find("a").addClass("active").css("background-color","#3375c4");
-    $("li#home").find("a").removeClass("active");
-  }
-  
-  if(window.localStorage.getItem("page") == null){
-    $("li#home").find("a").addClass("active").css("background-color","#3375c4");
-  }
+  $("li#dash").find("a").addClass("active").css("background-color","#3375c4");
+  $("li#home").find("a").removeClass("active");
   
   })
-window.onhashchange = function() {
- window.localStorage.setItem("page",1);
-}
 
 function close6(){
-  window.localStorage.setItem("page",1);
-  window.location = "admin.php";
+  window.location = "userManagement.php";
 }

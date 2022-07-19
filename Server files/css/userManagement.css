@@ -1,0 +1,175 @@
+@font-face{
+  font-family: 'Montserrat';
+  src: url(../webfonts/Montserrat-VariableFont_wght.ttf);
+  src: url(../webfonts/Montserrat-VariableFont_wght.ttf) format('truetype'),
+       url(../webfonts/Montserrat-Italic-VariableFont_wght.ttf) format('truetype');
+}
+
+@font-face{
+  font-family: 'Poppins';
+  src: url(../webfonts/Poppins-Regular.ttf);
+  src: url(../webfonts/Poppins-Regular.ttf) format('truetype'),
+       url(../webfonts/Poppins-BlackItalic.ttf) format('truetype'),
+       url(../webfonts/Poppins-Bold.ttf) format('truetype'),
+       url(../webfonts/Poppins-BoldItalic.ttf) format('truetype'),
+       url(../webfonts/Poppins-ExtraBold.ttf) format('truetype'),
+       url(../webfonts/Poppins-ExtraBoldItalic.ttf) format('truetype'),
+       url(../webfonts/Poppins-ExtraLight.ttf) format('truetype'),
+       url(../webfonts/Poppins-ExtraLightItalic.ttf) format('truetype'),
+       url(../webfonts/Poppins-Italic.ttf) format('truetype'),
+       url(../webfonts/Poppins-Light.ttf) format('truetype'),
+       url(../webfonts/Poppins-LightItalic.ttf) format('truetype'),
+       url(../webfonts/Poppins-Medium.ttf) format('truetype'),
+       url(../webfonts/Poppins-MediumItalic.ttf) format('truetype'),
+       url(../webfonts/Poppins-Regular.ttf) format('truetype'),
+       url(../webfonts/Poppins-SemiBold.ttf) format('truetype'),
+       url(../webfonts/Poppins-SemiBoldItalic.ttf) format('truetype'),
+       url(../webfonts/Poppins-Thin.ttf) format('truetype'),
+       url(../webfonts/Poppins-ThinItalic.ttf) format('truetype');
+}
+
+/*ELEMENT STYLES*/
+html {
+  display: inline-block;
+  background-color: rgb(241, 241, 234);
+}
+body{
+  font-family: -apple-system, BlinkMacSystemFont,"Poppins", sans-serif, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background-color: #F5F5F5;
+  min-height: 100vh;
+}
+h1 {
+  font-size: 1.8rem;
+  color: white;
+}
+p {
+  font-size: 0.9rem;
+ 
+}
+
+a{
+  padding: 0 20px;
+  text-decoration: none;
+  color: #c1c4c8;
+  
+}
+a:hover{
+  color: #eaebed;
+
+}
+
+/*HEADER*/
+.title{
+  text-align: left;
+}
+
+/*NAVBAR SECTION*/
+.navbar-brand{
+  
+  font-size: 30px;
+  color: white;
+  
+}
+.navbar{
+  background-color:#122945;
+}
+
+.offcanvas{
+  background-color:#122945;
+}
+
+
+/*CONTENT SECTION*/
+#main-container{
+  text-align: center;
+  align-items:center;
+  justify-content:center;
+}
+
+#thecard2{
+  min-width: 350px;
+  border-radius:0.8rem;
+  }
+#add-icon{
+	font-size:31px;
+	
+}
+#add-icon:hover{
+  color:#122945;
+  cursor:pointer;
+}
+
+.adduser-img{
+  height:30px;
+  width:30px;
+}
+.logout-img{
+  height:30px;
+  width:30px;
+  color: #c1c4c8;
+}
+
+
+#thecard2{
+  border-radius:0.8rem;
+  padding: 20px;
+}
+#main-container{
+  align-items:center;
+  justify-content:center;
+}
+
+
+/*MEDIA QUERIES*/
+
+ @media (max-width: 390px){
+  .l2{
+    margin-top:20px;
+  }
+  .nav-1{
+  justify-content: flex-start;
+  align-items: flex-start;
+  
+}
+ 
+ }
+@media (max-width: 609px){
+  .button-grid{
+    grid-gap: 0rem;
+  }
+  .topnav{
+    grid-template-columns: repeat(autofit, minmax(200px, 1fr));
+
+  }
+  #thecard{
+  padding: 0px;
+  }
+  .toast-body{
+  font-size:14px;
+  }
+  .toast-label{
+  font-size:12px;
+  }
+  .navbar-brand{
+  
+  font-size: 20px;
+  color: white;
+  
+}
+.nav-text{
+  margin-top:6px;
+}
+  
+}
+@media (max-width: 991px){
+  .nav{
+    width: auto;
+  }
+  .btn-on{
+    justify-content: center;
+    }
+  .nav-icon{
+    margin-left:5px;
+  }
+}
+
