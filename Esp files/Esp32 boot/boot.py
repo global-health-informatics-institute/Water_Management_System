@@ -1,10 +1,10 @@
 # This file is executed on every boot (including wake-boot from deepsleep)
 #import esp
 #esp.osdebug(None)
-#import webrepl
-#webrepl.start()
+import webrepl
 import network
 from machine import Timer, Pin
+from time import sleep
 
 filename = "mainController.config"
 contents = open(filename).read()
@@ -28,7 +28,7 @@ Wifi=network.WLAN(network.STA_IF)
 if not Wifi.isconnected():
     print("Connecting to:", SSID)
     Wifi.active(True)
-    #Wifi.ifconfig(('192.168.0.158', '255.255.255.0', '192.168.0.1', '192.168.0.1'))
+    #Wifi.ifconfig(('192.168.0.135', '255.255.255.0', '192.168.0.1', '192.168.0.1'))
     Wifi.connect(SSID, Password)
     while not Wifi.isconnected():
         if led.value() == 1:
@@ -45,3 +45,5 @@ if Wifi.isconnected():
     timer.deinit()
     print("Wifi Connected")
     print(Wifi.ifconfig())
+
+webrepl.start()
