@@ -127,7 +127,7 @@ if($_SESSION['name'] !== "admin"){
         
         <!--Water Pressure gauge-->
         <div id ="Gauge" class="col-lg-4 visually-hidden">
-          <div id="thecard" class="card shadow mt-5">
+          <div id="thecard" class="mt-5">
             <p class="card-title">Water Pressure</p>
             <div id="chart2"></div>
           </div>

@@ -70,13 +70,11 @@ if($_SESSION['name'] == "admin"){
     <div class="container-fluid row theRow">
       
       <!--Card for pressure gauge-->
-      <div id="the_container0" class="col-lg-12 p-2 mt-1 visually-hidden d-grid">
+      <div id="the_container0" class="col-lg-12 mt-1 visually-hidden">
         <!--Water Pressure gauge-->
-        <div id ="Gauge" class="card">
-          <div id="thecard" class="mt-5">
-            <p id="pressure" class="card-title text-center">Water Pressure</p>
-            <div id="chart2"></div>
-          </div>
+        <div id ="Gauge">
+          <p id="pressure" class="card-title text-center mb-0">Water Pressure</p>
+          <div id="chart2"></div>
         </div>
       </div>
       
@@ -165,7 +163,6 @@ if($_SESSION['name'] == "admin"){
         </div>
       </div>
       
-      
       <!--Card for tank 3-->
       <div id="the_container3" class="card col-lg-12 shadow-lg p-2 mt-5">
         <div id = "tankName" class="card-title text-center"></div>
@@ -187,10 +184,10 @@ if($_SESSION['name'] == "admin"){
           <div id="b2_2" class="col-lg-3 col-md-6">
             <p id="p2"class="labels">Pressure Pump</p>
             <button id="pump2" class="btn btn-ctrl button-30">OFF</button></div>
-          <div id="b3_3" class="col-lg-3 col-md-6">
+          <div id="b3_2" class="col-lg-3 col-md-6">
             <p id="v1" class="labels">Well Tank Valve</p>
             <button id="valve1" class="btn btn-ctrl button-30">OFF</button></div>
-          <div id="b4_4" class="col-lg-3 col-md-6">
+          <div id="b4_2" class="col-lg-3 col-md-6">
             <p id="v2" class="labels">Wb Tank Valve</p>
             <button id="valve2" class="btn btn-ctrl button-30">OFF</button></div>
         </div>
@@ -208,7 +205,95 @@ if($_SESSION['name'] == "admin"){
         
         </div>
       </div>
+      
+      <!--Card for tank 4-->
+      <div id="the_container4" class="card col-lg-12 shadow-lg p-2 mt-5">
+        <div id = "tankName" class="card-title text-center"></div>
+        <!--Toggle and select-->
+        <ul class="nav nav-2">
+          <li class="nav-item text-start">
+            <button id="mode_4" class="btn-nav button-30 me-2">Auto-mode</button>
+          </li>
+          <li class="nav-item text-start">
+            <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop3">Reset</button>
+          </li>
+        </ul>
+        
+        <div id="control_4" class= "row text-center" style="display:none;">
+          <!--Buttons-->
+          <div id="b1_3" class = "col-lg-3 col-md-6">
+            <p id="p1" class="labels">Water Pump</p>
+            <button id="pump1" class="btn btn-ctrl button-30">OFF</button></div>
+          <div id="b2_3" class="col-lg-3 col-md-6">
+            <p id="p2"class="labels">Pressure Pump</p>
+            <button id="pump2" class="btn btn-ctrl button-30">OFF</button></div>
+          <div id="b3_3" class="col-lg-3 col-md-6">
+            <p id="v1" class="labels">Well Tank Valve</p>
+            <button id="valve1" class="btn btn-ctrl button-30">OFF</button></div>
+          <div id="b4_3" class="col-lg-3 col-md-6">
+            <p id="v2" class="labels">Wb Tank Valve</p>
+            <button id="valve2" class="btn btn-ctrl button-30">OFF</button></div>
+        </div>
+
+         <!--Card Content-->
+        <div id="content" class=" row mt-2 text-center">
+          
+          <!--Water Tank Chart-->
+          <div id = "Chart" class="col-lg-12 mb-2">
+            <div id="thecard" class="mt-1 mb-5">
+              <p id="volume" class="card-title">Water Volume</p>
+              <div id="chart6"></div>
+            </div>
+          </div>
+        
+        </div>
+      </div>
+      
+      <!--Card for tank 5-->
+      <div id="the_container5" class="card col-lg-12 shadow-lg p-2 mt-5">
+        <div id = "tankName" class="card-title text-center"></div>
+        <!--Toggle and select-->
+        <ul class="nav nav-2">
+          <li class="nav-item text-start">
+            <button id="mode_5" class="btn-nav button-30 me-2">Auto-mode</button>
+          </li>
+          <li class="nav-item text-start">
+            <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop3">Reset</button>
+          </li>
+        </ul>
+        
+        <div id="control_5" class= "row text-center" style="display:none;">
+          <!--Buttons-->
+          <div id="b1_4" class = "col-lg-3 col-md-6">
+            <p id="p1" class="labels">Water Pump</p>
+            <button id="pump1" class="btn btn-ctrl button-30">OFF</button></div>
+          <div id="b2_4" class="col-lg-3 col-md-6">
+            <p id="p2"class="labels">Pressure Pump</p>
+            <button id="pump2" class="btn btn-ctrl button-30">OFF</button></div>
+          <div id="b3_4" class="col-lg-3 col-md-6">
+            <p id="v1" class="labels">Well Tank Valve</p>
+            <button id="valve1" class="btn btn-ctrl button-30">OFF</button></div>
+          <div id="b4_4" class="col-lg-3 col-md-6">
+            <p id="v2" class="labels">Wb Tank Valve</p>
+            <button id="valve2" class="btn btn-ctrl button-30">OFF</button></div>
+        </div>
+
+         <!--Card Content-->
+        <div id="content" class=" row mt-2 text-center">
+          
+          <!--Water Tank Chart-->
+          <div id = "Chart" class="col-lg-12 mb-2">
+            <div id="thecard" class="mt-1 mb-5">
+              <p id="volume" class="card-title">Water Volume</p>
+              <div id="chart7"></div>
+            </div>
+          </div>
+        
+        </div>
+      </div>
+      
     </div>
+    
     
     <!-- Modals -->
     <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -261,7 +346,41 @@ if($_SESSION['name'] == "admin"){
         </div>
       </div>
     </div>
-
+    
+    <div class="modal fade" id="staticBackdrop4" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel"><img src="assets/images/triangle-exclamation-solid.svg" class="toast-img rounded me-2" alt="img">Confirmation</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn button-31" data-bs-dismiss="modal">Close</button>
+            <button id="reset" type="button" class="btn button-32" data-bs-dismiss="modal">Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="modal fade" id="staticBackdrop5" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel"><img src="assets/images/triangle-exclamation-solid.svg" class="toast-img rounded me-2" alt="img">Confirmation</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn button-31" data-bs-dismiss="modal">Close</button>
+            <button id="reset" type="button" class="btn button-32" data-bs-dismiss="modal">Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
     <!-- toasts -->
     <div class="toast-container position-fixed top-0 end-0 p-5 mt-5">
       <div id="liveToast1" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
@@ -287,6 +406,28 @@ if($_SESSION['name'] == "admin"){
     </div>
     <div class="toast-container position-fixed bottom-50 end-0 p-5 mt-5">
       <div id="liveToast3" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <img src="assets/images/triangle-exclamation-solid.svg" class="toast-img rounded me-2" alt="img">
+          <strong class="me-auto toast-label">Warning!</strong>
+          <small>Just now</small>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div id = "warning3" class="toast-body"></div>
+      </div>
+    </div>
+    <div class="toast-container position-fixed bottom-50 end-0 p-5 mt-5">
+      <div id="liveToast4" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <img src="assets/images/triangle-exclamation-solid.svg" class="toast-img rounded me-2" alt="img">
+          <strong class="me-auto toast-label">Warning!</strong>
+          <small>Just now</small>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div id = "warning3" class="toast-body"></div>
+      </div>
+    </div>
+    <div class="toast-container position-fixed bottom-50 end-0 p-5 mt-5">
+      <div id="liveToast5" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
           <img src="assets/images/triangle-exclamation-solid.svg" class="toast-img rounded me-2" alt="img">
           <strong class="me-auto toast-label">Warning!</strong>

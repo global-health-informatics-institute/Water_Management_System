@@ -123,20 +123,20 @@ a:hover{
 
 /* width */
 ::-webkit-scrollbar {
-  width: 20px;
+  width: 10px;
   
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px #ebebeb; 
+  box-shadow: inset 0 0 5px #eeeeee; 
   border-radius: 20px;
  
 }
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background:#eeeeee;  
+  background:#bcbcbc;  
   border-radius: 10px;
   opacity:0.5;
 }

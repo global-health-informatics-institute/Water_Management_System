@@ -348,8 +348,8 @@ function getReadings() {
     if(h == 0){
       h = 1;
     }
-    
   }
+  
   if(opMode == "2"){
     $("#b2").addClass("visually-hidden");
     $("#b4").addClass("visually-hidden");
@@ -359,9 +359,24 @@ function getReadings() {
       h = 1;
     }
   }
-  if(opMode == "3"){
-    $("#b4").addClass("visually-hidden");
+  
+  if(opMode == "4"){
+    $("#b3").addClass("visually-hidden");
+    $("#b1").addClass("visually-hidden");
+    $("#b2").addClass("visually-hidden");
+    $("#v2").text("Inlet Valve");
+  }
+  
+  if(opMode == "5"){
+    $("#b2").addClass("visually-hidden");
+    $("#b3").addClass("visually-hidden");
+    $("#v2").text("Inlet Valve");
+  }
+  
+  if(opMode == "6"){
+    $("#b1").addClass("visually-hidden");
     $("#v1").text("Outlet Valve");
+    $("#v2").text("Inlet Valve");
   }
   
   if(toggleP == "1"){

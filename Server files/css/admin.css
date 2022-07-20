@@ -140,6 +140,7 @@ select option:checked{
 #thecard{
   border-radius:0.8rem;
   padding: 20px;
+  
 }
 
 #the_container{
@@ -309,6 +310,34 @@ select option:checked{
   box-shadow: #D6D6E7 0 3px 7px inset;
   transform: translateY(2px);
 }
+
+/*webkits*/
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #eeeeee; 
+  border-radius: 20px;
+ 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background:#bcbcbc;  
+  border-radius: 10px;
+  opacity:0.5;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #122945;
+}
+
+
 
 /*Media queries*/
 
