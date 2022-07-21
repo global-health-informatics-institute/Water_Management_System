@@ -47,11 +47,11 @@ if($_SESSION['name'] !== "admin"){
               <li id = "home" class="nav-item">
                 <a href="admin.php" class="nav-link" aria-current="page">
                   <i class="fas fa-home nav-icon"></i>
-                  Home
+                  Overview
                 </a>
               </li>
               <li id = "dash" class="nav-item">
-                <a href="userManagement.php" class="nav-link">
+                <a href="views/userManagement.php" class="nav-link">
                   <i class="fas fa-user-plus nav-icon"></i>
                   Manage users
                 </a>
@@ -128,7 +128,6 @@ if($_SESSION['name'] !== "admin"){
         <!--Water Pressure gauge-->
         <div id ="Gauge" class="col-lg-4 visually-hidden">
           <div id="thecard" class="mt-5">
-            <p class="card-title">Water Pressure</p>
             <div id="chart2"></div>
           </div>
         </div>
@@ -136,7 +135,6 @@ if($_SESSION['name'] !== "admin"){
         <!--Water Tank Chart-->
         <div id="Chart" class="col-lg-12 mb-2">
           <div id="thecard" class="card shadow mt-5">
-            <p class="card-title">Water Volume</p>
             <div id="chart1"></div>
           </div>
         </div>

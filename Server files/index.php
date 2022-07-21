@@ -47,7 +47,7 @@ if($_SESSION['name'] == "admin"){
               <li id = "home" class="nav-item">
                 <a href="index.php" class="nav-link" aria-current="page">
                   <i class="fas fa-home ms-2"></i>
-                  Home
+                  Overview
                 </a>
               </li>
             </ul>
@@ -73,7 +73,6 @@ if($_SESSION['name'] == "admin"){
       <div id="the_container0" class="col-lg-12 mt-1 visually-hidden">
         <!--Water Pressure gauge-->
         <div id ="Gauge">
-          <p id="pressure" class="card-title text-center mb-0">Water Pressure</p>
           <div id="chart2"></div>
         </div>
       </div>
@@ -112,7 +111,6 @@ if($_SESSION['name'] == "admin"){
           <!--Water Tank Chart-->
           <div id = "Chart" class="col-lg-12 ">
             <div id="thecard" class="mt-5 mb-5">
-              <p id="volume" class="card-title">Water Volume</p>
               <div id="chart1"></div>
             </div>
           </div>
@@ -155,7 +153,6 @@ if($_SESSION['name'] == "admin"){
           <!--Water Tank Chart-->
           <div id = "Chart" class="col-lg-12 ">
             <div id="thecard" class="mt-1 mb-5">
-              <p id="volume" class="card-title">Water Volume</p>
               <div id="chart3"></div>
             </div>
           </div>
@@ -198,7 +195,6 @@ if($_SESSION['name'] == "admin"){
           <!--Water Tank Chart-->
           <div id = "Chart" class="col-lg-12 mb-2">
             <div id="thecard" class="mt-1 mb-5">
-              <p id="volume" class="card-title">Water Volume</p>
               <div id="chart5"></div>
             </div>
           </div>
@@ -241,7 +237,6 @@ if($_SESSION['name'] == "admin"){
           <!--Water Tank Chart-->
           <div id = "Chart" class="col-lg-12 mb-2">
             <div id="thecard" class="mt-1 mb-5">
-              <p id="volume" class="card-title">Water Volume</p>
               <div id="chart6"></div>
             </div>
           </div>
@@ -284,7 +279,6 @@ if($_SESSION['name'] == "admin"){
           <!--Water Tank Chart-->
           <div id = "Chart" class="col-lg-12 mb-2">
             <div id="thecard" class="mt-1 mb-5">
-              <p id="volume" class="card-title">Water Volume</p>
               <div id="chart7"></div>
             </div>
           </div>

@@ -387,7 +387,7 @@ function getReadings() {
   
   };
 
-  xhr.open("GET", "/getSensorValues.php?q="+tank_id, true);
+  xhr.open("GET", "/resources/getSensorValues.php?q="+tank_id, true);
   xhr.send();
 }
 
@@ -421,7 +421,7 @@ function handleClick1(){
       if(xhr.status === 200){
      }
 }
-  xhr.open("POST", "/editSensorValues.php", true);
+  xhr.open("POST", "/resources/editSensorValues.php", true);
   xhr.setRequestHeader("Content-type","application/json");
   xhr.send(wellP);
 }
@@ -456,7 +456,7 @@ function handleClick2(){
       
      }
 }
-  xhr.open("POST", "/editSensorValues.php", true);
+  xhr.open("POST", "/resources/editSensorValues.php", true);
   xhr.setRequestHeader("Content-type","application/json");
   xhr.send(pressP);
 
@@ -492,7 +492,7 @@ function handleClick3(){
        
      }
 }
-  xhr.open("POST", "/editSensorValues.php", true);
+  xhr.open("POST", "/resources/editSensorValues.php", true);
   xhr.setRequestHeader("Content-type","application/json");
   xhr.send(wellV);
 
@@ -526,7 +526,7 @@ function handleClick4(){
        
      }
 }
-  xhr.open("POST", "/editSensorValues.php", true);
+  xhr.open("POST", "/resources/editSensorValues.php", true);
   xhr.setRequestHeader("Content-type","application/json");
   xhr.send(wbV);
 
@@ -563,16 +563,17 @@ function handleClick5(){
       
      }
 }
-  xhr.open("POST", "/editSensorValues.php", true);
+  xhr.open("POST", "/resources/editSensorValues.php", true);
   xhr.setRequestHeader("Content-type","application/json");
   xhr.send(md);
 }
 
 //listens for any changes to the select attribute
 $(function(){
-$( "#liveToast" ).draggable();
-$( "#liveToast2" ).draggable();
-  
+  $( "#liveToast" ).draggable();
+  $( "#liveToast2" ).draggable();
+  $( "#Chart" ).resizable();
+  $( "#Chart" ).draggable();
   $("select").change(onSelect);
   
   if (tank_id == "1"){
@@ -602,7 +603,7 @@ $( "#liveToast2" ).draggable();
         toast.show();
        }
   }
-    xhr.open("POST", "/editSensorValues.php", true);
+    xhr.open("POST", "/resources/editSensorValues.php", true);
     xhr.setRequestHeader("Content-type","application/json");
     xhr.send(md);
     
@@ -622,6 +623,8 @@ $( "#liveToast2" ).draggable();
   $("#modalToggle").click(function(){
     $(".modal-body").html("Are you sure you want to reset the "+tname+" microcontroller?");
   });
+  
+  
   
     
   });

@@ -642,7 +642,7 @@ function getReadings() {
   
   };
 
-  xhr.open("GET", "/getSensorValues.php?q="+tank_id_0, true);
+  xhr.open("GET", "/resources/getSensorValues.php?q="+tank_id_0, true);
   xhr.send();
 }
 
@@ -834,7 +834,7 @@ function getReadings2() {
   
   };
 
-  xhr.open("GET", "/getSensorValues.php?q="+tank_id_1, true);
+  xhr.open("GET", "/resources/getSensorValues.php?q="+tank_id_1, true);
   xhr.send();
 }
 
@@ -1024,7 +1024,7 @@ function getReadings3() {
   
   };
 
-  xhr.open("GET", "/getSensorValues.php?q="+tank_id_2, true);
+  xhr.open("GET", "/resources/getSensorValues.php?q="+tank_id_2, true);
   xhr.send();
 }
 
@@ -1214,7 +1214,7 @@ function getReadings4() {
   
   };
 
-  xhr.open("GET", "/getSensorValues.php?q="+tank_id_3, true);
+  xhr.open("GET", "/resources/getSensorValues.php?q="+tank_id_3, true);
   xhr.send();
 }
 
@@ -1405,7 +1405,7 @@ function getReadings5() {
   
   };
 
-  xhr.open("GET", "/getSensorValues.php?q="+tank_id_4, true);
+  xhr.open("GET", "/resources/getSensorValues.php?q="+tank_id_4, true);
   xhr.send();
 }
 
@@ -1508,7 +1508,7 @@ $(function(){
          
        }
   }
-    xhr.open("POST", "/editSensorValues.php", true);
+    xhr.open("POST", "/resources/editSensorValues.php", true);
     xhr.setRequestHeader("Content-type","application/json");
     xhr.send(wellV);
   });
@@ -1540,7 +1540,7 @@ $(function(){
          
        }
   }
-    xhr.open("POST", "/editSensorValues.php", true);
+    xhr.open("POST", "/resources/editSensorValues.php", true);
     xhr.setRequestHeader("Content-type","application/json");
     xhr.send(wbV);
   });
@@ -1575,7 +1575,7 @@ $(function(){
         
        }
   }
-    xhr.open("POST", "/editSensorValues.php", true);
+    xhr.open("POST", "/resources/editSensorValues.php", true);
     xhr.setRequestHeader("Content-type","application/json");
     xhr.send(md);
     
@@ -1594,7 +1594,7 @@ $(function(){
         
        }
   }
-    xhr.open("POST", "/editSensorValues.php", true);
+    xhr.open("POST", "/resources/editSensorValues.php", true);
     xhr.setRequestHeader("Content-type","application/json");
     xhr.send(md);
   });
@@ -1661,7 +1661,7 @@ $(function(){
           
          }
     }
-      xhr.open("POST", "/editSensorValues.php", true);
+      xhr.open("POST", "/resources/editSensorValues.php", true);
       xhr.setRequestHeader("Content-type","application/json");
       xhr.send(pressP);
    });
@@ -1695,7 +1695,7 @@ $(function(){
          
        }
   }
-    xhr.open("POST", "/editSensorValues.php", true);
+    xhr.open("POST", "/resources/editSensorValues.php", true);
     xhr.setRequestHeader("Content-type","application/json");
     xhr.send(wellV);
   });
@@ -1727,7 +1727,7 @@ $(function(){
          
        }
   }
-    xhr.open("POST", "/editSensorValues.php", true);
+    xhr.open("POST", "/resources/editSensorValues.php", true);
     xhr.setRequestHeader("Content-type","application/json");
     xhr.send(wbV);
   });
@@ -1761,7 +1761,7 @@ $(function(){
         
        }
     }
-    xhr.open("POST", "/editSensorValues.php", true);
+    xhr.open("POST", "/resources/editSensorValues.php", true);
     xhr.setRequestHeader("Content-type","application/json");
     xhr.send(md);
     
@@ -1779,7 +1779,7 @@ $(function(){
         
        }
     }
-    xhr.open("POST", "/editSensorValues.php", true);
+    xhr.open("POST", "/resources/editSensorValues.php", true);
     xhr.setRequestHeader("Content-type","application/json");
     xhr.send(md);
     
@@ -1815,7 +1815,7 @@ $(function(){
           if(xhr.status === 200){
          }
     }
-      xhr.open("POST", "/editSensorValues.php", true);
+      xhr.open("POST", "/resources/editSensorValues.php", true);
       xhr.setRequestHeader("Content-type","application/json");
       xhr.send(wellP);
   });
@@ -1847,7 +1847,7 @@ $(function(){
           
          }
     }
-      xhr.open("POST", "/editSensorValues.php", true);
+      xhr.open("POST", "/resources/editSensorValues.php", true);
       xhr.setRequestHeader("Content-type","application/json");
       xhr.send(pressP);
    });
@@ -1881,7 +1881,7 @@ $(function(){
          
        }
   }
-    xhr.open("POST", "/editSensorValues.php", true);
+    xhr.open("POST", "/resources/editSensorValues.php", true);
     xhr.setRequestHeader("Content-type","application/json");
     xhr.send(wellV);
   });
@@ -1913,7 +1913,7 @@ $(function(){
          
        }
   }
-    xhr.open("POST", "/editSensorValues.php", true);
+    xhr.open("POST", "/resources/editSensorValues.php", true);
     xhr.setRequestHeader("Content-type","application/json");
     xhr.send(wbV);
   });
@@ -1947,7 +1947,7 @@ $(function(){
         
        }
     }
-    xhr.open("POST", "/editSensorValues.php", true);
+    xhr.open("POST", "/resources/editSensorValues.php", true);
     xhr.setRequestHeader("Content-type","application/json");
     xhr.send(md);
     
@@ -1965,7 +1965,7 @@ $(function(){
         
        }
     }
-    xhr.open("POST", "/editSensorValues.php", true);
+    xhr.open("POST", "/resources/editSensorValues.php", true);
     xhr.setRequestHeader("Content-type","application/json");
     xhr.send(md);
     
@@ -2001,7 +2001,7 @@ $(function(){
           if(xhr.status === 200){
          }
     }
-      xhr.open("POST", "/editSensorValues.php", true);
+      xhr.open("POST", "/resources/editSensorValues.php", true);
       xhr.setRequestHeader("Content-type","application/json");
       xhr.send(wellP);
   });
@@ -2033,7 +2033,7 @@ $(function(){
           
          }
     }
-      xhr.open("POST", "/editSensorValues.php", true);
+      xhr.open("POST", "/resources/editSensorValues.php", true);
       xhr.setRequestHeader("Content-type","application/json");
       xhr.send(pressP);
    });
@@ -2067,7 +2067,7 @@ $(function(){
          
        }
   }
-    xhr.open("POST", "/editSensorValues.php", true);
+    xhr.open("POST", "/resources/editSensorValues.php", true);
     xhr.setRequestHeader("Content-type","application/json");
     xhr.send(wellV);
   });
@@ -2099,7 +2099,7 @@ $(function(){
          
        }
   }
-    xhr.open("POST", "/editSensorValues.php", true);
+    xhr.open("POST", "/resources/editSensorValues.php", true);
     xhr.setRequestHeader("Content-type","application/json");
     xhr.send(wbV);
   });
@@ -2133,7 +2133,7 @@ $(function(){
         
        }
     }
-    xhr.open("POST", "/editSensorValues.php", true);
+    xhr.open("POST", "/resources/editSensorValues.php", true);
     xhr.setRequestHeader("Content-type","application/json");
     xhr.send(md);
     
@@ -2151,7 +2151,7 @@ $(function(){
         
        }
     }
-    xhr.open("POST", "/editSensorValues.php", true);
+    xhr.open("POST", "/resources/editSensorValues.php", true);
     xhr.setRequestHeader("Content-type","application/json");
     xhr.send(md);
     
@@ -2187,7 +2187,7 @@ $(function(){
           if(xhr.status === 200){
          }
     }
-      xhr.open("POST", "/editSensorValues.php", true);
+      xhr.open("POST", "/resources/editSensorValues.php", true);
       xhr.setRequestHeader("Content-type","application/json");
       xhr.send(wellP);
   });
@@ -2219,7 +2219,7 @@ $(function(){
           
          }
     }
-      xhr.open("POST", "/editSensorValues.php", true);
+      xhr.open("POST", "/resources/editSensorValues.php", true);
       xhr.setRequestHeader("Content-type","application/json");
       xhr.send(pressP);
    });
@@ -2253,7 +2253,7 @@ $(function(){
          
        }
   }
-    xhr.open("POST", "/editSensorValues.php", true);
+    xhr.open("POST", "/resources/editSensorValues.php", true);
     xhr.setRequestHeader("Content-type","application/json");
     xhr.send(wellV);
   });
@@ -2285,7 +2285,7 @@ $(function(){
          
        }
   }
-    xhr.open("POST", "/editSensorValues.php", true);
+    xhr.open("POST", "/resources/editSensorValues.php", true);
     xhr.setRequestHeader("Content-type","application/json");
     xhr.send(wbV);
   });
@@ -2319,7 +2319,7 @@ $(function(){
         
        }
     }
-    xhr.open("POST", "/editSensorValues.php", true);
+    xhr.open("POST", "/resources/editSensorValues.php", true);
     xhr.setRequestHeader("Content-type","application/json");
     xhr.send(md);
     
@@ -2337,7 +2337,7 @@ $(function(){
         
        }
     }
-    xhr.open("POST", "/editSensorValues.php", true);
+    xhr.open("POST", "/resources/editSensorValues.php", true);
     xhr.setRequestHeader("Content-type","application/json");
     xhr.send(md);
     

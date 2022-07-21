@@ -1,5 +1,5 @@
 <?php
-require_once "session.php";
+require_once "resources/session.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">

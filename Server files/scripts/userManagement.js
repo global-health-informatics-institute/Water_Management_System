@@ -27,8 +27,10 @@
     });
   });
 */
-const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})
 
 //deletes user
 function deleteUser(e){
@@ -49,8 +51,18 @@ function deleteUser(e){
 
 //Changes the active link in navbar
 $(function(){
-  
     $("li#dash").find("a").addClass("active").css("background-color","#3375c4");
     $("li#home").find("a").removeClass("active");
-  
+    $("#thecard2").draggable();
+    $("#thecard2").resizable();
+    $(".trash").hover(function(){
+      $(this).addClass("fas");
+      $(this).removeClass("fal");
+    },function(){
+      $(this).addClass("fal");
+      $(this).removeClass("fas");
+    });
+    
+    $( document ).tooltip();
+    
 });

@@ -3,7 +3,7 @@
 $("#form").submit(function(e){
   e.preventDefault();
   $.ajax({
-    url:"authenticate.php",
+    url:"resources/authenticate.php",
     method: "POST",
     data: {username: $("#floatingInput").val(), password: $("#floatingPassword").val()},
   beforeSend: function(e){
