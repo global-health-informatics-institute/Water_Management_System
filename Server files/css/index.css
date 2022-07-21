@@ -156,14 +156,23 @@ a:hover{
 #thecard{
   padding: 20px;
 }
+#the_container0{
+  border-right:1px #ff0000;
+}
 #the_container1{
-  border-radius: 20px;
+  border-radius: 10px;
 }
 #the_container2{
-  border-radius: 20px;
+  border-radius: 10px;
 }
 #the_container3{
-  border-radius: 20px;
+  border-radius: 10px;
+}
+#the_container4{
+  border-radius: 10px;
+}
+#the_container5{
+  border-radius: 10px;
 }
 #main-container{
   align-items:center;
