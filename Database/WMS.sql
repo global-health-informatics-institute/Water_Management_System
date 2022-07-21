@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 23, 2022 at 04:17 PM
+-- Generation Time: Jul 21, 2022 at 02:50 PM
 -- Server version: 10.1.48-MariaDB-0+deb9u2
 -- PHP Version: 7.0.33-0+deb9u12
 
@@ -29,13 +29,14 @@ SET time_zone = "+00:00";
 CREATE TABLE `commands` (
   `id` int(11) NOT NULL,
   `pressurePump` int(10) NOT NULL,
-  `wellPump` int(10) NOT NULL,
-  `wellValve` int(10) NOT NULL,
-  `wbValve` int(10) NOT NULL,
+  `waterPump` int(10) NOT NULL,
+  `outletValve` int(10) NOT NULL,
+  `inletValve` int(10) NOT NULL,
   `overRide` int(10) NOT NULL,
   `watertank_id` int(11) UNSIGNED NOT NULL,
   `OpCode` int(2) NOT NULL,
-  `reset` int(2) NOT NULL
+  `reset` int(2) NOT NULL,
+  `toggle_pressure` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
