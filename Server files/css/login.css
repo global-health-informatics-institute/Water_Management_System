@@ -35,12 +35,10 @@ text-align: center;
 }
 body{
 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI","Poppins", sans-serif, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-background-image: url(../assets/images/wave.svg);
-background-repeat: no-repeat;
-background-attachment: fixed; 
-background-size: cover;
 display: grid;
 min-height: 100vh;
+position:relative;
+background: linear-gradient(60deg, rgba(40,198,159,255) 0%, rgb(88,209,179) 100%);
 }
 h1 {
 font-size: 1.8rem;
@@ -118,4 +116,53 @@ background-color:#122945;
 }
 .org-link:hover{
   color:#122945;
+}
+
+.waves {
+  position:relative;
+  width: 100%;
+  height:100vh;
+  margin-bottom:-200px; /*Fix for safari gap*/
+  min-height:100px;
+  max-height:290px;
+}
+/* Animation */
+
+.parallax > use {
+  animation: move-forever 25s cubic-bezier(.55,.5,.45,.5)     infinite;
+}
+.parallax > use:nth-child(1) {
+  animation-delay: -2s;
+  animation-duration: 7s;
+}
+.parallax > use:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 10s;
+}
+.parallax > use:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 13s;
+}
+.parallax > use:nth-child(4) {
+  animation-delay: -5s;
+  animation-duration: 20s;
+}
+@keyframes move-forever {
+  0% {
+   transform: translate3d(-90px,0,0);
+  }
+  100% { 
+    transform: translate3d(85px,0,0);
+  }
+}
+/*Shrinking for mobile*/
+@media (max-width: 768px) {
+  .waves {
+    height:200px;
+    min-height:40px;
+    margin-bottom:-150px;
+  }
+  h1 {
+    font-size:24px;
+  }
 }
