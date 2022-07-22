@@ -59,10 +59,10 @@ if($_SESSION['name'] !== "admin"){
             </ul>
             <hr>
             <div class="dropdown">
-              <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+              <div class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="assets/images/user-svgrepo-com.svg" alt="" width="32" height="32" class="rounded-circle me-2">
                 <strong> <?=$_SESSION['name']?></strong>
-              </a>
+              </div>
               <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                 <li id ="signout" ><a class="dropdown-item" href="logout.php">Sign out</a></li>
               </ul>
@@ -164,7 +164,19 @@ if($_SESSION['name'] !== "admin"){
       </div>
     </div>
     <!--Footer-->
-    
+    <!-- The Modal -->
+		<div id="myModal" class="modala visually-hidden">
+		  <!-- Modal content -->
+		  <div class="modala-content d-flex">
+			  <span>Loading... </span>
+			  <div class="spinner-grow" style="animation-delay: calc(-0.45s / var(--d,1));" role="status">
+			  </div>
+			  <div class="spinner-grow" style="animation-delay: calc(-0.3s / var(--d,1));" role="status">
+			  </div>
+			  <div class="spinner-grow" style="animation-delay: calc(-0.15s / var(--d,1));" role="status">
+			  </div>
+		  </div>
+		</div>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
     <script src="scripts/admin.js?v=<?php echo time() ?>"></script>

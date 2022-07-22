@@ -54,6 +54,19 @@ require_once "resources/session.php";
 			</svg>
 		</div>
 		<!--Waves end-->
+		<!-- The Modal -->
+		<div id="myModal" class="modala visually-hidden">
+		  <!-- Modal content -->
+		  <div class="modala-content d-flex">
+			  <span>Loading... </span>
+			  <div class="spinner-grow" style="animation-delay: calc(-0.45s / var(--d,1));" role="status">
+			  </div>
+			  <div class="spinner-grow" style="animation-delay: calc(-0.3s / var(--d,1));" role="status">
+			  </div>
+			  <div class="spinner-grow" style="animation-delay: calc(-0.15s / var(--d,1));" role="status">
+			  </div>
+		  </div>
+		</div>
 		<script src="assets/bootstrap.min.js"></script>
 		<script src="assets/all.min.js"></script>
 		<script src="scripts/login.js?v=<?php echo time() ?>"></script>

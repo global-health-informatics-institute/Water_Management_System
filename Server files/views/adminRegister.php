@@ -59,14 +59,13 @@ if (isset($_POST['submit'])){
 			
 			if ($row) {
 				// Username already exists
-				$error1 .= 'Username exists, please choose another!';
+				$error1 .= "<div  class='alert alert-danger ms-5 me-5'>Username exists, please choose another!</div>";
 			} else {
 				// Insert new account
 				$query = "INSERT INTO $table (username,email,password)
 				VALUES ('".$username."','".$email."', '".$u_password."') ";
 				$db->exec($query);
 				$error1 .= "<div  class='alert alert-success ms-5 me-5'> New record in ".$table." created successfully</div>";
-				exit;
 			}
 			
 		}
@@ -123,10 +122,10 @@ if (isset($_POST['submit'])){
 				</ul>
 				<hr>
 				<div class="dropdown">
-				  <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+				  <div class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
 					<img src="../assets/images/user-svgrepo-com.svg" alt="" width="32" height="32" class="rounded-circle me-2">
 					<strong> <?=$_SESSION['name']?></strong>
-				  </a>
+				  </div>
 				  <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
 					<li id ="signout" ><a class="dropdown-item" href="../logout.php">Sign out</a></li>
 				  </ul>
@@ -166,6 +165,19 @@ if (isset($_POST['submit'])){
 				<div class="mb-3 mt-2"><a href="http://ghii.org" class="org-link text-muted"><small>GHII, &copy 2022 </small></a></div>
 				</div>
 			</div>
+		</div>
+		<!-- The Modal -->
+		<div id="myModal" class="modala visually-hidden">
+		  <!-- Modal content -->
+		  <div class="modala-content d-flex">
+			  <span>Loading... </span>
+			  <div class="spinner-grow" style="animation-delay: calc(-0.45s / var(--d,1));" role="status">
+			  </div>
+			  <div class="spinner-grow" style="animation-delay: calc(-0.3s / var(--d,1));" role="status">
+			  </div>
+			  <div class="spinner-grow" style="animation-delay: calc(-0.15s / var(--d,1));" role="status">
+			  </div>
+		  </div>
 		</div>
 		<script src="../assets/bootstrap.min.js"></script>
 		<script src="../assets/all.min.js"></script>

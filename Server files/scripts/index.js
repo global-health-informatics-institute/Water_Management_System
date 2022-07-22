@@ -2368,7 +2368,9 @@ $(function(){
   $( "#liveToast4" ).draggable();
   $( "#liveToast5" ).draggable();
   
-  
+  $("a").click(function(){
+    $("#myModal").removeClass("visually-hidden");
+  });
 });
 
 if(num_of_tanks == 2){

@@ -19,11 +19,19 @@ function close2(){
 }
 
 $(function(){
+  
+  $("a").click(function(){
+    $("#myModal").removeClass("visually-hidden");
+  });
+  $("#register").click(function(){
+    $("#myModal").removeClass("visually-hidden");
+  });
+  
   $("li#dash").find("a").addClass("active").css("background-color","#3375c4");
   $("li#home").find("a").removeClass("active");
-  
-  })
+  });
 
 function close6(){
+  $("#myModal").removeClass("visually-hidden");
   window.location = "userManagement.php";
 }

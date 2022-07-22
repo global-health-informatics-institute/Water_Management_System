@@ -27,14 +27,13 @@ if (isset($_POST['username'])){
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel = "icon" type="image/png" href = "../assets/images/ghii_logo.png">
 		<link rel ="stylesheet" href="../assets/bootstrap.min.css">
-		<link rel ="stylesheet" href="../assets/jquery-ui.min.css">
 		<link rel ="stylesheet" href="../assets/all.min.css">
 		<link rel ="stylesheet" href="../css/userManagement.css?v=<?php echo time() ?>">
+		<link rel ="stylesheet" href="../assets/jquery-ui.min.css">
 		<script src="../assets/jquery.min.js"></script>
-		<script src="../assets/jquery-ui.js"></script>
 		<title>Admin</title>
 	</head>
-	<body class="bg-light">
+	<body id ="document" class="bg-light">
 		<!--Start of navbar-->
 		<div class="navbar navbar-expand-lg navbar-dark shadow mb-3">
 		  <div class="container-fluid">
@@ -65,10 +64,10 @@ if (isset($_POST['username'])){
 				</ul>
 				<hr>
 				<div class="dropdown">
-				  <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+				  <div class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
 					<img src="../assets/images/user-svgrepo-com.svg" alt="" width="32" height="32" class="rounded-circle me-2">
 					<strong> <?=$_SESSION['name']?></strong>
-				  </a>
+				  </div>
 				  <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
 					<li id ="signout" ><a class="dropdown-item" href="../logout.php">Sign out</a></li>
 				  </ul>
@@ -95,11 +94,11 @@ if (isset($_POST['username'])){
 							foreach($db->query("SELECT id, username, email FROM users where username != 'admin'") as $row) {
 								echo'
 									<tr>
-									  <th scope="row" class="firstItem"><img src="../assets/images/user-svgrepo-com.svg" alt="" width="32" height="32" class="rounded-circle me-2"></th>
+									  <th scope="row"><img src="../assets/images/user-svgrepo-com.svg" alt="" width="32" height="32" class="rounded-circle me-2"></th>
 									  <td>'.$row['id'].'</td>
 									  <td id = "username" >'.$row['username'].'</td>
 									  <td>'.$row['email'].'</td>
-									  <td class="lastItem"><i class="fal fa-trash-alt trash" onClick ="deleteUser(this)" title="Delete User"></i></td>
+									  <td><div onClick ="deleteUser(this)" title="Delete User"><i class="fal fa-trash-alt trash"></i></div></td>
 									</tr> ';
 							}					
 						?>
@@ -116,6 +115,29 @@ if (isset($_POST['username'])){
 				</div>
 			</div>
 		</div>
+		<div id="dialog-confirm" title="Delete User Profile?" class="visually-hidden">
+		  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>User profile will be permanently deleted and cannot be recovered. Are you sure?</p>
+		</div>
+		<div id="dialog-message" title="User Deleted" class="visually-hidden">
+		  <p>
+			<span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+			You have successfully deleted the user profile
+		  </p>
+		</div>
+		<!-- The Modal -->
+		<div id="myModal" class="modala visually-hidden">
+		  <!-- Modal content -->
+		  <div class="modala-content d-flex">
+			  <span>Loading... </span>
+			  <div class="spinner-grow" style="animation-delay: calc(-0.45s / var(--d,1));" role="status">
+			  </div>
+			  <div class="spinner-grow" style="animation-delay: calc(-0.3s / var(--d,1));" role="status">
+			  </div>
+			  <div class="spinner-grow" style="animation-delay: calc(-0.15s / var(--d,1));" role="status">
+			  </div>
+		  </div>
+		</div>
+		<script src="../assets/jquery-ui.js"></script>
 		<script src="../assets/bootstrap.min.js"></script>
 		<script src="../assets/all.min.js"></script>
 		<script src="../scripts/userManagement.js?v=<?php echo time() ?>"></script>

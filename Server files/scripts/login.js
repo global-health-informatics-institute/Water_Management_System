@@ -11,9 +11,10 @@ $("#form").submit(function(e){
     $(".spinner").removeClass("visually-hidden");
     //disable login button
     $("#login").attr("disabled",true);
+    $("#myModal").removeClass("visually-hidden");
     },
     success: function(result){
-      //disables login button
+      //enables login button
        $("#login").attr("disabled",false);
        //hides spinner
        $(".spinner").addClass("visually-hidden");
@@ -23,6 +24,7 @@ $("#form").submit(function(e){
         }
         else{
           //show the alert
+          $("#myModal").addClass("visually-hidden");
           $(".alert").css("display","unset")
           }
       }
