@@ -44,26 +44,18 @@ class WaterTank:
                     self.prev1 = self.initial_height
                 
                 if self.initial_height != self.prev1:
-                    temp1 = self.prev1
-                    temp2 = self.prev1
-                    temp1 = temp1 + 2
-                    temp2 = temp2 - 2
-                    
-                    if self.initial_height > temp1 or self.initial_height < temp2 :
+                    diff = abs(self.initial_height - self.prev1)
+                    print("diff = ",diff)
+                    if diff > 2:
                         print(self.initial_height, "cm The filtered distance")
                         self.initial_height = self.prev1
                         theSum = theSum + self.initial_height
                         self.tank_counter += 1
-                        count += 1
-                        if count == 30:
-                            self.prev1 = self.initial_height
-                            count = 0
-                    else:
+                    elif diff < 2:
                         self.prev1 = self.initial_height
                         theSum = theSum + self.initial_height
                         self.tank_counter += 1
                 else:
-                    self.prev1 = self.initial_height
                     theSum = theSum + self.initial_height
                     self.tank_counter += 1
 
