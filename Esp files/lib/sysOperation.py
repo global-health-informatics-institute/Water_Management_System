@@ -62,7 +62,7 @@ class Operation1:
     def getTankVolume(self):
         try:
             #HTTP GET METHOD
-            response = urequests.get(self.BASE+"/getSensorValues.php?q="+self.tankId)
+            response = urequests.get(self.BASE+"/resources/getSensorValues.php?q="+self.tankId)
             
             if response.status_code == 200:
                 data = response.json()
@@ -95,7 +95,7 @@ class Operation1:
                 if sensors["Pressure"] != 0 or sensors["Volume"] > 1 :
                     request_headers = {'Content-Type': 'application/json'}
                     request = urequests.patch(
-                        self.BASE+"/editSensorValues.php",
+                        self.BASE+"/resources/editSensorValues.php",
                         json=sensors,
                         headers=request_headers)
                     print(request.text)
@@ -109,7 +109,7 @@ class Operation1:
                 if not self.overRide:
                     components=components
                     request = urequests.patch(
-                        self.BASE+"/editSensorValues.php",
+                        self.BASE+"/resources/editSensorValues.php",
                         json=components,
                         headers=request_headers)
                     print(request.text)
@@ -123,7 +123,7 @@ class Operation1:
     def getData(self):
         #HTTP GET METHOD
         try:
-            response = urequests.get(self.BASE+"/getSensorValues.php?q="+self.tankId)
+            response = urequests.get(self.BASE+"/resources/getSensorValues.php?q="+self.tankId)
         
             if self.overRide:
                 if response.status_code == 200:
@@ -262,7 +262,7 @@ class Operation1:
                 self.offsetVariable2 = False
                 
         data = {"Pressure":pressure, "Volume":tankVolume ,"warning1":warning1,"warning2":warning2,"tank_id": tank_id,"opCode": 0}
-        components = {"pump1":self.wellPump.value(),"pump2":self.pressurePump.value(),"valve1":self.valveWell.value(),"valve2":self.valveWB.value(),"tank_id": tank_id,"opCode": 0}
+        components = {"pump1":self.wellPump.value(),"pump2":self.pressurePump.value(),"valve1":self.valveWell.value(),"valve2":self.valveWB.value(),"tank_id": tank_id,"opCode": 0,"toggleP":config["togglePressurePump"]}
         
         self.patchData(data,components)
         self.getData()
@@ -302,7 +302,7 @@ class Operation2:
     def getTankVolume(self):
         try:
             #HTTP GET METHOD
-            response = urequests.get(self.BASE+"/getSensorValues.php?q="+self.tankId)
+            response = urequests.get(self.BASE+"/resources/getSensorValues.php?q="+self.tankId)
             
             if response.status_code == 200:
                 data = response.json()
@@ -335,7 +335,7 @@ class Operation2:
                 if sensors["Volume"] >= 0 :
                     request_headers = {'Content-Type': 'application/json'}
                     request = urequests.patch(
-                        self.BASE+"/editSensorValues.php",
+                        self.BASE+"/resources/editSensorValues.php",
                         json=sensors,
                         headers=request_headers)
                     print(request.text)
@@ -349,7 +349,7 @@ class Operation2:
                 if not self.overRide:
                     components=components
                     request = urequests.patch(
-                        self.BASE+"/editSensorValues.php",
+                        self.BASE+"/resources/editSensorValues.php",
                         json=components,
                         headers=request_headers)
                     print(request.text)
@@ -363,7 +363,7 @@ class Operation2:
     def getData(self):
         #HTTP GET METHOD
         try:
-            response = urequests.get(self.BASE+"/getSensorValues.php?q="+self.tankId)
+            response = urequests.get(self.BASE+"/resources/getSensorValues.php?q="+self.tankId)
         
             if self.overRide:
                 if response.status_code == 200:
@@ -455,7 +455,7 @@ class Operation2:
                 self.valveIn.off()
                 self.offsetVariable2 = False     
         data = {"Volume":tankVolume ,"warning1":warning1,"warning2":warning2,"tank_id": tank_id,"opCode": 1}
-        components = {"valve1":self.valveOut.value(),"valve2":self.valveIn.value(),"tank_id": tank_id,"opCode": 1}
+        components = {"valve1":self.valveOut.value(),"valve2":self.valveIn.value(),"tank_id": tank_id,"opCode": 1,"toggleP":config["togglePressurePump"]}
         self.patchData(data,components)
         self.getData()
 class Operation3:
@@ -494,7 +494,7 @@ class Operation3:
     def getTankVolume(self):
         try:
             #HTTP GET METHOD
-            response = urequests.get(self.BASE+"/getSensorValues.php?q="+self.tankId)
+            response = urequests.get(self.BASE+"/resources/getSensorValues.php?q="+self.tankId)
             
             if response.status_code == 200:
                 data = response.json()
@@ -527,7 +527,7 @@ class Operation3:
                 if sensors["Volume"]  >= 0:
                     request_headers = {'Content-Type': 'application/json'}
                     request = urequests.patch(
-                        self.BASE+"/editSensorValues.php",
+                        self.BASE+"/resources/editSensorValues.php",
                         json=sensors,
                         headers=request_headers)
                     print(request.text)
@@ -541,7 +541,7 @@ class Operation3:
                 if not self.overRide:
                     components=components
                     request = urequests.patch(
-                        self.BASE+"/editSensorValues.php",
+                        self.BASE+"/resources/editSensorValues.php",
                         json=components,
                         headers=request_headers)
                     print(request.text)
@@ -555,7 +555,7 @@ class Operation3:
     def getData(self):
         #HTTP GET METHOD
         try:
-            response = urequests.get(self.BASE+"/getSensorValues.php?q="+self.tankId)
+            response = urequests.get(self.BASE+"/resources/getSensorValues.php?q="+self.tankId)
         
             if self.overRide:
                 if response.status_code == 200:
@@ -648,7 +648,7 @@ class Operation3:
                 self.offsetVariable1 = True
             
         data = {"Volume":tankVolume ,"warning1":warning1,"warning2":warning2,"tank_id": tank_id,"opCode": 2}
-        components = {"pump1":self.waterPump.value(),"valve1":self.valveOut.value(),"tank_id": tank_id,"opCode": 2}
+        components = {"pump1":self.waterPump.value(),"valve1":self.valveOut.value(),"tank_id": tank_id,"opCode": 2,"toggleP":config["togglePressurePump"]}
         
         self.patchData(data,components)
         self.getData()
@@ -685,7 +685,7 @@ class Operation5:
     def getTankVolume(self):
         try:
             #HTTP GET METHOD
-            response = urequests.get(self.BASE+"/getSensorValues.php?q="+self.tankId)
+            response = urequests.get(self.BASE+"/resources/getSensorValues.php?q="+self.tankId)
             
             if response.status_code == 200:
                 data = response.json()
@@ -718,7 +718,7 @@ class Operation5:
                 if sensors["Volume"] >= 0 :
                     request_headers = {'Content-Type': 'application/json'}
                     request = urequests.patch(
-                        self.BASE+"/editSensorValues.php",
+                        self.BASE+"/resources/editSensorValues.php",
                         json=sensors,
                         headers=request_headers)
                     print(request.text)
@@ -732,7 +732,7 @@ class Operation5:
                 if not self.overRide:
                     components=components
                     request = urequests.patch(
-                        self.BASE+"/editSensorValues.php",
+                        self.BASE+"/resources/editSensorValues.php",
                         json=components,
                         headers=request_headers)
                     print(request.text)
@@ -746,7 +746,7 @@ class Operation5:
     def getData(self):
         #HTTP GET METHOD
         try:
-            response = urequests.get(self.BASE+"/getSensorValues.php?q="+self.tankId)
+            response = urequests.get(self.BASE+"/resources/getSensorValues.php?q="+self.tankId)
         
             if self.overRide:
                 if response.status_code == 200:
@@ -815,7 +815,7 @@ class Operation5:
                 self.offsetVariable1 = False
                 
         data = {"Volume":tankVolume ,"warning1":warning1,"warning2":warning2,"tank_id": tank_id,"opCode": 4}
-        components = {"valve2":self.valveIn.value(),"tank_id": tank_id,"opCode": 4}
+        components = {"valve2":self.valveIn.value(),"tank_id": tank_id,"opCode": 4,"toggleP":config["togglePressurePump"]}
         
         self.patchData(data,components)
         self.getData()
@@ -856,7 +856,7 @@ class Operation6:
     def getTankVolume(self):
         try:
             #HTTP GET METHOD
-            response = urequests.get(self.BASE+"/getSensorValues.php?q="+self.tankId)
+            response = urequests.get(self.BASE+"/resources/getSensorValues.php?q="+self.tankId)
             
             if response.status_code == 200:
                 data = response.json()
@@ -889,7 +889,7 @@ class Operation6:
                 if sensors["Volume"]  >= 0:
                     request_headers = {'Content-Type': 'application/json'}
                     request = urequests.patch(
-                        self.BASE+"/editSensorValues.php",
+                        self.BASE+"/resources/editSensorValues.php",
                         json=sensors,
                         headers=request_headers)
                     print(request.text)
@@ -903,7 +903,7 @@ class Operation6:
                 if not self.overRide:
                     components=components
                     request = urequests.patch(
-                        self.BASE+"/editSensorValues.php",
+                        self.BASE+"/resources/editSensorValues.php",
                         json=components,
                         headers=request_headers)
                     print(request.text)
@@ -917,7 +917,7 @@ class Operation6:
     def getData(self):
         #HTTP GET METHOD
         try:
-            response = urequests.get(self.BASE+"/getSensorValues.php?q="+self.tankId)
+            response = urequests.get(self.BASE+"/resources/getSensorValues.php?q="+self.tankId)
         
             if self.overRide:
                 if response.status_code == 200:
@@ -1000,7 +1000,7 @@ class Operation6:
                 self.offsetVariable1 = True
             
         data = {"Volume":tankVolume ,"warning1":warning1,"warning2":warning2,"tank_id": tank_id,"opCode": 5}
-        components = {"pump1":self.waterPump.value(),"valve2":self.valveIn.value(),"tank_id": tank_id,"opCode": 5}
+        components = {"pump1":self.waterPump.value(),"valve2":self.valveIn.value(),"tank_id": tank_id,"opCode": 5,"toggleP":config["togglePressurePump"]}
         
         self.patchData(data,components)
         self.getData()
@@ -1054,7 +1054,7 @@ class Operation7:
     def getTankVolume(self):
         try:
             #HTTP GET METHOD
-            response = urequests.get(self.BASE+"/getSensorValues.php?q="+self.tankId)
+            response = urequests.get(self.BASE+"/resources/getSensorValues.php?q="+self.tankId)
             
             if response.status_code == 200:
                 data = response.json()
@@ -1086,7 +1086,7 @@ class Operation7:
                 if sensors["Pressure"] != 0 or sensors["Volume"] > 1 :
                     request_headers = {'Content-Type': 'application/json'}
                     request = urequests.patch(
-                        self.BASE+"/editSensorValues.php",
+                        self.BASE+"/resources/editSensorValues.php",
                         json=sensors,
                         headers=request_headers)
                     print(request.text)
@@ -1100,7 +1100,7 @@ class Operation7:
                 if not self.overRide:
                     components=components
                     request = urequests.patch(
-                        self.BASE+"/editSensorValues.php",
+                        self.BASE+"/resources/editSensorValues.php",
                         json=components,
                         headers=request_headers)
                     print(request.text)
@@ -1113,7 +1113,7 @@ class Operation7:
     def getData(self):
         #HTTP GET METHOD
         try:
-            response = urequests.get(self.BASE+"/getSensorValues.php?q="+self.tankId)
+            response = urequests.get(self.BASE+"/resources/getSensorValues.php?q="+self.tankId)
         
             if self.overRide:
                 if response.status_code == 200:
@@ -1234,7 +1234,7 @@ class Operation7:
                 self.offsetVariable2 = False
                 
         data = {"Pressure":pressure, "Volume":tankVolume ,"warning1":warning1,"warning2":warning2,"tank_id": tank_id,"opCode": 6}
-        components = {"pump2":self.pressurePump.value(),"valve1":self.outletValve.value(),"valve2":self.inletValve.value(),"tank_id": tank_id,"opCode": 6}
+        components = {"pump2":self.pressurePump.value(),"valve1":self.outletValve.value(),"valve2":self.inletValve.value(),"tank_id": tank_id,"opCode": 6,"toggleP":config["togglePressurePump"]}
         
         self.patchData(data,components)
         self.getData()
