@@ -28,6 +28,7 @@ class WaterTank:
         count = 0
         current_height = 0
         
+        #loop until 10 values are added to the sum
         while self.tank_counter < 10:
             #Well Tank Level Sensor
             self.initial_height = self.ultra_sensor.distance_cm()
@@ -38,27 +39,32 @@ class WaterTank:
                 if self.escape == 20:
                     break
                 pass
+            
             #only work with positive values
             elif self.initial_height > 0:
+                
+                #give prev1 an initial value in the first loop and add to sum
                 if self.prev1 == 0:
                     self.prev1 = self.initial_height
+                    sum = sum + self.initial_height
+                    self.tank_counter +=1
                 
-                if self.initial_height != self.prev1:
-                    diff = abs(self.initial_height - self.prev1)
-                    print("diff = ",diff)
-                    if diff > 2:
-                        print(self.initial_height, "cm The filtered distance")
-                        self.initial_height = self.prev1
-                        theSum = theSum + self.initial_height
-                        self.tank_counter += 1
-                    elif diff < 2:
-                        self.prev1 = self.initial_height
-                        theSum = theSum + self.initial_height
-                        self.tank_counter += 1
-                else:
+                #calculate the difference between the previous value and the current value
+                diff = abs(self.prev1 - self.initial_height)
+                print("diff = ",diff)
+                
+                if diff > 2:
+                    #if diff is greater than 2, give initial_height the previous valid value, prev1, and increment tank_counter
+                    print(self.initial_height, "cm The filtered distance")
+                    self.initial_height = self.prev1
                     theSum = theSum + self.initial_height
                     self.tank_counter += 1
-
+                else:
+                    #if diff is less than 2, add the raw value to the sum and increment tank_counter
+                    self.prev1 = self.initial_height
+                    theSum = theSum + self.initial_height
+                    self.tank_counter += 1
+                    
         self.tank_counter = 0
         self.escape = 0
         #check if there is a valid sum
