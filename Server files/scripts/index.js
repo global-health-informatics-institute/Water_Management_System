@@ -2371,6 +2371,8 @@ $(function(){
   $("a").click(function(){
     $("#myModal").removeClass("visually-hidden");
   });
+  $("li#home").find("a").addClass("active").css("background-color","#3375c4");
+  $("li#stats").find("a").removeClass("active");
 });
 
 if(num_of_tanks == 2){

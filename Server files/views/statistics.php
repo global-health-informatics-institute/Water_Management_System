@@ -1,22 +1,19 @@
 <?php
 session_start();
+
 $error = "";
 $user = "admin";
 $password = "password";
 $database = "WMS";
-$table = "users";
+$table = "sensorValues";
+$tank_id = "";
 
 //connect to database
 $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
-
-if (isset($_POST['username'])){
-	$username = trim($_POST['username']);
-	//checks if any equivalent usernames exist
-	$query = $db->prepare("DELETE FROM $table WHERE username= ?");
-	$query->bindValue(1, $username);
-	$query->execute();
+if (isset($_POST['tank_id'])){
+	$tank_id = trim($_POST['tank_id']);
+	$_SESSION['tank_id'] = $tank_id;
 	echo 1;
-	$db = null;
 	die();	 	
 }
 ?>
@@ -28,13 +25,15 @@ if (isset($_POST['username'])){
 		<link rel = "icon" type="image/png" href = "../assets/images/ghii_logo.png">
 		<link rel ="stylesheet" href="../assets/bootstrap.min.css">
 		<link rel ="stylesheet" href="../assets/all.min.css">
-		<link rel ="stylesheet" href="../css/userManagement.css?v=<?php echo time() ?>">
+		<link rel ="stylesheet" href="../css/statistics.css?v=<?php echo time() ?>">
 		<link rel ="stylesheet" href="../assets/jquery-ui.min.css">
+		<link rel ="stylesheet" href="../assets/dataTables.bootstrap5.min.css">
 		<script src="../assets/jquery.min.js"></script>
+		<script src="../assets/jquery.dataTables.min.js"></script>
 		<title>Admin</title>
 	</head>
 	<body id ="document" class="bg-light">
-		<!--Start of navbar-->
+		<!--Start of navbar section-->
 		<div class="navbar navbar-expand-lg navbar-dark shadow mb-3">
 		  <div class="container-fluid">
 			<a class="navbar-brand" href="../admin.php"><img src="../assets/images/ghii_logo.png" alt="" width="32" height="32" class="me-2">Water Management System</a>
@@ -55,15 +54,19 @@ if (isset($_POST['username'])){
 					  Overview
 					</a>
 				  </li>
-				  <li id = "dash" class="nav-item">
-					<a href="userManagement.php" class="nav-link">
-					   <i class="fas fa-user-plus nav-icon"></i>
-					   Manage users
-					</a>
-				  </li>
+				  <?php
+					if($_SESSION['name'] == 'admin'){
+					  echo'<li id = "dash" class="nav-item">
+						<a href="userManagement.php" class="nav-link">
+						   <i class="fas fa-user-plus nav-icon"></i>
+						   Manage users
+						</a>
+					  </li>';
+					}
+				  ?>
 				  <li id = "stats" class="nav-item">
 					<a href="statistics.php" class="nav-link">
-					   <i class="fas fa-user-plus nav-icon"></i>
+					   <i class="fas fa-chart-line nav-icon"></i>
 					   Statistics
 					</a>
 				  </li>
@@ -82,45 +85,58 @@ if (isset($_POST['username'])){
 			</div>
 		  </div>
 		</div>
-		<div id="main-container" class= "container d-flex h-100 mt-5">
-			<div id="thecard2" class="card shadow mb-5">
-				<div style ="overflow-x:auto;">
-					<table class="table table-hover text-start">
+		<!--end of navbar section-->
+		
+		<!--start of content section-->
+		<div id="main-container" class= "container h-100 mt-5">
+			<!--first row-->
+			<div class ="row mb-5">
+				<div class = "col-lg-4 col-sm-12 mid"><div class = "card mid-card">something1</div></div>
+				<div class = "col-lg-4 col-sm-12 mid"><div class = "card mid-card">something2</div></div>
+				<div class = "col-lg-4 col-sm-12 mid"><div class = "card mid-card">something3</div></div>
+			</div>
+			<!--second row-->
+			<div class="card row shadow-sm mb-2">
+				<div class="pt-2 pb-1" style ="overflow-x:auto;">
+					<table id="dataTable" class="table table-hover text-start" cellspacing="0">
 					  <thead class = "thead-light">
 						<tr>
 						  <th scope="col"></th>
-						  <th scope="col">Id</th>
-						  <th scope="col">Username</th>
-						  <th scope="col">Email</th>
-						  <th scope="col"></th>
+						  <th scope="col">Time</th>
+						  <th scope="col">Volume</th>
 						</tr>
 					  </thead>
 					  <tbody>
-						<?php 
-							foreach($db->query("SELECT id, username, email FROM users where username != 'admin'") as $row) {
+						<?php
+							$i = 0;
+							foreach($db->query("SELECT id, Volume FROM sensorValues WHERE watertank_id = '".$_SESSION['tank_id']."' LIMIT 1000 ") as $row) {
 								echo'
 									<tr>
-									  <th scope="row"><img src="../assets/images/user-svgrepo-com.svg" alt="" width="32" height="32" class="rounded-circle me-2"></th>
-									  <td id = "theId">'.$row['id'].'</td>
-									  <td id = "username" >'.$row['username'].'</td>
-									  <td>'.$row['email'].'</td>
-									  <td><div class = "d-flex" onClick = "editUser(this)"><div style="border-right:1px solid; padding-right:5px;"><i class="fal fa-edit edit"></i></div><div style="padding-left:5px;" onClick ="deleteUser(this)" title="Delete User"><i class="fal fa-trash-alt trash"></i></div></div></td>
+									  <th scope="row">'.++$i.'</th>
+									  <td>'.$row['id'].'</td>
+									  <td id = "Volume" >'.$row['Volume'].'</td>
 									</tr> ';
 							}					
 						?>
-						<tr>
-							<th><a href="adminRegister.php" title="Add User" class="nav-link"><i id="add-icon" class="fa-solid fa-circle-plus"></i></a></th>
-							<td class="lastItem"></td>
-							<td class="lastItem"></td>
-							<td class="lastItem"></td>
-							<td class="lastItem"></td>
-						</tr>
 					  </tbody>
 					</table>
 				</div>
+			</div>
+			<!--third row-->
+			<div class = "row d-grid mb-4">
+				<div class="w-100 text-start">
+					<button id = "plot" class="btn">plot</button>
 				</div>
 			</div>
+			<!--fourth row-->
+			<div id="chart-container" class = "card shadow-sm row visually-hidden">
+				<div class="card-title w-100 text-end" ><button type="button" class="btn-close mt-3 pe-5" aria-label="Close"></button></div>
+				<div id="chart" class="col-lg-12">It works</div>
+			</div>
 		</div>
+		<!--end of content section-->
+		
+		<!--start of utilities section-->
 		<div id="dialog-confirm" title="Delete User Profile?" class="visually-hidden">
 		  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>User profile will be permanently deleted and cannot be recovered. Are you sure?</p>
 		</div>
@@ -143,28 +159,11 @@ if (isset($_POST['username'])){
 			  </div>
 		  </div>
 		</div>
-		<div id="dialog-form" title="Create new user" class="visually-hidden">
-		  <div id = "badge" class = "alert visually-hidden"></div>
-		  <form class="h-100 mt-3" action ="">
-			<div class="form-floating me-3 ms-3">
-			  <input type="text" class="input-fields form-control" id="name" placeholder="Username" required>
-			  <label for="name"><i class="fas fa-user me-2"></i>Username</label>
-			</div>
-			<div class="form-floating me-3 ms-3">
-			  <input type="email" class="input-fields form-control" id="email" placeholder="Password" required>
-			  <label for="email"><i class="fas fa-key me-2"></i>Password</label>
-			</div>																										
-			<div class="form-group mb-2 ms-3 me-3 mt-4">
-				<button id="login" class="btn login" type="submit">
-				  <span class=" spinner spinner-border spinner-border-sm text-white visually-hidden" role="status" aria-hidden="true"></span>
-				  <span class = "login-text">Login</span>
-				</button>
-			</div>
-		</form>
-		</div>
+		<!--end of utilities section-->
 		<script src="../assets/jquery-ui.js"></script>
 		<script src="../assets/bootstrap.min.js"></script>
+		<script src="../assets/dataTables.bootstrap5.min.js"></script>
 		<script src="../assets/all.min.js"></script>
-		<script src="../scripts/userManagement.js?v=<?php echo time() ?>"></script>
+		<script src="../scripts/statistics.js?v=<?php echo time() ?>"></script>
 	</body>
 </html>

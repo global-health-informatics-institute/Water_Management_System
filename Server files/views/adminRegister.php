@@ -119,6 +119,12 @@ if (isset($_POST['submit'])){
 					   Manage users 
 					</a>
 				  </li>
+				  <li id = "stats" class="nav-item">
+					<a href="statistics.php" class="nav-link">
+					   <i class="fas fa-chart-line"></i>
+					   Statistics
+					</a>
+				  </li>
 				</ul>
 				<hr>
 				<div class="dropdown">

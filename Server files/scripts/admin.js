@@ -387,7 +387,7 @@ function getReadings() {
   
   };
 
-  xhr.open("GET", "/resources/getSensorValues.php?q="+tank_id, true);
+  xhr.open("GET","/resources/getSensorValues.php?q="+tank_id, true);
   xhr.send();
 }
 
@@ -618,6 +618,7 @@ $(function(){
   
   $("li#home").find("a").addClass("active").css("background-color","#3375c4");
   $("li#dash").find("a").removeClass("active");
+  $("li#stats").find("a").removeClass("active");
   
     
   $("#modalToggle").click(function(){
@@ -635,7 +636,7 @@ $(function(){
 //pick a selection
 function onSelect(){
   var theOption = $("select#select").val();
-  if((theOption == 1) || (theOption == 3)){
+  if(theOption !== null){
     tank_id = String(theOption);
     //stores tank_id in local storage
     window.localStorage.setItem("admin_tank_id",tank_id);

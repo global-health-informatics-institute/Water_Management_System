@@ -56,6 +56,12 @@ if($_SESSION['name'] !== "admin"){
                   Manage users
                 </a>
               </li>
+              <li id = "stats" class="nav-item">
+                <a href="views/statistics.php" class="nav-link">
+                  <i class="fas fa-chart-line nav-icon"></i>
+                  Statistics
+                </a>
+              </li>
             </ul>
             <hr>
             <div class="dropdown">

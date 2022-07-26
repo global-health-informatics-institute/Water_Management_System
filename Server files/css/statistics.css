@@ -91,11 +91,21 @@ table{
   align-items:center;
   justify-content:center;
 }
+.mid{
+margin-top:5px;
+display:flex;
+justify-content:center;
+}
 
-#thecard2{
-  min-width: 350px;
-  border-radius:0.8rem;
-  }
+#plot{
+	background-color:#122945;
+	border-radius:10px;
+	color:white;
+}
+#plot:hover{
+	color:#fefefe;
+}
+
 #add-icon{
 	font-size:31px;
 	
@@ -104,8 +114,13 @@ table{
   color:#122945;
   cursor:pointer;
 }
+.card{
+ border-radius:5px;
+}
 
-
+.mid-card{
+width:75%;
+}
 .adduser-img{
   height:30px;
   width:30px;
@@ -199,7 +214,6 @@ table{
   .nav-1{
   justify-content: flex-start;
   align-items: flex-start;
-  
 }
  
  }
