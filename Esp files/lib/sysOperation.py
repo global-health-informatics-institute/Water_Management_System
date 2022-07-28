@@ -53,6 +53,7 @@ class Operation1:
     def getPressureReading(self):
         #Pressure Sensor
         pressure = self.pressureSensor.pressure_150()
+        sleep(0.5)
         print("pressure",pressure)
         return pressure
     
@@ -149,6 +150,7 @@ class Operation1:
     def operateSys(self):
         
         #gets tank's current volume and pressure of pressure sensor
+        sleep(8)
         tankVolume = self.getTankVolume()
         pressure = self.getPressureReading()
         #tank id
@@ -368,6 +370,7 @@ class Operation2:
             if self.overRide:
                 if response.status_code == 200:
                     data = response.json()
+                    sleep(0.5)
                     self.overRide = int(data["override"])
                     self.value1 = int(data["valve1"])
                     self.value2 = int(data["valve2"])
@@ -385,7 +388,7 @@ class Operation2:
     #  Manages the system
     # **************************************************
     def operateSys(self):
-        
+        sleep(14)
         #gets tank's current volume and pressure of pressure sensor
         tankVolume = self.getTankVolume()
         
@@ -560,6 +563,7 @@ class Operation3:
             if self.overRide:
                 if response.status_code == 200:
                     data = response.json()
+                    sleep(0.5)
                     self.overRide = int(data["override"])
                     self.value1 = int(data["pump1"])
                     self.value2 = int(data["valve1"])
@@ -576,7 +580,7 @@ class Operation3:
     #  Manages the system
     # **************************************************
     def operateSys(self):
-        
+        sleep(14)
         #gets tank's current volume 
         tankVolume = self.getTankVolume()
         #tank id
@@ -751,6 +755,7 @@ class Operation5:
             if self.overRide:
                 if response.status_code == 200:
                     data = response.json()
+                    sleep(0.5)
                     self.overRide = int(data["override"])
                     self.value1 = int(data["valve2"])
                
@@ -758,6 +763,7 @@ class Operation5:
             else:
                 if response.status_code == 200:
                     data = response.json()
+                    sleep(0.5)
                     self.overRide = int(data["override"])
             
         except Exception as e:
@@ -767,7 +773,7 @@ class Operation5:
     #  Manages the system
     # **************************************************
     def operateSys(self):
-        
+        sleep(14)
         #gets tank's current volume and pressure of pressure sensor
         tankVolume = self.getTankVolume()
         
@@ -860,7 +866,6 @@ class Operation6:
             
             if response.status_code == 200:
                 data = response.json()
-                print("incoming tank value", data)
                 tankVolume = float(data["volume"])
                 
         except Exception as e:
@@ -884,7 +889,6 @@ class Operation6:
             try:
                 #Send Sensor Readings to API 
                 sensors = data
-                print('Printing sensor readings',sensors)
                 sleep(1)
                 if sensors["Volume"]  >= 0:
                     request_headers = {'Content-Type': 'application/json'}
@@ -922,6 +926,7 @@ class Operation6:
             if self.overRide:
                 if response.status_code == 200:
                     data = response.json()
+                    sleep(0.5)
                     self.overRide = int(data["override"])
                     self.value1 = int(data["pump1"])
                     self.value2 = int(data["valve2"])
@@ -929,6 +934,7 @@ class Operation6:
             else:
                 if response.status_code == 200:
                     data = response.json()
+                    sleep(0.5)
                     self.overRide = int(data["override"])
             
         except Exception as e:
@@ -938,7 +944,7 @@ class Operation6:
     #  Manages the system
     # **************************************************
     def operateSys(self):
-        
+        sleep(14)
         #gets tank's current volume 
         tankVolume = self.getTankVolume()
         #tank id
@@ -1045,6 +1051,7 @@ class Operation7:
     def getPressureReading(self):
         #Pressure Sensor
         pressure = self.pressureSensor.pressure_150()
+        sleep(0.5)
         print("pressure",pressure)
         return pressure
     
@@ -1058,7 +1065,6 @@ class Operation7:
             
             if response.status_code == 200:
                 data = response.json()
-                print("incoming tank value", data)
                 tankVolume = float(data["volume"])
                 
         except Exception as e:
@@ -1118,6 +1124,7 @@ class Operation7:
             if self.overRide:
                 if response.status_code == 200:
                     data = response.json()
+                    sleep(0.5)
                     self.overRide = int(data["override"])
                     self.value2 = int(data["pump2"])
                     self.value3 = int(data["valve1"])
@@ -1125,6 +1132,7 @@ class Operation7:
             else:
                 if response.status_code == 200:
                     data = response.json()
+                    sleep(0.5)
                     self.overRide = int(data["override"])
             
         except Exception as e:
@@ -1134,7 +1142,7 @@ class Operation7:
     #  Manages the system
     # **************************************************
     def operateSys(self):
-        
+        sleep(14)
         #gets tank's current volume and pressure of pressure sensor
         tankVolume = self.getTankVolume()
         pressure = self.getPressureReading()
@@ -1143,10 +1151,8 @@ class Operation7:
         
         #Automatic control mode
         if not self.overRide:
-            print("entered auto mode")
-            
+            #if water level is low
             if (tankVolume < self.minimum_capacity):
-                print("water level too low")
                 warning1 = 1
                 #switch off outlet valve
                 if(self.offsetVariable1 == False):
@@ -1171,7 +1177,6 @@ class Operation7:
             #Check if well tank volume is greater than the maximum allowable threshold
             if (tankVolume >= self.maximum_capacity):
                 sense = self.outletValve.value()
-                print("water level too high")
                 warning2 = 1
                 #switch off inlet valve
                 if (self.offsetVariable2 == True):
@@ -1188,7 +1193,6 @@ class Operation7:
                 #sense checks if the pressure pump is already on when its supposed to be off at the beginning of operation
                 sense2=self.pressurePump.value()
                 if (self.offsetVariable4 == False):
-                    print("water pressure too high!")
                     self.pressurePump.off()
                     self.offsetVariable4 = True
                 if sense2 == 1:
@@ -1198,7 +1202,6 @@ class Operation7:
                     
             if(pressure < 12):
                 if (self.offsetVariable4 == True):
-                    print("water pressure too low!")
                     self.pressurePump.on()
                     self.offsetVariable4 = False
                     
@@ -1207,7 +1210,6 @@ class Operation7:
         elif self.overRide:
             warning1 = 0
             warning2 = 0
-            print("entered manual mode")
             
             #toggle pressure pump on/off
             if self.value2 and self.offsetVariable4 == True:
