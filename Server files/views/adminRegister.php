@@ -89,7 +89,7 @@ if (isset($_POST['submit'])){
 		<link rel ="stylesheet" href="../assets/all.min.css">
 		<link rel ="stylesheet" href="../css/adminRegister.css?v=<?php echo time() ?>">
 		<script src="../assets/jquery.min.js"></script>
-		<title>Admin</title>
+		<title>Register User</title>
 	</head>
 	<body class="bg-light">
 		<!--Start of navbar-->
@@ -116,12 +116,12 @@ if (isset($_POST['submit'])){
 				  <li id = "dash" class="nav-item">
 					<a href="userManagement.php" class="nav-link">
 					   <i class="fas fa-user-plus nav-icon"></i>
-					   Manage users 
+					   User Management 
 					</a>
 				  </li>
 				  <li id = "stats" class="nav-item">
 					<a href="statistics.php" class="nav-link">
-					   <i class="fas fa-chart-line"></i>
+					   <i class="fas fa-chart-line nav-icon"></i>
 					   Statistics
 					</a>
 				  </li>
@@ -144,7 +144,7 @@ if (isset($_POST['submit'])){
 			<div id="thecard2" class="card shadow col-md-5 mb-5">
 				<div class="text-end"><button type="button" class="btn-close mt-3 pe-5" aria-label="Close" onclick="close6()" ></button></div>
 				<div class="img-pos mb-0 mt-3"><img class="user-img" src="../assets/images/user-regular.svg"/></div>
-				<div class="card-title mt-2 mb-4"><strong>Admin Register</strong></div>
+				<div class="card-title mt-2 mb-4"><strong>Register User</strong></div>
 				<?php  echo $error1; ?>
 				<form class="h-100 mt-3" action ="" method="post">
 					<div class ="row" >

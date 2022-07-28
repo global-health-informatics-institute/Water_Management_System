@@ -146,6 +146,11 @@ select option:checked{
   padding: 20px;
   
 }
+#thecard2{
+  border-radius:0.8rem;
+  padding: 20px;
+  
+}
 
 #the_container{
   min-height:100vh;

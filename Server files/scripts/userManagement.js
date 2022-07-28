@@ -15,9 +15,9 @@ function deleteUser(e){
       modal: true,
       buttons: {
         Delete: function() {
-          var answer = $(e).parent().parent().find("#username").html();
+          var answer = $(e).parent().parent().parent().find("#username").html();
+          console.log(answer);
           //delete user
-          $("#myModal").removeClass("visually-hidden");
           $.ajax({
             url:"../views/userManagement.php",
             method: "POST",
@@ -62,14 +62,14 @@ function editUser(e){
       width: 350,
       modal: true,
       buttons: {
-        "Create an account": addUser,
+        "Edit": addUser,
         Cancel: function() {
           $(this).dialog( "close" );
         }
       },
       close: function() {
         form[ 0 ].reset();
-        allFields.removeClass( "ui-state-error" );
+        //allFields.removeClass( "ui-state-error" );
       }
     });
  
@@ -84,7 +84,7 @@ function editUser(e){
       emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
       name = $( "#name" ),
       email = $( "#email" ),
-      allFields = $( [] ).add( name ).add( email ),
+      //allFields = $( [] ).add( name ).add( email ),
       tips = $( ".validateTips" );
     
     function updateTips( t ) {
@@ -119,39 +119,37 @@ function editUser(e){
  
     function addUser() {
       var valid = true;
-      allFields.removeClass( "ui-state-error" );
+      //allFields.removeClass( "ui-state-error" );
  
-      valid = valid && checkLength( name, "username", 3, 16 );
-      valid = valid && checkLength( email, "email", 6, 80 );
+      //valid = valid && checkLength( name, "username", 3, 16 );
+      //valid = valid && checkLength( email, "email", 6, 80 );
  
-      valid = valid && checkRegexp( name, /^[a-z]([0-9a-z_\s])+$/i, "Username may consist of a-z, 0-9, underscores, spaces and must begin with a letter." );
+      //valid = valid && checkRegexp( name, /^[a-z]([0-9a-z_\s])+$/i, "Username may consist of a-z, 0-9, underscores, spaces and must begin with a letter." );
       //valid = valid && checkRegexp( email, emailRegex, "eg. ui@jquery.com" );
  
-      if ( valid ) {
+      if (valid) {
         $.ajax({
-          url:"../resources/editUser.php",
+          url:"../views/userManagement.php",
           method: "POST",
-          data: {username: $("#name").val(), email: $("#email").val(), id:ID},
+          data: {uname: $("#name").val(), email: $("#email").val(), id:ID},
         beforeSend: function(e){
-          //disable login button
-          $("#edit").attr("disabled",true);
+          $("#dialog-form").dialog( "close" );
           $("#myModal").removeClass("visually-hidden");
           },
           success: function(result){
-            //enables login button
-             $("#edit").attr("disabled",false);
              //once verified, the dashboard is shown when the window is reloaded
             if(result==1){
-              $("#dialog-form").dialog( "close" );
+              console.log("success");
               window.location.reload(true);
               }
-              else{
-                //show the alert
-                $("#myModal").addClass("visually-hidden");
-                $("#badge").html("Invalid Username");
-                $("#badge").addClass("alert-danger");
-                $("#badge").removeClass("visually-hidden");
-                }
+            else{
+              console.log(result);
+              //show the alert
+              $("#myModal").addClass("visually-hidden");
+              $("#badge").html("Invalid Username");
+              $("#badge").addClass("alert-danger");
+              $("#badge").removeClass("visually-hidden");
+              }
             }
           });
       }
@@ -167,27 +165,13 @@ $(function(){
     $("li#stats").find("a").removeClass("active");
     $("#thecard2").draggable();
     $("#thecard2").resizable();
-    //effects when you hover over delete icon
-    $(".trash").hover(function(){
-      $(this).addClass("fas");
-      $(this).removeClass("fal");
-    },function(){
-      $(this).addClass("fal");
-      $(this).removeClass("fas");
-    });
-    //effects when you hover over edit icon
-    $(".edit").hover(function(){
-      $(this).addClass("fas");
-      $(this).removeClass("fal");
-    },function(){
-      $(this).addClass("fal");
-      $(this).removeClass("fas");
-    });
+    
     //show loading modal when link is clicked
     $("a").click(function(){
       $("#myModal").removeClass("visually-hidden");
     });
     //show tooltips on whole document
     $("#document").tooltip();
+    $("#usersT").DataTable();
     
 });

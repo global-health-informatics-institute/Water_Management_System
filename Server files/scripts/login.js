@@ -19,11 +19,14 @@ $("#form").submit(function(e){
       if(result==1){
         window.location.reload(true);
         }
-        else{
-          //show the alert
-          $("#myModal").addClass("visually-hidden");
-          $(".alert").css("display","unset")
-          }
+      else if(result==2){
+        window.location.href = "http://192.168.0.126/admin.php";
+      }
+      else{
+        //show the alert
+        $("#myModal").addClass("visually-hidden");
+        $(".alert").css("display","unset")
+        }
       }
     });
   });

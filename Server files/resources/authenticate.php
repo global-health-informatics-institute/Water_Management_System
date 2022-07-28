@@ -24,7 +24,12 @@ if($row){
 		$_SESSION['loggedin'] = True;
 		$_SESSION['name'] = $row['username'];
 		$_SESSION['id'] = $row['id'];
-		echo 1;
+		
+		if($username == "admin"){
+			echo 2;
+		}else{
+			echo 1;	
+		}
 	}		
 }
 

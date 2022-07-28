@@ -1,16 +1,27 @@
 <?php
 //start the session
 session_start();
-
 //if the user is already logged in then redirect user
 if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
 	header("location: login.php");
 	exit;
 }
+
 if($_SESSION['name'] !== "admin"){
 		header("location: index.php");
     exit;
 }
+
+$error = "";
+$user = "admin";
+$password = "password";
+$database = "WMS";
+$table = "sensorValues";
+$tank_id = "";
+
+//connect to database
+$db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
+
 ?>
 
 
@@ -32,7 +43,7 @@ if($_SESSION['name'] !== "admin"){
     <!--Start of navbar-->
     <div class="navbar navbar-expand-lg navbar-dark shadow mb-3">
       <div class="container-fluid">
-        <a class="navbar-brand" href="admin.php"><img src="assets/images/ghii_logo.png" alt="" width="32" height="32" class="me-2">Water Management System</a>
+        <a class="navbar-brand" href="admin.php" title="Water management system"><img src="assets/images/ghii_logo.png" alt="" width="32" height="32" class="me-2">Water Management System</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon "></span>
         </button>
@@ -45,32 +56,32 @@ if($_SESSION['name'] !== "admin"){
             <hr>
             <ul class="navbar-nav ms-auto nav-pills mb-auto">
               <li id = "home" class="nav-item">
-                <a href="admin.php" class="nav-link" aria-current="page">
+                <a href="admin.php" class="nav-link" aria-current="page" title="Overview">
                   <i class="fas fa-home nav-icon"></i>
                   Overview
                 </a>
               </li>
               <li id = "dash" class="nav-item">
-                <a href="views/userManagement.php" class="nav-link">
-                  <i class="fas fa-user-plus nav-icon"></i>
-                  Manage users
+                <a href="views/userManagement.php" class="nav-link" title="Manage users">
+                  <i class="fas fa-user nav-icon"></i>
+                  User Management
                 </a>
               </li>
               <li id = "stats" class="nav-item">
-                <a href="views/statistics.php" class="nav-link">
+                <a href="views/statistics.php" class="nav-link" title="Statistics">
                   <i class="fas fa-chart-line nav-icon"></i>
                   Statistics
                 </a>
               </li>
             </ul>
             <hr>
-            <div class="dropdown">
+            <div class="dropdown" title="Profile">
               <div class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="assets/images/user-svgrepo-com.svg" alt="" width="32" height="32" class="rounded-circle me-2">
                 <strong> <?=$_SESSION['name']?></strong>
               </div>
               <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                <li id ="signout" ><a class="dropdown-item" href="logout.php">Sign out</a></li>
+                <li id ="signout" title="sign out"><a class="dropdown-item" href="logout.php">Sign out</a></li>
               </ul>
             </div>
           </div>
@@ -81,17 +92,19 @@ if($_SESSION['name'] !== "admin"){
     <div id="the_container" class="container-fluid">
       <ul class="nav nav-2">
         <li class="nav-item text-start me-2">
-          <button id="mode" class="btn-nav button-30 me-2" onclick="handleClick5()">Auto-mode</button>
+          <button id="mode" class="btn-nav button-30 me-2" onclick="handleClick5()" title="Mode">Auto-mode</button>
         </li>
         <li class="nav-item text-start">
-          <button id = "modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Reset</button>
+          <button id = "modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop" title="Reset">Reset</button>
         </li>
-        <li id = "selection" class="nav-item l2">
+        <li id = "selection" class="nav-item l2" title="Select water tank">
           <select class="form-select" id="select">
             <option selected value="default">Choose Water Tank</option>
-            <option  value="1">GHII Well Tank</option>
-            <option  value="3">GHII Waterboard Tank</option>
-            <option  value="4">Some other tank</option>
+            <?php
+              foreach($db->query("SELECT watertank_id, name FROM water_tanks") as $row){
+                echo'<option  value="'.$row['watertank_id'].'">'.$row['name'].'</option>';
+              }
+            ?>
           </select>
         </li>
       </ul>
@@ -140,7 +153,7 @@ if($_SESSION['name'] !== "admin"){
         
         <!--Water Tank Chart-->
         <div id="Chart" class="col-lg-12 mb-2">
-          <div id="thecard" class="card shadow mt-5">
+          <div id="thecard2" class="card shadow mt-5">
             <div id="chart1"></div>
           </div>
         </div>

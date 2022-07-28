@@ -49,7 +49,7 @@ var toggleP = "";
 if(window.localStorage.getItem("admin_tank_id")!==null)
 {
   var tank_id = window.localStorage.getItem('admin_tank_id');
-}else{var tank_id = "3";}
+}else{var tank_id = "1";}
 
 var datapoints = [];
 var ydps = [];
@@ -84,7 +84,7 @@ yaxis: {
       },
     labels:{
       formatter: function(val,index){
-        return val.toFixed(2);
+        return val.toFixed(1);
         }
       },
       min: 0,
@@ -227,6 +227,11 @@ function getReadings() {
             title:{
             text: "Litres",
             },
+            labels:{
+            formatter: function(val,index){
+              return val.toFixed(1);
+              }
+            },
             min: 0,
             max: capacity
           }
@@ -241,6 +246,11 @@ function getReadings() {
           yaxis: {
             title:{
             text: "Litres",
+            },
+            labels:{
+            formatter: function(val,index){
+              return val.toFixed(1);
+              }
             },
             min: 0,
             max: capacity
@@ -570,24 +580,17 @@ function handleClick5(){
 
 //listens for any changes to the select attribute
 $(function(){
+  //jquery ui functionality
   $( "#liveToast" ).draggable();
   $( "#liveToast2" ).draggable();
   $( "#Chart" ).resizable();
   $( "#Chart" ).draggable();
   $("select").change(onSelect);
   
-  if (tank_id == "1"){
-    let text = 'GHII Well Tank';
-      $("select option").filter(function() {
-          return $(this).text() == text;
+  //render the chart with the option value equal to tank_id
+  $("select option").filter(function() {
+          return $(this).val() == tank_id;
         }).prop('selected', true);
-  }
-  if (tank_id == "3"){
-    let text = 'GHII Waterboard Tank';
-      $("select option").filter(function() {
-          return $(this).text() == text;
-        }).prop('selected', true);
-    }
     
   //handles reset button click
   $("#reset").click(function(){
@@ -633,8 +636,10 @@ $(function(){
   });
 
 
-//pick a selection
+
+//pick a tank whose chart should be rendered
 function onSelect(){
+  console.log("selected!");
   var theOption = $("select#select").val();
   if(theOption !== null){
     tank_id = String(theOption);
@@ -648,4 +653,4 @@ function onSelect(){
 
 
 
-setInterval(getReadings, 2000);
+setInterval(getReadings, 60000);

@@ -25,7 +25,7 @@ const firebaseConfig = {
 
 var num_of_tanks = 2; //put number of tanks
 
-var tank_id_0 = "3";
+var tank_id_0 = "2";
 var tank_id_1 = "1";
 var tank_id_2 = "0"; 
 var tank_id_3 = "0"; 
@@ -217,7 +217,7 @@ yaxis: {
       },
     labels:{
       formatter: function(val,index){
-        return val.toFixed(2);
+        return val.toFixed(1);
         }
       },
         min: 0,
@@ -268,7 +268,7 @@ yaxis: {
       },
     labels:{
       formatter: function(val,index){
-        return val.toFixed(2);
+        return val.toFixed(1);
         }
       },
             min: 0,
@@ -319,7 +319,7 @@ yaxis: {
       },
     labels:{
       formatter: function(val,index){
-        return val.toFixed(2);
+        return val.toFixed(1);
         }
       },
             min: 0,
@@ -369,7 +369,7 @@ yaxis: {
       },
     labels:{
       formatter: function(val,index){
-        return val.toFixed(2);
+        return val.toFixed(1);
         }
       },
             min: 0,
@@ -420,7 +420,7 @@ yaxis: {
       },
     labels:{
       formatter: function(val,index){
-        return val.toFixed(2);
+        return val.toFixed(1);
         }
       },
             min: 0,
@@ -517,6 +517,11 @@ function getReadings() {
           yaxis: {
             title:{
             text: "Litres",
+            },
+            labels:{
+            formatter: function(val,index){
+              return val.toFixed(1);
+              }
             },
             min: 0,
             max: tank1_volume
@@ -687,7 +692,7 @@ function getReadings2() {
             }]);
       
       //update pressure gauge
-      chart2.updateSeries([pressureV]);
+      //chart2.updateSeries([pressureV]);
       
       
       
@@ -711,6 +716,11 @@ function getReadings2() {
           yaxis: {
             title:{
             text: "Litres",
+            },
+            labels:{
+            formatter: function(val,index){
+              return val.toFixed(1);
+              }
             },
             min: 0,
             max: tank2_volume
@@ -876,7 +886,7 @@ function getReadings3() {
             }]);
       
       //update pressure gauge
-      chart2.updateSeries([pressureV]);
+      //chart2.updateSeries([pressureV]);
      
       //command values updated
       warning1_2 = myObj.warning1;
@@ -899,6 +909,11 @@ function getReadings3() {
           yaxis: {
             title:{
             text: "Litres",
+            },
+            labels:{
+            formatter: function(val,index){
+              return val.toFixed(1);
+              }
             },
             min: 0,
             max: tank3_volume
@@ -1066,7 +1081,7 @@ function getReadings4() {
             }]);
       
       //update pressure gauge
-      chart2.updateSeries([pressureV]);
+      //chart2.updateSeries([pressureV]);
      
       //command values updated
       warning1_3 = myObj.warning1;
@@ -1089,6 +1104,11 @@ function getReadings4() {
           yaxis: {
             title:{
             text: "Litres",
+            },
+            labels:{
+            formatter: function(val,index){
+              return val.toFixed(1);
+              }
             },
             min: 0,
             max: tank4_volume
@@ -1257,7 +1277,7 @@ function getReadings5() {
             }]);
       
       //update pressure gauge
-      chart2.updateSeries([pressureV]);
+      //chart2.updateSeries([pressureV]);
      
       //command values updated
       warning1_4 = myObj.warning1;
@@ -1280,6 +1300,11 @@ function getReadings5() {
           yaxis: {
             title:{
             text: "Litres",
+            },
+            labels:{
+            formatter: function(val,index){
+              return val.toFixed(1);
+              }
             },
             min: 0,
             max: tank5_volume

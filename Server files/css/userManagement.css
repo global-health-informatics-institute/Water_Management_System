@@ -128,9 +128,13 @@ table{
 
 .trash:hover{
   cursor:pointer;
+  color:black;
+
 }
 .edit:hover{
   cursor:pointer;
+  color:black;
+
 }
 
 /* The Modal (background) */

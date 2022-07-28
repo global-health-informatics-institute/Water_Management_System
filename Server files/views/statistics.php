@@ -10,12 +10,19 @@ $tank_id = "";
 
 //connect to database
 $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
-if (isset($_POST['tank_id'])){
+if (isset($_POST['tank_id']) && $_SESSION['tank_id'] !== $_POST['tank_id']){
 	$tank_id = trim($_POST['tank_id']);
 	$_SESSION['tank_id'] = $tank_id;
 	echo 1;
 	die();	 	
 }
+if (isset($_POST['tank_id']) && isset($_POST['select'])){
+	$tank_id = trim($_POST['tank_id']);
+	$_SESSION['tank_id'] = $tank_id;
+	echo 1;
+	die();	 	
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -24,13 +31,26 @@ if (isset($_POST['tank_id'])){
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel = "icon" type="image/png" href = "../assets/images/ghii_logo.png">
 		<link rel ="stylesheet" href="../assets/bootstrap.min.css">
+		<link rel ="stylesheet" href="../assets/dataTables.dateTime.min.css">
+		<link rel ="stylesheet" href="../assets/buttons.dataTables.min.css">
 		<link rel ="stylesheet" href="../assets/all.min.css">
-		<link rel ="stylesheet" href="../css/statistics.css?v=<?php echo time() ?>">
 		<link rel ="stylesheet" href="../assets/jquery-ui.min.css">
 		<link rel ="stylesheet" href="../assets/dataTables.bootstrap5.min.css">
+		<link rel ="stylesheet" href="../assets/buttons.bootstrap5.min.css">
+		<link rel ="stylesheet" href="../css/statistics.css?v=<?php echo time() ?>">
+		
+		<!--Dependencies-->
 		<script src="../assets/jquery.min.js"></script>
+		<script src="../assets/jquery-ui.js"></script>
+		<script src="../assets/moment.min.js"></script>
 		<script src="../assets/jquery.dataTables.min.js"></script>
-		<title>Admin</title>
+		<script src="../assets/dataTables.dateTime.min.js"></script>
+		<script src="../assets/dataTables.buttons.min.js"></script>
+		<script src="../assets/dataTables.bootstrap5.min.js"></script>
+		<script src="../assets/buttons.bootstrap5.min.js"></script>
+		<script src="../assets/apexcharts.min.js"></script>
+		
+		<title>Statistics</title>
 	</head>
 	<body id ="document" class="bg-light">
 		<!--Start of navbar section-->
@@ -58,8 +78,8 @@ if (isset($_POST['tank_id'])){
 					if($_SESSION['name'] == 'admin'){
 					  echo'<li id = "dash" class="nav-item">
 						<a href="userManagement.php" class="nav-link">
-						   <i class="fas fa-user-plus nav-icon"></i>
-						   Manage users
+						   <i class="fas fa-user nav-icon"></i>
+						   User Management
 						</a>
 					  </li>';
 					}
@@ -72,13 +92,13 @@ if (isset($_POST['tank_id'])){
 				  </li>
 				</ul>
 				<hr>
-				<div class="dropdown">
+				<div class="dropdown" title="Profile">
 				  <div class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
 					<img src="../assets/images/user-svgrepo-com.svg" alt="" width="32" height="32" class="rounded-circle me-2">
 					<strong> <?=$_SESSION['name']?></strong>
 				  </div>
 				  <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-					<li id ="signout" ><a class="dropdown-item" href="../logout.php">Sign out</a></li>
+					<li id ="signout" title="sign out"><a class="dropdown-item" href="../logout.php">Sign out</a></li>
 				  </ul>
 				</div>
 			  </div>
@@ -90,10 +110,24 @@ if (isset($_POST['tank_id'])){
 		<!--start of content section-->
 		<div id="main-container" class= "container h-100 mt-5">
 			<!--first row-->
+			<div class = "row w-25">
+			<?php
+				if($_SESSION['name'] !== 'admin'){
+				echo'
+				 <select class="form-select" id="select">
+					<option selected value="default">Choose Water Tank</option>';
+					  foreach($db->query("SELECT watertank_id, name FROM water_tanks") as $row){
+						echo'<option  value="'.$row['watertank_id'].'">'.$row['name'].'</option>';
+					  }
+				echo '</select>';	
+				}
+			?>
+			</div>
+			<!--first row-->
 			<div class ="row mb-5">
-				<div class = "col-lg-4 col-sm-12 mid"><div class = "card mid-card">something1</div></div>
-				<div class = "col-lg-4 col-sm-12 mid"><div class = "card mid-card">something2</div></div>
-				<div class = "col-lg-4 col-sm-12 mid"><div class = "card mid-card">something3</div></div>
+				<div class = "col-lg-4 col-sm-12 mid"><div class = "card mid-card">Consumption: 200 cubic meters</div></div>
+				<div class = "col-lg-4 col-sm-12 mid"><div class = "card mid-card">Status: <span style="color:green;">Active</span></div></div>
+				<div class = "col-lg-4 col-sm-12 mid"><div class = "card mid-card">Recommendation: Reduce water usage</div></div>
 			</div>
 			<!--second row-->
 			<div class="card row shadow-sm mb-2">
@@ -109,7 +143,7 @@ if (isset($_POST['tank_id'])){
 					  <tbody>
 						<?php
 							$i = 0;
-							foreach($db->query("SELECT id, Volume FROM sensorValues WHERE watertank_id = '".$_SESSION['tank_id']."' LIMIT 1000 ") as $row) {
+							foreach($db->query("SELECT id, Volume FROM sensorValues WHERE watertank_id = '".$_SESSION['tank_id']."' ") as $row) {
 								echo'
 									<tr>
 									  <th scope="row">'.++$i.'</th>
@@ -123,7 +157,7 @@ if (isset($_POST['tank_id'])){
 				</div>
 			</div>
 			<!--third row-->
-			<div class = "row d-grid mb-4">
+			<div class = "row d-grid mb-4 visually-hidden">
 				<div class="w-100 text-start">
 					<button id = "plot" class="btn">plot</button>
 				</div>
@@ -131,7 +165,7 @@ if (isset($_POST['tank_id'])){
 			<!--fourth row-->
 			<div id="chart-container" class = "card shadow-sm row visually-hidden">
 				<div class="card-title w-100 text-end" ><button type="button" class="btn-close mt-3 pe-5" aria-label="Close"></button></div>
-				<div id="chart" class="col-lg-12">It works</div>
+				<div id="chart" class="col-lg-12"></div>
 			</div>
 		</div>
 		<!--end of content section-->
@@ -160,9 +194,7 @@ if (isset($_POST['tank_id'])){
 		  </div>
 		</div>
 		<!--end of utilities section-->
-		<script src="../assets/jquery-ui.js"></script>
 		<script src="../assets/bootstrap.min.js"></script>
-		<script src="../assets/dataTables.bootstrap5.min.js"></script>
 		<script src="../assets/all.min.js"></script>
 		<script src="../scripts/statistics.js?v=<?php echo time() ?>"></script>
 	</body>

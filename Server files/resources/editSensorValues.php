@@ -196,7 +196,7 @@ try {
    }
   //show or hide pressure gauge 
   if(isset($toggleP)){
-    $sql = "UPDATE commands SET toggle pressure = '".$toggleP."' WHERE watertank_id = '".$tank_id."'";
+    $sql = "UPDATE commands SET toggle_pressure = '".$toggleP."' WHERE watertank_id = '".$tank_id."'";
     $conn->exec($sql);
     echo "record toggle pressure in commands updated successfully";
   }

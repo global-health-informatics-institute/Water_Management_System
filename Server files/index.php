@@ -7,10 +7,12 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
 	header("location: login.php");
 	exit;
 }
+//if the name in the session is admin, redirect
 if($_SESSION['name'] == "admin"){
-		header("location: admin.php");
+		header("location: login.php");
     exit;
 }
+
 ?>
 
 
@@ -32,7 +34,7 @@ if($_SESSION['name'] == "admin"){
     <!--Start of navbar-->
     <div class="navbar navbar-expand-lg navbar-dark shadow mb-3">
       <div class="container-fluid">
-        <a class="navbar-brand" href="index.php"><img src="assets/images/ghii_logo.png" alt="" width="32" height="32" class="me-2">Water Management System</a>
+        <a class="navbar-brand" href="index.php" title="Water management system"><img src="assets/images/ghii_logo.png" alt="" width="32" height="32" class="me-2">Water Management System</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon "></span>
         </button>
@@ -45,26 +47,26 @@ if($_SESSION['name'] == "admin"){
             <hr>
             <ul class="navbar-nav ms-auto nav-pills mb-auto">
               <li id = "home" class="nav-item">
-                <a href="index.php" class="nav-link" aria-current="page">
+                <a href="index.php" class="nav-link" aria-current="page" title="Overview">
                   <i class="fas fa-home ms-2"></i>
                   Overview
                 </a>
               </li>
               <li id = "stats" class="nav-item">
-                <a href="views/statistics.php" class="nav-link" aria-current="page">
+                <a href="views/statistics.php" class="nav-link" aria-current="page" title="Statistics">
                   <i class="fas fa-chart-line ms-2"></i>
                   Statistics
                 </a>
               </li>
             </ul>
             <hr>
-            <div class="dropdown">
+            <div class="dropdown" title="Profile">
               <div class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="assets/images/user-svgrepo-com.svg" alt="" width="32" height="32" class="rounded-circle me-2">
                 <strong> <?=$_SESSION['name']?></strong>
               </div>
               <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                <li id ="signout" ><a class="dropdown-item" href="logout.php">Sign out</a></li>
+                <li id ="signout" title="sign out"><a class="dropdown-item" href="logout.php">Sign out</a></li>
               </ul>
             </div>
           </div>
@@ -89,10 +91,10 @@ if($_SESSION['name'] == "admin"){
         <!--Toggle and select-->
         <ul class="nav nav-2">
           <li class="nav-item text-start">
-            <button id="mode" class="btn-nav button-30 me-2">Auto-mode</button>
+            <button id="mode" class="btn-nav button-30 me-2" title="Mode">Auto-mode</button>
           </li>
           <li class="nav-item text-start">
-            <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Reset</button>
+            <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop1" title="Reset">Reset</button>
           </li>
         </ul>
         <div id="control_1" class= "row text-center" style="display:none;">
@@ -131,10 +133,10 @@ if($_SESSION['name'] == "admin"){
         <!--Toggle and select-->
         <ul class="nav nav-2">
           <li class="nav-item text-start">
-            <button id="mode_2" class="btn-nav button-30 me-2">Auto-mode</button>
+            <button id="mode_2" class="btn-nav button-30 me-2" title="Mode">Auto-mode</button>
           </li>
           <li class="nav-item text-start">
-            <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">Reset</button>
+            <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" title="Reset">Reset</button>
           </li>
         </ul>
         <div id="control_2" class= "row text-center" style="display:none;">
@@ -172,10 +174,10 @@ if($_SESSION['name'] == "admin"){
         <!--Toggle and select-->
         <ul class="nav nav-2">
           <li class="nav-item text-start">
-            <button id="mode_3" class="btn-nav button-30 me-2">Auto-mode</button>
+            <button id="mode_3" class="btn-nav button-30 me-2" title="Mode">Auto-mode</button>
           </li>
           <li class="nav-item text-start">
-            <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop3">Reset</button>
+            <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop3" title="Reset">Reset</button>
           </li>
         </ul>
         
@@ -214,10 +216,10 @@ if($_SESSION['name'] == "admin"){
         <!--Toggle and select-->
         <ul class="nav nav-2">
           <li class="nav-item text-start">
-            <button id="mode_4" class="btn-nav button-30 me-2">Auto-mode</button>
+            <button id="mode_4" class="btn-nav button-30 me-2" title="Mode">Auto-mode</button>
           </li>
           <li class="nav-item text-start">
-            <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop3">Reset</button>
+            <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop3" title="Reset">Reset</button>
           </li>
         </ul>
         
@@ -256,10 +258,10 @@ if($_SESSION['name'] == "admin"){
         <!--Toggle and select-->
         <ul class="nav nav-2">
           <li class="nav-item text-start">
-            <button id="mode_5" class="btn-nav button-30 me-2">Auto-mode</button>
+            <button id="mode_5" class="btn-nav button-30 me-2" title="Mode">Auto-mode</button>
           </li>
           <li class="nav-item text-start">
-            <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop3">Reset</button>
+            <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop3" title="Reset">Reset</button>
           </li>
         </ul>
         

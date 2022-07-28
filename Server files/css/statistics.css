@@ -95,6 +95,7 @@ table{
 margin-top:5px;
 display:flex;
 justify-content:center;
+align-items:center;
 }
 
 #plot{
@@ -120,6 +121,7 @@ justify-content:center;
 
 .mid-card{
 width:75%;
+display:inline;
 }
 .adduser-img{
   height:30px;
