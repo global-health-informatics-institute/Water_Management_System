@@ -150,7 +150,7 @@ class Operation1:
     def operateSys(self):
         
         #gets tank's current volume and pressure of pressure sensor
-        sleep(8)
+        sleep(5)
         tankVolume = self.getTankVolume()
         pressure = self.getPressureReading()
         #tank id
@@ -388,7 +388,7 @@ class Operation2:
     #  Manages the system
     # **************************************************
     def operateSys(self):
-        sleep(14)
+        sleep(5)
         #gets tank's current volume and pressure of pressure sensor
         tankVolume = self.getTankVolume()
         
@@ -580,7 +580,7 @@ class Operation3:
     #  Manages the system
     # **************************************************
     def operateSys(self):
-        sleep(14)
+        sleep(5)
         #gets tank's current volume 
         tankVolume = self.getTankVolume()
         #tank id
@@ -773,7 +773,7 @@ class Operation5:
     #  Manages the system
     # **************************************************
     def operateSys(self):
-        sleep(14)
+        sleep(5)
         #gets tank's current volume and pressure of pressure sensor
         tankVolume = self.getTankVolume()
         
@@ -944,7 +944,7 @@ class Operation6:
     #  Manages the system
     # **************************************************
     def operateSys(self):
-        sleep(14)
+        sleep(5)
         #gets tank's current volume 
         tankVolume = self.getTankVolume()
         #tank id
@@ -1142,7 +1142,7 @@ class Operation7:
     #  Manages the system
     # **************************************************
     def operateSys(self):
-        sleep(14)
+        sleep(5)
         #gets tank's current volume and pressure of pressure sensor
         tankVolume = self.getTankVolume()
         pressure = self.getPressureReading()

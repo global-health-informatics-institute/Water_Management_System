@@ -32,7 +32,7 @@ class WaterTank:
         while self.tank_counter < 10:
             #Well Tank Level Sensor
             self.initial_height = self.ultra_sensor.distance_cm() 
-            sleep(0.5) #Be sure to put in a delay when reading from a sensor so put the code in a stable state.
+            sleep(0.2) #Be sure to put in a delay when reading from a sensor so put the code in a stable state.
                 
             #discard value that is equal or less than 0
             if self.initial_height <= 0:
@@ -53,7 +53,6 @@ class WaterTank:
                 #calculate the difference between the previous value and the current value
                 diff = abs(self.prev1 - self.initial_height)
                 print("diff = ",diff)
-                sleep(0.5)
                 
                 if diff > 2:
                     #if diff is greater than 2, give initial_height the previous valid value, prev1, and increment tank_counter
@@ -61,13 +60,11 @@ class WaterTank:
                     self.initial_height = self.prev1
                     theSum = theSum + self.initial_height
                     self.tank_counter += 1
-                    sleep(0.5)
                 else:
                     #if diff is less than 2, add the raw value to the sum and increment tank_counter
                     self.prev1 = self.initial_height
                     theSum = theSum + self.initial_height
                     self.tank_counter += 1
-                    sleep(0.5)
                     
         self.tank_counter = 0
         self.escape = 0
