@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 21, 2022 at 02:50 PM
+-- Generation Time: Aug 02, 2022 at 03:10 PM
 -- Server version: 10.1.48-MariaDB-0+deb9u2
 -- PHP Version: 7.0.33-0+deb9u12
 
@@ -64,8 +64,7 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(1000) DEFAULT NULL,
   `email` varchar(1000) NOT NULL,
-  `password` varchar(1000) NOT NULL,
-  `currentTank` int(2) NOT NULL
+  `password` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -124,12 +123,12 @@ ALTER TABLE `commands`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `water_tanks`
 --
 ALTER TABLE `water_tanks`
-  MODIFY `watertank_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `watertank_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Constraints for dumped tables
 --
