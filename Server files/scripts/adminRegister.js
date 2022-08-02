@@ -1,5 +1,10 @@
 //toggle button state
 document.getElementById("register").addEventListener('click', event => setTimeout(() => event.target.disabled = true, 0));
+setTimeout(function() {
+  $('#preloader').fadeOut('slow', function() {
+    $(this).remove();
+  });
+}, 2000);
 
 function close1(){
   $(document).ready(()=>{

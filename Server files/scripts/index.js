@@ -40,6 +40,17 @@ window.addEventListener("load", function(){
   getReadings5();  
 });
 
+//preloader
+window.onbeforeunload = function() {
+  $("#myModal").removeClass("visually-hidden");
+}
+
+setTimeout(function() {
+  $('#preloader').fadeOut('slow', function() {
+    $(this).remove();
+  });
+}, 2000);
+
 //first tank variables
 var warning1 = 0;
 var warning2 = 0;
@@ -885,8 +896,6 @@ function getReadings3() {
                 data: ydps_2
             }]);
       
-      //update pressure gauge
-      //chart2.updateSeries([pressureV]);
      
       //command values updated
       warning1_2 = myObj.warning1;
@@ -1080,8 +1089,6 @@ function getReadings4() {
                 data: ydps_3
             }]);
       
-      //update pressure gauge
-      //chart2.updateSeries([pressureV]);
      
       //command values updated
       warning1_3 = myObj.warning1;
@@ -1276,8 +1283,6 @@ function getReadings5() {
                 data: ydps_2
             }]);
       
-      //update pressure gauge
-      //chart2.updateSeries([pressureV]);
      
       //command values updated
       warning1_4 = myObj.warning1;
@@ -2393,9 +2398,6 @@ $(function(){
   $( "#liveToast4" ).draggable();
   $( "#liveToast5" ).draggable();
   
-  $("a").click(function(){
-    $("#myModal").removeClass("visually-hidden");
-  });
   $("li#home").find("a").addClass("active").css("background-color","#3375c4");
   $("li#stats").find("a").removeClass("active");
 });

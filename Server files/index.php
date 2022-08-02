@@ -15,7 +15,6 @@ if($_SESSION['name'] == "admin"){
 
 ?>
 
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -31,6 +30,19 @@ if($_SESSION['name'] == "admin"){
     <title>Water Management System</title>
   </head>
   <body>
+    <!--Preloader-->
+    <div id="preloader" class="modala">
+		  <!-- Modal content -->
+		  <div class="modala-content d-flex">
+			  <span>Loading... </span>
+			  <div class="spinner-grow" style="animation-delay: calc(-0.45s / var(--d,1));" role="status">
+			  </div>
+			  <div class="spinner-grow" style="animation-delay: calc(-0.3s / var(--d,1));" role="status">
+			  </div>
+			  <div class="spinner-grow" style="animation-delay: calc(-0.15s / var(--d,1));" role="status">
+			  </div>
+		  </div>
+		</div>
     <!--Start of navbar-->
     <div class="navbar navbar-expand-lg navbar-dark shadow mb-3">
       <div class="container-fluid">
@@ -93,7 +105,7 @@ if($_SESSION['name'] == "admin"){
           <li class="nav-item text-start">
             <button id="mode" class="btn-nav button-30 me-2" title="Mode" data-bs-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1">Auto-mode</button>
           </li>
-          <li class="nav-item text-start">
+          <li class="nav-item text-start visually-hidden">
             <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop1" title="Reset">Reset</button>
           </li>
         </ul>
@@ -135,7 +147,7 @@ if($_SESSION['name'] == "admin"){
           <li class="nav-item text-start">
             <button id="mode_2" class="btn-nav button-30 me-2" title="Mode" data-bs-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapse2">Auto-mode</button>
           </li>
-          <li class="nav-item text-start">
+          <li class="nav-item text-start visually-hidden">
             <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" title="Reset">Reset</button>
           </li>
         </ul>
@@ -176,7 +188,7 @@ if($_SESSION['name'] == "admin"){
           <li class="nav-item text-start">
             <button id="mode_3" class="btn-nav button-30 me-2" title="Mode" data-bs-toggle="collapse" href="#collapse3" role="button" aria-expanded="false" aria-controls="collapse3">Auto-mode</button>
           </li>
-          <li class="nav-item text-start">
+          <li class="nav-item text-start visually-hidden">
             <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop3" title="Reset">Reset</button>
           </li>
         </ul>
@@ -218,7 +230,7 @@ if($_SESSION['name'] == "admin"){
           <li class="nav-item text-start">
             <button id="mode_4" class="btn-nav button-30 me-2" title="Mode" data-bs-toggle="collapse" href="#collapse4" role="button" aria-expanded="false" aria-controls="collapse4">Auto-mode</button>
           </li>
-          <li class="nav-item text-start">
+          <li class="nav-item text-start visually-hidden">
             <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop3" title="Reset">Reset</button>
           </li>
         </ul>
@@ -260,7 +272,7 @@ if($_SESSION['name'] == "admin"){
           <li class="nav-item text-start">
             <button id="mode_5" class="btn-nav button-30 me-2" title="Mode" data-bs-toggle="collapse" href="#collapse5" role="button" aria-expanded="false" aria-controls="collapse5">Auto-mode</button>
           </li>
-          <li class="nav-item text-start">
+          <li class="nav-item text-start visually-hidden">
             <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop3" title="Reset">Reset</button>
           </li>
         </ul>

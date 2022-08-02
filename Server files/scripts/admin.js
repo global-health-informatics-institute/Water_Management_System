@@ -23,7 +23,11 @@ const firebaseConfig = {
 //firebase.initializeApp(firebaseConfig);
 //const database = firebase.database();
 
-
+setTimeout(function() {
+  $('#preloader').fadeOut('slow', function() {
+    //$(this).remove();
+  });
+}, 2000);
 
 // Get current sensor readings when the page loads
 window.addEventListener("load", function(){
@@ -44,6 +48,16 @@ var h = 0;
 var Tcap = true;
 var tname = "";
 var toggleP = "";
+var datapoints = [];
+var ydps = [];
+var press = [];
+let xVal = new Date();
+var opMode = 0;
+
+//preloader
+window.onbeforeunload = function() {
+  $("#myModal").removeClass("visually-hidden");
+}
 
 //Check if there is a tank id in local storage
 if(window.localStorage.getItem("admin_tank_id")!==null)
@@ -51,16 +65,7 @@ if(window.localStorage.getItem("admin_tank_id")!==null)
   var tank_id = window.localStorage.getItem('admin_tank_id');
 }else{var tank_id = "1";}
 
-var datapoints = [];
-var ydps = [];
-var press = [];
-let xVal = new Date();
-var opMode = 0;
-
-
 // Create Well Water Volume chart
-var logs = [];//datalogs array.
-
 var options1 = {
   series: [{
   name: 'Water Level',
@@ -113,7 +118,7 @@ chart1.render();
 //pressure gauge
  var options2 ={
   chart: {
-    height: 450,
+    height: 400,
     type: "radialBar",
   },
   series: [],
@@ -175,7 +180,6 @@ function Notification(msg){
   
   return;
 }
-
 
 
 // Function to get current readings on the webpage when it loads for the first time
@@ -543,6 +547,7 @@ function handleClick4(){
 }
 
 
+
 //Handles the Mode Button
 function handleClick5(){
   if(mode == 0){
@@ -625,26 +630,19 @@ $(function(){
   $("#modalToggle").click(function(){
     $(".modal-body").html("Are you sure you want to reset the "+tname+" microcontroller?");
   });
-  
-  $("a").click(function(){
-    $("#myModal").removeClass("visually-hidden");
-  });
-  
-    
-  });
 
+});
 
 
 //pick a tank whose chart should be rendered
 function onSelect(){
-  console.log("selected!");
   var theOption = $("select#select").val();
   if(theOption !== null){
     tank_id = String(theOption);
     //stores tank_id in local storage
     window.localStorage.setItem("admin_tank_id",tank_id);
     //reloads window
-    window.location.reload();
+    console.log(window.location.reload());
   }
   //this means with the select option, you can render the tank you want  
 }

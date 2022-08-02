@@ -1,3 +1,9 @@
+setTimeout(function() {
+  $('#preloader').fadeOut('slow', function() {
+    $(this).remove();
+  });
+}, 2000);
+
 
 //Water volume chart
 var options = {
