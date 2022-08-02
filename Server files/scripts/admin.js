@@ -555,12 +555,10 @@ function handleClick5(){
   if(mode == 1){
      $("#mode").text("Manual-mode");
      $("#mode").css("background-color","#10B981");
-     $("#control").css("display","flex");
   }
   else{
      $("#mode").text("Auto-mode");
      $("#mode").css("background-color","#EF4444");
-     $("#control").css("display","none");
   }
 
   let modeObj = {"override":mode,"tank_id":tank_id,"opMode":opMode};
@@ -581,10 +579,10 @@ function handleClick5(){
 //listens for any changes to the select attribute
 $(function(){
   //jquery ui functionality
-  $( "#liveToast" ).draggable();
-  $( "#liveToast2" ).draggable();
-  $( "#Chart" ).resizable();
-  $( "#Chart" ).draggable();
+  $("#liveToast").draggable();
+  $("#liveToast2").draggable();
+  $("#Chart").resizable();
+  $("#Chart").draggable();
   $("select").change(onSelect);
   
   //render the chart with the option value equal to tank_id
@@ -653,4 +651,4 @@ function onSelect(){
 
 
 
-setInterval(getReadings, 60000);
+setInterval(getReadings, 2000);

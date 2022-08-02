@@ -116,6 +116,15 @@ table{
   color: #c1c4c8;
 }
 
+.pagination>li.active>a {
+  background-color: #3375c4 !important;
+  border-color:#3375c4 !important;
+  color: white !important;
+}
+.pagination>li>a {
+  color: black !important;
+}
+
 
 #thecard2{
   border-radius:0.5rem;

@@ -1582,12 +1582,12 @@ $(function(){
     if(mode == 1){
        $(this).text("Manual-mode");
        $(this).css("background-color","#10B981");
-       $("#control_1").css("display","flex");
+       
     }
     else{
        $(this).text("Auto-mode");
        $(this).css("background-color","#EF4444");
-       $("#control_1").css("display","none");
+       
     }
 
     let modeObj = {"override":mode,"tank_id":tank_id_0,"opMode":opMode};
@@ -1768,12 +1768,12 @@ $(function(){
     if(mode_1 == 1){
        $("#mode_2").text("Manual-mode");
        $("#mode_2").css("background-color","#10B981");
-       $("#control_2").css("display","flex");
+       
     }
     else{
        $("#mode_2").text("Auto-mode");
        $("#mode_2").css("background-color","#EF4444");
-       $("#control_2").css("display","none");
+       
     }
 
     let modeObj = {"override":mode_1,"tank_id":tank_id_1,"opMode":opMode_1};
@@ -1954,12 +1954,12 @@ $(function(){
     if(mode_2 == 1){
        $("#mode_3").text("Manual-mode");
        $("#mode_3").css("background-color","#10B981");
-       $("#control_3").css("display","flex");
+       
     }
     else{
        $("#mode_3").text("Auto-mode");
        $("#mode_3").css("background-color","#EF4444");
-       $("#control_3").css("display","none");
+       
     }
 
     let modeObj = {"override":mode_2,"tank_id":tank_id_2,"opMode":opMode_2};
@@ -2140,12 +2140,12 @@ $(function(){
     if(mode_3 == 1){
        $("#mode_4").text("Manual-mode");
        $("#mode_4").css("background-color","#10B981");
-       $("#control_4").css("display","flex");
+       
     }
     else{
        $("#mode_4").text("Auto-mode");
        $("#mode_4").css("background-color","#EF4444");
-       $("#control_4").css("display","none");
+       
     }
 
     let modeObj = {"override":mode_3,"tank_id":tank_id_3,"opMode":opMode_3};
@@ -2326,12 +2326,12 @@ $(function(){
     if(mode_4 == 1){
        $("#mode_5").text("Manual-mode");
        $("#mode_5").css("background-color","#10B981");
-       $("#control_5").css("display","flex");
+       
     }
     else{
        $("#mode_5").text("Auto-mode");
        $("#mode_5").css("background-color","#EF4444");
-       $("#control_5").css("display","none");
+       
     }
 
     let modeObj = {"override":mode_4,"tank_id":tank_id_4,"opMode":opMode_4};

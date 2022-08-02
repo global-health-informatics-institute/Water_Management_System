@@ -92,7 +92,7 @@ $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
     <div id="the_container" class="container-fluid">
       <ul class="nav nav-2">
         <li class="nav-item text-start me-2">
-          <button id="mode" class="btn-nav button-30 me-2" onclick="handleClick5()" title="Mode">Auto-mode</button>
+          <button id="mode" class="btn-nav button-30 me-2" onclick="handleClick5()" title="Mode" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Auto-mode</button>
         </li>
         <li class="nav-item text-start">
           <button id = "modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop" title="Reset">Reset</button>
@@ -125,7 +125,7 @@ $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
           </div>
         </div>
       </div>
-      <div id="control" class= "row text-center" style="display:none;">
+      <div class= "row collapse text-center" id="collapseExample">
         <!--Buttons-->
         <div id="b1" class = "col-lg-3 col-md-6">
           <p id="p1" class="labels">Water Pump</p>

@@ -91,13 +91,13 @@ if($_SESSION['name'] == "admin"){
         <!--Toggle and select-->
         <ul class="nav nav-2">
           <li class="nav-item text-start">
-            <button id="mode" class="btn-nav button-30 me-2" title="Mode">Auto-mode</button>
+            <button id="mode" class="btn-nav button-30 me-2" title="Mode" data-bs-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1">Auto-mode</button>
           </li>
           <li class="nav-item text-start">
             <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop1" title="Reset">Reset</button>
           </li>
         </ul>
-        <div id="control_1" class= "row text-center" style="display:none;">
+        <div class= "row collapse text-center" id="collapse1">
           <!--Buttons-->
           <div id="b1" class = "col-lg-3 col-md-6">
             <p id="p1" class="labels">Water Pump</p>
@@ -133,13 +133,13 @@ if($_SESSION['name'] == "admin"){
         <!--Toggle and select-->
         <ul class="nav nav-2">
           <li class="nav-item text-start">
-            <button id="mode_2" class="btn-nav button-30 me-2" title="Mode">Auto-mode</button>
+            <button id="mode_2" class="btn-nav button-30 me-2" title="Mode" data-bs-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapse2">Auto-mode</button>
           </li>
           <li class="nav-item text-start">
             <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" title="Reset">Reset</button>
           </li>
         </ul>
-        <div id="control_2" class= "row text-center" style="display:none;">
+        <div class= "row collapse text-center" id="collapse2">
           <!--Buttons-->
           <div id="b1_1" class = "col-lg-3 col-md-6">
             <p id="p1" class="labels">Water Pump</p>
@@ -174,14 +174,14 @@ if($_SESSION['name'] == "admin"){
         <!--Toggle and select-->
         <ul class="nav nav-2">
           <li class="nav-item text-start">
-            <button id="mode_3" class="btn-nav button-30 me-2" title="Mode">Auto-mode</button>
+            <button id="mode_3" class="btn-nav button-30 me-2" title="Mode" data-bs-toggle="collapse" href="#collapse3" role="button" aria-expanded="false" aria-controls="collapse3">Auto-mode</button>
           </li>
           <li class="nav-item text-start">
             <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop3" title="Reset">Reset</button>
           </li>
         </ul>
         
-        <div id="control_3" class= "row text-center" style="display:none;">
+        <div class= "row collapse text-center" id="collapse3">
           <!--Buttons-->
           <div id="b1_2" class = "col-lg-3 col-md-6">
             <p id="p1" class="labels">Water Pump</p>
@@ -216,14 +216,14 @@ if($_SESSION['name'] == "admin"){
         <!--Toggle and select-->
         <ul class="nav nav-2">
           <li class="nav-item text-start">
-            <button id="mode_4" class="btn-nav button-30 me-2" title="Mode">Auto-mode</button>
+            <button id="mode_4" class="btn-nav button-30 me-2" title="Mode" data-bs-toggle="collapse" href="#collapse4" role="button" aria-expanded="false" aria-controls="collapse4">Auto-mode</button>
           </li>
           <li class="nav-item text-start">
             <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop3" title="Reset">Reset</button>
           </li>
         </ul>
         
-        <div id="control_4" class= "row text-center" style="display:none;">
+        <div class= "row collapse text-center" id="collapse4">
           <!--Buttons-->
           <div id="b1_3" class = "col-lg-3 col-md-6">
             <p id="p1" class="labels">Water Pump</p>
@@ -258,14 +258,14 @@ if($_SESSION['name'] == "admin"){
         <!--Toggle and select-->
         <ul class="nav nav-2">
           <li class="nav-item text-start">
-            <button id="mode_5" class="btn-nav button-30 me-2" title="Mode">Auto-mode</button>
+            <button id="mode_5" class="btn-nav button-30 me-2" title="Mode" data-bs-toggle="collapse" href="#collapse5" role="button" aria-expanded="false" aria-controls="collapse5">Auto-mode</button>
           </li>
           <li class="nav-item text-start">
             <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop3" title="Reset">Reset</button>
           </li>
         </ul>
         
-        <div id="control_5" class= "row text-center" style="display:none;">
+        <div class= "row collapse text-center" id="collapse5">
           <!--Buttons-->
           <div id="b1_4" class = "col-lg-3 col-md-6">
             <p id="p1" class="labels">Water Pump</p>

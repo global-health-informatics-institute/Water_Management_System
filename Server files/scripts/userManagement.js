@@ -77,7 +77,7 @@ function editUser(e){
       event.preventDefault();
       addUser();
     });
-  var ID = $(e).parent().parent().find("#theId").html();
+  var ID = $(e).parent().parent().parent().find("#theId").html();
   var form,
  
       // From http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#e-mail-state-%28type=email%29
@@ -137,9 +137,13 @@ function editUser(e){
           $("#myModal").removeClass("visually-hidden");
           },
           success: function(result){
-             //once verified, the dashboard is shown when the window is reloaded
+            //once verified, the dashboard is shown when the window is reloaded
             if(result==1){
-              console.log("success");
+              console.log("username changed!");
+              window.location.reload(true);
+              }
+              else if(result == 2){
+              console.log("email changed!");
               window.location.reload(true);
               }
             else{

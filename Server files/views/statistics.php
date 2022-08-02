@@ -125,7 +125,7 @@ if (isset($_POST['tank_id']) && isset($_POST['select'])){
 			</div>
 			<!--first row-->
 			<div class ="row mb-5">
-				<div class = "col-lg-4 col-sm-12 mid"><div class = "card mid-card">Consumption: 200 cubic meters</div></div>
+				<div class = "col-lg-4 col-sm-12 mid"><div class = "card mid-card">Estimated Consumption: 200 cubic meters</div></div>
 				<div class = "col-lg-4 col-sm-12 mid"><div class = "card mid-card">Status: <span style="color:green;">Active</span></div></div>
 				<div class = "col-lg-4 col-sm-12 mid"><div class = "card mid-card">Recommendation: Reduce water usage</div></div>
 			</div>

@@ -98,6 +98,15 @@ justify-content:center;
 align-items:center;
 }
 
+.pagination>li.active>a {
+  background-color: #3375c4 !important;
+  border-color:#3375c4 !important;
+  color: white !important;
+}
+.pagination>li>a {
+  color: black !important;
+}
+
 #plot{
 	background-color:#122945;
 	border-radius:10px;

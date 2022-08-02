@@ -47,14 +47,15 @@ if(isset($_POST['uname'])){
 				$query = "UPDATE $table SET username = '".$uname."'
 				WHERE id = '".$userId."'";
 				$db->exec($query);
+				echo 1;
 			}
 			if(!empty($mail)){
 				// Insert new account
 				$query = "UPDATE ".$table." SET email = '".$mail."'
 				WHERE id = '".$userId."'";
 				$db->exec($query);
+				echo 2;
 			}
-			echo 1;
 		}	
 	}
 	die();
