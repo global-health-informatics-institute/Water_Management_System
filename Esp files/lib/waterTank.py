@@ -7,13 +7,14 @@ from time import sleep
 #
 
 class WaterTank:
-    def __init__(self, height, diameter,volume, length, width, tank_type, trigger,echo):
+    def __init__(self, height, diameter,volume, length, width, s_clearance, tank_type, trigger,echo):
         self.ultra_sensor = HCSR04(trigger_pin=trigger, echo_pin=echo, echo_timeout_us=10000)
         self.h = height 
         self.r = ((((diameter)/2)/100)**2)
         self.v = volume
         self.l = length
         self.w = width
+        self.clearance = s_clearance
         self.tank_counter = 0
         self.escape = 0
         self.initial_height = 0
@@ -79,12 +80,16 @@ class WaterTank:
             
         #vertical cylindrical tank
         if self.tank_type == "vCylindrical":
+            #removes the distance between the sensor and the maximum filled-depth
+            a = current_height - self.clearance
             #well_tank is the value in Litres that is sent to database
-            tank_volume = (pi*self.r*((self.h-current_height)/100))*1000 # pi*r^2*(b/100) * 1000m^3 to get litres,
+            tank_volume = (pi*self.r*((self.h-a)/100))*1000 # pi*r^2*(b/100) * 1000m^3 to get litres,
                                                                          # b = height(cm) - ultrasonic sensed height(cm)
         #Square/rectangular tank
         elif self.tank_type == "rectangular":
-            tank_volume = ((self.l/100) * (self.w/100) * ((self.h-current_height)/100))*1000 #l*w*f where f = height - sensed height, l = length, w = width
+            #removes the distance between the sensor and the maximum filled-depth
+            a = current_height - self.clearance
+            tank_volume = ((self.l/100) * (self.w/100) * ((self.h-a)/100))*1000 #l*w*f where f = height - sensed height, l = length, w = width
         
         
         if tank_volume > self.v:
