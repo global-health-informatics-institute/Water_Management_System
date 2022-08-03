@@ -7,10 +7,10 @@ from time import sleep
 #
 
 class WaterTank:
-    def __init__(self, height, radius,volume, length, width, tank_type, trigger,echo):
+    def __init__(self, height, diameter,volume, length, width, tank_type, trigger,echo):
         self.ultra_sensor = HCSR04(trigger_pin=trigger, echo_pin=echo, echo_timeout_us=10000)
         self.h = height 
-        self.r = ((((radius)/2)/100)**2)
+        self.r = ((((diameter)/2)/100)**2)
         self.v = volume
         self.l = length
         self.w = width

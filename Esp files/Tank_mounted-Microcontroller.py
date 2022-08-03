@@ -16,7 +16,7 @@ config = eval(contents)
 # **************************************************
 
 #height should be in centimeteres, radius in meters and volume in Litres
-Tank1 = WaterTank(height=config["tank_height"],radius=config["tank_radius"],volume=config["tank_volume"],length=config["tank_length"], width=config["tank_width"],tank_type=config["tank_type"],trigger=5,echo=18)
+Tank1 = WaterTank(height=config["tank_height"],radius=config["tank_diameter"],volume=config["tank_volume"],length=config["tank_length"], width=config["tank_width"],tank_type=config["tank_type"],trigger=5,echo=18)
 
 #Timer Initialization
 timer = Timer(-1)
