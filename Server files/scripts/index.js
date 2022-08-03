@@ -49,7 +49,7 @@ setTimeout(function() {
   $('#preloader').fadeOut('slow', function() {
     $(this).remove();
   });
-}, 2000);
+}, 500);
 
 //first tank variables
 var warning1 = 0;

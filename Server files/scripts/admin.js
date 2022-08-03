@@ -27,7 +27,7 @@ setTimeout(function() {
   $('#preloader').fadeOut('slow', function() {
     //$(this).remove();
   });
-}, 2000);
+}, 500);
 
 // Get current sensor readings when the page loads
 window.addEventListener("load", function(){
