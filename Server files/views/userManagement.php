@@ -23,11 +23,13 @@ if(isset($_POST['username'])){
 	die();	 	
 }
 //check if you have an update requirement
-if(isset($_POST['uname'])){
+if(isset($_POST['id'])){
 	
 	$uname = trim($_POST['uname']);
 	$mail = trim($_POST['email']);
 	$userId = trim($_POST['id']);
+	
+	
 	
 	
 	
@@ -41,20 +43,34 @@ if(isset($_POST['uname'])){
 		if ($row) {
 			// Username already exists
 			echo "Username exists, please choose another!";
-		} else {
+		}else {
 			if(!empty($uname)){
+				//validates username characters
+				if (preg_match('/^[a-zA-Z0-9]+$/', $_POST['uname']) == 0) {
+					echo "Username is not valid!";
+					die();
+				}else{
 				// Insert new account
 				$query = "UPDATE $table SET username = '".$uname."'
 				WHERE id = '".$userId."'";
 				$db->exec($query);
-				echo 1;
+				echo 1;}
 			}
+			
 			if(!empty($mail)){
+				//validates email
+				if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+					echo "Email is not valid!";
+					die();
+				}else{
 				// Insert new account
 				$query = "UPDATE ".$table." SET email = '".$mail."'
 				WHERE id = '".$userId."'";
 				$db->exec($query);
-				echo 2;
+				echo 2;}
+			}
+		   if(empty($mail) && empty($uname)){
+				echo "Don't test me bruh...";
 			}
 		}	
 	}
@@ -198,7 +214,7 @@ if(isset($_POST['uname'])){
 		</div>
 		<div id="dialog-form" title="Edit user details" class="visually-hidden">
 		  <div id = "badge" class = "alert visually-hidden"></div>
-		  <form class="h-100 mt-3" action ="">
+		  <form id = "myEnter" class="h-100 mt-3" action ="">
 			<div class="form-floating me-3 ms-3">
 			  <input type="text" class="input-fields form-control" id="name" placeholder="Username" required>
 			  <label for="name"><i class="fas fa-user me-2"></i>Username</label>

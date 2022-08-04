@@ -1,3 +1,4 @@
+$(function(){
 
 //when the form is submitted
 $("#form").submit(function(e){
@@ -30,7 +31,9 @@ $("#form").submit(function(e){
       }
     });
   });
-  
+
+});
+
 //used to close the error alert
 function close1(){
   $(document).ready(()=>{

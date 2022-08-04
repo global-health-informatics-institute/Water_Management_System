@@ -123,14 +123,6 @@ function editUser(e){
  
     function addUser() {
       var valid = true;
-      //allFields.removeClass( "ui-state-error" );
- 
-      //valid = valid && checkLength( name, "username", 3, 16 );
-      //valid = valid && checkLength( email, "email", 6, 80 );
- 
-      //valid = valid && checkRegexp( name, /^[a-z]([0-9a-z_\s])+$/i, "Username may consist of a-z, 0-9, underscores, spaces and must begin with a letter." );
-      //valid = valid && checkRegexp( email, emailRegex, "eg. ui@jquery.com" );
- 
       if (valid) {
         $.ajax({
           url:"../views/userManagement.php",
@@ -143,26 +135,30 @@ function editUser(e){
           success: function(result){
             //once verified, the dashboard is shown when the window is reloaded
             if(result==1){
-              console.log("username changed!");
               window.location.reload(true);
               }
               else if(result == 2){
-              console.log("email changed!");
               window.location.reload(true);
               }
             else{
-              console.log(result);
               //show the alert
               $("#myModal").addClass("visually-hidden");
-              $("#badge").html("Invalid Username");
+              $("#badge").html(result);
               $("#badge").addClass("alert-danger");
+              $("#badge").addClass("text-center");
               $("#badge").removeClass("visually-hidden");
+              $("#dialog-form").dialog( "open" );
               }
             }
           });
       }
       return valid;
     }
+    $("#dialog-form").on('keypress', function(e){
+       if (e.which == 13) {
+           addUser();
+        }
+    });
 }
 
 //Changes the active link in navbar
