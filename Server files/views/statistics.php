@@ -30,29 +30,29 @@ if (isset($_POST['tank_id']) && isset($_POST['select'])){
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel = "icon" type="image/png" href = "../assets/images/ghii_logo.png">
-		<link rel ="stylesheet" href="../assets/bootstrap.min.css">
-		<link rel ="stylesheet" href="../assets/dataTables.dateTime.min.css">
-		<link rel ="stylesheet" href="../assets/buttons.dataTables.min.css">
-		<link rel ="stylesheet" href="../assets/all.min.css">
-		<link rel ="stylesheet" href="../assets/jquery-ui.min.css">
-		<link rel ="stylesheet" href="../assets/dataTables.bootstrap5.min.css">
-		<link rel ="stylesheet" href="../assets/buttons.bootstrap5.min.css">
+		<link rel ="stylesheet" href="../assets/css/bootstrap.min.css">
+		<link rel ="stylesheet" href="../assets/css/dataTables.dateTime.min.css">
+		<link rel ="stylesheet" href="../assets/css/buttons.dataTables.min.css">
+		<link rel ="stylesheet" href="../assets/css/all.min.css">
+		<link rel ="stylesheet" href="../assets/css/jquery-ui.min.css">
+		<link rel ="stylesheet" href="../assets/css/dataTables.bootstrap5.min.css">
+		<link rel ="stylesheet" href="../assets/css/buttons.bootstrap5.min.css">
 		<link rel ="stylesheet" href="../css/statistics.css?v=<?php echo time() ?>">
 		
 		<!--Dependencies-->
-		<script src="../assets/jquery.min.js"></script>
-		<script src="../assets/jquery-ui.js"></script>
-		<script src="../assets/moment.min.js"></script>
-		<script src="../assets/jquery.dataTables.min.js"></script>
-		<script src="../assets/dataTables.dateTime.min.js"></script>
-		<script src="../assets/dataTables.buttons.min.js"></script>
-		<script src="../assets/dataTables.bootstrap5.min.js"></script>
-		<script src="../assets/buttons.bootstrap5.min.js"></script>
-		<script src="../assets/apexcharts.min.js"></script>
+		<script src="../assets/js/jquery.min.js"></script>
+		<script src="../assets/js/jquery-ui.js"></script>
+		<script src="../assets/js/moment.min.js"></script>
+		<script src="../assets/js/jquery.dataTables.min.js"></script>
+		<script src="../assets/js/dataTables.dateTime.min.js"></script>
+		<script src="../assets/js/dataTables.buttons.min.js"></script>
+		<script src="../assets/js/dataTables.bootstrap5.min.js"></script>
+		<script src="../assets/js/buttons.bootstrap5.min.js"></script>
+		<script src="../assets/js/apexcharts.min.js"></script>
 		
 		<title>Statistics</title>
 	</head>
-	<body id ="document" class="bg-light">
+	<body id ="document" class="bg-light h-100">
 		<!--Preloader-->
 		<div id="preloader" class="modala">
 		  <!-- Modal content -->
@@ -143,7 +143,7 @@ if (isset($_POST['tank_id']) && isset($_POST['select'])){
 				<div class = "col-lg-4 col-sm-12 mid"><div class = "card mid-card">Recommendation: Reduce water usage</div></div>
 			</div>
 			<!--second row-->
-			<div class="card row shadow-sm mb-2">
+			<div class="card row shadow-sm mb-4">
 				<div class="pt-2 pb-1" style ="overflow-x:auto;">
 					<table id="dataTable" class="table table-hover text-start" cellspacing="0">
 					  <thead class = "thead-light">
@@ -207,8 +207,8 @@ if (isset($_POST['tank_id']) && isset($_POST['select'])){
 		  </div>
 		</div>
 		<!--end of utilities section-->
-		<script src="../assets/bootstrap.min.js"></script>
-		<script src="../assets/all.min.js"></script>
+		<script src="../assets/js/bootstrap.min.js"></script>
+		<script src="../assets/js/all.min.js"></script>
 		<script src="../scripts/statistics.js?v=<?php echo time() ?>"></script>
 	</body>
 </html>

@@ -20,13 +20,13 @@ if($_SESSION['name'] == "admin"){
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel = "icon" type="image/png" href = "assets/images/ghii_logo.png">
-    <link rel ="stylesheet" href="assets/bootstrap.min.css">
-    <link rel ="stylesheet" href="assets/all.min.css">
-    <link rel ="stylesheet" href="assets/jquery-ui.min.css">
+    <link rel ="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel ="stylesheet" href="assets/css/all.min.css">
+    <link rel ="stylesheet" href="assets/css/jquery-ui.min.css">
     <link rel ="stylesheet" href="css/index.css?v=<?php echo time() ?>">
-    <script src="assets/gauges.min.js"></script>
-    <script src="assets/apexcharts.min.js"></script>
-    <script src="assets/jquery.min.js"></script>
+    <script src="assets/js/gauges.min.js"></script>
+    <script src="assets/js/apexcharts.min.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
     <title>Water Management System</title>
   </head>
   <body>
@@ -466,9 +466,9 @@ if($_SESSION['name'] == "admin"){
 		</div>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-    <script src="assets/bootstrap.min.js"></script>
-    <script src="assets/all.min.js"></script>
-    <script src="assets/jquery-ui.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/all.min.js"></script>
+    <script src="assets/js/jquery-ui.js"></script>
     <script src="scripts/index.js?v=<?php echo time() ?>"></script>
   </body>
 </html>

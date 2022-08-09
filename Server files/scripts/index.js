@@ -170,7 +170,8 @@ var toggleP = "";
           show: false,
         },
         value: {
-          fontSize: "18px",
+          fontSize: "30px",
+          color:"white",
           show: true,
           formatter: function (val) {
             return val + ' PSI'
@@ -611,12 +612,11 @@ function getReadings() {
    if(mode == 1){
      $("#the_container1").find("#mode").text("Manual-mode");
      $("#the_container1").find("#mode").css("background-color","#10B981");
-     $("#the_container1").find("#control_1").css("display","flex");
   }
   else{
      $("#the_container1").find("#mode").text("Auto-mode");
      $("#the_container1").find("#mode").css("background-color","#EF4444");
-     $("#the_container1").find("#control_1").css("display","none");
+     
   }
   if(opMode == "1"){
     

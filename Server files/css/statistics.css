@@ -35,7 +35,10 @@ html {
 }
 body{
   font-family: -apple-system, BlinkMacSystemFont,"Poppins", sans-serif, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  background-color: #F5F5F5;
+  background-image: url(../assets/images/wt2.jpg);
+  background-position:bottom;
+  background-repeat:no-repeat;
+  background-size:cover;
   min-height: 100vh;
 }
 h1 {
@@ -59,6 +62,12 @@ a:hover{
 table{
  vertical-align: middle !important;
 }
+select option:checked{
+  background-color:#3cc4a0;
+  color:white;
+}
+
+
 
 /*HEADER*/
 .title{
@@ -73,11 +82,14 @@ table{
   
 }
 .navbar{
-  background-color:#122945;
+  background-color: rgba(0,0,0,0.6);
+  color:black;
+  /*backdrop-filter: blur(8px);*/
 }
 
 .offcanvas{
-  background-color:#122945;
+  background-color: rgba(0,0,0,0.6);
+  color:black;
 }
 
 .dropdown:hover{
@@ -141,10 +153,22 @@ display:inline;
   color: #c1c4c8;
 }
 
+#select{
+ background-color: rgba(255,255,255,0.6);
+ backdrop-filter: blur(8px);
+ border:0 none transparent;
 
-#thecard2{
-  border-radius:0.5rem;
-  padding: 5px;
+}
+
+#select:focus{
+  outline: none;
+  box-shadow: 0px 0px 10px #3cc4a0;/*here change the color*/
+  border: 1px solid #3cc4a0;
+}
+
+.card{
+  background-color: rgba(255,255,255,0.7);
+  backdrop-filter: blur(8px);
 }
 #main-container{
   align-items:center;
@@ -265,5 +289,8 @@ display:inline;
   .nav-icon{
     margin-left:5px;
   }
+  .offcanvas{
+  backdrop-filter: blur(8px);
+}
 }
 

@@ -32,6 +32,18 @@ setTimeout(function() {
 // Get current sensor readings when the page loads
 window.addEventListener("load", function(){
   getReadings();
+  let modeObj = {"override":0,"tank_id":tank_id,"opMode":opMode};
+  var md = JSON.stringify(modeObj);
+  
+
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function(){
+      if(xhr.status === 200){
+     }
+}
+  xhr.open("POST", "/resources/editSensorValues.php", true);
+  xhr.setRequestHeader("Content-type","application/json");
+  xhr.send(md);
   
 });
 var warning1 = 0;
@@ -88,6 +100,11 @@ yaxis: {
       text: "Litres",
       },
     labels:{
+      style: {
+      color: '#fff',
+      fontSize: '16px',
+      cssClass: 'apexcharts-yaxis-label',
+      },
       formatter: function(val,index){
         return val.toFixed(1);
         }
@@ -102,6 +119,16 @@ xaxis:{
   
   title:{
       text: "Timestamp",
+      style: {
+          fontSize: '16px',
+          cssClass: 'apexcharts-xaxis-label',
+      },
+      },
+      labels:{
+          style: {
+          fontSize: '14px',
+          cssClass: 'apexcharts-xaxis-label',
+      },
       },
   },        
 tooltip: {
@@ -142,6 +169,7 @@ chart1.render();
         },
         value: {
           fontSize: "30px",
+          color:"white",
           show: true,
           formatter: function (val) {
             return val + ' PSI'
@@ -230,11 +258,19 @@ function getReadings() {
           yaxis: {
             title:{
             text: "Litres",
+            style: {
+              fontSize: '16px',
+              cssClass: 'apexcharts-yaxis-label',
+              },
             },
             labels:{
             formatter: function(val,index){
               return val.toFixed(1);
-              }
+              },
+              style: {
+              fontSize: '14px',
+              cssClass: 'apexcharts-yaxis-label',
+              },
             },
             min: 0,
             max: capacity
@@ -250,11 +286,19 @@ function getReadings() {
           yaxis: {
             title:{
             text: "Litres",
+            style: {
+              fontSize: '16px',
+              cssClass: 'apexcharts-yaxis-label',
+              },
             },
             labels:{
             formatter: function(val,index){
               return val.toFixed(1);
-              }
+              },
+              style: {
+              fontSize: '14px',
+              cssClass: 'apexcharts-yaxis-label',
+              },
             },
             min: 0,
             max: capacity
@@ -309,51 +353,41 @@ function getReadings() {
   //Updates control button states
    if(pump1 == 1){
      $("#the_container").find("#pump1").text("ON");
-     $("#the_container").find("#pump1").css("background-color","#10B981");
+     $("#the_container").find("#pump1").css("background-color","rgba(16,185,129,0.5)");
   }
    else{
      $("#the_container").find("#pump1").text("OFF");
-     $("#the_container").find("#pump1").css("background-color","#EF4444");
+     $("#the_container").find("#pump1").css("background-color","rgba(255,255,255,0.5)");
    }
    
    if(pump2 == 1){
      $("#pump2").text("ON");
-     $("#pump2").css("background-color","#10B981");
+     $("#pump2").css("background-color","rgba(16,185,129,0.5)");
   }
   else{
      $("#pump2").text("OFF");
-     $("#pump2").css("background-color","#EF4444");
+     $("#pump2").css("background-color","rgba(255,255,255,0.5)");
   }
   
    if(valve1==1){
      $("#valve1").text("ON");
-     $("#valve1").css("background-color","#10B981");
+     $("#valve1").css("background-color","rgba(16,185,129,0.5)");
   }
   
   else{
      $("#valve1").text("OFF");
-     $("#valve1").css("background-color","#EF4444");
+     $("#valve1").css("background-color","rgba(255,255,255,0.5)");
   }
   
   if(valve2 == 1){
      $("#valve2").text("ON");
-     $("#valve2").css("background-color","#10B981");
+     $("#valve2").css("background-color","rgba(16,185,129,0.5)");
   }
   else{
      $("#valve2").text("OFF");
-     $("#valve2").css("background-color","#EF4444");
+     $("#valve2").css("background-color","rgba(255,255,255,0.5)");
   }
   
-   if(mode == 1){
-     $("#mode").text("Manual-mode");
-     $("#mode").css("background-color","#10B981");
-     $("#control").css("display","flex");
-  }
-  else{
-     $("#mode").text("Auto-mode");
-     $("#mode").css("background-color","#EF4444");
-     $("#control").css("display","none");
-  }
   if(opMode == "1"){
     $("#b1").addClass("visually-hidden");
     $("#b2").addClass("visually-hidden");
@@ -419,11 +453,11 @@ function handleClick1(){
 
   if(pump1){
      $("#pump1").text("ON");
-     $("#pump1").css("background-color","#10B981");
+     $("#pump1").css("background-color","rgba(16,185,129,0.5)");
   }
    else{
      $("#pump1").text("OFF");
-     $("#pump1").css("background-color","#EF4444");
+     $("#pump1").css("background-color","rgba(255,255,255,0.5)");
    }
 
   let pumpObj = {"pump1":pump1,"tank_id":tank_id,"opMode":opMode};
@@ -454,11 +488,11 @@ function handleClick2(){
   
   if(pump2){
      $("#pump2").text("ON");
-     $("#pump2").css("background-color","#10B981");
+     $("#pump2").css("background-color","rgba(16,185,129,0.5)");
   }
   else{
      $("#pump2").text("OFF");
-     $("#pump2").css("background-color","#EF4444");
+     $("#pump2").css("background-color","rgba(255,255,255,0.5)");
   }
 
   let pumpObj = {"pump2":pump2,"tank_id":tank_id,"opMode":opMode};
@@ -488,12 +522,12 @@ function handleClick3(){
   
   if(valve1){
      $("#valve1").text("ON");
-     $("#valve1").css("background-color","#10B981");
+     $("#valve1").css("background-color","rgba(16,185,129,0.5)");
   }
   
   else{
      $("#valve1").text("OFF");
-     $("#valve1").css("background-color","#EF4444");
+     $("#valve1").css("background-color","rgba(255,255,255,0.5)");
   }
 
   let pumpObj = {"valve1":valve1,"tank_id":tank_id,"opMode":opMode};
@@ -523,11 +557,11 @@ function handleClick4(){
   
   if(valve2){
      $("#valve2").text("ON");
-     $("#valve2").css("background-color","#10B981");
+     $("#valve2").css("background-color","rgba(16,185,129,0.5)");
   }
   else{
      $("#valve2").text("OFF");
-     $("#valve2").css("background-color","#EF4444");
+     $("#valve2").css("background-color","rgba(255,255,255,0.5)");
   }
 
   let pumpObj = {"valve2":valve2,"tank_id":tank_id,"opMode":opMode};
@@ -559,11 +593,9 @@ function handleClick5(){
   
   if(mode == 1){
      $("#mode").text("Manual-mode");
-     $("#mode").css("background-color","#10B981");
   }
   else{
      $("#mode").text("Auto-mode");
-     $("#mode").css("background-color","#EF4444");
   }
 
   let modeObj = {"override":mode,"tank_id":tank_id,"opMode":opMode};

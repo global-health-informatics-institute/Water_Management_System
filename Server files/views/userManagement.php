@@ -83,10 +83,10 @@ if(isset($_POST['id'])){
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel = "icon" type="image/png" href = "../assets/images/ghii_logo.png">
-		<link rel ="stylesheet" href="../assets/bootstrap.min.css">
-		<link rel ="stylesheet" href="../assets/all.min.css">
+		<link rel ="stylesheet" href="../assets/css/bootstrap.min.css">
+		<link rel ="stylesheet" href="../assets/css/all.min.css">
 		<link rel ="stylesheet" href="../css/userManagement.css?v=<?php echo time() ?>">
-		<link rel ="stylesheet" href="../assets/jquery-ui.min.css">
+		<link rel ="stylesheet" href="../assets/css/jquery-ui.min.css">
 		<title>User Management</title>
 	</head>
 	<body id ="document" class="bg-light">
@@ -225,14 +225,14 @@ if(isset($_POST['id'])){
 			</div>																										
 		</form>
 		</div>
-		<script src="../assets/jquery.min.js"></script>
-		<script src="../assets/jquery.dataTables.min.js"></script>
-		<script src="../assets/dataTables.dateTime.min.js"></script>
-		<script src="../assets/dataTables.buttons.min.js"></script>
-		<script src="../assets/dataTables.bootstrap5.min.js"></script>
-		<script src="../assets/jquery-ui.js"></script>
-		<script src="../assets/bootstrap.min.js"></script>
-		<script src="../assets/all.min.js"></script>
+		<script src="../assets/js/jquery.min.js"></script>
+		<script src="../assets/js/jquery.dataTables.min.js"></script>
+		<script src="../assets/js/dataTables.dateTime.min.js"></script>
+		<script src="../assets/js/dataTables.buttons.min.js"></script>
+		<script src="../assets/js/dataTables.bootstrap5.min.js"></script>
+		<script src="../assets/js/jquery-ui.js"></script>
+		<script src="../assets/js/bootstrap.min.js"></script>
+		<script src="../assets/js/all.min.js"></script>
 		<script src="../scripts/userManagement.js?v=<?php echo time() ?>"></script>
 	</body>
 </html>

@@ -6,11 +6,11 @@ require_once "resources/session.php";
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel = "icon" type="image/png" href = "assets/images/ghii_logo.png">
-		<link rel ="stylesheet" href="assets/bootstrap.min.css">
-		<link rel ="stylesheet" href="assets/bootstrap-icons.css">
-		<link rel ="stylesheet" href="assets/all.min.css">
+		<link rel ="stylesheet" href="assets/css/bootstrap.min.css">
+		<link rel ="stylesheet" href="assets/css/bootstrap-icons.css">
+		<link rel ="stylesheet" href="assets/css/all.min.css">
 		<link rel ="stylesheet" href="css/login.css?v=<?php echo time() ?>">
-		<script src="assets/jquery.min.js"></script>
+		<script src="assets/js/jquery.min.js"></script>
 		<title>Login</title>
 	</head>
 	<body class="bg-light">
@@ -67,8 +67,8 @@ require_once "resources/session.php";
 			  </div>
 		  </div>
 		</div>
-		<script src="assets/bootstrap.min.js"></script>
-		<script src="assets/all.min.js"></script>
+		<script src="assets/js/bootstrap.min.js"></script>
+		<script src="assets/js/all.min.js"></script>
 		<script src="scripts/login.js?v=<?php echo time() ?>"></script>
 	</body>
 </html>

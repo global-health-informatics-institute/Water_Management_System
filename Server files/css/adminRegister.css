@@ -35,7 +35,10 @@ html {
 }
 body{
   font-family: -apple-system, BlinkMacSystemFont,"Poppins", sans-serif, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  background-color: #F5F5F5;
+  background-image: url(../assets/images/wt2.jpg);
+  background-position:bottom;
+  background-repeat:no-repeat;
+  background-size:cover;
   min-height: 100vh;
 }
 h1 {
@@ -70,11 +73,14 @@ a:hover{
   
 }
 .navbar{
-  background-color:#122945;
+  background-color: rgba(0,0,0,0.6);
+  color:black;
+  /*backdrop-filter: blur(8px);*/
 }
 
 .offcanvas{
-  background-color:#122945;
+  background-color: rgba(0,0,0,0.6);
+  color:black;
 }
 
 .dropdown:hover{
@@ -95,7 +101,8 @@ a:hover{
 #thecard2{
   min-width: 350px;
   border-radius:0.8rem;
-  
+  background-color: rgba(255,255,255,0.7);
+  backdrop-filter: blur(8px);
   
   }
 .form-group{
@@ -273,4 +280,7 @@ background-color: #F5F5F5;
   .nav-icon{
     margin-left:5px;
   }
+  .offcanvas{
+  backdrop-filter: blur(8px);
+}
 }

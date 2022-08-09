@@ -85,10 +85,10 @@ if (isset($_POST['submit'])){
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel = "icon" type="image/png" href = "../assets/images/ghii_logo.png">
-		<link rel ="stylesheet" href="../assets/bootstrap.min.css">
-		<link rel ="stylesheet" href="../assets/all.min.css">
+		<link rel ="stylesheet" href="../assets/css/bootstrap.min.css">
+		<link rel ="stylesheet" href="../assets/css/all.min.css">
 		<link rel ="stylesheet" href="../css/adminRegister.css?v=<?php echo time() ?>">
-		<script src="../assets/jquery.min.js"></script>
+		<script src="../assets/js/jquery.min.js"></script>
 		<title>Register User</title>
 	</head>
 	<body class="bg-light">
@@ -198,8 +198,8 @@ if (isset($_POST['submit'])){
 			  </div>
 		  </div>
 		</div>
-		<script src="../assets/bootstrap.min.js"></script>
-		<script src="../assets/all.min.js"></script>
+		<script src="../assets/js/bootstrap.min.js"></script>
+		<script src="../assets/js/all.min.js"></script>
 		<script src="../scripts/adminRegister.js?v=<?php echo time() ?>"></script>
 	</body>
 </html>
