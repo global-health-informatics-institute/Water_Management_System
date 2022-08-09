@@ -143,7 +143,9 @@ if(isset($_POST['id'])){
 					<img src="../assets/images/user-svgrepo-com.svg" alt="" width="32" height="32" class="rounded-circle me-2">
 					<strong> <?=$_SESSION['name']?></strong>
 				  </div>
-				  <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+				  <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end text-small shadow mt-2" aria-labelledby="dropdownUser1">
+					<li id ="settings" title="Settings"><a class="dropdown-item" href="#">Settings</a></li>
+					<hr>
 					<li id ="signout" title="sign out"><a class="dropdown-item" href="../logout.php">Sign out</a></li>
 				  </ul>
 				</div>

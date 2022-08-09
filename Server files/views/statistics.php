@@ -110,7 +110,9 @@ if (isset($_POST['tank_id']) && isset($_POST['select'])){
 					<img src="../assets/images/user-svgrepo-com.svg" alt="" width="32" height="32" class="rounded-circle me-2">
 					<strong> <?=$_SESSION['name']?></strong>
 				  </div>
-				  <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+				  <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end text-small shadow mt-2" aria-labelledby="dropdownUser1">
+					<li id ="settings" title="Settings"><a class="dropdown-item" href="#">Settings</a></li>
+					<hr>
 					<li id ="signout" title="sign out"><a class="dropdown-item" href="../logout.php">Sign out</a></li>
 				  </ul>
 				</div>
@@ -123,7 +125,8 @@ if (isset($_POST['tank_id']) && isset($_POST['select'])){
 		<!--start of content section-->
 		<div id="main-container" class= "container h-100 mt-5">
 			<!--first row-->
-			<div class = "row w-25">
+			<ul class="nav nav-2">
+				<li id = "selection" class="nav-item l2" title="Select water tank">
 			<?php
 				if($_SESSION['name'] !== 'admin'){
 				echo'
@@ -135,7 +138,8 @@ if (isset($_POST['tank_id']) && isset($_POST['select'])){
 				echo '</select>';	
 				}
 			?>
-			</div>
+				</li>
+			</ul>
 			<!--first row-->
 			<div class ="row mb-5">
 				<div class = "col-lg-4 col-sm-12 mid"><div class = "card mid-card">Estimated Consumption: 200 cubic meters</div></div>

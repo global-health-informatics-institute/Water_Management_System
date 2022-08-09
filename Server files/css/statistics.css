@@ -35,7 +35,7 @@ html {
 }
 body{
   font-family: -apple-system, BlinkMacSystemFont,"Poppins", sans-serif, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  background-image: url(../assets/images/wt2.jpg);
+  background-image: url(../assets/images/wt9.jpg);
   background-position:bottom;
   background-repeat:no-repeat;
   background-size:cover;
@@ -90,6 +90,9 @@ select option:checked{
 .offcanvas{
   background-color: rgba(0,0,0,0.6);
   color:black;
+}
+.offcanvas-backdrop{
+  backdrop-filter: blur(8px);
 }
 
 .dropdown:hover{
@@ -184,6 +187,7 @@ display:inline;
 
 /* The Modal (background) */
 .modala {
+  backdrop-filter: blur(8px);
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   left: 0;

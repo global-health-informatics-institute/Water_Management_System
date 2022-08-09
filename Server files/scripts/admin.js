@@ -662,6 +662,8 @@ $(function(){
   $("#modalToggle").click(function(){
     $(".modal-body").html("Are you sure you want to reset the "+tname+" microcontroller?");
   });
+  
+  
 
 });
 

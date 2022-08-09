@@ -36,7 +36,7 @@ html {
 }
 body{
   font-family: -apple-system, BlinkMacSystemFont, "Poppins", sans-serif,"Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  background-image: url(../assets/images/wt2.jpg);
+  background-image: url(../assets/images/wt9.jpg);
   background-position:bottom;
   background-repeat:no-repeat;
   background-size:cover;
@@ -75,6 +75,9 @@ a:hover{
 .offcanvas{
   background-color: rgba(0,0,0,0.6);
   color:black;
+}
+.offcanvas-backdrop{
+  backdrop-filter: blur(8px);
 }
 
 .dropdown:hover{
@@ -194,9 +197,9 @@ a:hover{
   color: hsl(209, 95%, 24%);
 }
 #tankName{
-  color:#3cc4a0;
-  font-size:40px;
-  margin-bottom:20px;
+  padding-left:10px;
+  color:black;
+  font-size:20px;
 }
 .logout-img{
   height:30px;
@@ -230,23 +233,32 @@ a:hover{
 }
   
 #Gauge{
+  height:100%;
+  width:100%;
+}
+#chart2{
+  display:flex;
+  top:-1;
+  justify-content: center;
+  border-radius:10px;
+  height:100%;
 }
 
 /* CSS */
 .button-30 {
   align-items: center;
+  justify-content: center;
   appearance: none;
-  background-color: orange;
-  border-radius: 4px;
+  background-color: rgba(255,255,255,0.5);
+  backdrop-filter: blur(8px);
+  border-radius: 10px;
   border-width: 0;
   box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
   box-sizing: border-box;
   color: #36395A;
   cursor: pointer;
   display: inline-flex;
-  
-  height: 48px;
-  justify-content: center;
+  height: 40px;
   line-height: 1;
   list-style: none;
   overflow: hidden;
@@ -370,6 +382,7 @@ a:hover{
 
 /* The Modal (background) */
 .modala {
+  backdrop-filter: blur(8px);
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   left: 0;

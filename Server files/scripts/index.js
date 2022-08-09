@@ -171,7 +171,6 @@ var toggleP = "";
         },
         value: {
           fontSize: "30px",
-          color:"white",
           show: true,
           formatter: function (val) {
             return val + ' PSI'
@@ -574,48 +573,48 @@ function getReadings() {
   //Updates control button states
    if(pump1 == 1){
      $("#the_container1").find("#pump1").text("ON");
-     $("#the_container1").find("#pump1").css("background-color","#10B981");
+     $("#the_container1").find("#pump1").css("background-color","rgba(16,185,129,0.5)");
   }
    else{
      $("#the_container1").find("#pump1").text("OFF");
-     $("#the_container1").find("#pump1").css("background-color","#EF4444");
+     $("#the_container1").find("#pump1").css("background-color","rgba(255,255,255,0.5)");
    }
    
    if(pump2 == 1){
      $("#the_container1").find("#pump2").text("ON");
-     $("#the_container1").find("#pump2").css("background-color","#10B981");
+     $("#the_container1").find("#pump2").css("background-color","rgba(16,185,129,0.5)");
   }
   else{
      $("#the_container1").find("#pump2").text("OFF");
-     $("#the_container1").find("#pump2").css("background-color","#EF4444");
+     $("#the_container1").find("#pump2").css("background-color","rgba(255,255,255,0.5)");
   }
   
    if(valve1==1){
      $("#the_container1").find("#valve1").text("ON");
-     $("#the_container1").find("#valve1").css("background-color","#10B981");
+     $("#the_container1").find("#valve1").css("background-color","rgba(16,185,129,0.5)");
   }
   
   else{
      $("#the_container1").find("#valve1").text("OFF");
-     $("#the_container1").find("#valve1").css("background-color","#EF4444");
+     $("#the_container1").find("#valve1").css("background-color","rgba(255,255,255,0.5)");
   }
   
   if(valve2 == 1){
      $("#the_container1").find("#valve2").text("ON");
-     $("#the_container1").find("#valve2").css("background-color","#10B981");
+     $("#the_container1").find("#valve2").css("background-color","rgba(16,185,129,0.5)");
   }
   else{
      $("#the_container1").find("#valve2").text("OFF");
-     $("#the_container1").find("#valve2").css("background-color","#EF4444");
+     $("#the_container1").find("#valve2").css("background-color","rgba(255,255,255,0.5)");
   }
   
    if(mode == 1){
      $("#the_container1").find("#mode").text("Manual-mode");
-     $("#the_container1").find("#mode").css("background-color","#10B981");
+     $("#the_container1").find("#mode").css("background-color","rgba(16,185,129,0.5)");
   }
   else{
      $("#the_container1").find("#mode").text("Auto-mode");
-     $("#the_container1").find("#mode").css("background-color","#EF4444");
+     $("#the_container1").find("#mode").css("background-color","rgba(255,255,255,0.5)");
      
   }
   if(opMode == "1"){
@@ -770,49 +769,49 @@ function getReadings2() {
   //Updates control button states
    if(pump1_1 == 1){
      $("#the_container2").find("#pump1").text("ON");
-     $("#the_container2").find("#pump1").css("background-color","#10B981");
+     $("#the_container2").find("#pump1").css("background-color","rgba(16,185,129,0.5)");
   }
    else{
      $("#the_container2").find("#pump1").text("OFF");
-     $("#the_container2").find("#pump1").css("background-color","#EF4444");
+     $("#the_container2").find("#pump1").css("background-color","rgba(255,255,255,0.5)");
    }
    
    if(pump2_1 == 1){
      $("#the_container2").find("#pump2").text("ON");
-     $("#the_container2").find("#pump2").css("background-color","#10B981");
+     $("#the_container2").find("#pump2").css("background-color","rgba(16,185,129,0.5)");
   }
   else{
      $("#the_container2").find("#pump2").text("OFF");
-     $("#the_container2").find("#pump2").css("background-color","#EF4444");
+     $("#the_container2").find("#pump2").css("background-color","rgba(255,255,255,0.5)");
   }
   
    if(valve1_1==1){
      $("#the_container2").find("#valve1").text("ON");
-     $("#the_container2").find("#valve1").css("background-color","#10B981");
+     $("#the_container2").find("#valve1").css("background-color","rgba(16,185,129,0.5)");
   }
   
   else{
      $("#the_container2").find("#valve1").text("OFF");
-     $("#the_container2").find("#valve1").css("background-color","#EF4444");
+     $("#the_container2").find("#valve1").css("background-color","rgba(255,255,255,0.5)");
   }
   
   if(valve2_1 == 1){
      $("#the_container2").find("#valve2").text("ON");
-     $("#the_container2").find("#valve2").css("background-color","#10B981");
+     $("#the_container2").find("#valve2").css("background-color","rgba(16,185,129,0.5)");
   }
   else{
      $("#the_container2").find("#valve2").text("OFF");
-     $("#the_container2").find("#valve2").css("background-color","#EF4444");
+     $("#the_container2").find("#valve2").css("background-color","rgba(255,255,255,0.5)");
   }
   
    if(mode_1 == 1){
      $("#the_container2").find("#mode_2").text("Manual-mode");
-     $("#the_container2").find("#mode_2").css("background-color","#10B981");
+     $("#the_container2").find("#mode_2").css("background-color","rgba(16,185,129,0.5)");
      $("#the_container2").find("#control_2").css("display","flex");
   }
   else{
      $("#the_container2").find("#mode_2").text("Auto-mode");
-     $("#the_container2").find("#mode_2").css("background-color","#EF4444");
+     $("#the_container2").find("#mode_2").css("background-color","rgba(255,255,255,0.5)");
      $("#the_container2").find("#control_2").css("display","none");
   }
   //inlet and outlet valve
@@ -961,49 +960,49 @@ function getReadings3() {
   //Updates control button states
    if(pump1_2 == 1){
      $("#the_container3").find("#pump1").text("ON");
-     $("#the_container3").find("#pump1").css("background-color","#10B981");
+     $("#the_container3").find("#pump1").css("background-color","rgba(16,185,129,0.5)");
   }
    else{
      $("#the_container3").find("#pump1").text("OFF");
-     $("#the_container3").find("#pump1").css("background-color","#EF4444");
+     $("#the_container3").find("#pump1").css("background-color","rgba(255,255,255,0.5)");
    }
    
    if(pump2_2 == 1){
      $("#the_container3").find("#pump2").text("ON");
-     $("#the_container3").find("#pump2").css("background-color","#10B981");
+     $("#the_container3").find("#pump2").css("background-color","rgba(16,185,129,0.5)");
   }
   else{
      $("#the_container3").find("#pump2").text("OFF");
-     $("#the_container3").find("#pump2").css("background-color","#EF4444");
+     $("#the_container3").find("#pump2").css("background-color","rgba(255,255,255,0.5)");
   }
   
    if(valve1_2==1){
      $("#the_container3").find("#valve1").text("ON");
-     $("#the_container3").find("#valve1").css("background-color","#10B981");
+     $("#the_container3").find("#valve1").css("background-color","rgba(16,185,129,0.5)");
   }
   
   else{
      $("#the_container3").find("#valve1").text("OFF");
-     $("#the_container3").find("#valve1").css("background-color","#EF4444");
+     $("#the_container3").find("#valve1").css("background-color","rgba(255,255,255,0.5)");
   }
   
   if(valve2_2 == 1){
      $("#the_container3").find("#valve2").text("ON");
-     $("#the_container3").find("#valve2").css("background-color","#10B981");
+     $("#the_container3").find("#valve2").css("background-color","rgba(16,185,129,0.5)");
   }
   else{
      $("#the_container3").find("#valve2").text("OFF");
-     $("#the_container3").find("#valve2").css("background-color","#EF4444");
+     $("#the_container3").find("#valve2").css("background-color","rgba(255,255,255,0.5)");
   }
   
    if(mode_2 == 1){
      $("#the_container3").find("#mode_3").text("Manual-mode");
-     $("#the_container3").find("#mode_3").css("background-color","#10B981");
+     $("#the_container3").find("#mode_3").css("background-color","rgba(16,185,129,0.5)");
      $("#the_container3").find("#control_3").css("display","flex");
   }
   else{
      $("#the_container3").find("#mode_3").text("Auto-mode");
-     $("#the_container3").find("#mode_3").css("background-color","#EF4444");
+     $("#the_container3").find("#mode_3").css("background-color","rgba(255,255,255,0.5)");
      $("#the_container3").find("#control_3").css("display","none");
   }
   if(opMode_2 == "1"){
@@ -1154,49 +1153,49 @@ function getReadings4() {
   //Updates control button states
    if(pump1_3 == 1){
      $("#the_container4").find("#pump1").text("ON");
-     $("#the_container4").find("#pump1").css("background-color","#10B981");
+     $("#the_container4").find("#pump1").css("background-color","rgba(16,185,129,0.5)");
   }
    else{
      $("#the_container4").find("#pump1").text("OFF");
-     $("#the_container4").find("#pump1").css("background-color","#EF4444");
+     $("#the_container4").find("#pump1").css("background-color","rgba(255,255,255,0.5)");
    }
    
    if(pump2_3 == 1){
      $("#the_container4").find("#pump2").text("ON");
-     $("#the_container4").find("#pump2").css("background-color","#10B981");
+     $("#the_container4").find("#pump2").css("background-color","rgba(16,185,129,0.5)");
   }
   else{
      $("#the_container4").find("#pump2").text("OFF");
-     $("#the_container4").find("#pump2").css("background-color","#EF4444");
+     $("#the_container4").find("#pump2").css("background-color","rgba(255,255,255,0.5)");
   }
   
    if(valve1_3==1){
      $("#the_container4").find("#valve1").text("ON");
-     $("#the_container4").find("#valve1").css("background-color","#10B981");
+     $("#the_container4").find("#valve1").css("background-color","rgba(16,185,129,0.5)");
   }
   
   else{
      $("#the_container4").find("#valve1").text("OFF");
-     $("#the_container4").find("#valve1").css("background-color","#EF4444");
+     $("#the_container4").find("#valve1").css("background-color","rgba(255,255,255,0.5)");
   }
   
   if(valve2_3 == 1){
      $("#the_container4").find("#valve2").text("ON");
-     $("#the_container4").find("#valve2").css("background-color","#10B981");
+     $("#the_container4").find("#valve2").css("background-color","rgba(16,185,129,0.5)");
   }
   else{
      $("#the_container4").find("#valve2").text("OFF");
-     $("#the_container4").find("#valve2").css("background-color","#EF4444");
+     $("#the_container4").find("#valve2").css("background-color","rgba(255,255,255,0.5)");
   }
   
    if(mode_3 == 1){
      $("#the_container4").find("#mode_4").text("Manual-mode");
-     $("#the_container4").find("#mode_4").css("background-color","#10B981");
+     $("#the_container4").find("#mode_4").css("background-color","rgba(16,185,129,0.5)");
      $("#the_container4").find("#control_4").css("display","flex");
   }
   else{
      $("#the_container4").find("#mode_4").text("Auto-mode");
-     $("#the_container4").find("#mode_4").css("background-color","#EF4444");
+     $("#the_container4").find("#mode_4").css("background-color","rgba(255,255,255,0.5)");
      $("#the_container4").find("#control_4").css("display","none");
   }
   if(opMode_3 == "1"){
@@ -1348,49 +1347,49 @@ function getReadings5() {
   //Updates control button states
    if(pump1_4 == 1){
      $("#the_container5").find("#pump1").text("ON");
-     $("#the_container5").find("#pump1").css("background-color","#10B981");
+     $("#the_container5").find("#pump1").css("background-color","rgba(16,185,129,0.5)");
   }
    else{
      $("#the_container5").find("#pump1").text("OFF");
-     $("#the_container5").find("#pump1").css("background-color","#EF4444");
+     $("#the_container5").find("#pump1").css("background-color","rgba(255,255,255,0.5)");
    }
    
    if(pump2_4 == 1){
      $("#the_container5").find("#pump2").text("ON");
-     $("#the_container5").find("#pump2").css("background-color","#10B981");
+     $("#the_container5").find("#pump2").css("background-color","rgba(16,185,129,0.5)");
   }
   else{
      $("#the_container5").find("#pump2").text("OFF");
-     $("#the_container5").find("#pump2").css("background-color","#EF4444");
+     $("#the_container5").find("#pump2").css("background-color","rgba(255,255,255,0.5)");
   }
   
    if(valve1_4==1){
      $("#the_container5").find("#valve1").text("ON");
-     $("#the_container5").find("#valve1").css("background-color","#10B981");
+     $("#the_container5").find("#valve1").css("background-color","rgba(16,185,129,0.5)");
   }
   
   else{
      $("#the_container5").find("#valve1").text("OFF");
-     $("#the_container5").find("#valve1").css("background-color","#EF4444");
+     $("#the_container5").find("#valve1").css("background-color","rgba(255,255,255,0.5)");
   }
   
   if(valve2_4 == 1){
      $("#the_container5").find("#valve2").text("ON");
-     $("#the_container5").find("#valve2").css("background-color","#10B981");
+     $("#the_container5").find("#valve2").css("background-color","rgba(16,185,129,0.5)");
   }
   else{
      $("#the_container5").find("#valve2").text("OFF");
-     $("#the_container5").find("#valve2").css("background-color","#EF4444");
+     $("#the_container5").find("#valve2").css("background-color","rgba(255,255,255,0.5)");
   }
   
    if(mode_4 == 1){
      $("#the_container5").find("#mode_4").text("Manual-mode");
-     $("#the_container5").find("#mode_4").css("background-color","#10B981");
+     $("#the_container5").find("#mode_4").css("background-color","rgba(16,185,129,0.5)");
      $("#the_container5").find("#control_4").css("display","flex");
   }
   else{
      $("#the_container5").find("#mode_4").text("Auto-mode");
-     $("#the_container5").find("#mode_4").css("background-color","#EF4444");
+     $("#the_container5").find("#mode_4").css("background-color","rgba(255,255,255,0.5)");
      $("#the_container5").find("#control_4").css("display","none");
   }
   if(opMode_4 == "1"){
@@ -1456,11 +1455,11 @@ $(function(){
 
       if(pump1){
          $(this).text("ON");
-         $(this).css("background-color","#10B981");
+         $(this).css("background-color","rgba(16,185,129,0.5)");
       }
        else{
          $(this).text("OFF");
-         $(this).css("background-color","#EF4444");
+         $(this).css("background-color","rgba(255,255,255,0.5)");
        }
 
       let pumpObj = {"pump1":pump1,"tank_id":tank_id_0,"opMode":opMode};
@@ -1488,11 +1487,11 @@ $(function(){
       
       if(pump2){
          $(this).text("ON");
-         $(this).css("background-color","#10B981");
+         $(this).css("background-color","rgba(16,185,129,0.5)");
       }
       else{
          $(this).text("OFF");
-         $(this).css("background-color","#EF4444");
+         $(this).css("background-color","rgba(255,255,255,0.5)");
       }
 
       let pumpObj = {"pump2":pump2,"tank_id":tank_id_0,"opMode":opMode};
@@ -1520,12 +1519,12 @@ $(function(){
     
     if(valve1){
        $(this).text("ON");
-       $(this).css("background-color","#10B981");
+       $(this).css("background-color","rgba(16,185,129,0.5)");
     }
     
     else{
        $(this).text("OFF");
-       $(this).css("background-color","#EF4444");
+       $(this).css("background-color","rgba(255,255,255,0.5)");
     }
 
     let pumpObj = {"valve1":valve1,"tank_id":tank_id_0,"opMode":opMode};
@@ -1553,11 +1552,11 @@ $(function(){
     
     if(valve2){
        $(this).text("ON");
-       $(this).css("background-color","#10B981");
+       $(this).css("background-color","rgba(16,185,129,0.5)");
     }
     else{
        $(this).text("OFF");
-       $(this).css("background-color","#EF4444");
+       $(this).css("background-color","rgba(255,255,255,0.5)");
     }
 
     let pumpObj = {"valve2":valve2,"tank_id":tank_id_0,"opMode":opMode};
@@ -1586,12 +1585,12 @@ $(function(){
     
     if(mode == 1){
        $(this).text("Manual-mode");
-       $(this).css("background-color","#10B981");
+       $(this).css("background-color","rgba(16,185,129,0.5)");
        
     }
     else{
        $(this).text("Auto-mode");
-       $(this).css("background-color","#EF4444");
+       $(this).css("background-color","rgba(255,255,255,0.5)");
        
     }
 
@@ -1643,11 +1642,11 @@ $(function(){
 
       if(pump1_1){
          $(this).text("ON");
-         $(this).css("background-color","#10B981");
+         $(this).css("background-color","rgba(16,185,129,0.5)");
       }
        else{
          $(this).text("OFF");
-         $(this).css("background-color","#EF4444");
+         $(this).css("background-color","rgba(255,255,255,0.5)");
        }
 
       let pumpObj = {"pump1":pump1_1,"tank_id":tank_id_1,"opMode":opMode_1};
@@ -1675,11 +1674,11 @@ $(function(){
       
       if(pump2_1){
          $(this).text("ON");
-         $(this).css("background-color","#10B981");
+         $(this).css("background-color","rgba(16,185,129,0.5)");
       }
       else{
          $(this).text("OFF");
-         $(this).css("background-color","#EF4444");
+         $(this).css("background-color","rgba(255,255,255,0.5)");
       }
 
       let pumpObj = {"pump2":pump2_1,"tank_id":tank_id_1,"opMode":opMode_1};
@@ -1707,12 +1706,12 @@ $(function(){
     
     if(valve1_1){
        $(this).text("ON");
-       $(this).css("background-color","#10B981");
+       $(this).css("background-color","rgba(16,185,129,0.5)");
     }
     
     else{
        $(this).text("OFF");
-       $(this).css("background-color","#EF4444");
+       $(this).css("background-color","rgba(255,255,255,0.5)");
     }
 
     let pumpObj = {"valve1":valve1_1,"tank_id":tank_id_1,"opMode":opMode_1};
@@ -1740,11 +1739,11 @@ $(function(){
     
     if(valve2_1){
        $(this).text("ON");
-       $(this).css("background-color","#10B981");
+       $(this).css("background-color","rgba(16,185,129,0.5)");
     }
     else{
        $(this).text("OFF");
-       $(this).css("background-color","#EF4444");
+       $(this).css("background-color","rgba(255,255,255,0.5)");
     }
 
     let pumpObj = {"valve2":valve2_1,"tank_id":tank_id_1,"opMode":opMode_1};
@@ -1772,12 +1771,12 @@ $(function(){
     
     if(mode_1 == 1){
        $("#mode_2").text("Manual-mode");
-       $("#mode_2").css("background-color","#10B981");
+       $("#mode_2").css("background-color","rgba(16,185,129,0.5)");
        
     }
     else{
        $("#mode_2").text("Auto-mode");
-       $("#mode_2").css("background-color","#EF4444");
+       $("#mode_2").css("background-color","rgba(255,255,255,0.5)");
        
     }
 
@@ -1829,11 +1828,11 @@ $(function(){
 
       if(pump1_2){
          $(this).text("ON");
-         $(this).css("background-color","#10B981");
+         $(this).css("background-color","rgba(16,185,129,0.5)");
       }
        else{
          $(this).text("OFF");
-         $(this).css("background-color","#EF4444");
+         $(this).css("background-color","rgba(255,255,255,0.5)");
        }
 
       let pumpObj = {"pump1":pump1_2,"tank_id":tank_id_2,"opMode":opMode_2};
@@ -1861,11 +1860,11 @@ $(function(){
       
       if(pump2_2){
          $(this).text("ON");
-         $(this).css("background-color","#10B981");
+         $(this).css("background-color","rgba(16,185,129,0.5)");
       }
       else{
          $(this).text("OFF");
-         $(this).css("background-color","#EF4444");
+         $(this).css("background-color","rgba(255,255,255,0.5)");
       }
 
       let pumpObj = {"pump2":pump2_2,"tank_id":tank_id_2,"opMode":opMode_2};
@@ -1893,12 +1892,12 @@ $(function(){
     
     if(valve1_2){
        $(this).text("ON");
-       $(this).css("background-color","#10B981");
+       $(this).css("background-color","rgba(16,185,129,0.5)");
     }
     
     else{
        $(this).text("OFF");
-       $(this).css("background-color","#EF4444");
+       $(this).css("background-color","rgba(255,255,255,0.5)");
     }
 
     let pumpObj = {"valve1":valve1_2,"tank_id":tank_id_2,"opMode":opMode_2};
@@ -1926,11 +1925,11 @@ $(function(){
     
     if(valve2_2){
        $(this).text("ON");
-       $(this).css("background-color","#10B981");
+       $(this).css("background-color","rgba(16,185,129,0.5)");
     }
     else{
        $(this).text("OFF");
-       $(this).css("background-color","#EF4444");
+       $(this).css("background-color","rgba(255,255,255,0.5)");
     }
 
     let pumpObj = {"valve2":valve2_2,"tank_id":tank_id_2,"opMode":opMode_2};
@@ -1958,12 +1957,12 @@ $(function(){
     
     if(mode_2 == 1){
        $("#mode_3").text("Manual-mode");
-       $("#mode_3").css("background-color","#10B981");
+       $("#mode_3").css("background-color","rgba(16,185,129,0.5)");
        
     }
     else{
        $("#mode_3").text("Auto-mode");
-       $("#mode_3").css("background-color","#EF4444");
+       $("#mode_3").css("background-color","rgba(255,255,255,0.5)");
        
     }
 
@@ -2015,11 +2014,11 @@ $(function(){
 
       if(pump1_3){
          $(this).text("ON");
-         $(this).css("background-color","#10B981");
+         $(this).css("background-color","rgba(16,185,129,0.5)");
       }
        else{
          $(this).text("OFF");
-         $(this).css("background-color","#EF4444");
+         $(this).css("background-color","rgba(255,255,255,0.5)");
        }
 
       let pumpObj = {"pump1":pump1_3,"tank_id":tank_id_3,"opMode":opMode_3};
@@ -2047,11 +2046,11 @@ $(function(){
       
       if(pump2_3){
          $(this).text("ON");
-         $(this).css("background-color","#10B981");
+         $(this).css("background-color","rgba(16,185,129,0.5)");
       }
       else{
          $(this).text("OFF");
-         $(this).css("background-color","#EF4444");
+         $(this).css("background-color","rgba(255,255,255,0.5)");
       }
 
       let pumpObj = {"pump2":pump2_3,"tank_id":tank_id_3,"opMode":opMode_3};
@@ -2079,12 +2078,12 @@ $(function(){
     
     if(valve1_3){
        $(this).text("ON");
-       $(this).css("background-color","#10B981");
+       $(this).css("background-color","rgba(16,185,129,0.5)");
     }
     
     else{
        $(this).text("OFF");
-       $(this).css("background-color","#EF4444");
+       $(this).css("background-color","rgba(255,255,255,0.5)");
     }
 
     let pumpObj = {"valve1":valve1_3,"tank_id":tank_id_3,"opMode":opMode_3};
@@ -2112,11 +2111,11 @@ $(function(){
     
     if(valve2_3){
        $(this).text("ON");
-       $(this).css("background-color","#10B981");
+       $(this).css("background-color","rgba(16,185,129,0.5)");
     }
     else{
        $(this).text("OFF");
-       $(this).css("background-color","#EF4444");
+       $(this).css("background-color","rgba(255,255,255,0.5)");
     }
 
     let pumpObj = {"valve2":valve2_3,"tank_id":tank_id_3,"opMode":opMode_3};
@@ -2144,12 +2143,12 @@ $(function(){
     
     if(mode_3 == 1){
        $("#mode_4").text("Manual-mode");
-       $("#mode_4").css("background-color","#10B981");
+       $("#mode_4").css("background-color","rgba(16,185,129,0.5)");
        
     }
     else{
        $("#mode_4").text("Auto-mode");
-       $("#mode_4").css("background-color","#EF4444");
+       $("#mode_4").css("background-color","rgba(255,255,255,0.5)");
        
     }
 
@@ -2201,11 +2200,11 @@ $(function(){
 
       if(pump1_4){
          $(this).text("ON");
-         $(this).css("background-color","#10B981");
+         $(this).css("background-color","rgba(16,185,129,0.5)");
       }
        else{
          $(this).text("OFF");
-         $(this).css("background-color","#EF4444");
+         $(this).css("background-color","rgba(255,255,255,0.5)");
        }
 
       let pumpObj = {"pump1":pump1_4,"tank_id":tank_id_4,"opMode":opMode_4};
@@ -2233,11 +2232,11 @@ $(function(){
       
       if(pump2_4){
          $(this).text("ON");
-         $(this).css("background-color","#10B981");
+         $(this).css("background-color","rgba(16,185,129,0.5)");
       }
       else{
          $(this).text("OFF");
-         $(this).css("background-color","#EF4444");
+         $(this).css("background-color","rgba(255,255,255,0.5)");
       }
 
       let pumpObj = {"pump2":pump2_4,"tank_id":tank_id_4,"opMode":opMode_4};
@@ -2265,12 +2264,12 @@ $(function(){
     
     if(valve1_4){
        $(this).text("ON");
-       $(this).css("background-color","#10B981");
+       $(this).css("background-color","rgba(16,185,129,0.5)");
     }
     
     else{
        $(this).text("OFF");
-       $(this).css("background-color","#EF4444");
+       $(this).css("background-color","rgba(255,255,255,0.5)");
     }
 
     let pumpObj = {"valve1":valve1_4,"tank_id":tank_id_4,"opMode":opMode_4};
@@ -2298,11 +2297,11 @@ $(function(){
     
     if(valve2_4){
        $(this).text("ON");
-       $(this).css("background-color","#10B981");
+       $(this).css("background-color","rgba(16,185,129,0.5)");
     }
     else{
        $(this).text("OFF");
-       $(this).css("background-color","#EF4444");
+       $(this).css("background-color","rgba(255,255,255,0.5)");
     }
 
     let pumpObj = {"valve2":valve2_4,"tank_id":tank_id_4,"opMode":opMode_4};
@@ -2330,12 +2329,12 @@ $(function(){
     
     if(mode_4 == 1){
        $("#mode_5").text("Manual-mode");
-       $("#mode_5").css("background-color","#10B981");
+       $("#mode_5").css("background-color","rgba(16,185,129,0.5)rgba(16,185,129,0.5)");
        
     }
     else{
        $("#mode_5").text("Auto-mode");
-       $("#mode_5").css("background-color","#EF4444");
+       $("#mode_5").css("background-color","rgba(255,255,255,0.5)");
        
     }
 
