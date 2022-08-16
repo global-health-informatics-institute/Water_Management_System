@@ -143,7 +143,7 @@ if (isset($_POST['submit'])){
 				<div class="dropdown">
 				  <div class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
 					<img src="../assets/images/user-svgrepo-com.svg" alt="" width="32" height="32" class="rounded-circle me-2">
-					<strong> <?=$_SESSION['name']?></strong>
+					<?=$_SESSION['name']?>
 				  </div>
 				  <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end text-small shadow mt-2" aria-labelledby="dropdownUser1">
 					<li id ="settings" title="Settings"><a class="dropdown-item" href="#">Settings</a></li>

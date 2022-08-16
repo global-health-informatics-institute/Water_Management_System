@@ -104,6 +104,7 @@ select option:checked{
   text-align: center;
   align-items:center;
   justify-content:center;
+  min-height:100%;
 }
 .mid{
 margin-top:5px;
@@ -173,10 +174,6 @@ display:inline;
   background-color: rgba(255,255,255,0.7);
   backdrop-filter: blur(8px);
 }
-#main-container{
-  align-items:center;
-  justify-content:center;
-}
 
 .trash:hover{
   cursor:pointer;
@@ -197,6 +194,12 @@ display:inline;
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.ui-widget-overlay{
+background:black !important; 
+backdrop-filter: blur(8px) !important;
+opacity:0.6 !important; 
 }
 
 /* Modal Content/Box */

@@ -91,7 +91,7 @@ $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
             <div class="dropdown" title="Profile">
               <div class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="assets/images/user-svgrepo-com.svg" alt="" width="32" height="32" class="rounded-circle me-2">
-                <strong> <?=$_SESSION['name']?></strong>
+                 <?=$_SESSION['name']?>
               </div>
               <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end text-small shadow mt-2" aria-labelledby="dropdownUser1">
                 <li id ="settings" title="Settings"><a class="dropdown-item" href="#">Settings</a></li>
@@ -134,8 +134,8 @@ $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
             <div class="modal-body">
             </div>
             <div class="modal-footer">
-              <button type="button" class="button-31" data-bs-dismiss="modal">Close</button>
-              <button id="reset" type="button" class="button-32" data-bs-dismiss="modal">Yes</button>
+              <button type="button" class="button-30" data-bs-dismiss="modal">Close</button>
+              <button id="reset" type="button" class="button-30" data-bs-dismiss="modal">Yes</button>
             </div>
           </div>
         </div>
@@ -144,16 +144,16 @@ $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
         <!--Buttons-->
         <div id="b1" class = "col-lg-3 col-md-6">
           <p id="p1" class="labels">Water Pump</p>
-          <button id="pump1" class="btn  button-30" onclick="handleClick1()">OFF</button></div>
+          <button id="pump1" class="btn  button-31" onclick="handleClick1()">OFF</button></div>
         <div id="b2" class="col-lg-3 col-md-6">
           <p id="p2"class="labels">Pressure Pump</p>
-          <button id="pump2" class="btn button-30" onclick="handleClick2()">OFF</button></div>
+          <button id="pump2" class="btn button-31" onclick="handleClick2()">OFF</button></div>
         <div id="b3" class="col-lg-3 col-md-6">
           <p id="v1" class="labels">Well Tank Valve</p>
-          <button id="valve1" class="btn button-30" onclick="handleClick3()">OFF</button></div>
+          <button id="valve1" class="btn button-31" onclick="handleClick3()">OFF</button></div>
         <div id="b4" class="col-lg-3 col-md-6">
           <p id="v2" class="labels">Wb Tank Valve</p>
-          <button id="valve2" class="btn button-30" onclick="handleClick4()">OFF</button></div>
+          <button id="valve2" class="btn button-31" onclick="handleClick4()">OFF</button></div>
       </div>
 
       <!--Card Content-->

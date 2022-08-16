@@ -23,6 +23,51 @@ if (isset($_POST['tank_id']) && isset($_POST['select'])){
 	die();	 	
 }
 
+ function month($param){
+	switch ($param){
+		case "01":
+			$out = "January";
+			break;
+		case "02":
+			$out = "February";
+			break;
+		case "03":
+			$out = "March";
+			break;
+		case "04":
+			$out = "April";
+			break;
+		case "05":
+			$out = "May";
+			break;
+		case "06":
+			$out = "June";
+			break;
+		case "07":
+			$out = "July";
+			break;
+		case "08":
+			$out = "August";
+			break;
+		case "09":
+			$out = "September";
+			break;
+		case "10":
+			$out = "October";
+			break;
+		case "11":
+			$out = "November";
+			break;
+		case "12":
+			$out = "December";
+			break;
+		default:
+			return "invalid";
+		
+	}
+	return $out;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +97,7 @@ if (isset($_POST['tank_id']) && isset($_POST['select'])){
 		
 		<title>Statistics</title>
 	</head>
-	<body id ="document" class="bg-light h-100">
+	<body id ="document" class="bg-light">
 		<!--Preloader-->
 		<div id="preloader" class="modala">
 		  <!-- Modal content -->
@@ -67,7 +112,7 @@ if (isset($_POST['tank_id']) && isset($_POST['select'])){
 		  </div>
 		</div>
 		<!--Start of navbar section-->
-		<div class="navbar navbar-expand-lg navbar-dark shadow mb-3">
+		<div class="navbar navbar-expand-lg navbar-dark shadow mb-5">
 		  <div class="container-fluid">
 			<a class="navbar-brand" href="../admin.php"><img src="../assets/images/ghii_logo.png" alt="" width="32" height="32" class="me-2">Water Management System</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" aria-expanded="false" aria-label="Toggle navigation">
@@ -108,7 +153,7 @@ if (isset($_POST['tank_id']) && isset($_POST['select'])){
 				<div class="dropdown" title="Profile">
 				  <div class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
 					<img src="../assets/images/user-svgrepo-com.svg" alt="" width="32" height="32" class="rounded-circle me-2">
-					<strong> <?=$_SESSION['name']?></strong>
+					<?=$_SESSION['name']?>
 				  </div>
 				  <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end text-small shadow mt-2" aria-labelledby="dropdownUser1">
 					<li id ="settings" title="Settings"><a class="dropdown-item" href="#">Settings</a></li>
@@ -123,66 +168,76 @@ if (isset($_POST['tank_id']) && isset($_POST['select'])){
 		<!--end of navbar section-->
 		
 		<!--start of content section-->
-		<div id="main-container" class= "container h-100 mt-5">
-			<!--first row-->
-			<ul class="nav nav-2">
-				<li id = "selection" class="nav-item l2" title="Select water tank">
-			<?php
-				if($_SESSION['name'] !== 'admin'){
-				echo'
-				 <select class="form-select" id="select">
-					<option selected value="default">Choose Water Tank</option>';
-					  foreach($db->query("SELECT watertank_id, name FROM water_tanks") as $row){
-						echo'<option  value="'.$row['watertank_id'].'">'.$row['name'].'</option>';
-					  }
-				echo '</select>';	
-				}
-			?>
-				</li>
-			</ul>
-			<!--first row-->
-			<div class ="row mb-5">
-				<div class = "col-lg-4 col-sm-12 mid"><div class = "card mid-card">Estimated Consumption: 200 cubic meters</div></div>
-				<div class = "col-lg-4 col-sm-12 mid"><div class = "card mid-card">Status: <span style="color:green;">Active</span></div></div>
-				<div class = "col-lg-4 col-sm-12 mid"><div class = "card mid-card">Recommendation: Reduce water usage</div></div>
-			</div>
-			<!--second row-->
-			<div class="card row shadow-sm mb-4">
-				<div class="pt-2 pb-1" style ="overflow-x:auto;">
-					<table id="dataTable" class="table table-hover text-start" cellspacing="0">
-					  <thead class = "thead-light">
-						<tr>
-						  <th scope="col"></th>
-						  <th scope="col">Time</th>
-						  <th scope="col">Volume</th>
-						</tr>
-					  </thead>
-					  <tbody>
-						<?php
-							$i = 0;
-							foreach($db->query("SELECT id, Volume FROM sensorValues WHERE watertank_id = '".$_SESSION['tank_id']."' ") as $row) {
-								echo'
-									<tr>
-									  <th scope="row">'.++$i.'</th>
-									  <td>'.$row['id'].'</td>
-									  <td id = "Volume" >'.$row['Volume'].'</td>
-									</tr> ';
-							}					
-						?>
-					  </tbody>
-					</table>
+		<div id="main-container" class= "container">
+			<div class="row">
+				<!--first row-->
+				<ul class="nav nav-2">
+					<li id = "selection" class="nav-item l2" title="Select water tank">
+				<?php
+					if($_SESSION['name'] !== 'admin'){
+					echo'
+					 <select class="form-select" id="select">
+						<option selected value="default">Choose Water Tank</option>';
+						  foreach($db->query("SELECT watertank_id, name FROM water_tanks") as $row){
+							echo'<option  value="'.$row['watertank_id'].'">'.$row['name'].'</option>';
+						  }
+					echo '</select>';	
+					}
+				?>
+					</li>
+				</ul>
+				<!--first row-->
+				<div class = "col-lg-12">
+				  <div class ="row mb-5">
+					<div class = "col-lg-4 col-sm-12 mid"><div class = "card mid-card">Estimated Consumption: xxx cubic meters</div></div>
+					<div class = "col-lg-4 col-sm-12 mid"><div class = "card mid-card">Status: <span style="color:green;">Active</span></div></div>
+					<div class = "col-lg-4 col-sm-12 mid"><div class = "card mid-card">Recommendation: Reduce water usage</div></div>
+				  </div>
 				</div>
-			</div>
-			<!--third row-->
-			<div class = "row d-grid mb-4 visually-hidden">
-				<div class="w-100 text-start">
-					<button id = "plot" class="btn">plot</button>
+				<!--second row-->
+				<div class="card col-lg-12 shadow-sm">
+					<div class="pt-2 pb-1" style ="overflow-x:auto;">
+						<table id="dataTable" class="table table-hover text-start" cellspacing="0">
+						  <thead class = "thead-light">
+							<tr>
+							  <th scope="col"></th>
+							  <th scope="col">Date</th>
+							  <th scope="col">Time</th>
+							  <th scope="col">Volume(L)</th>
+							</tr>
+						  </thead>
+						  <tbody>
+							<?php
+								$i = 0;
+								foreach($db->query("SELECT id, Volume FROM sensorValues WHERE watertank_id = '".$_SESSION['tank_id']."' ") as $row) {
+									$arr = explode(" ",$row['id']);
+									$theDate = explode("-",$arr[0]);
+									$theMonth = month($theDate[1]);
+									echo'
+										<tr>
+										  <th scope="row">'.++$i.'</th>
+										  <td>'.$theDate[2].' '.$theMonth.' '.$theDate[0].'</td>
+										  <td>'.$arr[1].'</td>
+										  <td id = "Volume" >'.$row['Volume'].'</td>
+										</tr> ';
+								}					
+							?>
+						  </tbody>
+						</table>
+					</div>
 				</div>
-			</div>
-			<!--fourth row-->
-			<div id="chart-container" class = "card shadow-sm row visually-hidden">
-				<div class="card-title w-100 text-end" ><button type="button" class="btn-close mt-3 pe-5" aria-label="Close"></button></div>
-				<div id="chart" class="col-lg-12"></div>
+				<!--third row-->
+				<div class = "col-lg-12 pb-4 pt-2">
+					<div class="w-100 text-start">
+						<button id = "plot" class="btn">plot</button>
+					</div>
+				</div>
+				<!--fourth row-->
+				<div id="chart-container" class = "card shadow-sm col-lg-12 visually-hidden">
+					<div class="card-title w-100 text-end" ><button type="button" class="btn-close pt-5 pe-5" aria-label="Close"></button></div>
+					<div id="chart" class="col-lg-12"></div>
+				</div>
+				<div class=" col-lg-12 mb-5"></div>
 			</div>
 		</div>
 		<!--end of content section-->

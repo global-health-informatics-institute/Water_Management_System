@@ -156,6 +156,12 @@ table{
 
 }
 
+.ui-widget-overlay{
+background:black !important; 
+backdrop-filter: blur(8px) !important;
+opacity:0.6 !important; 
+}
+
 /* The Modal (background) */
 .modala {
   backdrop-filter: blur(8px);

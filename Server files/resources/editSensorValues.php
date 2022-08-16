@@ -16,6 +16,7 @@ $tank_id = $data["tank_id"];
 $opCode = $data["opCode"];
 $resetM = $data["reset"];
 $toggleP = $data["toggleP"];
+$Gs = $data["GS"];
 
 $user = "admin";
 $password = "password";
@@ -181,12 +182,22 @@ try {
      echo "record opCode in commands updated successfully";
     }
   }
-    
- //updates volume
-  if(!isset($opCode) && isset($volume)){
-    $sql = "UPDATE sensorValues SET Volume = '".$volume."' WHERE watertank_id = '".$tank_id."' ORDER BY id DESC LIMIT 1";
-    $conn->exec($sql);
-    echo "record volume in ".$table ."updated for ".$tank_id." successfully";
+  
+  //GS setup
+  if(isset($Gs)){
+      if(isset($volume)){ 
+      $sql = "INSERT INTO $table (Pressure, Volume, warning1, warning2, watertank_id)
+      VALUES ('0','".$volume."', '".$war1."', '".$war2."','".$tank_id."')";
+      $conn->exec($sql);
+      echo "New record in ".$table." created successfully for tank id ".$tank_id." ";
+    }
+  }else{
+    //updates volume
+    if(!isset($opCode) && isset($volume)){
+      $sql = "UPDATE sensorValues SET Volume = '".$volume."' WHERE watertank_id = '".$tank_id."' ORDER BY id DESC LIMIT 1";
+      $conn->exec($sql);
+      echo "record volume in ".$table ."updated for ".$tank_id." successfully";
+    }
   }
   //updates reset
   if(isset($resetM)){

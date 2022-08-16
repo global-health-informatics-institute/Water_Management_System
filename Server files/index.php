@@ -75,9 +75,9 @@ if($_SESSION['name'] == "admin"){
             <div class="dropdown" title="Profile">
               <div class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="assets/images/user-svgrepo-com.svg" alt="" width="32" height="32" class="rounded-circle me-2">
-                <strong> <?=$_SESSION['name']?></strong>
+                <?=$_SESSION['name']?>
               </div>
-              <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end text-small shadow mt-2" aria-labelledby="dropdownUser1">
+              <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end text-small shadow pt-2" aria-labelledby="dropdownUser1">
                 <li id ="settings" title="Settings"><a class="dropdown-item" href="#">Settings</a></li>
                 <hr>
                 <li id ="signout" title="sign out"><a class="dropdown-item" href="logout.php">Sign out</a></li>
@@ -89,229 +89,238 @@ if($_SESSION['name'] == "admin"){
     </div>
 
     <!-- Start of content-->
-    <div class="container-fluid row theRow">
-      
-      <!--Card for pressure gauge-->
-      <div id="the_container0" class="col-lg-4 mt-5 visually-hidden">
-        <!--Water Pressure gauge-->
-        <div id ="Gauge" >
-          <div id="chart2" class="card"></div>
-        </div>
-      </div>
-      
-      <!--Card for tank 1-->
-      <div id="the_container1" class="card col-lg-8 p-2 mt-5">
-        <div id = "tankName" class="card-title"></div>
-        
-        <div class= "row collapse text-center" id="collapse1">
-          <!--Buttons-->
-          <div id="b1" class = "col-lg-3 col-md-6">
-            <p id="p1" class="labels">Water Pump</p>
-            <button id="pump1" class="btn button-30">OFF</button></div>
-          <div id="b2" class="col-lg-3 col-md-6">
-            <p id="p2"class="labels">Pressure Pump</p>
-            <button id="pump2" class="btn  button-30">OFF</button></div>
-          <div id="b3" class="col-lg-3 col-md-6">
-            <p id="v1" class="labels">Well Tank Valve</p>
-            <button id="valve1" class="btn  button-30">OFF</button></div>
-          <div id="b4" class="col-lg-3 col-md-6">
-            <p id="v2" class="labels">Wb Tank Valve</p>
-            <button id="valve2" class="btn  button-30">OFF</button></div>
-        </div>
-
-         <!--Card Content-->
-        <div id="content" class="row text-center">
-
-          <!--Water Tank Chart-->
-          <div id = "Chart" class="col-lg-12 ">
-            <div id="thecard">
-              <div id="chart1"></div>
-            </div>
+    <div class="container-fluid h-100">
+      <div class="row theRow">
+        <!--Card for pressure gauge-->
+        <div id="the_container0" class="col-lg-4 pt-5 visually-hidden">
+          <!--Water Pressure gauge-->
+          <div id ="Gauge" >
+            <div id="chart2" class="card"></div>
           </div>
-        
         </div>
-        <!--Toggle and select-->
-        <ul class="nav nav-2">
-          <li class="nav-item text-start">
-            <button id="mode" class="button-30 me-2" title="Mode" data-bs-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1">Auto-mode</button>
-          </li>
-          <li class="nav-item text-start visually-hidden">
-            <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop1" title="Reset">Reset</button>
-          </li>
-        </ul>
-      </div>
-      
-      
-      <!--Card for tank 2-->
-      <div id="the_container2" class="card col-lg-6 p-2 mt-5">
-        <div id = "tankName" class="card-title"></div>
         
-        <div class= "row collapse text-center" id="collapse2">
-          <!--Buttons-->
-          <div id="b1_1" class = "col-lg-3 col-md-6">
-            <p id="p1" class="labels">Water Pump</p>
-            <button id="pump1" class="btn  button-30" >OFF</button></div>
-          <div id="b2_1" class="col-lg-3 col-md-6">
-            <p id="p2"class="labels">Pressure Pump</p>
-            <button id="pump2" class="btn  button-30">OFF</button></div>
-          <div id="b3_1" class="col-lg-3 col-md-6">
-            <p id="v1" class="labels">Well Tank Valve</p>
-            <button id="valve1" class="btn  button-30">OFF</button></div>
-          <div id="b4_1" class="col-lg-3 col-md-6">
-            <p id="v2" class="labels">Wb Tank Valve</p>
-            <button id="valve2" class="btn  button-30">OFF</button></div>
-        </div>
-
-         <!--Card Content-->
-        <div id="content" class="row text-center">
-          
-          <!--Water Tank Chart-->
-          <div id = "Chart" class="col-lg-12 ">
-            <div id="thecard">
-              <div id="chart3"></div>
+        <div id = "first" class=" pt-5 col-lg-8">
+          <!--Card for tank 1-->
+          <div id="the_container1" class="card p-2">
+            <div id = "tankName" class="card-title"></div>
+            
+            <div class= "row collapse text-center" id="collapse1">
+              <!--Buttons-->
+              <div id="b1" class = "col-lg-3 col-md-6">
+                <p id="p1" class="labels">Water Pump</p>
+                <button id="pump1" class="btn button-30">OFF</button></div>
+              <div id="b2" class="col-lg-3 col-md-6">
+                <p id="p2"class="labels">Pressure Pump</p>
+                <button id="pump2" class="btn  button-30">OFF</button></div>
+              <div id="b3" class="col-lg-3 col-md-6">
+                <p id="v1" class="labels">Well Tank Valve</p>
+                <button id="valve1" class="btn  button-30">OFF</button></div>
+              <div id="b4" class="col-lg-3 col-md-6">
+                <p id="v2" class="labels">Wb Tank Valve</p>
+                <button id="valve2" class="btn  button-30">OFF</button></div>
             </div>
-          </div>
-        
-        </div>
-        <!--Toggle and select-->
-        <ul class="nav nav-2">
-          <li class="nav-item text-start">
-            <button id="mode_2" class="button-30 me-2" title="Mode" data-bs-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapse2">Auto-mode</button>
-          </li>
-          <li class="nav-item text-start visually-hidden">
-            <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" title="Reset">Reset</button>
-          </li>
-        </ul>
-      </div>
-      
-      <!--Card for tank 3-->
-      <div id="the_container3" class="card col-lg-6 shadow-lg p-2 mt-5">
-        <div id = "tankName" class="card-title"></div>
-        
-        <div class= "row collapse text-center" id="collapse3">
-          <!--Buttons-->
-          <div id="b1_2" class = "col-lg-3 col-md-6">
-            <p id="p1" class="labels">Water Pump</p>
-            <button id="pump1" class="btn  button-30">OFF</button></div>
-          <div id="b2_2" class="col-lg-3 col-md-6">
-            <p id="p2"class="labels">Pressure Pump</p>
-            <button id="pump2" class="btn  button-30">OFF</button></div>
-          <div id="b3_2" class="col-lg-3 col-md-6">
-            <p id="v1" class="labels">Well Tank Valve</p>
-            <button id="valve1" class="btn  button-30">OFF</button></div>
-          <div id="b4_2" class="col-lg-3 col-md-6">
-            <p id="v2" class="labels">Wb Tank Valve</p>
-            <button id="valve2" class="btn  button-30">OFF</button></div>
-        </div>
 
-         <!--Card Content-->
-        <div id="content" class=" row text-center">
-          
-          <!--Water Tank Chart-->
-          <div id = "Chart" class="col-lg-12 mb-2">
-            <div id="thecard">
-              <div id="chart5"></div>
-            </div>
-          </div>
-        
-        </div>
-        <!--Toggle and select-->
-        <ul class="nav nav-2">
-          <li class="nav-item text-start">
-            <button id="mode_3" class="button-30 me-2" title="Mode" data-bs-toggle="collapse" href="#collapse3" role="button" aria-expanded="false" aria-controls="collapse3">Auto-mode</button>
-          </li>
-          <li class="nav-item text-start visually-hidden">
-            <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop3" title="Reset">Reset</button>
-          </li>
-        </ul>
-      </div>
-      
-      <!--Card for tank 4-->
-      <div id="the_container4" class="card col-lg-6 shadow-lg p-2 mt-5">
-        <div id = "tankName" class="card-title"></div>
-        
-        <div class= "row collapse text-center" id="collapse4">
-          <!--Buttons-->
-          <div id="b1_3" class = "col-lg-3 col-md-6">
-            <p id="p1" class="labels">Water Pump</p>
-            <button id="pump1" class="btn  button-30">OFF</button></div>
-          <div id="b2_3" class="col-lg-3 col-md-6">
-            <p id="p2"class="labels">Pressure Pump</p>
-            <button id="pump2" class="btn  button-30">OFF</button></div>
-          <div id="b3_3" class="col-lg-3 col-md-6">
-            <p id="v1" class="labels">Well Tank Valve</p>
-            <button id="valve1" class="btn  button-30">OFF</button></div>
-          <div id="b4_3" class="col-lg-3 col-md-6">
-            <p id="v2" class="labels">Wb Tank Valve</p>
-            <button id="valve2" class="btn  button-30">OFF</button></div>
-        </div>
+             <!--Card Content-->
+            <div id="content" class="row text-center">
 
-         <!--Card Content-->
-        <div id="content" class=" row text-center">
-          
-          <!--Water Tank Chart-->
-          <div id = "Chart" class="col-lg-12 mb-2">
-            <div id="thecard">
-              <div id="chart6"></div>
+              <!--Water Tank Chart-->
+              <div id = "Chart" class="col-lg-12 ">
+                <div id="thecard">
+                  <div id="chart1"></div>
+                </div>
+              </div>
+            
             </div>
+            <!--Toggle and select-->
+            <ul class="nav nav-2">
+              <li class="nav-item text-start">
+                <button id="mode" class="button-30 me-2" title="Mode" data-bs-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1">Auto-mode</button>
+              </li>
+              <li class="nav-item text-start visually-hidden">
+                <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop1" title="Reset">Reset</button>
+              </li>
+            </ul>
           </div>
-        
         </div>
-        <!--Toggle and select-->
-        <ul class="nav nav-2">
-          <li class="nav-item text-start">
-            <button id="mode_4" class="button-30 me-2" title="Mode" data-bs-toggle="collapse" href="#collapse4" role="button" aria-expanded="false" aria-controls="collapse4">Auto-mode</button>
-          </li>
-          <li class="nav-item text-start visually-hidden">
-            <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop3" title="Reset">Reset</button>
-          </li>
-        </ul>
-      </div>
-      
-      <!--Card for tank 5-->
-      <div id="the_container5" class="card col-lg-6 shadow-lg p-2 mt-5">
-        <div id = "tankName" class="card-title"></div>
         
-        <div class= "row collapse text-center" id="collapse5">
-          <!--Buttons-->
-          <div id="b1_4" class = "col-lg-3 col-md-6">
-            <p id="p1" class="labels">Water Pump</p>
-            <button id="pump1" class="btn  button-30">OFF</button></div>
-          <div id="b2_4" class="col-lg-3 col-md-6">
-            <p id="p2"class="labels">Pressure Pump</p>
-            <button id="pump2" class="btn  button-30">OFF</button></div>
-          <div id="b3_4" class="col-lg-3 col-md-6">
-            <p id="v1" class="labels">Well Tank Valve</p>
-            <button id="valve1" class="btn  button-30">OFF</button></div>
-          <div id="b4_4" class="col-lg-3 col-md-6">
-            <p id="v2" class="labels">Wb Tank Valve</p>
-            <button id="valve2" class="btn  button-30">OFF</button></div>
-        </div>
+        <!--Card for tank 2-->
+        <div class="col-lg-6 pt-5">
+          <div id="the_container2" class="card p-2">
+            <div id = "tankName" class="card-title"></div>
+            
+            <div class= "row collapse text-center" id="collapse2">
+              <!--Buttons-->
+              <div id="b1_1" class = "col-lg-3 col-md-6">
+                <p id="p1" class="labels">Water Pump</p>
+                <button id="pump1" class="btn  button-30" >OFF</button></div>
+              <div id="b2_1" class="col-lg-3 col-md-6">
+                <p id="p2"class="labels">Pressure Pump</p>
+                <button id="pump2" class="btn  button-30">OFF</button></div>
+              <div id="b3_1" class="col-lg-3 col-md-6">
+                <p id="v1" class="labels">Well Tank Valve</p>
+                <button id="valve1" class="btn  button-30">OFF</button></div>
+              <div id="b4_1" class="col-lg-3 col-md-6">
+                <p id="v2" class="labels">Wb Tank Valve</p>
+                <button id="valve2" class="btn  button-30">OFF</button></div>
+            </div>
 
-         <!--Card Content-->
-        <div id="content" class=" row text-center">
-          
-          <!--Water Tank Chart-->
-          <div id = "Chart" class="col-lg-6 mb-2">
-            <div id="thecard">
-              <div id="chart7"></div>
+             <!--Card Content-->
+            <div id="content" class="row text-center">
+              
+              <!--Water Tank Chart-->
+              <div id = "Chart" class="col-lg-12 ">
+                <div id="thecard">
+                  <div id="chart3"></div>
+                </div>
+              </div>
+            
             </div>
+            <!--Toggle and select-->
+            <ul class="nav nav-2">
+              <li class="nav-item text-start">
+                <button id="mode_2" class="button-30 me-2" title="Mode" data-bs-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapse2">Auto-mode</button>
+              </li>
+              <li class="nav-item text-start visually-hidden">
+                <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" title="Reset">Reset</button>
+              </li>
+            </ul>
           </div>
-        
         </div>
-        <!--Toggle and select-->
-        <ul class="nav nav-2">
-          <li class="nav-item text-start">
-            <button id="mode_5" class="button-30 me-2" title="Mode" data-bs-toggle="collapse" href="#collapse5" role="button" aria-expanded="false" aria-controls="collapse5">Auto-mode</button>
-          </li>
-          <li class="nav-item text-start visually-hidden">
-            <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop3" title="Reset">Reset</button>
-          </li>
-        </ul>
+        
+        <!--Card for tank 3-->
+        <div class="col-lg-6 pt-5">
+          <div id="the_container3" class="card p-2">
+            <div id = "tankName" class="card-title"></div>
+            
+            <div class= "row collapse text-center" id="collapse3">
+              <!--Buttons-->
+              <div id="b1_2" class = "col-lg-3 col-md-6">
+                <p id="p1" class="labels">Water Pump</p>
+                <button id="pump1" class="btn  button-30">OFF</button></div>
+              <div id="b2_2" class="col-lg-3 col-md-6">
+                <p id="p2"class="labels">Pressure Pump</p>
+                <button id="pump2" class="btn  button-30">OFF</button></div>
+              <div id="b3_2" class="col-lg-3 col-md-6">
+                <p id="v1" class="labels">Well Tank Valve</p>
+                <button id="valve1" class="btn  button-30">OFF</button></div>
+              <div id="b4_2" class="col-lg-3 col-md-6">
+                <p id="v2" class="labels">Wb Tank Valve</p>
+                <button id="valve2" class="btn  button-30">OFF</button></div>
+            </div>
+
+             <!--Card Content-->
+            <div id="content" class=" row text-center">
+              
+              <!--Water Tank Chart-->
+              <div id = "Chart" class="col-lg-12">
+                <div id="thecard">
+                  <div id="chart5"></div>
+                </div>
+              </div>
+            
+            </div>
+            <!--Toggle and select-->
+            <ul class="nav nav-2">
+              <li class="nav-item text-start">
+                <button id="mode_3" class="button-30 me-2" title="Mode" data-bs-toggle="collapse" href="#collapse3" role="button" aria-expanded="false" aria-controls="collapse3">Auto-mode</button>
+              </li>
+              <li class="nav-item text-start visually-hidden">
+                <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop3" title="Reset">Reset</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-6 pt-5">
+          <!--Card for tank 4-->
+          <div id="the_container4" class="card shadow-lg p-2">
+            <div id = "tankName" class="card-title"></div>
+            
+            <div class= "row collapse text-center" id="collapse4">
+              <!--Buttons-->
+              <div id="b1_3" class = "col-lg-3 col-md-6">
+                <p id="p1" class="labels">Water Pump</p>
+                <button id="pump1" class="btn  button-30">OFF</button></div>
+              <div id="b2_3" class="col-lg-3 col-md-6">
+                <p id="p2"class="labels">Pressure Pump</p>
+                <button id="pump2" class="btn  button-30">OFF</button></div>
+              <div id="b3_3" class="col-lg-3 col-md-6">
+                <p id="v1" class="labels">Well Tank Valve</p>
+                <button id="valve1" class="btn  button-30">OFF</button></div>
+              <div id="b4_3" class="col-lg-3 col-md-6">
+                <p id="v2" class="labels">Wb Tank Valve</p>
+                <button id="valve2" class="btn  button-30">OFF</button></div>
+            </div>
+
+             <!--Card Content-->
+            <div id="content" class=" row text-center">
+              
+              <!--Water Tank Chart-->
+              <div id = "Chart" class="col-lg-12 mb-2">
+                <div id="thecard">
+                  <div id="chart6"></div>
+                </div>
+              </div>
+            
+            </div>
+            <!--Toggle and select-->
+            <ul class="nav nav-2">
+              <li class="nav-item text-start">
+                <button id="mode_4" class="button-30 me-2" title="Mode" data-bs-toggle="collapse" href="#collapse4" role="button" aria-expanded="false" aria-controls="collapse4">Auto-mode</button>
+              </li>
+              <li class="nav-item text-start visually-hidden">
+                <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop3" title="Reset">Reset</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="col-lg-6 pt-5">
+          <!--Card for tank 5-->
+          <div id="the_container5" class="card shadow-lg p-2 ">
+            <div id = "tankName" class="card-title"></div>
+            
+            <div class= "row collapse text-center" id="collapse5">
+              <!--Buttons-->
+              <div id="b1_4" class = "col-lg-3 col-md-6">
+                <p id="p1" class="labels">Water Pump</p>
+                <button id="pump1" class="btn  button-30">OFF</button></div>
+              <div id="b2_4" class="col-lg-3 col-md-6">
+                <p id="p2"class="labels">Pressure Pump</p>
+                <button id="pump2" class="btn  button-30">OFF</button></div>
+              <div id="b3_4" class="col-lg-3 col-md-6">
+                <p id="v1" class="labels">Well Tank Valve</p>
+                <button id="valve1" class="btn  button-30">OFF</button></div>
+              <div id="b4_4" class="col-lg-3 col-md-6">
+                <p id="v2" class="labels">Wb Tank Valve</p>
+                <button id="valve2" class="btn  button-30">OFF</button></div>
+            </div>
+
+             <!--Card Content-->
+            <div id="content" class=" row text-center">
+              
+              <!--Water Tank Chart-->
+              <div id = "Chart" class="col-lg-6 pb-2">
+                <div id="thecard">
+                  <div id="chart7"></div>
+                </div>
+              </div>
+            
+            </div>
+            <!--Toggle and select-->
+            <ul class="nav nav-2">
+              <li class="nav-item text-start">
+                <button id="mode_5" class="button-30 me-2" title="Mode" data-bs-toggle="collapse" href="#collapse5" role="button" aria-expanded="false" aria-controls="collapse5">Auto-mode</button>
+              </li>
+              <li class="nav-item text-start visually-hidden">
+                <button id="modalToggle" class="button-30 me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop3" title="Reset">Reset</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class=" col-lg-12 pb-2"></div>
       </div>
-      
     </div>
-    
+
     
     <!-- Modals -->
     <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -400,7 +409,7 @@ if($_SESSION['name'] == "admin"){
     </div>
     
     <!-- toasts -->
-    <div class="toast-container position-fixed top-0 end-0 p-5 mt-5">
+    <div class="toast-container position-fixed top-0 end-0 p-5 pt-5">
       <div id="liveToast1" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
           <img src="assets/images/triangle-exclamation-solid.svg" class="toast-img rounded me-2" alt="img">
@@ -411,7 +420,7 @@ if($_SESSION['name'] == "admin"){
         <div id = "warning1" class="toast-body"></div>
       </div>
     </div>
-    <div class="toast-container position-fixed bottom-50 end-0 p-5 mt-5">
+    <div class="toast-container position-fixed bottom-50 end-0 p-5 pt-5">
       <div id="liveToast2" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
           <img src="assets/images/triangle-exclamation-solid.svg" class="toast-img rounded me-2" alt="img">
@@ -422,7 +431,7 @@ if($_SESSION['name'] == "admin"){
         <div id = "warning2" class="toast-body"></div>
       </div>
     </div>
-    <div class="toast-container position-fixed bottom-50 end-0 p-5 mt-5">
+    <div class="toast-container position-fixed bottom-50 end-0 p-5 pt-5">
       <div id="liveToast3" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
           <img src="assets/images/triangle-exclamation-solid.svg" class="toast-img rounded me-2" alt="img">
@@ -433,7 +442,7 @@ if($_SESSION['name'] == "admin"){
         <div id = "warning3" class="toast-body"></div>
       </div>
     </div>
-    <div class="toast-container position-fixed bottom-50 end-0 p-5 mt-5">
+    <div class="toast-container position-fixed bottom-50 end-0 p-5 pt-5">
       <div id="liveToast4" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
           <img src="assets/images/triangle-exclamation-solid.svg" class="toast-img rounded me-2" alt="img">
@@ -444,7 +453,7 @@ if($_SESSION['name'] == "admin"){
         <div id = "warning3" class="toast-body"></div>
       </div>
     </div>
-    <div class="toast-container position-fixed bottom-50 end-0 p-5 mt-5">
+    <div class="toast-container position-fixed bottom-50 end-0 p-5 pt-5">
       <div id="liveToast5" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
           <img src="assets/images/triangle-exclamation-solid.svg" class="toast-img rounded me-2" alt="img">

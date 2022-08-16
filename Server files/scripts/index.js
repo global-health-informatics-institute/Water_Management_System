@@ -23,21 +23,38 @@ const firebaseConfig = {
 //firebase.initializeApp(firebaseConfig);
 //const database = firebase.database();
 
-var num_of_tanks = 2; //put number of tanks
+var num_of_tanks = 1; //put number of tanks
 
-var tank_id_0 = "2";
-var tank_id_1 = "1";
+var tank_id_0 = "1";
+var tank_id_1 = "0";
 var tank_id_2 = "0"; 
 var tank_id_3 = "0"; 
 var tank_id_4 = "0"; 
 
 // Get current sensor readings when the page loads
 window.addEventListener("load", function(){
-  getReadings();
-  getReadings2();
-  getReadings3();
-  getReadings4();
-  getReadings5();  
+  if(num_of_tanks == 1){
+    getReadings();
+  }else if(num_of_tanks == 2){
+    getReadings();
+    getReadings2();
+  }else if(num_of_tanks == 3){
+    getReadings();
+    getReadings2();
+    getReadings3();
+  }else if(num_of_tanks == 4){
+    getReadings();
+    getReadings2();
+    getReadings3();
+    getReadings4();
+  }else if(num_of_tanks == 5){
+    getReadings();
+    getReadings2();
+    getReadings3();
+    getReadings4();
+    getReadings5();
+  }
+    
 });
 
 //preloader
@@ -517,6 +534,7 @@ function getReadings() {
       opMode = myObj.opCode;
       tname1 = myObj.tname;
       toggleP = myObj.toggleP;
+
       
       if(tank1_volume == 0){
         
@@ -651,10 +669,21 @@ function getReadings() {
   }
   if(toggleP == "1"){
     $("#the_container0").removeClass("visually-hidden");
+    $("#first").removeClass("col-lg-12");
+    $("#first").removeClass("col-lg-6");
+    $("#first").addClass("col-lg-8");
   }else{
-    $("#the_container0").addClass("visually-hidden");
+    if(num_of_tanks > 1){
+      console.log(num_of_tanks);
+      $("#the_container0").addClass("visually-hidden");
+      $("#first").removeClass("col-lg-8");
+      $("#first").addClass("col-lg-6");
+    }else{
+      $("#the_container0").addClass("visually-hidden");
+      $("#first").removeClass("col-lg-8");
+      $("#first").addClass("col-lg-12");
+    }
   }
-  
   };
 
   xhr.open("GET", "/resources/getSensorValues.php?q="+tank_id_0, true);
@@ -848,10 +877,6 @@ function getReadings2() {
     $("#the_container2").find("#v2").text("Inlet Valve");
   }
   
-  if(toggleP == "1"){
-    $("#the_container0").removeClass("visually-hidden");
-  }
-  
   };
 
   xhr.open("GET", "/resources/getSensorValues.php?q="+tank_id_1, true);
@@ -1039,10 +1064,6 @@ function getReadings3() {
     $("#the_container3").find("#b1_2").addClass("visually-hidden");
     $("#the_container3").find("#v1").text("Outlet Valve");
     $("#the_container3").find("#v2").text("Inlet Valve");
-  }
-  
-  if(toggleP == "1"){
-    $("#the_container0").removeClass("visually-hidden");
   }
   
   };
@@ -1234,10 +1255,6 @@ function getReadings4() {
     $("#the_container4").find("#v2").text("Inlet Valve");
   }
   
-  if(toggleP == "1"){
-    $("#the_container0").removeClass("visually-hidden");
-  }
-  
   };
 
   xhr.open("GET", "/resources/getSensorValues.php?q="+tank_id_3, true);
@@ -1426,10 +1443,6 @@ function getReadings5() {
     $("#the_container5").find("#b1_4").addClass("visually-hidden");
     $("#the_container5").find("#v1").text("Outlet Valve");
     $("#the_container5").find("#v2").text("Inlet Valve");
-  }
-  
-  if(toggleP == "1"){
-    $("#the_container0").removeClass("visually-hidden");
   }
   
   };
@@ -2391,12 +2404,18 @@ $(function(){
     $("#staticBackdrop5").find(".modal-body").html("Are you sure you want to reset the "+tname5+" microcontroller?");
   });
   
+  //make components draggable
   $( "#liveToast1" ).draggable();
   $( "#liveToast2" ).draggable();
   $( "#liveToast3" ).draggable();
   $( "#liveToast4" ).draggable();
   $( "#liveToast5" ).draggable();
-  
+  /*$("#the_container1").draggable();
+  $("#the_container2").draggable();
+  $("#the_container3").draggable();
+  $("#the_container4").draggable();
+  $("#the_container5").draggable();
+  */
   $("li#home").find("a").addClass("active").css("background-color","#3375c4");
   $("li#stats").find("a").removeClass("active");
 });
@@ -2407,7 +2426,6 @@ if(num_of_tanks == 2){
     $("#the_container3").addClass("visually-hidden");
     $("#the_container4").addClass("visually-hidden");
     $("#the_container5").addClass("visually-hidden");
-    $("#the_container2").addClass("mb-5");
     setInterval( function(){
     getReadings();
     getReadings2();
@@ -2417,7 +2435,6 @@ if(num_of_tanks == 2){
 }else if(num_of_tanks == 3){
   $("#the_container4").addClass("visually-hidden");
   $("#the_container5").addClass("visually-hidden");
-  $("#the_container3").addClass("mb-5");
   setInterval(function(){
     getReadings();
     getReadings2();
@@ -2426,7 +2443,6 @@ if(num_of_tanks == 2){
     
 }else if(num_of_tanks == 4){
   $("#the_container5").addClass("visually-hidden");
-  $("#the_container4").addClass("mb-5");
   setInterval(function(){
     getReadings();
     getReadings2();
@@ -2444,7 +2460,6 @@ if(num_of_tanks == 2){
     }, 2000);
     
 }else{setInterval(getReadings,2000);
-  $("#the_container1").addClass("mb-5");
   $("#the_container2").addClass("visually-hidden");
   $("#the_container3").addClass("visually-hidden");
   $("#the_container4").addClass("visually-hidden");
