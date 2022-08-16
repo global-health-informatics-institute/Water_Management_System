@@ -36,38 +36,39 @@ yaxis: {
       type: 'numeric',
 },
 xaxis:{
-  type: "datetime",
+  type: "category",
   
   title:{
       text: "Timestamp",
       },
   },        
-tooltip: {
-  x: {
-    format: 'dd/MM/yy HH:mm'
-  },
-},
 };
 var chart = new ApexCharts(document.querySelector("#chart"), options);
 chart.render();
 
+var Time = "";
+var Volume = "";
+var date = "";
+var dateTime = "";
+var dataArr = [];
+var tankID = "1"
 
 $(function(){
     $("select").change(onSelect);
-    
     if($("select#select").val()){
       //Check if there is a tank id in local storage
       if(window.localStorage.getItem("user_tank_id")!==null)
       {
-        var tankID = window.localStorage.getItem('user_tank_id');
-      }else{var tankID = "1";}
+        tankID = window.localStorage.getItem('user_tank_id');
+      }else{tankID = "1";}
         
     }else{//Check if there is a tank id in local storage
       if(window.localStorage.getItem("admin_tank_id")!==null)
       {
-        var tankID = window.localStorage.getItem('admin_tank_id');
-      }else{var tankID = "1";}
+        tankID = window.localStorage.getItem('admin_tank_id');
+      }else{tankID = "1";}
     }
+    
     
     //send the current tank id to backend
     $.ajax({
@@ -84,6 +85,27 @@ $(function(){
     
     //plot the chart
     $("#plot").click(function(){
+      dataArr =[];
+      var table = $("#dataTable");
+      table.find('tr').each(function(i,el){
+        var $tds = $(this).find('td');
+        date = $tds.eq(0).text();
+        Time = $tds.eq(1).text();
+        Volume = Number($tds.eq(2).text());
+        dateTime = date+" "+Time;
+        if(dateTime != " "){
+          dataArr.push({
+              x: dateTime,
+              y: Volume
+          });
+        }
+      });
+      console.log(dataArr);
+      chart.updateSeries([{
+        name: 'Water Level',
+        data: dataArr
+      }]);
+      getCapacity();
       $("#chart-container").fadeIn('slow', function() {
         $(this).removeClass("visually-hidden");
         $("#plot").addClass("visually-hidden");
@@ -138,3 +160,40 @@ function onSelect(){
       });
     }
 }
+
+function getCapacity(){
+var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      var myObj = JSON.parse(this.responseText);
+      //update the tank capacity
+      var capacity = myObj.capacity;
+      capacity = Number(capacity);
+      chart.updateOptions({
+        yaxis: {
+          title:{
+          text: "Litres",
+          style: {
+            fontSize: '16px',
+            cssClass: 'apexcharts-yaxis-label',
+            },
+          },
+          labels:{
+          formatter: function(val,index){
+            return val.toFixed(1);
+            },
+            style: {
+            fontSize: '14px',
+            cssClass: 'apexcharts-yaxis-label',
+            },
+          },
+          min: 0,
+          max: capacity
+        }
+      });
+    }
+  };
+  xhr.open("GET","/resources/getSensorValues.php?q="+tankID, true);
+  xhr.send();
+}
+  

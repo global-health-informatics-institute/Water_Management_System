@@ -216,7 +216,7 @@ if (isset($_POST['tank_id']) && isset($_POST['select'])){
 									echo'
 										<tr>
 										  <th scope="row">'.++$i.'</th>
-										  <td>'.$theDate[2].' '.$theMonth.' '.$theDate[0].'</td>
+										  <td>'.$theDate[2].'-'.$theMonth.'-'.$theDate[0].'</td>
 										  <td>'.$arr[1].'</td>
 										  <td id = "Volume" >'.$row['Volume'].'</td>
 										</tr> ';
@@ -229,7 +229,7 @@ if (isset($_POST['tank_id']) && isset($_POST['select'])){
 				<!--third row-->
 				<div class = "col-lg-12 pb-4 pt-2">
 					<div class="w-100 text-start">
-						<button id = "plot" class="btn">plot</button>
+						<button id = "plot" class="button-30">plot</button>
 					</div>
 				</div>
 				<!--fourth row-->
