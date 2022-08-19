@@ -21,7 +21,7 @@ $("#form").submit(function(e){
         window.location.reload(true);
         }
       else if(result==2){
-        window.location.href = "http://192.168.100.36/admin.php";
+        window.location.href = "http://192.168.0.139/admin.php";
       }
       else{
         //show the alert
