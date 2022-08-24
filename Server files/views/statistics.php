@@ -104,7 +104,7 @@ require_once "../resources/statistics_service.php";
 		<div id="main-container" class= "container">
 			<div class="row">
 				<!--first row-->
-				<ul class="nav nav-2">
+				<ul class="nav nav-2 pb-3">
 					<li id = "selection" class="nav-item l2" title="Select water tank">
 				<?php
 					if($_SESSION['name'] !== 'admin'){
@@ -122,7 +122,7 @@ require_once "../resources/statistics_service.php";
 				<!--first row-->
 				<div class = "col-lg-12">
 				  <div class ="row mb-5">
-					<div class = "col-lg-4 col-sm-12 mid"><div class = "card mid-card">Estimated Consumption: xxx cubic meters</div></div>
+					<div class = "col-lg-4 col-sm-12 mid"><div class = "card mid-card">Total Estimated Consumption:  <span id="consumption"></span>m<sup>3</sup></div></div>
 					<div class = "col-lg-4 col-sm-12 mid"><div class = "card mid-card">Status: <span style="color:green;">Active</span></div></div>
 					<div class = "col-lg-4 col-sm-12 mid"><div class = "card mid-card">Recommendation: Reduce water usage</div></div>
 				  </div>

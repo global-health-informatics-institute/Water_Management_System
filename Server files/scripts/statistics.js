@@ -197,3 +197,16 @@ var xhr = new XMLHttpRequest();
   xhr.send();
 }
   
+function updateConsumption(){
+  $.ajax({
+      url:"../resources/consumption.php",
+      method: "POST",
+      data: {reading:"1",tank_id:tankID},
+      success: function(result){
+        //console.log(result);
+        $("#consumption").html(result);
+      }
+    });
+}
+
+setInterval(updateConsumption, 2000);

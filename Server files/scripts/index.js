@@ -1484,7 +1484,7 @@ $(function(){
           if(xhr.status === 200){
          }
     }
-      xhr.open("POST", "/editSensorValues.php", true);
+      xhr.open("POST", "/resources/editSensorValues.php", true);
       xhr.setRequestHeader("Content-type","application/json");
       xhr.send(wellP);
   });
@@ -1516,7 +1516,7 @@ $(function(){
           
          }
     }
-      xhr.open("POST", "/editSensorValues.php", true);
+      xhr.open("POST", "/resources/editSensorValues.php", true);
       xhr.setRequestHeader("Content-type","application/json");
       xhr.send(pressP);
    });

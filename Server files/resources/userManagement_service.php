@@ -6,6 +6,12 @@ $error1 = '';
 $error3 = '';
 $error4 = '';
 
+//if the user is already logged in then redirect user
+if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
+	header("location: ../login.php");
+	exit;
+}
+
 
 if(isset($_POST['username'])){
 	$username = trim($_POST['username']);

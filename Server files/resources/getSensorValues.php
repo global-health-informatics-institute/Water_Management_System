@@ -22,10 +22,10 @@ try{
     #array_push($data_points,$points);
     
     $myObj->stamp = $row['id'];
-    $myObj->pressure = $row['Pressure'] ;
-    $myObj->volume = $row['Volume'] ;
-    $myObj->warning1 = $row['warning1'] ;
-    $myObj->warning2 = $row['warning2'] ;
+    $myObj->pressure = $row['Pressure'];
+    $myObj->volume = $row['Volume'];
+    $myObj->warning1 = $row['warning1'];
+    $myObj->warning2 = $row['warning2'];
     $myObj->tankid = $row['watertank_id'];
   }
   foreach($db->query("SELECT * FROM $table2 WHERE watertank_id = '".$tank_id."' order by id DESC limit 1") as $row) {

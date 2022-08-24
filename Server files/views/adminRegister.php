@@ -1,6 +1,12 @@
 <?php
 session_start();
 
+//if the user is already logged in then redirect user
+if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
+	header("location: ../login.php");
+	exit;
+}
+
 $error1 = '';
 $error3 = '';
 $error4 = '';
