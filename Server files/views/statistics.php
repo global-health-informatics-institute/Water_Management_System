@@ -142,7 +142,7 @@ require_once "../resources/statistics_service.php";
 						  <tbody>
 							<?php
 								$i = 0;
-								foreach($db->query("SELECT id, Volume FROM sensorValues WHERE watertank_id = '".$_SESSION['tank_id']."' ") as $row) {
+								foreach($db->query("SELECT id, Volume FROM $table WHERE watertank_id = '".$_SESSION['tank_id']."' ") as $row) {
 									$arr = explode(" ",$row['id']);
 									$theDate = explode("-",$arr[0]);
 									$theMonth = month($theDate[1]);

@@ -3,15 +3,6 @@ require_once "../resources/config.php";
 $error = "";
 $table = "sensorValues";
 $tank_id = "";
-$currentVolume = "";
-$volume_data = [];
-$pump = "";
-$valve = "";
-$flow = "";
-$totalConsumption = 0;
-$currentConsumption = 0;
-$record_count = 0;
-$prev_record_count = 0;
 
 //if the user is already logged in then redirect user
 if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
