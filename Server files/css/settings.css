@@ -1,0 +1,357 @@
+@font-face{
+  font-family: 'Montserrat';
+  src: url(../webfonts/Montserrat-VariableFont_wght.ttf);
+  src: url(../webfonts/Montserrat-VariableFont_wght.ttf) format('truetype'),
+       url(../webfonts/Montserrat-Italic-VariableFont_wght.ttf) format('truetype');
+}
+
+@font-face{
+  font-family: 'Poppins';
+  src: url(../webfonts/Poppins-Regular.ttf);
+  src: url(../webfonts/Poppins-Regular.ttf) format('truetype'),
+       url(../webfonts/Poppins-BlackItalic.ttf) format('truetype'),
+       url(../webfonts/Poppins-Bold.ttf) format('truetype'),
+       url(../webfonts/Poppins-BoldItalic.ttf) format('truetype'),
+       url(../webfonts/Poppins-ExtraBold.ttf) format('truetype'),
+       url(../webfonts/Poppins-ExtraBoldItalic.ttf) format('truetype'),
+       url(../webfonts/Poppins-ExtraLight.ttf) format('truetype'),
+       url(../webfonts/Poppins-ExtraLightItalic.ttf) format('truetype'),
+       url(../webfonts/Poppins-Italic.ttf) format('truetype'),
+       url(../webfonts/Poppins-Light.ttf) format('truetype'),
+       url(../webfonts/Poppins-LightItalic.ttf) format('truetype'),
+       url(../webfonts/Poppins-Medium.ttf) format('truetype'),
+       url(../webfonts/Poppins-MediumItalic.ttf) format('truetype'),
+       url(../webfonts/Poppins-Regular.ttf) format('truetype'),
+       url(../webfonts/Poppins-SemiBold.ttf) format('truetype'),
+       url(../webfonts/Poppins-SemiBoldItalic.ttf) format('truetype'),
+       url(../webfonts/Poppins-Thin.ttf) format('truetype'),
+       url(../webfonts/Poppins-ThinItalic.ttf) format('truetype');
+}
+
+/*ELEMENT STYLES*/
+html {
+  display: inline-block;
+  background-color: rgb(241, 241, 234);
+}
+body{
+  font-family: -apple-system, BlinkMacSystemFont,"Poppins", sans-serif, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background-image: url(../assets/images/wt9.jpg);
+  background-position:bottom;
+  background-repeat:no-repeat;
+  background-size:cover;
+  min-height: 100vh;
+}
+h1 {
+  font-size: 1.8rem;
+  color: white;
+}
+p {
+  font-size: 0.9rem;
+ 
+}
+
+a{
+  text-decoration: none;
+  color: #c1c4c8;
+  
+}
+a:hover{
+  color: #eaebed;
+
+}
+table{
+ vertical-align: middle !important;
+}
+select option:checked{
+  background-color:#3cc4a0;
+  color:white;
+}
+
+
+
+/*HEADER*/
+.title{
+  text-align: left;
+}
+
+
+/*CONTENT SECTION*/
+#main-container{
+  text-align: center;
+  align-items:center;
+  justify-content:center;
+  min-height:100vh;
+}
+.fill{
+  min-height:100vh;
+}
+.set{
+  width:400px;
+}
+.place{
+  display:flex;
+  justify-content: center;
+  align-content:center;
+}
+.mid{
+margin-top:5px;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.pagination>li.active>a {
+  background-color: #3375c4 !important;
+  border-color:#3375c4 !important;
+  color: white !important;
+}
+.pagination>li>a {
+  color: black !important;
+}
+
+
+#add-icon{
+	font-size:31px;
+	
+}
+#add-icon:hover{
+  color:#122945;
+  cursor:pointer;
+}
+.card{
+ border-radius:5px;
+}
+
+#back{
+  height: 40px;
+  width:40px;
+}
+
+.mid-card{
+width:75%;
+display:inline;
+}
+.adduser-img{
+  height:30px;
+  width:30px;
+}
+.logout-img{
+  height:30px;
+  width:30px;
+  color: #c1c4c8;
+}
+
+#select{
+ background-color: rgba(255,255,255,0.6);
+ backdrop-filter: blur(8px);
+ border:0 none transparent;
+
+}
+
+#select:focus{
+  outline: none;
+  box-shadow: 0px 0px 10px #3cc4a0;/*here change the color*/
+  border: 1px solid #3cc4a0;
+}
+
+.card{
+  background-color: rgba(255,255,255,0.7);
+  backdrop-filter: blur(8px);
+}
+
+.trash:hover{
+  cursor:pointer;
+}
+.edit:hover{
+  cursor:pointer;
+}
+
+.button-30 {
+  align-items: center;
+  appearance: none;
+  background-color: rgba(255,255,255,0.5);
+  backdrop-filter: blur(8px);
+  border-radius: 10px;
+  border-width: 0;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
+  box-sizing: border-box;
+  color:black;
+  cursor: pointer;
+  display: inline-flex;
+  height: 38px;
+  width: auto;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 5px;
+  padding-right: 5px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 18px;
+}
+
+.button-30:focus {
+  box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+}
+
+.button-30:hover {
+  box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.button-30:active {
+  box-shadow: #D6D6E7 0 3px 7px inset;
+  transform: translateY(2px);
+}
+
+/* The Modal (background) */
+.modala {
+  backdrop-filter: blur(8px);
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.ui-widget-overlay{
+background:black !important; 
+backdrop-filter: blur(8px) !important;
+opacity:0.6 !important; 
+}
+/*Progress bar...*/
+.progress-bar{
+  height:20px;
+  border-radius: 5px;
+  background:white;
+}
+.progress-bar-fill{
+  height:100%;
+  width:0%;
+  background: grey;
+  display: flex;
+  align-items: center;
+  transition: width 0.25s;
+}
+.progress-bar-text{
+  padding-left: 10px;
+  color:balck;
+}
+
+
+/* Modal Content/Box */
+.modala-content {
+  justify-content:center;
+  align-items: center;
+  padding: 20px;
+  width: 100%; /* Could be more or less, depending on screen size */
+  height:100%;
+  color:white;
+}
+
+.labels { display:block; }
+.labels.text { margin-bottom:12px; width:95%; padding: .4em; }
+.fieldSet { padding:0; border:0; margin-top:25px; }
+.ui-dialog .ui-state-error { padding: .3em; }
+.validateTips { border: 1px solid transparent; padding: 0.3em; }
+
+/*webkits*/
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #eeeeee; 
+  border-radius: 20px;
+ 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background:#bcbcbc;  
+  border-radius: 10px;
+  opacity:0.5;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #122945;
+}
+
+
+/*MEDIA QUERIES*/
+
+ @media (max-width: 390px){
+  .l2{
+    margin-top:20px;
+  }
+  .nav-1{
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.set{
+  width:100px;
+}
+ 
+ }
+@media (max-width: 609px){
+  .button-grid{
+    grid-gap: 0rem;
+  }
+  .topnav{
+    grid-template-columns: repeat(autofit, minmax(200px, 1fr));
+
+  }
+  #thecard{
+  padding: 0px;
+  }
+  .toast-body{
+  font-size:14px;
+  }
+  .toast-label{
+  font-size:12px;
+  }
+  .navbar-brand{
+  
+  font-size: 20px;
+  color: white;
+  
+}
+.nav-text{
+  margin-top:6px;
+}
+.set{
+  width:300px;
+}
+  
+}
+@media (max-width: 991px){
+  .nav{
+    width: auto;
+  }
+  .btn-on{
+    justify-content: center;
+    }
+  .nav-icon{
+    margin-left:5px;
+  }
+  .offcanvas{
+  backdrop-filter: blur(8px);
+}
+}
+

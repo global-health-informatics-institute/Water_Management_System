@@ -40,7 +40,7 @@ if(isset($_POST['reading'])){
 		if($pump === "1"){
 			
 			//gets the recently recorded volume, calculate current consumption using Volume * flow constant, updates the total consumption
-			foreach($db->query("SELECT Volume from sensorValues WHERE watertank_id = ".$tank_id." ORDER BY descending LIMIT 1")as $row){
+			foreach($db->query("SELECT Volume from sensorValues WHERE watertank_id = ".$tank_id." ORDER BY id DESC LIMIT 1")as $row){
 				$currentVolume = (float) $row['Volume'];
 			}
 			
@@ -57,18 +57,14 @@ if(isset($_POST['reading'])){
 			} 
 		}else{
 			//if the pump is off, gets the last two known volume values, finds the difference, if positive, add it to the total consumption
-			foreach($db->query("SELECT Volume from sensorValues WHERE watertank_id = ".$tank_id." ORDER BY watertank_id DESC LIMIT 2")as $row){
+			foreach($db->query("SELECT Volume from sensorValues WHERE watertank_id = ".$tank_id." ORDER BY id DESC LIMIT 2")as $row){
 				array_push($volume_data,($row['Volume']));
 			}
 			//only updates consumption if a new volume reading has been recorded
 			if($record_count !== $prev_record_count){
 				$val = (float) $volume_data[1] - (float) $volume_data[0];
-				echo $val;
-				die();
 				if($val > 0){
 					$totalConsumption = $totalConsumption + abs($val);
-					echo $val;
-					die();
 					$sql = "UPDATE statistics SET total_consumption = '".$totalConsumption."' WHERE watertank_id = '".$tank_id."'";
 					$db->exec($sql);
 					$sql = "UPDATE statistics SET Record_count = '".$record_count."' WHERE watertank_id = '".$tank_id."'";

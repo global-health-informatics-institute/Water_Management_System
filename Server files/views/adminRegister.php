@@ -152,7 +152,7 @@ if (isset($_POST['submit'])){
 					<?=$_SESSION['name']?>
 				  </div>
 				  <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end text-small shadow mt-2" aria-labelledby="dropdownUser1">
-					<li id ="settings" title="Settings"><a class="dropdown-item" href="#">Settings</a></li>
+					<li id ="settings" title="Settings"><a class="dropdown-item" href="settings.php">Settings</a></li>
 					<hr>
 					<li id ="signout" ><a class="dropdown-item" href="../logout.php">Sign out</a></li>
 				  </ul>
