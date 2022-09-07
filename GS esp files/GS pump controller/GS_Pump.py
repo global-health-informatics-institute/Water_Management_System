@@ -124,7 +124,11 @@ def patchData(data,overRide):
 
 while True:
     #get commands from database
-    data = getCommands()
+    data = getCommands() 
+    
+    #assigns period variables
+    period_on = int(data["Interval_on"]) * 1000
+    period_off = int(data["Interval_off"]) * 1000
     
     #Checks which mode the system is in
     if overRide:
@@ -169,14 +173,14 @@ while True:
                     wellPump.on()
                 #Timer Initialization
                 timer1 = Timer(1)
-                timer1.init(period = config["period_on"],
+                timer1.init(period = period_on,
                            mode= Timer.ONE_SHOT,
                            callback = lambda t: pumpOff(timer1))
                 state = 2
                 
             if state == 1:
                 timer2 = Timer(2)
-                timer2.init(period = config["period_off"],
+                timer2.init(period = period_off,
                            mode = Timer.ONE_SHOT,
                            callback = lambda t: pumpOn(timer2))
                 state = 2
