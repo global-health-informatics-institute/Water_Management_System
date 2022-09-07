@@ -17,15 +17,18 @@ $old_Off = "";
 $myObj = new stdClass();
 
 //gets current interval values in database and assigns them to variables for comparison 
-foreach($db->query("SELECT Interval_on, Interval_off FROM settings WHERE user_id = ".$_SESSION['id']." ") as $row){
+foreach($db->query("SELECT Interval_on, Interval_off FROM well_data ") as $row){
 	$old_On = $row['Interval_on'];
 	$old_Off = $row['Interval_off'];
 }
 
 if(isset($_POST['toggle'])){
-	foreach($db->query("SELECT Interval_on, Interval_off,image_path FROM settings WHERE user_id = ".$_SESSION['id']." ") as $row){	
+	foreach($db->query("SELECT Interval_on, Interval_off FROM well_data ") as $row){	
 	$myObj->Interval_on = $row['Interval_on'];
 	$myObj->Interval_off = $row['Interval_off'];
+	}
+	
+	foreach($db->query("SELECT image_path FROM settings WHERE user_id = ".$_SESSION['id']." ") as $row){	
 	$myObj->url = $row['image_path'];
 	}
 	
@@ -46,19 +49,19 @@ if(!empty($_POST['Off']) && !empty($_POST['On'])){
 	$On = $_POST['On'];
 	$Off = $_POST['Off'];
 	if(($old_On != $On) && ($old_Off != $Off)){
-		$sql = "UPDATE settings SET Interval_on = '".$On."'";
+		$sql = "UPDATE well_data SET Interval_on = '".$On."'";
 		$db->exec($sql);
-		$sql = "UPDATE settings SET Interval_off = '".$Off."'";
+		$sql = "UPDATE well_data SET Interval_off = '".$Off."'";
 		$db->exec($sql);
 		echo 3;
 		die();
 	} else if($old_Off != $Off){
-		$sql = "UPDATE settings SET Interval_off = '".$Off."'";
+		$sql = "UPDATE well_data SET Interval_off = '".$Off."'";
 		$db->exec($sql);
 		echo 2;
 		die();
 	} else if($old_On != $On){
-		$sql = "UPDATE settings SET Interval_on = '".$On."'";
+		$sql = "UPDATE well_data SET Interval_on = '".$On."'";
 		$db->exec($sql);
 		echo 1;
 		die();

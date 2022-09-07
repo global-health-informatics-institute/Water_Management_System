@@ -48,6 +48,11 @@ try{
     $myObj->capacity = $row['capacity'];
     $myObj->tname =  $row['name'];
   }
+  
+  foreach($db->query("SELECT Interval_on, Interval_off FROM well_data ") as $row){	
+	$myObj->Interval_on = $row['Interval_on'];
+	$myObj->Interval_off = $row['Interval_off'];
+	}
 
   #$myObj -> data_points = $data_points;
   

@@ -18,7 +18,7 @@ if(isset($_FILES['image']) && $_FILES['image']['error'] == 0){
 	$ext = pathinfo($filename, PATHINFO_EXTENSION);
 	if(!array_key_exists($ext, $allowed)) die("Error: Please select a valid file format.");
 
-	// Verify file size - 5MB maximum
+	// Verify file size - 100MB maximum
 	$maxsize = 100 * 1024 * 1024;
 	if($filesize > $maxsize) die("Error: File size is larger than the allowed limit.");
 	

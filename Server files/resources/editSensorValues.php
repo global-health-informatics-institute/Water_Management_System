@@ -18,6 +18,7 @@ $resetM = $data["reset"];
 $toggleP = $data["toggleP"];
 $Gs = $data["GS"];
 
+
 $user = "admin";
 $password = "password";
 $database = "WMS";
