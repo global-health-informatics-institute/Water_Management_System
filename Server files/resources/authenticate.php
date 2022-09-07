@@ -1,13 +1,9 @@
 <?php
 session_start();
-
+require_once "config.php";
 $error = "";
-$user = "admin";
-$password = "password";
-$database = "WMS";
 $table = "users";
-
-$db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
+$myObj = new stdClass();
 
 $username = trim($_POST['username']);
 $u_password = trim($_POST['password']);

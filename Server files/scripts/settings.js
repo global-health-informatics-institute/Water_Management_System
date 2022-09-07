@@ -4,28 +4,27 @@ setTimeout(function() {
   });
 }, 500);
 
-var tankID = "1"
+var tankID = "1";
 
 $(function(){
-
-	
-
+	//services upload cancel button
 	$("#cancel2").click(function(e){
 	  e.preventDefault();
 	  $("#img").addClass("visually-hidden");
 	});
+	//services interval cancel button
 	$("#cancel").click(function(e){
 	  e.preventDefault();
 	  $("#int").addClass("visually-hidden");
 	});
-
+	//when there is a change in input
 	$('input#On').change(function() {
 	  $("#int").removeClass("visually-hidden");
 	});
 	$('input#Off').change(function() {
 	  $("#int").removeClass("visually-hidden");
 	});
-	
+	//show upload button when input form  is clicked
 	$("#formFile").click(function(){
 	    $("#img").removeClass("visually-hidden");
 	    
@@ -44,17 +43,24 @@ $(function(){
 		var myObj = JSON.parse(result);
 		$("#On").val(myObj.Interval_on);
 		$("#Off").val(myObj.Interval_off);
+		if(!myObj.url.trim()){
+			console.log("string is empty");
+		}else{
+			$("body").css("background-image", "url(../" + myObj.url+ ")");
+		}
 	    }
 	    });
 
 	//when the Interval form is submitted
 	$("#interval").submit(function(e){
 	  e.preventDefault();
+	  $("#submitInt").attr("disabled",true);
 	  $.ajax({
 	    url:"../resources/settings_service.php",
 	    method: "POST",
 	    data: {On: $("#On").val(), Off: $("#Off").val()},
 	    success: function(result){
+	      $("#submitInt").attr("disabled",false);
 	       //once verified, the dashboard is shown when the window is reloaded
 	      if(result == 1){
 		    $("#int").addClass("visually-hidden");
@@ -99,6 +105,7 @@ $(function(){
 	  let image = $("#formFile")[0].files[0];
 	  formData.append('image',image);
 	  e.preventDefault();
+	  $("#uploadImg").attr("disabled",true);
 	  $.ajax({
 		xhr: function(){
 		  var xhr = new window.XMLHttpRequest();
@@ -118,13 +125,16 @@ $(function(){
 		contentType: false,
 		processData: false,
 		success: function(result){
+		  $("#uploadImg").attr("disabled",false);
 		   //once verified, the dashboard is shown when the window is reloaded
 		  if(result==1){
 			$("#img").addClass("visually-hidden");
+			$(".progress-bar").addClass("visually-hidden");
 			$("#upload-update").removeClass("text-danger");
 			$("#upload-update").addClass("text-info");
 			$("#upload-update").removeClass("visually-hidden");
-			$("#upload-update").html(result);
+			$("#upload-update").html("Your file was uploaded successfully.").delay(2000);
+			window.location.reload(true);
 			
 			}
 		  else{
@@ -151,7 +161,6 @@ $(function(){
         tankID = window.localStorage.getItem('admin_tank_id');
       }else{tankID = "1";}
     }
-    
     
 
     //backbutton functionality

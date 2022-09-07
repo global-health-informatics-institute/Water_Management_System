@@ -1,17 +1,27 @@
 <?php
-require_once "../resources/config.php";
+session_start();
+require_once "config.php";
 $table = "users";
 $error = "";
 $error1 = '';
 $error3 = '';
 $error4 = '';
+$myObj = new stdClass();
+
+if(isset($_POST['toggle'])){
+	foreach($db->query("SELECT image_path FROM settings WHERE user_id = ".$_SESSION['id']."") as $row){	
+	$myObj->url = $row['image_path'];
+	}
+	$myJSON = json_encode($myObj);
+    echo $myJSON;
+    die();
+}
 
 //if the user is already logged in then redirect user
 if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
 	header("location: ../login.php");
 	exit;
 }
-
 
 if(isset($_POST['username'])){
 	$username = trim($_POST['username']);
@@ -29,7 +39,6 @@ if(isset($_POST['id'])){
 	$uname = trim($_POST['uname']);
 	$mail = trim($_POST['email']);
 	$userId = trim($_POST['id']);
-	
 	
 	
 	

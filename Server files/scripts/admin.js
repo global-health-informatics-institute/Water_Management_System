@@ -25,9 +25,8 @@ const firebaseConfig = {
 
 setTimeout(function() {
   $('#preloader').fadeOut('slow', function() {
-    //$(this).remove();
   });
-}, 500);
+}, 20000);
 
 // Get current sensor readings when the page loads
 window.addEventListener("load", function(){
@@ -44,6 +43,8 @@ window.addEventListener("load", function(){
   xhr.open("POST", "/resources/editSensorValues.php", true);
   xhr.setRequestHeader("Content-type","application/json");
   xhr.send(md);
+  
+  
   
 });
 var warning1 = 0;
@@ -615,6 +616,23 @@ function handleClick5(){
 
 //listens for any changes to the select attribute
 $(function(){
+	//get background image
+	$.ajax({
+		url:"../resources/admin_service.php",
+		method: "POST",
+		data: {toggle: "1"},
+		success: function(result){
+		console.log(result);
+		var myObj = JSON.parse(result);
+		if(!myObj.url.trim()){
+			console.log("string is empty");
+		}else{
+			$("body").css("background-image", "url(" + myObj.url+ ")");
+		}
+		}
+	});
+	
+	
   //jquery ui functionality
   $("#liveToast").draggable();
   $("#liveToast2").draggable();

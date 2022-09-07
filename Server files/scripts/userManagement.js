@@ -163,6 +163,21 @@ function editUser(e){
 
 //Changes the active link in navbar
 $(function(){
+	
+	//get background image
+	$.ajax({
+		url:"../resources/userManagement_service.php",
+		method: "POST",
+		data: {toggle: "1"},
+		success: function(result){
+		var myObj = JSON.parse(result);
+		if(!myObj.url.trim()){
+			console.log("string is empty");
+		}else{
+			$("body").css("background-image", "url(../" + myObj.url+ ")");
+		}
+		}
+	});
   
     $("li#dash").find("a").addClass("active").css("background-color","#3375c4");
     $("li#home").find("a").removeClass("active");

@@ -1453,6 +1453,21 @@ function getReadings5() {
 
 
 $(function(){
+	
+	//get background image
+	$.ajax({
+		url:"../resources/index_service.php",
+		method: "POST",
+		data: {toggle: "1"},
+		success: function(result){
+		var myObj = JSON.parse(result);
+		if(!myObj.url.trim()){
+			console.log("string is empty");
+		}else{
+			$("body").css("background-image", "url(" + myObj.url+ ")");
+		}
+		}
+	});
   
    /*
    *CONTROLS FOR TANK 1

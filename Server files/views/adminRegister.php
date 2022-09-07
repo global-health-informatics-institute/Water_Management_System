@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once "../resources/config.php";
 
 //if the user is already logged in then redirect user
 if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
@@ -11,11 +12,17 @@ $error1 = '';
 $error3 = '';
 $error4 = '';
 $error5 = '';
-$user = "admin";
-$password = "password";
-$database = "WMS";
 $table = "users";
+$myObj = new stdClass();
 
+if(isset($_POST['toggle'])){
+	foreach($db->query("SELECT image_path FROM settings WHERE user_id = ".$_SESSION['id']."") as $row){	
+	$myObj->url = $row['image_path'];
+	}
+	$myJSON = json_encode($myObj);
+    echo $myJSON;
+    die();
+}
 
 if (isset($_POST['submit'])){
 	$username = trim($_POST['username']);
@@ -23,8 +30,6 @@ if (isset($_POST['submit'])){
 	$u_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 	
 	try{
-		//connect to database
-		$db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
 		
 		//checks if form is complete
 		if (!isset($_POST['username'], $_POST['password'], $_POST['email'])) {

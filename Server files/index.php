@@ -1,17 +1,7 @@
 <?php
 //start the session
 session_start();
-
-//if the user is not logged in then redirect user
-if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
-	header("location: login.php");
-	exit;
-}
-//if the name in the session is admin, redirect
-if($_SESSION['name'] == "admin"){
-		header("location: login.php");
-    exit;
-}
+require_once "resources/index_service.php";
 
 ?>
 

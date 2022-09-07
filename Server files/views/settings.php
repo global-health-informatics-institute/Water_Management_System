@@ -1,11 +1,6 @@
 <?php
 session_start();
 require_once "../resources/settings_service.php";
-//if the user is already logged in then redirect user
-if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
-	header("location: ../login.php");
-	exit;
-}
 ?>
 
 <!DOCTYPE html>
@@ -85,7 +80,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
 							  </div>
 							  <p id="upload-update1" class="visually-hidden text-danger text-center pt-2"></p>
 							  <div id="int"  class="text-end visually-hidden pt-3">
-								  <button id="submit" type="submit" class="button-30 p-2 me-3">Apply</button>
+								  <button id="submitInt" type="submit" class="button-30 p-2 me-3">Apply</button>
 								  <button id="cancel" class="button-30 p-2">Cancel</button>
 							  </div>
 						  </form>
@@ -105,7 +100,7 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
 							  </div>
 							  <p id="upload-update" class="visually-hidden text-danger text-center pt-2"></p>
 							  <div id="img" class="text-end visually-hidden pt-3 pb-4">
-								  <button id="submit" type="submit" class="button-30 p-2 me-3">Upload</button>
+								  <button id="uploadImg" type="submit" class="button-30 p-2 me-3">Upload</button>
 								  <button id="cancel2" class="button-30 p-2">Cancel</button>
 							  </div>
 							  <div class="progress-bar visually-hidden">

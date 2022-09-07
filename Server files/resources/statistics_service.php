@@ -1,8 +1,18 @@
 <?php
-require_once "../resources/config.php";
+session_start();
+require_once "config.php";
 $error = "";
 $table = "sensorValues";
 $tank_id = "";
+$myObj = new stdClass();
+if(isset($_POST['toggle'])){
+	foreach($db->query("SELECT image_path FROM settings WHERE user_id = ".$_SESSION['id']."") as $row){	
+	$myObj->url = $row['image_path'];
+	}
+	$myJSON = json_encode($myObj);
+    echo $myJSON;
+    die();
+}
 
 //if the user is already logged in then redirect user
 if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){

@@ -54,6 +54,21 @@ var dataArr = [];
 var tankID = "1"
 
 $(function(){
+	//get background image
+	$.ajax({
+		url:"../resources/statistics_service.php",
+		method: "POST",
+		data: {toggle: "1"},
+		success: function(result){
+		var myObj = JSON.parse(result);
+		if(!myObj.url.trim()){
+			console.log("string is empty");
+		}else{
+			$("body").css("background-image", "url(../" + myObj.url+ ")");
+		}
+		}
+	});
+	
     $("select").change(onSelect);
     if($("select#select").val()){
       //Check if there is a tank id in local storage

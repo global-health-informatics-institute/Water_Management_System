@@ -1,27 +1,8 @@
 <?php
 //start the session
 session_start();
-//if the user is already logged in then redirect user
-if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
-	header("location: login.php");
-	exit;
-}
-
-if($_SESSION['name'] !== "admin"){
-		header("location: index.php");
-    exit;
-}
-
-$error = "";
-$user = "admin";
-$password = "password";
-$database = "WMS";
-$table = "sensorValues";
-$tank_id = "";
-
-//connect to database
-$db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
-
+require_once "resources/config.php";
+require_once "resources/admin_service.php";
 ?>
 
 

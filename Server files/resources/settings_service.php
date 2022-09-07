@@ -1,25 +1,34 @@
 <?php
-require_once "../resources/config.php";
+session_start();
+//if the user is already logged in then redirect user
+if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true){
+	header("location: ../login.php");
+	exit;
+}
+
+require_once "config.php";
+
 $table = "settings";
 $tank_id = "";
 $On = "";
 $Off = "";
 $old_On = "";
 $old_Off = "";
-
 $myObj = new stdClass();
 
 //gets current interval values in database and assigns them to variables for comparison 
-foreach($db->query("SELECT Interval_on, Interval_off FROM settings WHERE well_id = 1 ") as $row){
+foreach($db->query("SELECT Interval_on, Interval_off FROM settings WHERE user_id = ".$_SESSION['id']." ") as $row){
 	$old_On = $row['Interval_on'];
 	$old_Off = $row['Interval_off'];
 }
 
 if(isset($_POST['toggle'])){
-	foreach($db->query("SELECT Interval_on, Interval_off FROM settings WHERE well_id = 1 ") as $row){	
+	foreach($db->query("SELECT Interval_on, Interval_off,image_path FROM settings WHERE user_id = ".$_SESSION['id']." ") as $row){	
 	$myObj->Interval_on = $row['Interval_on'];
 	$myObj->Interval_off = $row['Interval_off'];
+	$myObj->url = $row['image_path'];
 	}
+	
 	$myJSON = json_encode($myObj);
     echo $myJSON;
     die();
@@ -55,7 +64,5 @@ if(!empty($_POST['Off']) && !empty($_POST['On'])){
 		die();
 	}
 }
-
-
 
 ?>
