@@ -22,8 +22,10 @@ wellPump = Pin(config["waterPumpP"],Pin.OUT)
 offsetVariable3 = wellPump.value()
 overRide = 0
 state = 0
+start_timer = True
 toggle = 0
 waterPump = 0
+activated = False
 maximum_capacity = (tank_volume * 0.85)
 minimum_capacity = (tank_volume * (30/100))
 
@@ -32,6 +34,9 @@ timer = Timer(-1)
 timer.init(period = 12000,
            mode= Timer.PERIODIC,
            callback = lambda t: checkWifi()) #checkWifi function called to check the wifi status
+
+#Timer Initialization
+timer3 = Timer(3)
 
 def pumpOn(timer):
     timer.deinit()
@@ -139,6 +144,12 @@ while True:
     
     #Automatic control mode
     if not overRide:
+        #Flags if timer3 is operational
+        if start_timer:
+            start_timer = False
+            timer3.init(period = 20000,
+               mode= Timer.PERIODIC,
+               callback = lambda t: patchData(data,overRide)) #checkWifi function called to check the wifi status
         #gets tank volume
         tankVolume = getTankVolume()
         print("entered auto mode")
@@ -186,12 +197,15 @@ while True:
                 state = 2
         
         #send pump state to database
-        data= {"pump1":wellPump.value(),"tank_id": tankId,"opCode": config["opcode"]}
-        patchData(data,overRide)
+        data= {"pump1":wellPump.value(),"warning1":warning1,"warning2":warning2,"Volume":tankVolume,"tank_id": tankId,"opCode": config["opcode"]}
+        #patchData(data,overRide)
     
     #Manual Control Mode
     elif overRide:
-        
+        #Flags if timer3 is operational
+        if not start_timer:
+            timer3.deinit()
+            start_timer = True
         warning1 = 0
         warning2 = 0
         print("entered manual mode")
@@ -208,25 +222,29 @@ while True:
             offsetVariable3 = True
         elif not waterPump and offsetVariable3 == True:
             toggle = 0
+            activated = True
             wellPump.off()
+            print("Well is: ",wellPump.value())
+            sleep(2)
             offsetVariable3 = False
         
         #toggle the pump
         if toggle == 1:
+            
             #switch on Well-Pump
             if state == 0:
                 if wellPump.value() == False:
                     wellPump.on()
                 #Timer Initialization
                 timer1 = Timer(1)
-                timer1.init(period = config["period_on"],
+                timer1.init(period = period_on,
                            mode= Timer.ONE_SHOT,
                            callback = lambda t: pumpOff(timer1))
                 state = 2
                 
             if state == 1:
                 timer2 = Timer(2)
-                timer2.init(period = config["period_off"],
+                timer2.init(period =  period_off,
                            mode = Timer.ONE_SHOT,
                            callback = lambda t: pumpOn(timer2))
                 state = 2
